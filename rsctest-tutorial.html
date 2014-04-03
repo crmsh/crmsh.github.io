@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="AsciiDoc 8.6.8">
+<title>crmsh - Resource testing</title>
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/crm.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div id="header">
+<h1><a href="index.html"><span class="fa-stack">
+  <i class="fa fa-square fa-stack-2x"></i>
+  <i class="fa fa-terminal fa-stack-1x fa-inverse"></i>
+</span>crmsh</a></h1>
+<div id="topbar">
+<ul>
+<li><a href="documentation.html">Documentation</a></li>
+<li><a href="tutorials.html">Guides & Tutorials</a></li>
+<li><a href="development.html">Development</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="about.html">About</a></li>
+</ul>
+</div>
+</div>
+<!--TOC-->
+<div id="container">
+<div id="content">
+<h1>Resource testing</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph"><p>Never created a pacemaker cluster configuration before? Please
+read on.</p></div>
+<div class="paragraph"><p>Ever created a pacemaker configuration without errors? All
+resources worked from the get go on all your nodes? Really? We
+want a photo of you!</p></div>
+<div class="paragraph"><p>Seriously, it is so error prone to get a cluster resource
+definition right that I think I ever only managed to do it with
+<span class="monospaced">Dummy</span> resources. There are many intricate details that have to be
+just right, and all of them are stuffed in a single place as simple
+name-value attributes. Then there are multiple nodes, each node
+containing a complex system environment inevitably always in flux and
+changing (entropy anybody?).</p></div>
+<div class="paragraph"><p>Now, once you defined your set of resources and are about to
+<em>commit</em> the configuration (at that point it usually takes a
+deep breath to do so), be ready to meet an avalanche of error
+messages, not all of which are easy to understand or follow. Not
+to mention that you need to read the logs too. Even though we do
+have a <a href="history-tutorial.html">tool</a> to help with digging through
+the logs, it is going to be an interesting experience and not quite
+recommended if you&#8217;re just starting with pacemaker clusters. Even the
+experts can save a lot of time and headaches by following the advice
+below.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_basic_usage">Basic usage</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Enter resource testing. It is a special feature designed to help
+users find problems in resource configurations.</p></div>
+<div class="paragraph"><p>The usage is very simple:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>crm(live)configure# rsctest web-server
+Probing resources ..
+testing on xen-f: apache web-ip
+testing on xen-g: apache web-ip
+crm(live)configure#</pre>
+</div></div>
+<div class="paragraph"><p>What actually happened above and what is it good for? From the
+output we can infer that the <span class="monospaced">web-server</span> resource is actually a
+group comprising one apache web server and one IP address.
+Indeed:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>crm(live)configure# show web-server
+group web-server apache web-ip \
+        meta target-role="Stopped"
+crm(live)configure#</pre>
+</div></div>
+<div class="paragraph"><p>The <span class="monospaced">rsctest</span> command first established that the resources are
+stopped on all nodes in the cluster. Then it tests the resources
+in the order defined by the resource group on all nodes. It does
+this by manually starting the resources, one by one, then running
+a "monitor" for each resource to make sure that the resources are
+healthy, and finally stopping the resources in reverse order.</p></div>
+<div class="paragraph"><p>Since there is no additional output, the test passed. It looks
+like we have a properly defined web server group.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_reporting_problems">Reporting problems</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Now, the above run was not very interesting so let&#8217;s spoil the
+idyll:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>xen-f:~ # mv /etc/apache2/httpd.conf /tmp</pre>
+</div></div>
+<div class="paragraph"><p>We moved the apache configuration file away on node <span class="monospaced">xen-f</span>.  The
+<span class="monospaced">apache</span> resource should fail now:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>crm(live)configure# rsctest web-server
+Probing resources ..
+testing on xen-f: apache
+host xen-f (exit code 5)
+xen-f stderr:
+2013/10/17_16:51:26 ERROR: Configuration file /etc/apache2/httpd.conf not found!
+2013/10/17_16:51:26 ERROR: environment is invalid, resource considered stopped
+
+testing on xen-g: apache web-ip
+crm(live)configure#</pre>
+</div></div>
+<div class="paragraph"><p>As expected, <span class="monospaced">apache</span> failed to start on node <span class="monospaced">xen-f</span>. When the
+cluster resource manager runs an operation on a resource, all
+messages are logged (there is no terminal attached to the
+cluster, anyway). All one can see in the resource status is the type
+of the exit code. In this case, it is an installation problem.</p></div>
+<div class="paragraph"><p>For instance, the output could look like this:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>xen-f:~ # crm status
+Last updated: Thu Oct 17 19:21:44 2013
+Last change: Thu Oct 17 19:21:28 2013 by root via crm_resource on xen-f
+...
+Failed actions:
+    apache_start_0 on xen-f 'not installed' (5): call=2074, status=complete,
+last-rc-change='Thu Oct 17 19:21:31 2013', queued=164ms, exec=0ms</pre>
+</div></div>
+<div class="paragraph"><p>That does not look very informative. With <span class="monospaced">rsctest</span> we can
+immediately see what the problem is. It saves us prowling the
+logs looking for messages of the <span class="monospaced">apache</span> resource agent.</p></div>
+<div class="paragraph"><p>Note that the IP address is not tested, because the resource it
+depends on could not be started.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_is_tested">What is tested?</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>The start, monitor, and stop operations, in exactly that order,
+are tested for every resource specified. Note that normally the
+two latter operations should never fail if the resource agent is
+well implemented. The RA should under normal circumstances be
+able to stop or monitor a started resource. However, this is
+<em>not</em> a replacement for resource agent testing. If that is what
+you are looking for, see
+<a href="http://www.linux-ha.org/doc/dev-guides/_testing_resource_agents.html">the
+RA testing chapter</a> of the RA development guide.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_protecting_resources">Protecting resources</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>The <span class="monospaced">rsctest</span> command goes to great lengths to prevent starting a
+resource on more than one node at the same time. For some stuff
+that would actually mean data corruption and we certainly don&#8217;t
+want that to happen.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>xen-f:~ # (echo start web-server; echo show web-server) | crm -w resource
+resource web-server is running on: xen-g
+xen-f:~ # crm configure rsctest web-server
+Probing resources .WARNING: apache:probe: resource running at xen-g
+.WARNING: web-ip:probe: resource running at xen-g
+
+Stop all resources before testing!
+xen-f:~ # crm configure rsctest web-server xen-f
+Probing resources .WARNING: apache:probe: resource running at xen-g
+.WARNING: web-ip:probe: resource running at xen-g
+
+Stop all resources before testing!
+xen-f:~ #</pre>
+</div></div>
+<div class="paragraph"><p>As you can see, if <span class="monospaced">rsctest</span> finds any of the resources running
+on any node it refuses to run any tests.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_multi_state_and_clone_resources">Multi-state and clone resources</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Apart from groups, the <span class="monospaced">rsctest</span> can also handle the other two
+special kinds of resources. Let&#8217;s take a look at one <span class="monospaced">drbd</span>-based
+configuration:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>crm(live)configure# show ms_drbd_nfs drbd0-vg
+primitive drbd0-vg ocf:heartbeat:LVM \
+        params volgrpname="drbd0-vg"
+primitive p_drbd_nfs ocf:linbit:drbd \
+        meta target-role="Stopped" \
+        params drbd_resource="nfs" \
+        op monitor interval="15" role="Master" \
+        op monitor interval="30" role="Slave" \
+        op start interval="0" timeout="300" \
+        op stop interval="0" timeout="120"
+ms ms_drbd_nfs p_drbd_nfs \
+        meta notify="true" clone-max="2"
+crm(live)configure#</pre>
+</div></div>
+<div class="paragraph"><p>The <span class="monospaced">nfs</span> drbd resource contains a volume group <span class="monospaced">drbd0-vg</span>.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>crm(live)configure# rsctest ms_drbd_nfs drbd0-vg
+Probing resources ..
+testing on xen-f: p_drbd_nfs drbd0-vg
+testing on xen-g: p_drbd_nfs drbd0-vg
+crm(live)configure#</pre>
+</div></div>
+<div class="paragraph"><p>For the multi-state (master-slave) resources, the involved
+resource motions are somewhat more complex: the resource is first
+started on both nodes and then promoted on the node where the
+next resource is to be tested (in this case the volume group).
+Then it gets demoted to slave and promoted on the other
+node to master so that the depending resources can be tested on
+that node too.</p></div>
+<div class="paragraph"><p>Note that even though we asked for <span class="monospaced">ms_drbd_nfs</span> to be tested,
+there is <span class="monospaced">p_drbd_nfs</span> in the output which is the primitive
+encapsulated in the master-slave resource. You can specify either
+one.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_stonith_resources">Stonith resources</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>The stonith resources are also special and need special
+treatment. What is tested is just the device status. Actually
+fencing nodes was deemed too drastic. Please use <span class="monospaced">node fence</span> to
+test the fencing device effectiveness. It also does not matter
+whether the stonith resource is "running" on any node: being
+started is just something that happens virtually in the
+<span class="monospaced">stonithd</span> process.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_summary">Summary</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+use <span class="monospaced">rsctest</span> to make sure that the resources can be started
+  correctly on all nodes
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">rsctest</span> protects resources by making sure beforehand that
+  none of them is currently running on any of the cluster nodes
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">rsctest</span> understands groups, master-slave (multi-state), and
+  clone resources, but nothing else of the configuration
+  (constraints or any other placement/order cluster configuration
+  elements)
+</p>
+</li>
+<li>
+<p>
+it is up to the user to test resources only on nodes which are
+  really supposed to run them and in a proper order (if that
+  order is expressed via constraints)
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">rsctest</span> cannot protect resources if they are running on
+  nodes which are not present in the cluster or from bad RA
+  implementations (but neither would a cluster resource manager)
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">rsctest</span> was designed as a debugging and configuration aid, and is
+  not intended to provide full Resource Agent test coverage.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_span_class_monospaced_crmsh_span_help_and_online_resources_em_sic_em"><span class="monospaced">crmsh</span> help and online resources (<em>sic!</em>)</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="crm.8.html#topics_Testing"><span class="monospaced">crm help Testing</span></a>
+</p>
+</li>
+<li>
+<p>
+<a href="crm.8.html#cmdhelp_configure_rsctest"><span class="monospaced">crm configure help
+rsctest</span></a>
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2014-04-01 11:54:42 CEST
+</div>
+</div>
+</div>
+</body>
+</html>

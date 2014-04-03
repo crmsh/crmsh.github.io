@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="AsciiDoc 8.6.8">
+<title>crmsh - Scripts</title>
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/crm.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div id="header">
+<h1><a href="index.html"><span class="fa-stack">
+  <i class="fa fa-square fa-stack-2x"></i>
+  <i class="fa fa-terminal fa-stack-1x fa-inverse"></i>
+</span>crmsh</a></h1>
+<div id="topbar">
+<ul>
+<li><a href="documentation.html">Documentation</a></li>
+<li><a href="tutorials.html">Guides & Tutorials</a></li>
+<li><a href="development.html">Development</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="about.html">About</a></li>
+</ul>
+</div>
+</div>
+<!--TOC-->
+<div id="toc">
+<div class="toclevel1"><a href="#_introduction">Introduction</a></div>
+<div class="toclevel1"><a href="#_usage">Usage</a></div>
+<div class="toclevel2"><a href="#_list_available_scripts">List available scripts</a></div>
+<div class="toclevel2"><a href="#_script_description">Script description</a></div>
+<div class="toclevel2"><a href="#_running_a_script">Running a script</a></div>
+<div class="toclevel3"><a href="#_single_stepping_a_script">Single-stepping a script</a></div>
+<div class="toclevel1"><a href="#_creating_a_script">Creating a script</a></div>
+<div class="toclevel2"><a href="#_how_scripts_work_in_detail">How scripts work, in detail</a></div>
+<div class="toclevel2"><a href="#_actions">Actions</a></div>
+<div class="toclevel2"><a href="#_basic_structure">Basic structure</a></div>
+<div class="toclevel2"><a href="#_remote_permissions">Remote permissions</a></div>
+<div class="toclevel2"><a href="#_running_scripts_without_a_cluster">Running scripts without a cluster</a></div>
+<div class="toclevel2"><a href="#_running_in_validate_mode">Running in validate mode</a></div>
+<div class="toclevel2"><a href="#_helper_library">Helper library</a></div>
+</div>
+<div id="container">
+<div id="content">
+<h1>Scripts</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="title">Version information</div>This section applies to the in-development <span class="monospaced">crmsh 2.0+</span> only.</td>
+</tr></table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>A big part of the configuration and management of a cluster is
+collecting information about all cluster nodes and deploying changes
+to those nodes. Often, just performing the same procedure on all nodes
+will encounter problems, due to subtle differences in the
+configuration.</p></div>
+<div class="paragraph"><p>For example, when configuring a cluster for the first time, the
+software needs to be installed and configured on all nodes before the
+cluster software can be launched and configured using <span class="monospaced">crmsh</span>. This
+process is cumbersome and error-prone, and the goal is for scripts to
+make this process easier.</p></div>
+<div class="paragraph"><p>Another important function of scripts is collecting information and
+reporting potential issues with the cluster. For example, software
+versions may differ between nodes, causing byzantine errors or random
+failure. <span class="monospaced">crmsh</span> comes packaged with a <span class="monospaced">health</span> script which will
+detect and warn about many of these types of problems.</p></div>
+<div class="paragraph"><p>There are many tools for managing a collection of nodes, and scripts
+are not intended to replace these tools. Rather, they provide an
+integrated way to perform tasks across the cluster that would
+otherwise be tedious, repetitive and error-prone. The scripts
+functionality in the crm shell is mainly inspired by Ansible, a
+light-weight and efficient configuration management tool.</p></div>
+<div class="paragraph"><p>Scripts are implemented using the <span class="monospaced">parallel-ssh</span> package which
+provides a thin wrapper on top of SSH. This allows the scripts to
+function through the usual SSH channels used for system maintenance,
+requiring no additional software to be installed or maintained.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_usage">Usage</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Scripts are available through the <span class="monospaced">cluster</span> sub-level in the crm
+shell. Some scripts have custom commands linked to them for
+convenience, such as the <span class="monospaced">init</span>, <span class="monospaced">join</span> and <span class="monospaced">remove</span> commands for
+creating new clusters, introducing new nodes into the cluster and for
+removing nodes from a running cluster.</p></div>
+<div class="paragraph"><p>Other scripts can be accessed through the <span class="monospaced">script</span> sub-level inside
+<span class="monospaced">cluster</span>.</p></div>
+<div class="sect2">
+<h3 id="_list_available_scripts">List available scripts</h3>
+<div class="paragraph"><p>To list the available scripts, use the following command:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre># crm script
+list</pre>
+</div></div>
+<div class="paragraph"><p>The available scripts are listed along with a short description.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_script_description">Script description</h3>
+<div class="paragraph"><p>To get more details about a script, run the <span class="monospaced">describe</span> command. For
+example, to get more information about what the <span class="monospaced">health</span> script does
+and what parameters it accepts, use the following command:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre># crm script
+describe health</pre>
+</div></div>
+<div class="paragraph"><p><span class="monospaced">describe</span> will print a longer explanation for the script, along with
+a list of parameters, each parameter having a description, a note
+saying if it is an optional or required parameter, and if optional,
+what the default value is.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_running_a_script">Running a script</h3>
+<div class="paragraph"><p>To run a script, all required parameters and any optional parameters
+that should have values other than the default should be provided as
+<span class="monospaced">key=value</span> pairs on the command line. The following example shows how
+to call the <span class="monospaced">health</span> script with verbose output enabled:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre># crm script
+run health verbose=true</pre>
+</div></div>
+<div class="sect3">
+<h4 id="_single_stepping_a_script">Single-stepping a script</h4>
+<div class="paragraph"><p>It is possible to run a script step-by-step, with manual intervention
+between steps. First of all, list the steps of the script to run:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm script steps health</pre>
+</div></div>
+<div class="paragraph"><p>To execute a single step, two things need to be provided:</p></div>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+The name of the step to execute (printed by <span class="monospaced">steps</span>)
+</p>
+</li>
+<li>
+<p>
+a file in which <span class="monospaced">crmsh</span> stores the state of execution.
+</p>
+</li>
+</ol></div>
+<div class="paragraph"><p>Note that it is entirely possible to run steps out-of-order, however
+this is unlikely to work in practice since steps often rely on the
+output of previous steps.</p></div>
+<div class="paragraph"><p>The following command will execute the first step of the <span class="monospaced">health</span>
+script and store the output in a temporary file named <span class="monospaced">health.json</span>:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm script run health \
+    step='Collect cluster information' \
+    statefile='health.json'</pre>
+</div></div>
+<div class="paragraph"><p>The statefile contains the script parameters and the output of
+previous steps, encoded as <span class="monospaced">json</span> data.</p></div>
+<div class="paragraph"><p>To continue executing the next step in sequence, replace the step name
+with the next step:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm script run health \
+    step='Report cluster state' \
+    statefile='health.json'</pre>
+</div></div>
+<div class="paragraph"><p>Note that the <span class="monospaced">dry_run</span> flag that can be used to do partial execution
+of scripts is not taken into consideration when single-stepping
+through a script.</p></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_a_script">Creating a script</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>This section will describe how to create a new script, where to put
+the script to allow <span class="monospaced">crmsh</span> to find it, and how to test that the
+script works as intended.</p></div>
+<div class="sect2">
+<h3 id="_how_scripts_work_in_detail">How scripts work, in detail</h3>
+<div class="paragraph"><p>When the script runs, the steps defined in <span class="monospaced">main.yml</span> as described
+below are executed one at a time. Each step describes an action that
+is applied to the cluster, either by calling out and running scripts
+on each of the cluster nodes, or by running a script locally on the
+node from which the command was executed.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_actions">Actions</h3>
+<div class="paragraph"><p>Scripts perform actions that are classified into a few basic
+types. Each action is performed by calling out to a shell script,
+but the arguments and location of that script varies depending on the
+type.</p></div>
+<div class="paragraph"><p>Here are the types of script actions that can be performed:</p></div>
+<div class="dlist"><dl>
+<dt class="hdlist1">
+Collect
+</dt>
+<dd>
+<div class="ulist"><ul>
+<li>
+<p>
+Runs on all cluster nodes
+</p>
+</li>
+<li>
+<p>
+Gathers information about the nodes, both general information and
+    information specific to the script.
+</p>
+</li>
+</ul></div>
+</dd>
+<dt class="hdlist1">
+Validate
+</dt>
+<dd>
+<div class="ulist"><ul>
+<li>
+<p>
+Runs on the local node
+</p>
+</li>
+<li>
+<p>
+Validate parameter values and node state based on collected
+    information. Can modify default values and report issues that
+    would prevent the script from applying successfully.
+</p>
+</li>
+</ul></div>
+</dd>
+<dt class="hdlist1">
+Apply
+</dt>
+<dd>
+<div class="ulist"><ul>
+<li>
+<p>
+Runs on all or any cluster nodes
+</p>
+</li>
+<li>
+<p>
+Applies changes, returning information about the applied changes
+    to the local node.
+</p>
+</li>
+</ul></div>
+</dd>
+<dt class="hdlist1">
+Apply-Local
+</dt>
+<dd>
+<div class="ulist"><ul>
+<li>
+<p>
+Runs on the local node
+</p>
+</li>
+<li>
+<p>
+Applies changes to the cluster, where an action taken on a single
+    node affect the entire cluster. This includes updating the CIB in
+    Pacemaker, and also reloading the configuration for Corosync.
+</p>
+</li>
+</ul></div>
+</dd>
+<dt class="hdlist1">
+Report
+</dt>
+<dd>
+<div class="ulist"><ul>
+<li>
+<p>
+Runs on the local node
+</p>
+</li>
+<li>
+<p>
+This is similar to the <em>Apply-Local</em> action, with the difference
+    that the output of a Report action is not interpreted as JSON data
+    to be passed to the next action. Instead, the output is printed to
+    the screen.
+</p>
+</li>
+</ul></div>
+</dd>
+</dl></div>
+</div>
+<div class="sect2">
+<h3 id="_basic_structure">Basic structure</h3>
+<div class="paragraph"><p>The crm shell looks for scripts in two primary locations: Included
+scripts  are installed in the system-wide shared folder, usually
+<span class="monospaced">/usr/share/crmsh/scripts/</span>. Local and custom scripts are loaded from
+the user-local XDG_CONFIG folder, usually found at
+<span class="monospaced">~/.local/crm/scripts/</span>. These locations may differ depending on how
+the crm shell was installed and which system is used, but these are
+the locations used on most distributions.</p></div>
+<div class="paragraph"><p>To create a new script, make a new folder in the user-local scripts
+folder and give it a unique name. In this example, we will call our
+new script <span class="monospaced">check-uptime</span>.</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>mkdir -p ~/.local/crm/scripts/check-uptime</pre>
+</div></div>
+<div class="paragraph"><p>In this directory, create a file called <span class="monospaced">main.yml</span>. This is a YAML
+document which describes the script, which parameters it requires, and
+what actions it will perform.</p></div>
+<div class="paragraph"><p>YAML is a human-readable markup language which is designed to be easy
+to read and modify, while at the same time be compatible with JSON. To
+learn more, see <a href="http:://yaml.org/">yaml.org</a>.</p></div>
+<div class="paragraph"><p>Here is an example <span class="monospaced">main.yml</span> file, heavily commented to explain what
+each section means.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="nn">---</span>
+<span class="c1"># The triple-dash indicates that this is a yaml document.</span>
+<span class="c1"># All yaml documents should begin with this line.</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Check uptime of nodes</span>
+  <span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="p-Indicator">&gt;</span>
+    <span class="no">This script will fetch the uptime of</span>
+    <span class="no">all nodes and report which node has been</span>
+    <span class="no">up the longest.</span>
+  <span class="l-Scalar-Plain">parameters</span><span class="p-Indicator">:</span>
+    <span class="c1"># Parameters must have a name and description.</span>
+    <span class="c1"># If a default value is provided, the parameter</span>
+    <span class="c1"># is considered optional. Parameters without a</span>
+    <span class="c1"># default value must be provided when running the</span>
+    <span class="c1"># script.</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">show_all</span>
+      <span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Show all uptimes</span>
+      <span class="l-Scalar-Plain">default</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+  <span class="l-Scalar-Plain">steps</span><span class="p-Indicator">:</span>
+    <span class="c1"># Steps consist of a descriptive name and an action which</span>
+    <span class="c1"># calls a script to do its work. The script should be an</span>
+    <span class="c1"># executable file located in the same folder as main.yml.</span>
+    <span class="c1">#</span>
+    <span class="c1"># Script files can be written in any language, as long as</span>
+    <span class="c1"># the cluster nodes know how to execute them.</span>
+    <span class="c1">#</span>
+    <span class="c1"># These are the valid actions:</span>
+    <span class="c1"># collect:</span>
+    <span class="c1">#     Runs on all nodes. Should not perform changes, only</span>
+    <span class="c1">#     gather and return information.</span>
+    <span class="c1"># validate:</span>
+    <span class="c1">#     Runs on the local node only. Should report problems</span>
+    <span class="c1">#     that would prevent further progress. If validate returns</span>
+    <span class="c1">#     a map of values, matching script parameters are updated</span>
+    <span class="c1">#     to reflect those values.</span>
+    <span class="c1"># apply:</span>
+    <span class="c1">#     Runs on all nodes. Applies changes.</span>
+    <span class="c1">#     If the dry_run flag is set, script execution stops</span>
+    <span class="c1">#     before the first apply action.</span>
+    <span class="c1">#</span>
+    <span class="c1"># apply_local:</span>
+    <span class="c1">#     Runs on the local node only. Otherwise same as apply.</span>
+    <span class="c1">#</span>
+    <span class="c1"># report:</span>
+    <span class="c1">#     Runs on the local node only. Output from this step is</span>
+    <span class="c1">#     printed, not saved as input to the following steps.</span>
+    <span class="c1">#     This output does not have to be in JSON format.</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Fetch uptime</span>
+      <span class="l-Scalar-Plain">collect</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">fetch.py</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Report uptime</span>
+      <span class="l-Scalar-Plain">report</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">report.py</span>
+</pre></div></div></div>
+<div class="paragraph"><p>The actions must not be Python scripts. They can be plain bash scripts
+or any other executable script as long as the nodes have the necessary
+dependencies installed. However, see below why implementing scripts in
+Python is easier.</p></div>
+<div class="paragraph"><p>Actions report their progress either by returning JSON on standard
+output, or by returning a non-zero return value and printing an error
+message to standard error.</p></div>
+<div class="paragraph"><p>Any JSON returned by an action will be available to the following
+steps in the script. When the script executes, it does so in a
+temporary folder created for that purpose. In that folder is a file
+named <span class="monospaced">script.input</span>, containing a JSON array with the output produced
+by previous steps.</p></div>
+<div class="paragraph"><p>The first element in the array (the zeroth element, to be precise) is
+a dict containing the parameter values.</p></div>
+<div class="paragraph"><p>The following elements are dicts with the hostname of each node as key
+and the output of the action generated by that node as value.</p></div>
+<div class="paragraph"><p>In most cases, only local actions (<span class="monospaced">validate</span> and <span class="monospaced">apply_local</span>) will
+use the information in previous steps, but scripts are not limited in
+what they can do.</p></div>
+<div class="paragraph"><p>With this knowledge, we can implement <span class="monospaced">fetch.py</span> and <span class="monospaced">report.py</span>.</p></div>
+<div class="paragraph"><p><span class="monospaced">fetch.py</span>:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+<span class="kn">import</span> <span class="nn">crm_script</span> <span class="kn">as</span> <span class="nn">crm</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">uptime</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;/proc/uptime&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">crm</span><span class="o">.</span><span class="n">exit_ok</span><span class="p">(</span><span class="n">uptime</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">crm</span><span class="o">.</span><span class="n">exit_fail</span><span class="p">(</span><span class="s">&quot;Couldn&#39;t open /proc/uptime&quot;</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p><span class="monospaced">report.py</span>:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+<span class="kn">import</span> <span class="nn">crm_script</span> <span class="kn">as</span> <span class="nn">crm</span>
+<span class="n">show_all</span> <span class="o">=</span> <span class="n">crm</span><span class="o">.</span><span class="n">is_true</span><span class="p">(</span><span class="n">crm</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s">&#39;show_all&#39;</span><span class="p">))</span>
+<span class="n">uptimes</span> <span class="o">=</span> <span class="n">crm</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<span class="n">max_uptime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;&#39;</span>
+<span class="k">for</span> <span class="n">host</span><span class="p">,</span> <span class="n">uptime</span> <span class="ow">in</span> <span class="n">uptimes</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">uptime</span> <span class="o">&gt;</span> <span class="n">max_uptime</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="n">max_uptime</span> <span class="o">=</span> <span class="n">uptime</span><span class="p">,</span> <span class="n">host</span>
+<span class="k">if</span> <span class="n">show_all</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;Uptimes: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">uptimes</span><span class="p">))</span>
+<span class="k">print</span> <span class="s">&quot;Longest uptime is </span><span class="si">%s</span><span class="s"> seconds on host </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">max_uptime</span>
+</pre></div></div></div>
+<div class="paragraph"><p>See below for more details on the helper library <span class="monospaced">crm_script</span>.</p></div>
+<div class="paragraph"><p>Save the scripts as executable files in the same directory as the
+<span class="monospaced">main.yml</span> file.</p></div>
+<div class="paragraph"><p>Before running the script, it is possible to verify that the files are
+in a valid format and in the right location. Run the following
+command:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm script verify check-uptime</pre>
+</div></div>
+<div class="paragraph"><p>If the verification is successful, try executing the script with the
+following command:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm script run check-uptime</pre>
+</div></div>
+<div class="paragraph"><p>Example output:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="c"># crm script run check-uptime</span>
+INFO: Check uptime of nodes
+INFO: Nodes: ha-three, ha-one
+OK: Fetch uptimes
+OK: Report uptime
+Longest uptime is 161054.04 seconds on host ha-one
+</pre></div></div></div>
+<div class="paragraph"><p>To see if the <span class="monospaced">show_all</span> parameter works as intended, run the
+following:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm script run check-uptime show_all=yes</pre>
+</div></div>
+<div class="paragraph"><p>Example output:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span class="c"># crm script run check-uptime show_all=yes</span>
+INFO: Check uptime of nodes
+INFO: Nodes: ha-three, ha-one
+OK: Fetch uptimes
+OK: Report uptime
+Uptimes: ha-one: 161069.83, ha-three: 159950.38
+Longest uptime is 161069.83 seconds on host ha-one
+</pre></div></div></div>
+</div>
+<div class="sect2">
+<h3 id="_remote_permissions">Remote permissions</h3>
+<div class="paragraph"><p>Some scripts may require super-user access to remote or local
+nodes. It is recommended that this is handled through SSH certificates
+and agents, to facilitate password-less access to nodes.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_running_scripts_without_a_cluster">Running scripts without a cluster</h3>
+<div class="paragraph"><p>All cluster scripts can optionally take a <span class="monospaced">nodes</span> argument, which
+determines the nodes that the script will run on. This node list is
+not limited to nodes already in the cluster. It is even possible to
+execute cluster scripts before a cluster is set up, such as the
+<span class="monospaced">health</span> and <span class="monospaced">init</span> scripts used by the <span class="monospaced">cluster</span> sub-level.</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm script run health nodes=example1,example2</pre>
+</div></div>
+<div class="paragraph"><p>The list of nodes can be comma- or space-separated, but if the list
+contains spaces, the whole argument will have to be quoted:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm script run health nodes="example1 example2"</pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_running_in_validate_mode">Running in validate mode</h3>
+<div class="paragraph"><p>It may be desirable to do a dry-run of a script, to see if any
+problems are present that would make the script fail before trying to
+apply it. To do this, add the argument <span class="monospaced">dry_run=yes</span> to the invocation:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm script run health dry_run=yes</pre>
+</div></div>
+<div class="paragraph"><p>The script execution will stop at the first <span class="monospaced">apply</span> action. Note that
+non-modifying steps that happen after the first <span class="monospaced">apply</span> action will
+not be performed in a dry run.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_helper_library">Helper library</h3>
+<div class="paragraph"><p>When the script data is copied to each node, a small helper library is
+also passed along with the script. This library can be found in
+<span class="monospaced">utils/crm_script.py</span> in the source repository. This library helps
+with producing output in the correct format, parsing the
+<span class="monospaced">script.input</span> data provided to scripts, and more.</p></div>
+<div class="dlist"><div class="title"><span class="monospaced">crm_script</span> API</div><dl>
+<dt class="hdlist1">
+<span class="monospaced">host()</span>
+</dt>
+<dd>
+<p>
+    Returns hostname of current node
+</p>
+</dd>
+<dt class="hdlist1">
+<span class="monospaced">get_input()</span>
+</dt>
+<dd>
+<p>
+    Returns the input data list. The first element in the list
+    is a dict of the script parameters. The rest are the output
+    from previous steps.
+</p>
+</dd>
+<dt class="hdlist1">
+<span class="monospaced">parameters()</span>
+</dt>
+<dd>
+<p>
+    Returns the script parameters as a dict.
+</p>
+</dd>
+<dt class="hdlist1">
+<span class="monospaced">param(name)</span>
+</dt>
+<dd>
+<p>
+    Returns the value of the named script parameter.
+</p>
+</dd>
+<dt class="hdlist1">
+<span class="monospaced">output(step_idx)</span>
+</dt>
+<dd>
+<p>
+    Returns the output of the given step, with the first step being step 1.
+</p>
+</dd>
+<dt class="hdlist1">
+<span class="monospaced">exit_ok(data)</span>
+</dt>
+<dd>
+<p>
+    Exits the step returning <span class="monospaced">data</span> as output.
+</p>
+</dd>
+<dt class="hdlist1">
+<span class="monospaced">exit_fail(msg)</span>
+</dt>
+<dd>
+<p>
+    Exits the step returning <span class="monospaced">msg</span> as error message.
+</p>
+</dd>
+<dt class="hdlist1">
+<span class="monospaced">is_true(value)</span>
+</dt>
+<dd>
+<p>
+    Converts a truth value from string to boolean.
+</p>
+</dd>
+<dt class="hdlist1">
+<span class="monospaced">call(cmd, shell=False)</span>
+</dt>
+<dd>
+<p>
+    Perform a system call. Returns <span class="monospaced">(rc, stdout, stderr)</span>.
+</p>
+</dd>
+</dl></div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2014-04-01 11:54:42 CEST
+</div>
+</div>
+</div>
+</body>
+</html>

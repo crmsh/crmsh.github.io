@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="AsciiDoc 8.6.8">
+<title>crmsh - Documentation</title>
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/crm.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div id="header">
+<h1><a href="index.html"><span class="fa-stack">
+  <i class="fa fa-square fa-stack-2x"></i>
+  <i class="fa fa-terminal fa-stack-1x fa-inverse"></i>
+</span>crmsh</a></h1>
+<div id="topbar">
+<ul>
+<li><a href="documentation.html">Documentation</a></li>
+<li><a href="tutorials.html">Guides & Tutorials</a></li>
+<li><a href="development.html">Development</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="about.html">About</a></li>
+</ul>
+</div>
+</div>
+<!--TOC-->
+<div id="toc">
+<div class="toclevel1"><a href="#_usage">Usage</a></div>
+<div class="toclevel1"><a href="#_installation">Installation</a></div>
+<div class="toclevel2"><a href="#_opensuse">openSUSE</a></div>
+<div class="toclevel3"><a href="#_repository_links">Repository links</a></div>
+<div class="toclevel2"><a href="#_fedora_19">Fedora 19</a></div>
+<div class="toclevel2"><a href="#_debian">Debian</a></div>
+<div class="toclevel2"><a href="#_ubuntu">Ubuntu</a></div>
+</div>
+<div id="container">
+<div id="content">
+<h1>Documentation</h1>
+<div class="sect1">
+<h2 id="_usage">Usage</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="crm.8.html">Man page (development version)</a>
+</p>
+</li>
+<li>
+<p>
+<a href="crm.1.2.6.html">Man page (stable version 1.2.6)</a>
+</p>
+</li>
+<li>
+<p>
+<a href="configuration.html">Configuration</a>
+</p>
+</li>
+<li>
+<p>
+<a href="scripts.html">Cluster scripts</a>
+</p>
+</li>
+<li>
+<p>
+<a href="tutorials.html">Guides &amp; Tutorials</a>
+</p>
+</li>
+<li>
+<p>
+<a href="faq.html">FAQ</a>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>The SUSE
+<a href="https://www.suse.com/documentation/sle_ha/book_sleha/?page=/documentation/sle_ha/book_sleha/data/book_sleha.html">High
+Availability Guide</a> provides a guide to
+installing and configuring a complete cluster solution including both
+the <span class="monospaced">crm</span> shell and Hawk, the web GUI which uses the <span class="monospaced">crm</span> shell as
+its backend.</p></div>
+<div class="paragraph"><p>For more information on Pacemaker in general, see the
+<a href="http://clusterlabs.org/doc/">Pacemaker documentation</a> at <span class="monospaced">clusterlabs.org</span>.</p></div>
+<div class="paragraph"><p>On the Pacemaker website, there is a set of guides to configuring
+Pacemaker using <span class="monospaced">crmsh</span>. To find these guides, go to the documentation
+page and search for <span class="monospaced">crmsh</span>.</p></div>
+<div class="paragraph"><p>For details on command line usage, see the <a href="crm.8.html">man page</a>.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installation">Installation</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Packages for several popular distributions are hosted at the open
+build service. Get the <strong>current stable version</strong> of the <span class="monospaced">crm</span> shell
+here:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="https://build.opensuse.org/package/show/network:ha-clustering:Stable/crmsh">OBS Project Page</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/">Direct package downloads</a>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>For other distributions, packages may be available in the respective
+package repositories.</p></div>
+<div class="sect2">
+<h3 id="_opensuse">openSUSE</h3>
+<div class="paragraph"><p>On openSUSE, you will want to add the
+<a href="http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/">network:ha-clustering:Stable</a> repository, to get the latest stable version of the <span class="monospaced">crm</span> shell:</p></div>
+<div class="sect3">
+<h4 id="_repository_links">Repository links</h4>
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/openSUSE_12.3/">openSUSE 12.3</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/openSUSE_13.1/">openSUSE 13.1</a>
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="title">Adding a repository using zypper:</div>
+<div class="content monospaced">
+<pre>zypper ar &lt;repository&gt; network:ha-clustering:Stable</pre>
+</div></div>
+<div class="paragraph"><p>Once added, you can run</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>zypper in crmsh</pre>
+</div></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_fedora_19">Fedora 19</h3>
+<div class="paragraph"><p>Download <a href="http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/Fedora_19/network:ha-clustering:Stable.repo">network:ha-clustering:Stable.repo</a>
+and copy it to the <em>/etc/yum.repos.d/</em> directory as <span class="monospaced">root</span>.</p></div>
+<div class="paragraph"><p>Then, you can run</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>yum install crmsh</pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_debian">Debian</h3>
+<div class="paragraph"><p>Packages for Debian are provided by the Debian HA maintainers. For more
+information, see the Debian packages list:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="http://packages.debian.org/search?keywords=crmsh">http://packages.debian.org/search?keywords=crmsh</a>
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_ubuntu">Ubuntu</h3>
+<div class="paragraph"><p>There are packages that are fairly up-to-date in the more recent
+versions of Ubuntu:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="https://launchpad.net/ubuntu/+source/crmsh">https://launchpad.net/ubuntu/+source/crmsh</a>
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2014-04-01 11:54:42 CEST
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="AsciiDoc 8.6.8">
+<title>crmsh - Configuration</title>
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/crm.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div id="header">
+<h1><a href="index.html"><span class="fa-stack">
+  <i class="fa fa-square fa-stack-2x"></i>
+  <i class="fa fa-terminal fa-stack-1x fa-inverse"></i>
+</span>crmsh</a></h1>
+<div id="topbar">
+<ul>
+<li><a href="documentation.html">Documentation</a></li>
+<li><a href="tutorials.html">Guides & Tutorials</a></li>
+<li><a href="development.html">Development</a></li>
+<li><a href="faq.html">FAQ</a></li>
+<li><a href="about.html">About</a></li>
+</ul>
+</div>
+</div>
+<!--TOC-->
+<div id="container">
+<div id="content">
+<h1>Configuration</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="title">Version information</div>This section applies to the in-development <span class="monospaced">crmsh 2.0+</span> only.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p><span class="monospaced">crm</span> can be configured using both a system-wide configuration file,
+and a per-user configuration file. The values set in the user-local
+file take precedence over the system-wide settings.</p></div>
+<div class="paragraph"><p>The global configuration file is usually installed at
+<span class="monospaced">/etc/crm/crm.conf</span>, and the user-local configuration file at
+<span class="monospaced">~/.config/crm/crm.conf</span>.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_upgrading_from_crm_1_x_to_2_x">Upgrading from crm 1.x to 2.x</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>The configuration file format and location changed significantly going
+from crm 1.x to 2.x. If <span class="monospaced">crm</span> cannot find a user-local configuration
+file when starting up, it will look for an old-style configuration
+file at <span class="monospaced">~/.crm.rc</span>. If this file exists, <span class="monospaced">crm</span> will prompt the user
+asking if the old-style configuration should be  automatically
+converted to a new-style configuration file.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_format_description">Format description</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>The <span class="monospaced">settings</span> file consists of sections introduced by a <span class="monospaced">[section]</span>
+header, and followed by <span class="monospaced">name=value</span> pairs.</p></div>
+<div class="paragraph"><p>Leading whitespace is stripped from values.</p></div>
+<div class="paragraph"><p>Values can contain format strings referring to other values in the
+same section.</p></div>
+<div class="paragraph"><p>Lines starting with <span class="monospaced">#</span> or <span class="monospaced">;</span> are interpreted as comments.</p></div>
+<div class="paragraph"><p>Values starting with <span class="monospaced">$</span> are interpreted as environment variable
+references, and the value will be retrieved from the named environment
+variable if set.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_example_configuration">Example configuration</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>The example configuration below lists all available options and their
+default values.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>[core]
+editor = $EDITOR
+pager = $PAGER
+user =
+skill_level = expert
+sort_elements = yes
+check_frequency = always
+check_mode = strict
+wait = no
+add_quotes = yes
+manage_children = ask
+force = no
+debug = no
+ptest = ptest, crm_simulate
+dotty = dotty
+dot = dot
+
+[path]
+sharedir = /usr/share/crmsh
+cache = /var/cache/crm
+crm_config = /var/lib/pacemaker/cib
+crm_daemon_dir = /usr/lib64/pacemaker
+crm_daemon_user = hacluster
+ocf_root = /usr/lib/ocf
+crm_dtd_dir = /usr/share/pacemaker
+pe_state_dir = /var/lib/pacemaker/pengine
+heartbeat_dir = /var/lib/heartbeat
+hb_delnode = /usr/share/heartbeat/hb_delnode
+nagios_plugins = /usr/lib64/nagios/plugins
+
+[color]
+style = color
+error = red bold
+ok = green bold
+warn = yellow bold
+info = cyan
+help_keyword = blue bold underline
+help_header = normal bold
+help_topic = yellow bold
+help_block = cyan
+keyword = yellow
+identifier = normal
+attr_name = cyan
+attr_value = red
+resource_reference = green
+id_reference = green
+score = magenta
+ticket = magenta</pre>
+</div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_loading_and_saving_options">Loading and saving options</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Options are loaded from the global configuration file first, and the
+user-local file second. This means that the user-local options take
+precedence over the global configuration.</p></div>
+<div class="paragraph"><p>When changing an option using the <span class="monospaced">options</span> sublevel, the
+configuration file is written to disk with the new value.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_syntax_highlighting">Syntax highlighting</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>By default, <span class="monospaced">crm</span> will try to syntax highlight its output when
+connected to a TTY. To disable this behavior, set the configuration
+value <span class="monospaced">style = none</span> in the <span class="monospaced">[color]</span> section.</p></div>
+<div class="paragraph"><p>The available color choices may depend on the terminal used, but
+normally include the following:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>black blue green cyan red magenta yellow white</pre>
+</div></div>
+<div class="paragraph"><p>Colors can be combined with styles:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>bold blink dim reverse underline normal</pre>
+</div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setting_options_from_the_interactive_shell">Setting options from the interactive shell</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Options can be set directly from the interactive shell using the
+<span class="monospaced">options</span> sublevel. These options will be written to the per-user
+configuration file. Note that changing an option in this way may erase
+comments added to the configuration file.</p></div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2014-04-01 11:54:42 CEST
+</div>
+</div>
+</div>
+</body>
+</html>
