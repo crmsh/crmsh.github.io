@@ -25,175 +25,9 @@
 </div>
 </div>
 <!--TOC-->
-<div id="toc">
-<div class="toclevel1"><a href="#topics_Description">Program description</a></div>
-<div class="toclevel1"><a href="#topics_Introduction">Introduction to the user interface</a></div>
-<div class="toclevel1"><a href="#topics_Shadows">Shadow CIB usage</a></div>
-<div class="toclevel1"><a href="#topics_Templates">Configuration templates</a></div>
-<div class="toclevel1"><a href="#topics_Testing">Resource testing</a></div>
-<div class="toclevel1"><a href="#topics_Completion">Tab completion</a></div>
-<div class="toclevel1"><a href="#topics_Checks">Configuration semantic checks</a></div>
-<div class="toclevel1"><a href="#topics_Security">Access Control Lists (ACL)</a></div>
-<div class="toclevel1"><a href="#topics_Reference">Command reference</a></div>
-<div class="toclevel2"><a href="#cmdhelp_cib">cib</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cib_new">new</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cib_delete">delete</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cib_reset">reset</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cib_commit">commit</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cib_use">use</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cib_diff">diff</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cib_list">list</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cib_import">import</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cib_cibstatus">cibstatus</a></div>
-<div class="toclevel2"><a href="#cmdhelp_ra">ra</a></div>
-<div class="toclevel3"><a href="#cmdhelp_ra_classes">classes</a></div>
-<div class="toclevel3"><a href="#cmdhelp_ra_list">list</a></div>
-<div class="toclevel3"><a href="#cmdhelp_ra_meta">meta</a></div>
-<div class="toclevel3"><a href="#cmdhelp_ra_providers">providers</a></div>
-<div class="toclevel2"><a href="#cmdhelp_resource">resource</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_status">status</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_start">start</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_stop">stop</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_restart">restart</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_promote">promote</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_demote">demote</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_manage">manage</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_unmanage">unmanage</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_migrate">migrate</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_unmigrate">unmigrate</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_param">param</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_secret">secret</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_meta">meta</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_utilization">utilization</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_failcount">failcount</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_cleanup">cleanup</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_refresh">refresh</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_reprobe">reprobe</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_trace">trace</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_untrace">untrace</a></div>
-<div class="toclevel2"><a href="#cmdhelp_node">node</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_status">status</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_show">show</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_standby">standby</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_online">online</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_maintenance">maintenance</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_ready">ready</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_fence">fence</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_clearstate">clearstate</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_delete">delete</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_attribute">attribute</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_utilization">utilization</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_status-attr">status-attr</a></div>
-<div class="toclevel2"><a href="#cmdhelp_site">site</a></div>
-<div class="toclevel3"><a href="#cmdhelp_site_ticket">ticket</a></div>
-<div class="toclevel2"><a href="#cmdhelp_options">options</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_skill-level">skill-level</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_user">user</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_editor">editor</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_pager">pager</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_sort-elements">sort-elements</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_wait">wait</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_output">output</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_colorscheme">colorscheme</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_check-frequency">check-frequency</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_check-mode">check-mode</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_add-quotes">add-quotes</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_manage-children">manage-children</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_show">show</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_save">save</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_reset">reset</a></div>
-<div class="toclevel2"><a href="#cmdhelp_configure">configure</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_node">node</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_primitive">primitive</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_monitor">monitor</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_group">group</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_clone">clone</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_ms">ms</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_rsc_template">rsc</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_location">location</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_colocation">colocation</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_order">order</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_rsc_ticket">rsc</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_property">property</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_rsc_defaults">rsc</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_fencing_topology">fencing</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_role">role</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_user">user</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_op_defaults">op</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_schema">schema</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_show">show</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_edit">edit</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_filter">filter</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_delete">delete</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_default-timeouts">default-timeouts</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_rename">rename</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_modgroup">modgroup</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_refresh">refresh</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_erase">erase</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_ptest">ptest</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_rsctest">rsctest</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_cib">cib</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_cibstatus">cibstatus</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_template">template</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_commit">commit</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_verify">verify</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_upgrade">upgrade</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_save">save</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_load">load</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_graph">graph</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_xml">xml</a></div>
-<div class="toclevel2"><a href="#cmdhelp_template">template</a></div>
-<div class="toclevel3"><a href="#cmdhelp_template_new">new</a></div>
-<div class="toclevel3"><a href="#cmdhelp_template_load">load</a></div>
-<div class="toclevel3"><a href="#cmdhelp_template_edit">edit</a></div>
-<div class="toclevel3"><a href="#cmdhelp_template_delete">delete</a></div>
-<div class="toclevel3"><a href="#cmdhelp_template_list">list</a></div>
-<div class="toclevel3"><a href="#cmdhelp_template_apply">apply</a></div>
-<div class="toclevel3"><a href="#cmdhelp_template_show">show</a></div>
-<div class="toclevel2"><a href="#cmdhelp_cibstatus">cibstatus</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cibstatus_load">load</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cibstatus_save">save</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cibstatus_origin">origin</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cibstatus_show">show</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cibstatus_node">node</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cibstatus_op">op</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cibstatus_quorum">quorum</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cibstatus_ticket">ticket</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cibstatus_run">run</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cibstatus_simulate">simulate</a></div>
-<div class="toclevel2"><a href="#cmdhelp_history">history</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_latest">latest</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_limit">limit</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_source">source</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_refresh">refresh</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_detail">detail</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_setnodes">setnodes</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_resource">resource</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_node">node</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_log">log</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_exclude">exclude</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_peinputs">peinputs</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_transition">transition</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_show">show</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_graph">graph</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_diff">diff</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_session">session</a></div>
-</div>
 <div id="container">
 <div id="content">
 <h1>crm(8)</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="admonitionblock">
-<table><tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">This is the documentation for stable release 1.2.6 of <span class="monospaced">crmsh</span>.</td>
-</tr></table>
-</div>
-</div>
-</div>
 <div class="sect1">
 <h2 id="_name">NAME</h2>
 <div class="sectionbody">
@@ -203,41 +37,51 @@
 <div class="sect1">
 <h2 id="_synopsis">SYNOPSIS</h2>
 <div class="sectionbody">
-<div class="paragraph"><p><strong>crm</strong> [-D output_type] [-f file] [-c cib] [-H hist_src] [-hFRDw] [--version] [args]</p></div>
+<div class="paragraph"><p><strong>crm</strong> [OPTIONS] [SUBCOMMAND ARGS&#8230;]</p></div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="topics_Description">DESCRIPTION</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>Pacemaker configuration is stored in a CIB file (Cluster
-Information Base). The CIB is a set of instructions coded in XML.
-Editing the CIB is a challenge, not only due to its complexity
-and a wide variety of options, but also because XML is more
-computer than user friendly. The <span class="monospaced">crm</span> shell alleviates this
-issue significantly by introducing small and simple configuration
-language. The CIB is translated into this language on the fly.</p></div>
-<div class="paragraph"><p><span class="monospaced">crm</span> is also a management tool. For management tasks it relies
-almost exclusively on other command line tools, such as
-<span class="monospaced">crm_resource(8)</span> or <span class="monospaced">crm_attribute(8)</span>.  Use of these programs
-is, however, plagued by the notorious weakness common to all UNIX
-tools: a multitude of options, necessary for operation and yet
-very hard to remember. <span class="monospaced">crm</span> tries to present a consistent
-interface to the user and to hide the arcane detail.</p></div>
-<div class="paragraph"><p>It may be used either as an interactive shell or for single
-commands directly on the shell&#8217;s command line. It is also
-possible to feed it a set of commands from standard input or a
-file, thus turning it into a scripting tool. Templates with ready
-made configurations may help newbies learn about the cluster
-configuration or facilitate testing procedures.</p></div>
-<div class="paragraph"><p>The <span class="monospaced">crm</span> shell is line oriented: every command must start and
-finish on the same line. It is possible to use a continuation
-character (<span class="monospaced">\</span>) to write one command in two or more lines. The
-continuation character is commonly used when displaying
-configurations.</p></div>
+<div class="paragraph"><p>The <span class="monospaced">crm</span> shell is a command-line based cluster configuration and
+management tool. Its goal is to assist as much as possible with the
+configuration and maintenance of Pacemaker-based High Availability
+clusters.</p></div>
+<div class="paragraph"><p><span class="monospaced">crm</span> works both as a command-line tool to be called directly from the
+system shell, and as an interactive shell with extensive tab
+completion and help.</p></div>
+<div class="paragraph"><p>The primary focus of the <span class="monospaced">crm</span> shell is to provide a simplified and
+consistent interface to Pacemaker, but it also provides tools for
+managing the creation and configuration of High Availability clusters
+from scratch. To learn more about this aspect of <span class="monospaced">crm</span>, see the
+<span class="monospaced">cluster</span> section below.</p></div>
+<div class="paragraph"><p>The Pacemaker configuration is stored in something called a CIB file,
+where CIB stands for Cluster Information Base. The CIB is a set of
+instructions coded in XML which is synchronized across the cluster.</p></div>
+<div class="paragraph"><p>Editing the CIB is a challenge, not only due to its complexity and
+wide variety of options, but also because XML is more computer than
+user friendly. To help with this task, the <span class="monospaced">crm</span> shell provides a
+small and simple line-oriented configuration language consistent with
+the other commands available in the shell. For more information about
+this language and how to use it, see the <span class="monospaced">configure</span> section below.</p></div>
+<div class="paragraph"><p><span class="monospaced">crm</span> provides a consistent and well-documented interface to most of
+the management tools included in Pacemaker, for example
+<span class="monospaced">crm_resource(8)</span> or <span class="monospaced">crm_attribute(8)</span>. Instead of having to remember
+the various flags and options available for each tool, <span class="monospaced">crm</span> hides all
+of the arcane detail.</p></div>
+<div class="paragraph"><p><span class="monospaced">crm</span> can also function as a cluster scripting tool, and can be fed
+multi-line sets of commands either directly from standard input or via
+a file. Templates with ready made configurations may help newbies
+learn about the cluster configuration or facilitate testing
+procedures.</p></div>
+<div class="paragraph"><p>The <span class="monospaced">crm</span> shell is line oriented: every command must start and finish
+on the same line. It is possible to use a continuation character (<span class="monospaced">\</span>)
+to write one command in two or more lines. The continuation character
+is commonly used when displaying configurations.</p></div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_options">OPTIONS</h2>
+<h2 id="topics_CommandLine">OPTIONS</h2>
 <div class="sectionbody">
 <div class="dlist"><dl>
 <dt class="hdlist1">
@@ -245,8 +89,9 @@ configurations.</p></div>
 </dt>
 <dd>
 <p>
-        Load commands from the given file. If the file is <span class="monospaced">-</span> then
-    use terminal <span class="monospaced">stdin</span>.
+    Load commands from the given file. If a dash <span class="monospaced">-</span> is used in place
+    of a file name, <span class="monospaced">crm</span> will read commands from the shell standard
+    input (<span class="monospaced">stdin</span>).
 </p>
 </dd>
 <dt class="hdlist1">
@@ -254,8 +99,8 @@ configurations.</p></div>
 </dt>
 <dd>
 <p>
-    Start the session with the given shadow CIB file.
-    Equivalent to <span class="monospaced">cib use</span>.
+    Start the session using the given shadow CIB file.
+    Equivalent to <span class="monospaced">cib use &lt;CIB&gt;</span>.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -263,7 +108,7 @@ configurations.</p></div>
 </dt>
 <dd>
 <p>
-        Choose one of the output options: <span class="monospaced">plain</span>, <span class="monospaced">color</span>, or
+    Choose one of the output options: <span class="monospaced">plain</span>, <span class="monospaced">color</span>, or
     <span class="monospaced">uppercase</span>. The default is <span class="monospaced">color</span> if the terminal emulation
     supports colors. Otherwise, <span class="monospaced">plain</span> is used.
 </p>
@@ -273,9 +118,9 @@ configurations.</p></div>
 </dt>
 <dd>
 <p>
-    Make <span class="monospaced">crm</span> proceed with doing changes even though it would
-    normally ask user to confirm some of them. Mostly useful in
-    scripts.
+    Make <span class="monospaced">crm</span> proceed with applying changes where it would normally
+    ask the user to confirm before proceeding. This option is mainly
+    useful in scripts, and should be used with care.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -292,9 +137,10 @@ configurations.</p></div>
 </dt>
 <dd>
 <p>
-    The <span class="monospaced">history</span> commands can examine either live cluster
-    (default) or a report generated by <span class="monospaced">hb_report</span>. Use this
-    option to specify a directory or file containing the report.
+    The <span class="monospaced">history</span> commands can either work directly on the live
+    cluster (default), or on a report generated by the <span class="monospaced">report</span>
+    command. Use this option to specify a directory or file containing
+    the previously generated report.
 </p>
 </dd>
 <dt class="hdlist1">
@@ -310,17 +156,8 @@ configurations.</p></div>
 </dt>
 <dd>
 <p>
-    Print crmsh version and build information (Mercurial Hg
-    changeset hash).
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>-R, --regression-tests</strong>
-</dt>
-<dd>
-<p>
-    Run in the regression test mode. Used mainly by the
-    regression testing suite.
+    Print crmsh version and build information (Mercurial Hg changeset
+    hash).
 </p>
 </dd>
 <dt class="hdlist1">
@@ -328,8 +165,25 @@ configurations.</p></div>
 </dt>
 <dd>
 <p>
-    Print some debug information. Used by developers. [Not yet
-    refined enough to print useful information for other users.]
+    Print verbose debugging information.
+</p>
+</dd>
+<dt class="hdlist1">
+<strong>-R, --regression-tests</strong>
+</dt>
+<dd>
+<p>
+    Enables extra verbose trace logging used by the regression
+    tests. Logs all external calls made by crmsh.
+</p>
+</dd>
+<dt class="hdlist1">
+<strong>--scriptdir</strong>=<em>DIR</em>
+</dt>
+<dd>
+<p>
+    Extra directory where crm looks for cluster scripts. Can be a semi-colon
+    separated list of directories.
 </p>
 </dd>
 </dl></div>
@@ -342,34 +196,25 @@ configurations.</p></div>
 interface. We begin with an informal introduction so that the
 reader may get acquainted with it and get a general feeling of
 the tool. It is probably best just to give some examples:</p></div>
-<div class="olist arabic"><ol class="arabic">
-<li>
-<p>
-Command line (one-shot) use:
-</p>
+<div class="paragraph"><p>The main purpose of <span class="monospaced">crm</span> is to provide a simple yet powerful
+interface to the cluster stack. To get started and to give new users a
+feel for how to use it, lets just jump straight into some examples:</p></div>
 <div class="literalblock">
+<div class="title">Command line (one-shot) use:</div>
 <div class="content monospaced">
 <pre># crm resource stop www_app</pre>
 </div></div>
-</li>
-<li>
-<p>
-Interactive use:
-</p>
 <div class="literalblock">
+<div class="title">Interactive use:</div>
 <div class="content monospaced">
 <pre># crm
 crm(live)# resource
 crm(live)resource# unmanage tetris_1
-crm(live)resource# end
+crm(live)resource# up
 crm(live)# node standby node4</pre>
 </div></div>
-</li>
-<li>
-<p>
-Cluster configuration:
-</p>
 <div class="literalblock">
+<div class="title">Cluster configuration:</div>
 <div class="content monospaced">
 <pre># crm configure&lt;&lt;EOF
   #
@@ -411,43 +256,45 @@ Cluster configuration:
   commit
 EOF</pre>
 </div></div>
-</li>
-</ol></div>
-<div class="paragraph"><p>If you&#8217;ve ever done a CRM style configuration, you should be able
-to understand the above examples without much difficulties.  The
-shell should provide a means to manage the cluster efficiently or
-put together a configuration in a concise manner.</p></div>
-<div class="paragraph"><p>The <span class="monospaced">(live)</span> string in the prompt signifies that the current CIB
+<div class="paragraph"><p>If you have ever done a CRM style configuration before, the examples
+above should be immediately understandable without too much
+difficulty. The <span class="monospaced">crm</span> provides a means to efficiently manage a
+cluster, and to put a configuration together in a simple and concise manner.</p></div>
+<div class="paragraph"><p>The <span class="monospaced">crm</span> interface is hierarchical, with commands organized into
+separate levels by functionality. To list the available levels and
+commands, either execute <span class="monospaced">help &lt;level&gt;</span>, or, if at the top level of
+the shell, simply typing <span class="monospaced">help</span> will provide an overview of all
+available levels and commands.</p></div>
+<div class="paragraph"><p>The <span class="monospaced">(live)</span> string in the <span class="monospaced">crm</span> prompt signifies that the current CIB
 in use is the cluster live configuration. It is also possible to
-work with the so-called shadow CIBs, i.e. configurations which
-are stored in files and aren&#8217;t active, but may be applied at any
-time to the cluster.</p></div>
-<div class="paragraph"><p>Since the CIB is hierarchical such is the interface too. There
-are several levels and entering each of them enables the user to
-use a certain set of commands.</p></div>
+work with so-called shadow CIBs. These are separate, inactive
+configurations stored in files, that can be applied and thereby
+replace the live configuration at any time.</p></div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="topics_Shadows">Shadow CIB usage</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>Shadow CIB is a normal cluster configuration stored in a file.
-They may be manipulated in the same way like the <em>live</em> CIB, but
-these changes have no effect on the cluster resources. The
-administrator may choose to apply any of them to the cluster,
-thus replacing the running configuration with the one which is in
-the shadow CIB. The <span class="monospaced">crm</span> prompt always contains the name of the
-configuration which is currently in use or string <em>live</em> if we
-are using the current cluster configuration.</p></div>
-<div class="paragraph"><p>At the configure level no changes take place before the <span class="monospaced">commit</span>
-command. Sometimes though, the administrator may start working
-with the running configuration, but change mind and instead of
-committing the changes to the cluster save them to a shadow CIB.
-This short <span class="monospaced">configure</span> session excerpt shows how:</p></div>
+<div class="paragraph"><p>A Shadow CIB is a normal cluster configuration stored in a file.
+They may be manipulated in much the same way as the <em>live</em> CIB, with
+the key difference that changes to a shadow CIB have no effect on the
+actual cluster resources. An administrator may choose to apply any of
+them to the cluster, thus replacing the running configuration with the
+one found in the shadow CIB.</p></div>
+<div class="paragraph"><p>The <span class="monospaced">crm</span> prompt always contains the name of the configuration which
+is currently in use, or the string <em>live</em> if using the live cluster
+configuration.</p></div>
+<div class="paragraph"><p>When editing the configuration in the <span class="monospaced">configure</span> level, no changes
+are actually applied until the <span class="monospaced">commit</span> command is executed. It is
+possible to start editing a configuration as usual, but instead of
+committing the changes to the active CIB, save them to a shadow CIB.</p></div>
+<div class="paragraph"><p>The following example <span class="monospaced">configure</span> session demonstrates how this can be
+done:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    crm(live)configure# cib new test-2
-    INFO: test-2 shadow CIB created
-    crm(test-2)configure# commit</pre>
+<pre>crm(live)configure# cib new test-2
+INFO: test-2 shadow CIB created
+crm(test-2)configure# commit</pre>
 </div></div>
 </div>
 </div>
@@ -463,17 +310,17 @@ start.</p></div>
 configuration:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    # crm configure
-    crm(live)configure# template
-    crm(live)configure template# list templates
-    apache       filesystem   virtual-ip
-    crm(live)configure template# new web &lt;TAB&gt;&lt;TAB&gt;
-    apache       filesystem   virtual-ip
-    crm(live)configure template# new web apache
-    INFO: pulling in template apache
-    INFO: pulling in template virtual-ip
-    crm(live)configure template# list
-    web2-d       web2         vip2         web3         vip          web</pre>
+<pre># crm configure
+crm(live)configure# template
+crm(live)configure template# list templates
+apache       filesystem   virtual-ip
+crm(live)configure template# new web &lt;TAB&gt;&lt;TAB&gt;
+apache       filesystem   virtual-ip
+crm(live)configure template# new web apache
+INFO: pulling in template apache
+INFO: pulling in template virtual-ip
+crm(live)configure template# list
+web2-d       web2     vip2     web3     vip      web</pre>
 </div></div>
 <div class="paragraph"><p>We enter the <span class="monospaced">template</span> level from <span class="monospaced">configure</span>. Use the <span class="monospaced">list</span>
 command to show templates available on the system. The <span class="monospaced">new</span>
@@ -489,11 +336,11 @@ which have to be done. All <span class="monospaced">ERROR</span> messages show t
 in which the respective parameters are to be defined:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    crm(live)configure template# show
-    ERROR: 23: required parameter ip not set
-    ERROR: 61: required parameter id not set
-    ERROR: 65: required parameter configfile not set
-    crm(live)configure template# edit</pre>
+<pre>crm(live)configure template# show
+ERROR: 23: required parameter ip not set
+ERROR: 61: required parameter id not set
+ERROR: 65: required parameter configfile not set
+crm(live)configure template# edit</pre>
 </div></div>
 <div class="paragraph"><p>The <span class="monospaced">edit</span> command invokes the preferred text editor with the
 <span class="monospaced">web</span> configuration. At the top of the file, the user is advised
@@ -503,14 +350,14 @@ we created above has the following required and optional
 parameters (all parameter lines start with <span class="monospaced">%%</span>):</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    $ grep -n ^%% ~/.crmconf/web
-    23:%% ip
-    31:%% netmask
-    35:%% lvs_support
-    61:%% id
-    65:%% configfile
-    71:%% options
-    76:%% envfiles</pre>
+<pre>$ grep -n ^%% ~/.crmconf/web
+23:%% ip
+31:%% netmask
+35:%% lvs_support
+61:%% id
+65:%% configfile
+71:%% options
+76:%% envfiles</pre>
 </div></div>
 <div class="paragraph"><p>These lines are the only ones that should be modified. Simply
 append the parameter value at the end of the line. For instance,
@@ -518,32 +365,32 @@ after editing this template, the result could look like this (we
 used tabs instead of spaces to make the values stand out):</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    $ grep -n ^%% ~/.crmconf/web
-    23:%% ip                192.168.1.101
-    31:%% netmask
-    35:%% lvs_support
-    61:%% id                websvc
-    65:%% configfile        /etc/apache2/httpd.conf
-    71:%% options
-    76:%% envfiles</pre>
+<pre>$ grep -n ^%% ~/.crmconf/web
+23:%% ip        192.168.1.101
+31:%% netmask
+35:%% lvs_support
+61:%% id        websvc
+65:%% configfile    /etc/apache2/httpd.conf
+71:%% options
+76:%% envfiles</pre>
 </div></div>
 <div class="paragraph"><p>As you can see, the parameter line format is very simple:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    %% &lt;name&gt; &lt;value&gt;</pre>
+<pre>%% &lt;name&gt; &lt;value&gt;</pre>
 </div></div>
 <div class="paragraph"><p>After editing the file, use <span class="monospaced">show</span> again to display the
 configuration:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    crm(live)configure template# show
-    primitive virtual-ip ocf:heartbeat:IPaddr \
-            params ip="192.168.1.101"
-    primitive apache ocf:heartbeat:apache \
-            params configfile="/etc/apache2/httpd.conf"
-    monitor apache 120s:60s
-    group websvc \
-            apache virtual-ip</pre>
+<pre>crm(live)configure template# show
+primitive virtual-ip IPaddr \
+    params ip=192.168.1.101
+primitive apache apache \
+    params configfile="/etc/apache2/httpd.conf"
+monitor apache 120s:60s
+group websvc \
+    apache virtual-ip</pre>
 </div></div>
 <div class="paragraph"><p>The target resource of the apache template is a group which we
 named <span class="monospaced">websvc</span> in this sample session.</p></div>
@@ -557,17 +404,17 @@ though it is still equivalent, after being digested at the
 <span class="monospaced">configure</span> level):</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    crm(live)configure template# apply
-    crm(live)configure template# cd ..
-    crm(live)configure# show
-    node xen-b
-    node xen-c
-    primitive apache ocf:heartbeat:apache \
-        params configfile="/etc/apache2/httpd.conf" \
-        op monitor interval="120s" timeout="60s"
-    primitive virtual-ip ocf:heartbeat:IPaddr \
-        params ip="192.168.1.101"
-    group websvc apache virtual-ip</pre>
+<pre>crm(live)configure template# apply
+crm(live)configure template# cd ..
+crm(live)configure# show
+node xen-b
+node xen-c
+primitive apache apache \
+    params configfile="/etc/apache2/httpd.conf" \
+    op monitor interval=120s timeout=60s
+primitive virtual-ip IPaddr \
+    params ip=192.168.1.101
+group websvc apache virtual-ip</pre>
 </div></div>
 <div class="paragraph"><p>Note that this still does not commit the configuration to the CIB
 which is used in the shell, either the running one (<span class="monospaced">live</span>) or
@@ -577,23 +424,23 @@ command.</p></div>
 to run the service:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    crm(live)configure# location websvc-pref websvc 100: xen-b</pre>
+<pre>crm(live)configure# location websvc-pref websvc 100: xen-b</pre>
 </div></div>
 <div class="paragraph"><p>If you are not happy with some resource names which are provided
 by default, you can rename them now:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    crm(live)configure# rename virtual-ip intranet-ip
-    crm(live)configure# show
-    node xen-b
-    node xen-c
-    primitive apache ocf:heartbeat:apache \
-            params configfile="/etc/apache2/httpd.conf" \
-            op monitor interval="120s" timeout="60s"
-    primitive intranet-ip ocf:heartbeat:IPaddr \
-            params ip="192.168.1.101"
-    group websvc apache intranet-ip
-    location websvc-pref websvc 100: xen-b</pre>
+<pre>crm(live)configure# rename virtual-ip intranet-ip
+crm(live)configure# show
+node xen-b
+node xen-c
+primitive apache apache \
+    params configfile="/etc/apache2/httpd.conf" \
+    op monitor interval=120s timeout=60s
+primitive intranet-ip IPaddr \
+    params ip=192.168.1.101
+group websvc apache intranet-ip
+location websvc-pref websvc 100: xen-b</pre>
 </div></div>
 <div class="paragraph"><p>To summarize, working with templates typically consists of the
 following steps:</p></div>
@@ -632,30 +479,30 @@ wear.</p></div>
 <div class="paragraph"><p>Let&#8217;s say that we entered the following configuration:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    node xen-b
-    node xen-c
-    node xen-d
-    primitive fencer stonith:external/libvirt \
-            params hypervisor_uri="qemu+tcp://10.2.13.1/system" \
-                hostlist="xen-b xen-c xen-d" \
-            op monitor interval="2h"
-    primitive svc ocf:heartbeat:Xinetd \
-            params service="systat" \
-            op monitor interval="30s"
-    primitive intranet-ip ocf:heartbeat:IPaddr2 \
-            params ip="10.2.13.100" \
-            op monitor interval="30s"
-    primitive apache ocf:heartbeat:apache \
-            params configfile="/etc/apache2/httpd.conf" \
-            op monitor interval="120s" timeout="60s"
-    group websvc apache intranet-ip
-    location websvc-pref websvc 100: xen-b</pre>
+<pre>node xen-b
+node xen-c
+node xen-d
+primitive fencer stonith:external/libvirt \
+    params hypervisor_uri="qemu+tcp://10.2.13.1/system" \
+        hostlist="xen-b xen-c xen-d" \
+    op monitor interval=2h
+primitive svc Xinetd \
+    params service=systat \
+    op monitor interval=30s
+primitive intranet-ip IPaddr2 \
+    params ip=10.2.13.100 \
+    op monitor interval=30s
+primitive apache apache \
+    params configfile="/etc/apache2/httpd.conf" \
+    op monitor interval=120s timeout=60s
+group websvc apache intranet-ip
+location websvc-pref websvc 100: xen-b</pre>
 </div></div>
 <div class="paragraph"><p>Before typing <span class="monospaced">commit</span> to submit the configuration to the cib we
 can make sure that all resources are usable on all nodes:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    crm(live)configure# rsctest websvc svc fencer</pre>
+<pre>crm(live)configure# rsctest websvc svc fencer</pre>
 </div></div>
 <div class="paragraph"><p>It is important that resources being tested are not running on
 any nodes. Otherwise, the <span class="monospaced">rsctest</span> command will refuse to do
@@ -669,7 +516,7 @@ resources are not running on any node.</p></div>
 possible to tell Pacemaker not to start any resources:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    crm(live)configure# property stop-all-resources="yes"</pre>
+<pre>crm(live)configure# property stop-all-resources=yes</pre>
 </div></div>
 <div class="paragraph"><p>Almost none---resources of class stonith are still started. But
 shell is not as strict when it comes to stonith resources.</p></div>
@@ -696,38 +543,38 @@ may also be used to get short help on resource parameters. Here a
 few examples:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    crm(live)# resource
-    crm(live)resource# &lt;TAB&gt;&lt;TAB&gt;
-    bye           failcount     move          restart       unmigrate
-    cd            help          param         show          unmove
-    cleanup       list          promote       start         up
-    demote        manage        quit          status utilization
-    end           meta          refresh       stop
-    exit          migrate       reprobe       unmanage
-    crm(live)resource# end
-    crm(live)# configure
-    crm(live)configure# primitive fence-1 &lt;TAB&gt;&lt;TAB&gt;
-    heartbeat:  lsb:        ocf:        stonith:
-    crm(live)configure# primitive fence-1 stonith:&lt;TAB&gt;&lt;TAB&gt;
-    apcmaster                external/ippower9258     fence_legacy
-    apcmastersnmp            external/kdumpcheck      ibmhmc
-    apcsmart                 external/libvirt         ipmilan
-    baytech                  external/nut             meatware
-    bladehpi                 external/rackpdu         null
-    cyclades                 external/riloe           nw_rpc100s
-    drac3                    external/sbd             rcd_serial
-    external/drac5           external/ssh             rps10
-    external/dracmc-telnet   external/ssh-bad         ssh
-    external/hmchttp         external/ssh-slow        suicide
-    external/ibmrsa          external/vmware          wti_mpc
-    external/ibmrsa-telnet   external/xen0            wti_nps
-    external/ipmi            external/xen0-ha
-    crm(live)configure# primitive fence-1 stonith:ipmilan params &lt;TAB&gt;&lt;TAB&gt;
-    auth=      hostname=  ipaddr=    login=     password=  port=      priv=
-    crm(live)configure# primitive fence-1 stonith:ipmilan params auth=&lt;TAB&gt;&lt;TAB&gt;
-    auth* (string)
-        The authorization type of the IPMI session ("none", "straight", "md2", or "md5")
-    crm(live)configure# primitive fence-1 stonith:ipmilan params auth=</pre>
+<pre>crm(live)# resource
+crm(live)resource# &lt;TAB&gt;&lt;TAB&gt;
+bye           failcount     move          restart       unmigrate
+cd            help          param         show          unmove
+cleanup       list          promote       start         up
+demote        manage        quit          status        utilization
+end           meta          refresh       stop
+exit          migrate       reprobe       unmanage
+crm(live)resource# end
+crm(live)# configure
+crm(live)configure# primitive fence-1 &lt;TAB&gt;&lt;TAB&gt;
+heartbeat:  lsb:    ocf:    stonith:
+crm(live)configure# primitive fence-1 stonith:&lt;TAB&gt;&lt;TAB&gt;
+apcmaster                external/ippower9258     fence_legacy
+apcmastersnmp            external/kdumpcheck      ibmhmc
+apcsmart                 external/libvirt         ipmilan
+baytech                  external/nut             meatware
+bladehpi                 external/rackpdu         null
+cyclades                 external/riloe           nw_rpc100s
+drac3                    external/sbd             rcd_serial
+external/drac5           external/ssh             rps10
+external/dracmc-telnet   external/ssh-bad         ssh
+external/hmchttp         external/ssh-slow        suicide
+external/ibmrsa          external/vmware          wti_mpc
+external/ibmrsa-telnet   external/xen0            wti_nps
+external/ipmi            external/xen0-ha
+crm(live)configure# primitive fence-1 stonith:ipmilan params &lt;TAB&gt;&lt;TAB&gt;
+auth=      hostname=  ipaddr=    login=     password=  port=      priv=
+crm(live)configure# primitive fence-1 stonith:ipmilan params auth=&lt;TAB&gt;&lt;TAB&gt;
+auth* (string)
+    The authorization type of the IPMI session ("none", "straight", "md2", or "md5")
+crm(live)configure# primitive fence-1 stonith:ipmilan params auth=</pre>
 </div></div>
 </div>
 </div>
@@ -786,11 +633,11 @@ role. Then, users may be assigned a role.</p></div>
 allowing management of a single resource:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    role bigdb_admin \
-        write meta:bigdb:target-role \
-        write meta:bigdb:is-managed \
-        write location:bigdb \
-        read ref:bigdb</pre>
+<pre>role bigdb_admin \
+    write meta:bigdb:target-role \
+    write meta:bigdb:is-managed \
+    write location:bigdb \
+    read ref:bigdb</pre>
 </div></div>
 <div class="paragraph"><p>The first two rules allow modifying the <span class="monospaced">target-role</span> and
 <span class="monospaced">is-managed</span> meta attributes which effectively enables users in
@@ -802,18 +649,18 @@ definition.</p></div>
 to add the following role to all users:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    role read_all \
-        read cib</pre>
+<pre>role read_all \
+    read cib</pre>
 </div></div>
 <div class="paragraph"><p>For finer grained read access try with the rules listed in the
 following role:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    role basic_read \
-        read node attribute:uname \
-        read node attribute:type \
-        read property \
-        read status</pre>
+<pre>role basic_read \
+    read node attribute:uname \
+    read node attribute:type \
+    read property \
+    read status</pre>
 </div></div>
 <div class="paragraph"><p>It is however possible that some Pacemaker programs (e.g.
 <span class="monospaced">ptest</span>) may not function correctly if the whole CIB is not
@@ -825,20 +672,20 @@ shell to XPath specifications. For instance,
 You can see the expansion by showing XML:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    crm(live) configure# show xml bigdb_admin
-    ...
-    &lt;acls&gt;
-      &lt;acl_role id="bigdb_admin"&gt;
-          &lt;write id="bigdb_admin-write"
-          xpath="//primitive[@id='bigdb']/meta_attributes/nvpair[@name='target-role']"/&gt;</pre>
+<pre>crm(live) configure# show xml bigdb_admin
+...
+&lt;acls&gt;
+  &lt;acl_role id="bigdb_admin"&gt;
+      &lt;write id="bigdb_admin-write"
+      xpath="//primitive[@id='bigdb']/meta_attributes/nvpair[@name='target-role']"/&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Many different XPath expressions can have equal meaning. For
 instance, the following two are equal, but only the first one is
 going to be recognized as shortcut:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>      //primitive[@id='bigdb']/meta_attributes/nvpair[@name='target-role']
-      //resources/primitive[@id='bigdb']/meta_attributes/nvpair[@name='target-role']</pre>
+<pre>//primitive[@id='bigdb']/meta_attributes/nvpair[@name='target-role']
+//resources/primitive[@id='bigdb']/meta_attributes/nvpair[@name='target-role']</pre>
 </div></div>
 <div class="paragraph"><p>XPath is a powerful language, but you should try to keep your ACL
 xpaths simple and the builtin shortcuts should be used whenever
@@ -857,17 +704,342 @@ ellipsis (<span class="monospaced">...</span>) signifies that the previous const
 repeated, <span class="monospaced">|</span> means pick one of many, and the rest are literals
 (strings, <span class="monospaced">:</span>, <span class="monospaced">=</span>).</p></div>
 <div class="sect2">
-<h3 id="_span_class_monospaced_status_span"><span class="monospaced">status</span></h3>
+<h3 id="cmdhelp_root_status"><span class="monospaced">status</span></h3>
 <div class="paragraph"><p>Show cluster status. The status is displayed by <span class="monospaced">crm_mon</span>. Supply
 additional arguments for more information or different format.
 See <span class="monospaced">crm_mon(8)</span> for more details.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        status [&lt;option&gt; ...]
+<pre>status [&lt;option&gt; ...]
 
-        option :: bynode | inactive | ops | timing | failcounts</pre>
+option :: bynode | inactive | ops | timing | failcounts</pre>
 </div></div>
+</div>
+<div class="sect2">
+<h3 id="cmdhelp_cluster"><span class="monospaced">cluster</span></h3>
+<div class="paragraph"><p>Whole-cluster configuration management with High Availability
+awareness.</p></div>
+<div class="paragraph"><p>The commands on the cluster level allows configuration and
+modification of the underlying cluster infrastructure, and also
+supplies tools to do whole-cluster systems management.</p></div>
+<div class="paragraph"><p>These commands enable easy installation and maintenance of a HA
+cluster, by providing support for package installation, configuration
+of the cluster messaging layer, file system setup and more.</p></div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_start"><span class="monospaced">start</span></h4>
+<div class="paragraph"><p>Starts the cluster-related system services on this node.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>start</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_stop"><span class="monospaced">start</span></h4>
+<div class="paragraph"><p>Stops the cluster-related system services on this node.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>stop</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_init"><span class="monospaced">init</span></h4>
+<div class="paragraph"><p>Installs and configures a basic HA cluster on a set of nodes.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>init node1 node2 node3
+init --dry-run node1 node2 node3</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_add"><span class="monospaced">add</span></h4>
+<div class="paragraph"><p>This command simplifies the process of adding a new node to a running
+cluster. The new node will be installed and configured with the
+packages and configuration files needed to run the cluster
+resources. If a cluster file system is used, the new node will be set
+up to host the file system.</p></div>
+<div class="paragraph"><p>This command should be executed from a node already in the cluster.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>add &lt;node&gt;</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_remove"><span class="monospaced">remove</span></h4>
+<div class="paragraph"><p>This command simplifies the process of removing a node from the
+cluster, moving any resources hosted by that node to other nodes.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>remove &lt;node&gt;</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_status"><span class="monospaced">status</span></h4>
+<div class="paragraph"><p>Reports the status for the cluster messaging layer on the local
+node.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>status</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_health"><span class="monospaced">health</span></h4>
+<div class="paragraph"><p>Runs a larger set of tests and queries on all nodes in the cluster to
+verify the general system health and detect potential problems.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>health</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_wait_for_startup"><span class="monospaced">wait_for_startup</span></h4>
+<div class="paragraph"><p>Mostly useful in scripts or automated workflows, this command will
+attempt to connect to the local cluster node repeatedly. The command
+will keep trying until the cluster node responds, or the <span class="monospaced">timeout</span>
+elapses. The timeout can be changed by supplying a value in seconds as
+an argument.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>wait_for_startup</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_run"><span class="monospaced">run</span></h4>
+<div class="paragraph"><p>This command takes a shell statement as argument, executes that
+statement on all nodes in the cluster, and reports the result.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>run &lt;command&gt;</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>run "cat /proc/uptime"</pre>
+</div></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cmdhelp_script"><span class="monospaced">cluster</span></h3>
+<div class="paragraph"><p>Cluster scripts can perform cluster-wide configuration,
+validation and management. See the <span class="monospaced">list</span> command for
+an overview of available scripts.</p></div>
+<div class="sect3">
+<h4 id="cmdhelp_script_list"><span class="monospaced">list</span></h4>
+<div class="paragraph"><p>Lists the available cluster scripts.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>list</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_script_verify"><span class="monospaced">verify</span></h4>
+<div class="paragraph"><p>Mainly useful when creating new scripts, this command
+verifies that the script definition has all necessary
+fields and that the referenced actions exist.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>verify &lt;script&gt;</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_script_describe"><span class="monospaced">describe</span></h4>
+<div class="paragraph"><p>Prints a description and short summary of the cluster script, with
+descriptions of all parameters, both required and optional.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>describe &lt;script&gt;</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_script_steps"><span class="monospaced">steps</span></h4>
+<div class="paragraph"><p>List the names of all steps in the cluster script.</p></div>
+<div class="paragraph"><p>This command is intended for use by automated tools
+and the web frontend.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>steps &lt;script&gt;</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_script_run"><span class="monospaced">run</span></h4>
+<div class="paragraph"><p>Runs a cluster script. Can optionally take at least two arguments:
+* <span class="monospaced">nodes=&lt;nodes&gt;</span>: List of nodes that the script runs over
+* <span class="monospaced">dry_run=yes|no</span>: If set, the script will not perform any modifications.</p></div>
+<div class="paragraph"><p>Additional arguments may be available depending on the cluster
+script. Use the <span class="monospaced">describe</span> command to see what arguments are
+provided.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>run &lt;script&gt; [args...]</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>run health dry_run=yes verbose=yes
+run init nodes="node-1 node-2 node-3"</pre>
+</div></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cmdhelp_corosync"><span class="monospaced">corosync</span></h3>
+<div class="paragraph"><p>Corosync is the underlying messaging layer for most HA clusters.
+This level provides commands for editing and managing the corosync
+configuration.</p></div>
+<div class="sect3">
+<h4 id="cmdhelp_corosync_status"><span class="monospaced">status</span></h4>
+<div class="paragraph"><p>Displays the status of Corosync, including the votequorum state.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>status</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_corosync_show"><span class="monospaced">show</span></h4>
+<div class="paragraph"><p>Displays the corosync configuration on the current node.</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>show</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_corosync_edit"><span class="monospaced">edit</span></h4>
+<div class="paragraph"><p>Opens the Corosync configuration file in an editor.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>edit</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_corosync_log"><span class="monospaced">log</span></h4>
+<div class="paragraph"><p>Opens the log file specified in the corosync configuration file. If no
+log file is configured, this command returns an error.</p></div>
+<div class="paragraph"><p>The pager used can be configured either using the PAGER
+environment variable or in <span class="monospaced">crm.conf</span>.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>log</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_corosync_reload"><span class="monospaced">reload</span></h4>
+<div class="paragraph"><p>Tells all instances of corosync in this cluster to reload
+<span class="monospaced">corosync.conf</span>.</p></div>
+<div class="paragraph"><p>After pushing a new configuration to all cluster nodes, call this
+command to make corosync use the new configuration.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>reload</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_corosync_push"><span class="monospaced">push</span></h4>
+<div class="paragraph"><p>Pushes the corosync configuration file on this node to
+the list of nodes provided. If no target nodes are given,
+the configuration is pushed to all other nodes in the cluster.</p></div>
+<div class="paragraph"><p>It is recommended to use <span class="monospaced">csync2</span> to distribute the cluster
+configuration files rather than relying on this command.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>push [node] ...</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>push node-2 node-3</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_corosync_pull"><span class="monospaced">pull</span></h4>
+<div class="paragraph"><p>Gets the corosync configuration from another node and copies
+it to this node.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>pull &lt;node&gt;</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_corosync_diff"><span class="monospaced">diff</span></h4>
+<div class="paragraph"><p>Diffs the corosync configurations on different nodes. If no nodes are
+given as arguments, the corosync configurations on all nodes in the
+cluster are compared.</p></div>
+<div class="paragraph"><p><span class="monospaced">diff</span> takes an option argument <span class="monospaced">--checksum</span>, to force checksum mode.</p></div>
+<div class="paragraph"><p>If the number of nodes to compare are greater than two, <span class="monospaced">diff</span>
+automatically switches to checksum mode.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>diff [--checksum] [node...]</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_corosync_add-node"><span class="monospaced">add-node</span></h4>
+<div class="paragraph"><p>Adds a node to the corosync configuration. This is used with the <span class="monospaced">udpu</span>
+type configuration in corosync.</p></div>
+<div class="paragraph"><p>A nodeid for the added node is generated automatically.</p></div>
+<div class="paragraph"><p>Note that this command assumes that only a single ring is used, and
+sets only the address for ring0.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>add-node &lt;addr&gt;</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_corosync_del-node"><span class="monospaced">del-node</span></h4>
+<div class="paragraph"><p>Removes a node from the corosync configuration. The argument given is
+the <span class="monospaced">ring0_addr</span> address set in the configuration file.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>del-node &lt;addr&gt;</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_corosync_get"><span class="monospaced">get</span></h4>
+<div class="paragraph"><p>Returns the value configured in <span class="monospaced">corosync.conf</span>, which is not
+necessarily the value used in the running configuration. See <span class="monospaced">reload</span>
+for telling corosync about configuration changes.</p></div>
+<div class="paragraph"><p>The argument is the complete dot-separated path to the value.</p></div>
+<div class="paragraph"><p>If there are multiple values configured with the same path, the
+command returns all values for that path. For example, to get all
+configured <span class="monospaced">ring0_addr</span> values, use this command:</p></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>get nodelist.node.ring0_addr</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_corosync_set"><span class="monospaced">set</span></h4>
+<div class="paragraph"><p>Sets the value identified by the given path. If the value does not
+exist in the configuration file, it will be added. However, if the
+section containing the value does not exist, the command will fail.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>set quorum.expected_votes 2</pre>
+</div></div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="cmdhelp_cib"><span class="monospaced">cib</span> (shadow CIBs)</h3>
@@ -879,17 +1051,23 @@ includes the name of the currently active shadow or the live CIB.</p></div>
 <div class="sect3">
 <h4 id="cmdhelp_cib_new"><span class="monospaced">new</span></h4>
 <div class="paragraph"><p>Create a new shadow CIB. The live cluster configuration and
-status is copied to the shadow CIB. Specify <span class="monospaced">withstatus</span> if you
-want to edit the status section of the shadow CIB (see the
-<a href="#cmdhelp_cibstatus">cibstatus section</a>). Add <span class="monospaced">force</span> to force overwriting the
-existing shadow CIB.</p></div>
+status is copied to the shadow CIB.</p></div>
+<div class="paragraph"><p>If the name of the shadow is omitted, we create a temporary CIB
+shadow. It is useful if multiple level sessions are desired
+without affecting the cluster. A temporary CIB shadow is short
+lived and will be removed either on <span class="monospaced">commit</span> or on program exit.
+Note that if the temporary shadow is not committed all changes in
+the temporary shadow are lost.</p></div>
+<div class="paragraph"><p>Specify <span class="monospaced">withstatus</span> if you want to edit the status section of
+the shadow CIB (see the <a href="#cmdhelp_cibstatus">cibstatus section</a>).
+Add <span class="monospaced">force</span> to force overwriting the existing shadow CIB.</p></div>
 <div class="paragraph"><p>To start with an empty configuration that is not copied from the live
 CIB, specify the <span class="monospaced">empty</span> keyword. (This also allows a shadow CIB to be
 created in case no cluster is running.)</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        new &lt;cib&gt; [withstatus] [force] [empty]</pre>
+<pre>new [&lt;cib&gt;] [withstatus] [force] [empty]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -898,7 +1076,7 @@ created in case no cluster is running.)</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        delete &lt;cib&gt;</pre>
+<pre>delete &lt;cib&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -907,16 +1085,18 @@ created in case no cluster is running.)</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        reset &lt;cib&gt;</pre>
+<pre>reset &lt;cib&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_cib_commit"><span class="monospaced">commit</span></h4>
-<div class="paragraph"><p>Apply a shadow CIB to the cluster.</p></div>
+<div class="paragraph"><p>Apply a shadow CIB to the cluster. If the shadow name is omitted
+then the current shadow CIB is applied.</p></div>
+<div class="paragraph"><p>Temporary shadow CIBs are removed automatically on commit.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        commit &lt;cib&gt;</pre>
+<pre>commit [&lt;cib&gt;]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -927,7 +1107,7 @@ Leave out the CIB name to switch to the running CIB.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        use [&lt;cib&gt;] [withstatus]</pre>
+<pre>use [&lt;cib&gt;] [withstatus]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -937,7 +1117,7 @@ the active shadow CIB.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        diff</pre>
+<pre>diff</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -946,7 +1126,7 @@ the active shadow CIB.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        list</pre>
+<pre>list</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -965,13 +1145,13 @@ need to specify the full name.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        import {&lt;file&gt;|&lt;number&gt;} [&lt;shadow&gt;]</pre>
+<pre>import {&lt;file&gt;|&lt;number&gt;} [&lt;shadow&gt;]</pre>
 </div></div>
 <div class="paragraph"><p>Examples:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        import pe-warn-2222
-        import 2289 issue2</pre>
+<pre>import pe-warn-2222
+import 2289 issue2</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -992,7 +1172,7 @@ of available providers.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        classes</pre>
+<pre>classes</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1003,16 +1183,16 @@ only from that provider.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        list &lt;class&gt; [&lt;provider&gt;]</pre>
+<pre>list &lt;class&gt; [&lt;provider&gt;]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        list ocf pacemaker</pre>
+<pre>list ocf pacemaker</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_ra_meta"><span class="monospaced">meta</span> (<span class="monospaced">info</span>)</h4>
+<h4 id="cmdhelp_ra_info"><span class="monospaced">info</span> (<span class="monospaced">meta</span>)</h4>
 <div class="paragraph"><p>Show the meta-data of a resource agent type. This is where users
 can find information on how to use a resource agent. It is also
 possible to get information from some programs: <span class="monospaced">pengine</span>,
@@ -1021,16 +1201,16 @@ instead of an RA.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        info [&lt;class&gt;:[&lt;provider&gt;:]]&lt;type&gt;
-        info &lt;type&gt; &lt;class&gt; [&lt;provider&gt;] (obsolete)</pre>
+<pre>info [&lt;class&gt;:[&lt;provider&gt;:]]&lt;type&gt;
+info &lt;type&gt; &lt;class&gt; [&lt;provider&gt;] (obsolete)</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        info apache
-        info ocf:pacemaker:Dummy
-        info stonith:ipmilan
-        info pengine</pre>
+<pre>info apache
+info ocf:pacemaker:Dummy
+info stonith:ipmilan
+info pengine</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1040,12 +1220,12 @@ defaults to <span class="monospaced">ocf</span>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        providers &lt;type&gt; [&lt;class&gt;]</pre>
+<pre>providers &lt;type&gt; [&lt;class&gt;]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        providers apache</pre>
+<pre>providers apache</pre>
 </div></div>
 </div>
 </div>
@@ -1061,7 +1241,7 @@ status of all resources is printed.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        status [&lt;rsc&gt;]</pre>
+<pre>status [&lt;rsc&gt;]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1074,7 +1254,7 @@ are removed from the children resources.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        start &lt;rsc&gt;</pre>
+<pre>start &lt;rsc&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1087,7 +1267,7 @@ are removed from the children resources.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        stop &lt;rsc&gt;</pre>
+<pre>stop &lt;rsc&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1102,16 +1282,16 @@ printed to let the user see some progress.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        restart &lt;rsc&gt;</pre>
+<pre>restart &lt;rsc&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        # crm resource restart g_webserver
-        INFO: ordering g_webserver to stop
-        waiting for stop to finish .... done
-        INFO: ordering g_webserver to start
-        #</pre>
+<pre># crm resource restart g_webserver
+INFO: ordering g_webserver to stop
+waiting for stop to finish .... done
+INFO: ordering g_webserver to start
+#</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1121,7 +1301,7 @@ attribute.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        promote &lt;rsc&gt;</pre>
+<pre>promote &lt;rsc&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1131,7 +1311,7 @@ attribute.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        demote &lt;rsc&gt;</pre>
+<pre>demote &lt;rsc&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1144,7 +1324,7 @@ removed from the children resources.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        manage &lt;rsc&gt;</pre>
+<pre>manage &lt;rsc&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1157,7 +1337,7 @@ removed from the children resources.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        unmanage &lt;rsc&gt;</pre>
+<pre>unmanage &lt;rsc&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1170,7 +1350,7 @@ constraint will no longer be active.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        migrate &lt;rsc&gt; [&lt;node&gt;] [&lt;lifetime&gt;] [force]</pre>
+<pre>migrate &lt;rsc&gt; [&lt;node&gt;] [&lt;lifetime&gt;] [force]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1179,7 +1359,23 @@ constraint will no longer be active.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        unmigrate &lt;rsc&gt;</pre>
+<pre>unmigrate &lt;rsc&gt;</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_resource_maintenance"><span class="monospaced">maintenance</span></h4>
+<div class="paragraph"><p>Enables or disables the per-resource maintenance mode. When this mode
+is enabled, no monitor operations will be triggered for the resource.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>maintenance &lt;resource&gt; [on|off|true|false]</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>maintenance rsc1
+maintenance rsc2 off</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1188,14 +1384,14 @@ constraint will no longer be active.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        param &lt;rsc&gt; set &lt;param&gt; &lt;value&gt;
-        param &lt;rsc&gt; delete &lt;param&gt;
-        param &lt;rsc&gt; show &lt;param&gt;</pre>
+<pre>param &lt;rsc&gt; set &lt;param&gt; &lt;value&gt;
+param &lt;rsc&gt; delete &lt;param&gt;
+param &lt;rsc&gt; show &lt;param&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        param ip_0 show ip</pre>
+<pre>param ip_0 show ip</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1211,19 +1407,19 @@ local file content is valid.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        secret &lt;rsc&gt; set &lt;param&gt; &lt;value&gt;
-        secret &lt;rsc&gt; stash &lt;param&gt;
-        secret &lt;rsc&gt; unstash &lt;param&gt;
-        secret &lt;rsc&gt; delete &lt;param&gt;
-        secret &lt;rsc&gt; show &lt;param&gt;
-        secret &lt;rsc&gt; check &lt;param&gt;</pre>
+<pre>secret &lt;rsc&gt; set &lt;param&gt; &lt;value&gt;
+secret &lt;rsc&gt; stash &lt;param&gt;
+secret &lt;rsc&gt; unstash &lt;param&gt;
+secret &lt;rsc&gt; delete &lt;param&gt;
+secret &lt;rsc&gt; show &lt;param&gt;
+secret &lt;rsc&gt; check &lt;param&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        secret fence_1 show password
-        secret fence_1 stash password
-        secret fence_1 set password secret_value</pre>
+<pre>secret fence_1 show password
+secret fence_1 stash password
+secret fence_1 set password secret_value</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1234,14 +1430,14 @@ such as <span class="monospaced">resource stop</span>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        meta &lt;rsc&gt; set &lt;attr&gt; &lt;value&gt;
-        meta &lt;rsc&gt; delete &lt;attr&gt;
-        meta &lt;rsc&gt; show &lt;attr&gt;</pre>
+<pre>meta &lt;rsc&gt; set &lt;attr&gt; &lt;value&gt;
+meta &lt;rsc&gt; delete &lt;attr&gt;
+meta &lt;rsc&gt; show &lt;attr&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        meta ip_0 set target-role stopped</pre>
+<pre>meta ip_0 set target-role stopped</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1254,14 +1450,14 @@ requirements and node size. See also <a href="#cmdhelp_node_utilization">node ut
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        utilization &lt;rsc&gt; set &lt;attr&gt; &lt;value&gt;
-        utilization &lt;rsc&gt; delete &lt;attr&gt;
-        utilization &lt;rsc&gt; show &lt;attr&gt;</pre>
+<pre>utilization &lt;rsc&gt; set &lt;attr&gt; &lt;value&gt;
+utilization &lt;rsc&gt; delete &lt;attr&gt;
+utilization &lt;rsc&gt; show &lt;attr&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        utilization xen1 set memory 4096</pre>
+<pre>utilization xen1 set memory 4096</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1270,14 +1466,14 @@ requirements and node size. See also <a href="#cmdhelp_node_utilization">node ut
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        failcount &lt;rsc&gt; set &lt;node&gt; &lt;value&gt;
-        failcount &lt;rsc&gt; delete &lt;node&gt;
-        failcount &lt;rsc&gt; show &lt;node&gt;</pre>
+<pre>failcount &lt;rsc&gt; set &lt;node&gt; &lt;value&gt;
+failcount &lt;rsc&gt; delete &lt;node&gt;
+failcount &lt;rsc&gt; show &lt;node&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        failcount fs_0 delete node2</pre>
+<pre>failcount fs_0 delete node2</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1288,7 +1484,7 @@ If there are many nodes, the command may take a while.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        cleanup &lt;rsc&gt; [&lt;node&gt;]</pre>
+<pre>cleanup &lt;rsc&gt; [&lt;node&gt;]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1297,7 +1493,7 @@ If there are many nodes, the command may take a while.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        refresh [&lt;node&gt;]</pre>
+<pre>refresh [&lt;node&gt;]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1306,7 +1502,7 @@ If there are many nodes, the command may take a while.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        reprobe [&lt;node&gt;]</pre>
+<pre>reprobe [&lt;node&gt;]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1318,12 +1514,12 @@ quickly.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        trace &lt;rsc&gt; &lt;op&gt; [&lt;interval&gt;]</pre>
+<pre>trace &lt;rsc&gt; &lt;op&gt; [&lt;interval&gt;]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        trace fs start</pre>
+<pre>trace fs start</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1332,14 +1528,23 @@ quickly.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        untrace &lt;rsc&gt; &lt;op&gt; [&lt;interval&gt;]</pre>
+<pre>untrace &lt;rsc&gt; &lt;op&gt; [&lt;interval&gt;]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        untrace fs start</pre>
+<pre>untrace fs start</pre>
 </div></div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="cmdhelp_resource_scores"><span class="monospaced">scores</span></h3>
+<div class="paragraph"><p>Display the allocation scores for all resources.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>scores</pre>
+</div></div>
 </div>
 <div class="sect2">
 <h3 id="cmdhelp_node"><span class="monospaced">node</span></h3>
@@ -1351,7 +1556,7 @@ all nodes are shown.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        status [&lt;node&gt;]</pre>
+<pre>status [&lt;node&gt;]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1361,7 +1566,7 @@ nodes are shown.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        show [&lt;node&gt;]</pre>
+<pre>show [&lt;node&gt;]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1374,9 +1579,9 @@ standby after reboot.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        standby [&lt;node&gt;] [&lt;lifetime&gt;]
+<pre>standby [&lt;node&gt;] [&lt;lifetime&gt;]
 
-        lifetime :: reboot | forever</pre>
+lifetime :: reboot | forever</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1386,7 +1591,7 @@ defaults to the node where the command is run.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        online [&lt;node&gt;]</pre>
+<pre>online [&lt;node&gt;]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1398,7 +1603,7 @@ node where the command is run.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        maintenance [&lt;node&gt;]</pre>
+<pre>maintenance [&lt;node&gt;]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1409,7 +1614,7 @@ operations.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        ready [&lt;node&gt;]</pre>
+<pre>ready [&lt;node&gt;]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1420,7 +1625,7 @@ resources, no fencing will happen.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        fence &lt;node&gt;</pre>
+<pre>fence &lt;node&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1434,7 +1639,7 @@ the fence had succeeded, possibly starting resources multiple times.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        clearstate &lt;node&gt;</pre>
+<pre>clearstate &lt;node&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1449,7 +1654,7 @@ partition we refuse to remove it. With the global force option
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        delete &lt;node&gt;</pre>
+<pre>delete &lt;node&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1459,14 +1664,14 @@ relatively static properties, such as memory size.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        attribute &lt;node&gt; set &lt;attr&gt; &lt;value&gt;
-        attribute &lt;node&gt; delete &lt;attr&gt;
-        attribute &lt;node&gt; show &lt;attr&gt;</pre>
+<pre>attribute &lt;node&gt; set &lt;attr&gt; &lt;value&gt;
+attribute &lt;node&gt; delete &lt;attr&gt;
+attribute &lt;node&gt; show &lt;attr&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        attribute node_1 set memory_size 4096</pre>
+<pre>attribute node_1 set memory_size 4096</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1480,15 +1685,15 @@ resources based on resource requirements and node size. See also
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        utilization &lt;node&gt; set &lt;attr&gt; &lt;value&gt;
-        utilization &lt;node&gt; delete &lt;attr&gt;
-        utilization &lt;node&gt; show &lt;attr&gt;</pre>
+<pre>utilization &lt;node&gt; set &lt;attr&gt; &lt;value&gt;
+utilization &lt;node&gt; delete &lt;attr&gt;
+utilization &lt;node&gt; show &lt;attr&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Examples:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        utilization node_1 set memory 16384
-        utilization node_1 show cpu</pre>
+<pre>utilization node_1 set memory 16384
+utilization node_1 show cpu</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1499,14 +1704,14 @@ typical example is attribute generated by the <span class="monospaced">pingd</sp
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        status-attr &lt;node&gt; set &lt;attr&gt; &lt;value&gt;
-        status-attr &lt;node&gt; delete &lt;attr&gt;
-        status-attr &lt;node&gt; show &lt;attr&gt;</pre>
+<pre>status-attr &lt;node&gt; set &lt;attr&gt; &lt;value&gt;
+status-attr &lt;node&gt; delete &lt;attr&gt;
+status-attr &lt;node&gt; show &lt;attr&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        status-attr node_1 show pingd</pre>
+<pre>status-attr node_1 show pingd</pre>
 </div></div>
 </div>
 </div>
@@ -1524,12 +1729,12 @@ for more details).</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        ticket {grant|revoke|standby|activate|show|time|delete} &lt;ticket&gt;</pre>
+<pre>ticket {grant|revoke|standby|activate|show|time|delete} &lt;ticket&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        ticket grant ticket1</pre>
+<pre>ticket grant ticket1</pre>
 </div></div>
 </div>
 </div>
@@ -1548,9 +1753,9 @@ shadow CIBs. The expert may do all.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        skill-level &lt;level&gt;
+<pre>skill-level &lt;level&gt;
 
-        level :: operator | administrator | expert</pre>
+level :: operator | administrator | expert</pre>
 </div></div>
 <div class="sidebarblock">
 <div class="content">
@@ -1574,12 +1779,12 @@ the appropriate user (such as <span class="monospaced">hacluster</span>), and se
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        user system-user</pre>
+<pre>user system-user</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        user hacluster</pre>
+<pre>user hacluster</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1591,12 +1796,12 @@ standard UNIX editors (<span class="monospaced">vi</span>,<span class="monospace
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        editor program</pre>
+<pre>editor program</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        editor vim</pre>
+<pre>editor vim</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1613,12 +1818,12 @@ the order they were created, set this option to <span class="monospaced">no</spa
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        sort-elements {yes|no}</pre>
+<pre>sort-elements {yes|no}</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        sort-elements no</pre>
+<pre>sort-elements no</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1631,12 +1836,12 @@ indicate progress.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        wait {yes|no}</pre>
+<pre>wait {yes|no}</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        wait yes</pre>
+<pre>wait yes</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1696,7 +1901,7 @@ setups.</p></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    colorscheme yellow,normal,blue,red,green,magenta</pre>
+<pre>colorscheme yellow,normal,blue,red,green,magenta</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1737,8 +1942,9 @@ you have custom shell scripts which would break, just set the
 the following:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    # crm configure primitive d1 ocf:heartbeat:Dummy meta description="some description here"
-    # crm configure filter 'sed "s/hostlist=./&amp;node-c /"' fencing</pre>
+<pre># crm configure primitive d1 Dummy \
+    meta description="some description here"
+# crm configure filter 'sed "s/hostlist=./&amp;node-c /"' fencing</pre>
 </div></div>
 </div></div>
 </div>
@@ -1751,26 +1957,26 @@ meta attribute and those attributes may end up with conflicting
 values. Consider the following construct:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    crm(live)# configure show svc fs virtual-ip
-    primitive fs ocf:heartbeat:Filesystem \
-            params device="/dev/drbd0" directory="/srv/nfs" fstype="ext3" \
-            op monitor interval="10s" \
-            meta target-role="Started"
-    primitive virtual-ip ocf:heartbeat:IPaddr2 \
-            params ip="10.2.13.110" iflabel="1" \
-            op monitor interval="10s" \
-            op start interval="0" \
-            meta target-role="Started"
-    group svc fs virtual-ip \
-            meta target-role="Stopped"</pre>
+<pre>crm(live)# configure show svc fs virtual-ip
+primitive fs Filesystem \
+    params device="/dev/drbd0" directory="/srv/nfs" fstype=ext3 \
+    op monitor interval=10s \
+    meta target-role=Started
+primitive virtual-ip IPaddr2 \
+    params ip=10.2.13.110 iflabel=1 \
+    op monitor interval=10s \
+    op start interval=0 \
+    meta target-role=Started
+group svc fs virtual-ip \
+    meta target-role=Stopped</pre>
 </div></div>
 <div class="paragraph"><p>Even though the element <span class="monospaced">svc</span> should be stopped, the group is
 actually running because all its members have the <span class="monospaced">target-role</span>
 set to <span class="monospaced">Started</span>:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    crm(live)# resource show svc
-    resource svc is running on: xen-f</pre>
+<pre>crm(live)# resource show svc
+resource svc is running on: xen-f</pre>
 </div></div>
 <div class="paragraph"><p>Hence, if the user invokes <span class="monospaced">resource stop svc</span> the intention is
 not clear. This preference gives the user an opportunity to
@@ -1786,6 +1992,39 @@ all children attributes are left intact. Finally, if set to
 <div class="sect3">
 <h4 id="cmdhelp_options_show"><span class="monospaced">show</span></h4>
 <div class="paragraph"><p>Display all current settings.</p></div>
+<div class="paragraph"><p>Given an option name as argument, <span class="monospaced">show</span> will display only the value
+of that argument.</p></div>
+<div class="paragraph"><p>Given <span class="monospaced">all</span> as argument, <span class="monospaced">show</span> displays all available user options.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>show [all|&lt;option&gt;]</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>show
+show skill-level
+show all</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_options_set"><span class="monospaced">set</span></h4>
+<div class="paragraph"><p>Sets the value of an option. Takes the fully qualified
+name of the option as argument, as displayed by <span class="monospaced">show all</span>.</p></div>
+<div class="paragraph"><p>The modified option value is stored in the user-local
+configuration file, usually found in <span class="monospaced">~/.config/crm/crm.conf</span>.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>set &lt;option&gt; &lt;value&gt;</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>set color.warn "magenta bold"
+set editor nano</pre>
+</div></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_options_save"><span class="monospaced">save</span></h4>
@@ -1917,6 +2156,63 @@ configuration session or using the <span class="monospaced">commit</span> comman
 to the element which follows. If the element moves, its comments
 will follow.</p></div>
 <div class="sect3">
+<h4 id="_resource_sets">Resource sets</h4>
+<div class="paragraph"><p>Using resource sets can be a bit confusing unless one knows the
+details of the implementation in Pacemaker as well as how to interpret
+the syntax provided by <span class="monospaced">crmsh</span>.</p></div>
+<div class="paragraph"><p>Three different types of resource sets are provided by <span class="monospaced">crmsh</span>, and
+each one implies different values for the two resource set attributes,
+<span class="monospaced">sequential</span> and <span class="monospaced">require-all</span>.</p></div>
+<div class="dlist"><dl>
+<dt class="hdlist1">
+<span class="monospaced">sequential</span>
+</dt>
+<dd>
+<p>
+  If true, the resources in the set do not depend on each other
+  internally. Setting <span class="monospaced">sequential</span> to true implies a strict order of
+  dependency within the set.
+</p>
+</dd>
+<dt class="hdlist1">
+<span class="monospaced">require-all</span>
+</dt>
+<dd>
+<p>
+  If false, only one resource in the set is required to fulfil the
+  requirements of the set. The set of <span class="monospaced">A, B and C</span> with <span class="monospaced">require-all</span>
+  set to <span class="monospaced">false</span> is be read as <span class="monospaced">A OR B OR C</span> when its dependencies
+  are resolved.
+</p>
+</dd>
+</dl></div>
+<div class="paragraph"><p>The three types of resource sets modify the attributes in the
+following way:</p></div>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+Implicit sets (no brackets). <span class="monospaced">sequential=true</span>, <span class="monospaced">require-all=true</span>
+</p>
+</li>
+<li>
+<p>
+Parenthesis set (<span class="monospaced">( ... )</span>). <span class="monospaced">sequential=false</span>, <span class="monospaced">require-all=true</span>
+</p>
+</li>
+<li>
+<p>
+Bracket set (<span class="monospaced">[ ... ]</span>). <span class="monospaced">sequential=false</span>, <span class="monospaced">require-all=false</span>
+</p>
+</li>
+</ol></div>
+<div class="paragraph"><p>To create a set with the properties <span class="monospaced">sequential=true</span> and
+<span class="monospaced">require-all=false</span>, explicitly set <span class="monospaced">sequential</span> in a bracketed set,
+<span class="monospaced">[ A B C sequential=true ]</span>.</p></div>
+<div class="paragraph"><p>To create multiple sets with both <span class="monospaced">sequential</span> and <span class="monospaced">require-all</span> set to
+true, explicitly set <span class="monospaced">sequential</span> in a parenthesis set:
+<span class="monospaced">A B ( C D sequential=true )</span>.</p></div>
+</div>
+<div class="sect3">
 <h4 id="cmdhelp_configure_node"><span class="monospaced">node</span></h4>
 <div class="paragraph"><p>The node command describes a cluster node. Nodes in the CIB are
 commonly created automatically by the CRM. Hence, you should not
@@ -1926,17 +2222,18 @@ attributes at the <span class="monospaced">node</span> level.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        node &lt;uname&gt;[:&lt;type&gt;]
-          [attributes &lt;param&gt;=&lt;value&gt; [&lt;param&gt;=&lt;value&gt;...]]
-          [utilization &lt;param&gt;=&lt;value&gt; [&lt;param&gt;=&lt;value&gt;...]]
+<pre>node [$id=&lt;id&gt;] &lt;uname&gt;[:&lt;type&gt;]
+  [description=&lt;description&gt;]
+  [attributes &lt;param&gt;=&lt;value&gt; [&lt;param&gt;=&lt;value&gt;...]]
+  [utilization &lt;param&gt;=&lt;value&gt; [&lt;param&gt;=&lt;value&gt;...]]
 
-        type :: normal | member | ping</pre>
+type :: normal | member | ping</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        node node1
-        node big_node attributes memory=64</pre>
+<pre>node node1
+node big_node attributes memory=64</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1961,41 +2258,42 @@ type and which share most of the configuration. See
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        primitive &lt;rsc&gt; {[&lt;class&gt;:[&lt;provider&gt;:]]&lt;type&gt;|@&lt;template&gt;}
-          [params attr_list]
-          [meta attr_list]
-          [utilization attr_list]
-          [operations id_spec]
-            [op op_type [&lt;attribute&gt;=&lt;value&gt;...] ...]
+<pre>primitive &lt;rsc&gt; {[&lt;class&gt;:[&lt;provider&gt;:]]&lt;type&gt;|@&lt;template&gt;}
+  [description=&lt;description&gt;]
+  [params attr_list]
+  [meta attr_list]
+  [utilization attr_list]
+  [operations id_spec]
+    [op op_type [&lt;attribute&gt;=&lt;value&gt;...] ...]
 
-        attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...] | $id-ref=&lt;id&gt;
-        id_spec :: $id=&lt;id&gt; | $id-ref=&lt;id&gt;
-        op_type :: start | stop | monitor</pre>
+attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...] | $id-ref=&lt;id&gt;
+id_spec :: $id=&lt;id&gt; | $id-ref=&lt;id&gt;
+op_type :: start | stop | monitor</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        primitive apcfence stonith:apcsmart \
-          params ttydev=/dev/ttyS0 hostlist="node1 node2" \
-          op start timeout=60s \
-          op monitor interval=30m timeout=60s
+<pre>primitive apcfence stonith:apcsmart \
+  params ttydev=/dev/ttyS0 hostlist="node1 node2" \
+  op start timeout=60s \
+  op monitor interval=30m timeout=60s
 
-        primitive www8 apache \
-          params configfile=/etc/apache/www8.conf \
-          operations $id-ref=apache_ops
+primitive www8 apache \
+  params configfile=/etc/apache/www8.conf \
+  operations $id-ref=apache_ops
 
-        primitive db0 mysql \
-          params config=/etc/mysql/db0.conf \
-          op monitor interval=60s \
-          op monitor interval=300s OCF_CHECK_LEVEL=10
+primitive db0 mysql \
+  params config=/etc/mysql/db0.conf \
+  op monitor interval=60s \
+  op monitor interval=300s OCF_CHECK_LEVEL=10
 
-        primitive r0 ocf:linbit:drbd \
-          params drbd_resource=r0 \
-          op monitor role=Master interval=60s \
-          op monitor role=Slave interval=300s
+primitive r0 ocf:linbit:drbd \
+  params drbd_resource=r0 \
+  op monitor role=Master interval=60s \
+  op monitor role=Slave interval=300s
 
-        primitive xen0 @vm_scheme1 \
-          params xmfile=/etc/xen/vm/xen0</pre>
+primitive xen0 @vm_scheme1 \
+  params xmfile=/etc/xen/vm/xen0</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2009,12 +2307,12 @@ the <span class="monospaced">primitive</span> command.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        monitor &lt;rsc&gt;[:&lt;role&gt;] &lt;interval&gt;[:&lt;timeout&gt;]</pre>
+<pre>monitor &lt;rsc&gt;[:&lt;role&gt;] &lt;interval&gt;[:&lt;timeout&gt;]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        monitor apcfence 60m:60s</pre>
+<pre>monitor apcfence 60m:60s</pre>
 </div></div>
 <div class="paragraph"><p>Note that after executing the command, the monitor operation may
 be shown as part of the primitive definition.</p></div>
@@ -2036,19 +2334,20 @@ resource referred to by the container attribute must be of type
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        group &lt;name&gt; &lt;rsc&gt; [&lt;rsc&gt;...]
-          [meta attr_list]
-          [params attr_list]
+<pre>group &lt;name&gt; &lt;rsc&gt; [&lt;rsc&gt;...]
+  [description=&lt;description&gt;]
+  [meta attr_list]
+  [params attr_list]
 
-        attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...] | $id-ref=&lt;id&gt;</pre>
+attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...] | $id-ref=&lt;id&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        group internal_www disk0 fs0 internal_ip apache \
-          meta target_role=stopped
+<pre>group internal_www disk0 fs0 internal_ip apache \
+  meta target_role=stopped
 
-        group vm-and-services vm vm-sshd meta container="vm"</pre>
+group vm-and-services vm vm-sshd meta container="vm"</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2058,17 +2357,18 @@ single primitive resource or one group of resources.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        clone &lt;name&gt; &lt;rsc&gt;
-          [meta attr_list]
-          [params attr_list]
+<pre>clone &lt;name&gt; &lt;rsc&gt;
+  [description=&lt;description&gt;]
+  [meta attr_list]
+  [params attr_list]
 
-        attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...] | $id-ref=&lt;id&gt;</pre>
+attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...] | $id-ref=&lt;id&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        clone cl_fence apc_1 \
-          meta clone-node-max=1 globally-unique=false</pre>
+<pre>clone cl_fence apc_1 \
+  meta clone-node-max=1 globally-unique=false</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2078,17 +2378,18 @@ single primitive resource or one group of resources.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        ms &lt;name&gt; &lt;rsc&gt;
-          [meta attr_list]
-          [params attr_list]
+<pre>ms &lt;name&gt; &lt;rsc&gt;
+  [description=&lt;description&gt;]
+  [meta attr_list]
+  [params attr_list]
 
-        attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...] | $id-ref=&lt;id&gt;</pre>
+attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...] | $id-ref=&lt;id&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        ms disk1 drbd1 \
-          meta notify=true globally-unique=false</pre>
+<pre>ms disk1 drbd1 \
+  meta notify=true globally-unique=false</pre>
 </div></div>
 <div class="sidebarblock">
 <div class="content">
@@ -2101,11 +2402,11 @@ reference an object instead of an attribute set. <span class="monospaced">crm</s
 automatically replace such a reference with the right id:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    crm(live)configure# primitive a2 www-2 meta $id-ref=a1
-    crm(live)configure# show a2
-    primitive a2 ocf:heartbeat:apache \
-        meta $id-ref="a1-meta_attributes"
-        [...]</pre>
+<pre>crm(live)configure# primitive a2 www-2 meta $id-ref=a1
+crm(live)configure# show a2
+primitive a2 apache \
+    meta $id-ref=a1-meta_attributes
+    [...]</pre>
 </div></div>
 <div class="paragraph"><p>It is advisable to give meaningful names to attribute sets which
 are going to be referenced.</p></div>
@@ -2119,30 +2420,31 @@ configurations with many similar resources.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        rsc_template &lt;name&gt; [&lt;class&gt;:[&lt;provider&gt;:]]&lt;type&gt;
-          [params attr_list]
-          [meta attr_list]
-          [utilization attr_list]
-          [operations id_spec]
-            [op op_type [&lt;attribute&gt;=&lt;value&gt;...] ...]
+<pre>rsc_template &lt;name&gt; [&lt;class&gt;:[&lt;provider&gt;:]]&lt;type&gt;
+  [description=&lt;description&gt;]
+  [params attr_list]
+  [meta attr_list]
+  [utilization attr_list]
+  [operations id_spec]
+    [op op_type [&lt;attribute&gt;=&lt;value&gt;...] ...]
 
-        attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...] | $id-ref=&lt;id&gt;
-        id_spec :: $id=&lt;id&gt; | $id-ref=&lt;id&gt;
-        op_type :: start | stop | monitor</pre>
+attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...] | $id-ref=&lt;id&gt;
+id_spec :: $id=&lt;id&gt; | $id-ref=&lt;id&gt;
+op_type :: start | stop | monitor</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        rsc_template public_vm ocf:heartbeat:Xen \
-          op start timeout=300s \
-          op stop timeout=300s \
-          op monitor interval=30s timeout=60s \
-          op migrate_from timeout=600s \
-          op migrate_to timeout=600s
-        primitive xen0 @public_vm \
-          params xmfile=/etc/xen/xen0
-        primitive xen1 @public_vm \
-          params xmfile=/etc/xen/xen1</pre>
+<pre>rsc_template public_vm Xen \
+  op start timeout=300s \
+  op stop timeout=300s \
+  op monitor interval=30s timeout=60s \
+  op migrate_from timeout=600s \
+  op migrate_to timeout=600s
+primitive xen0 @public_vm \
+  params xmfile=/etc/xen/xen0
+primitive xen1 @public_vm \
+  params xmfile=/etc/xen/xen1</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2153,52 +2455,52 @@ which specify a score to be awarded if the rule matches.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        location &lt;id&gt; &lt;rsc&gt; {node_pref|rules}
+<pre>location &lt;id&gt; &lt;rsc&gt; {node_pref|rules}
 
-        node_pref :: &lt;score&gt;: &lt;node&gt;
+node_pref :: &lt;score&gt;: &lt;node&gt; [role=&lt;role&gt;]
 
-        rules ::
-          rule [id_spec] [$role=&lt;role&gt;] &lt;score&gt;: &lt;expression&gt;
-          [rule [id_spec] [$role=&lt;role&gt;] &lt;score&gt;: &lt;expression&gt; ...]
+rules ::
+  rule [id_spec] [$role=&lt;role&gt;] &lt;score&gt;: &lt;expression&gt;
+  [rule [id_spec] [$role=&lt;role&gt;] &lt;score&gt;: &lt;expression&gt; ...]
 
-        id_spec :: $id=&lt;id&gt; | $id-ref=&lt;id&gt;
-        score :: &lt;number&gt; | &lt;attribute&gt; | [-]inf
-        expression :: &lt;simple_exp&gt; [bool_op &lt;simple_exp&gt; ...]
-        bool_op :: or | and
-        simple_exp :: &lt;attribute&gt; [type:]&lt;binary_op&gt; &lt;value&gt;
-                      | &lt;unary_op&gt; &lt;attribute&gt;
-                      | date &lt;date_expr&gt;
-        type :: string | version | number
-        binary_op :: lt | gt | lte | gte | eq | ne
-        unary_op :: defined | not_defined
+id_spec :: $id=&lt;id&gt; | $id-ref=&lt;id&gt;
+score :: &lt;number&gt; | &lt;attribute&gt; | [-]inf
+expression :: &lt;simple_exp&gt; [bool_op &lt;simple_exp&gt; ...]
+bool_op :: or | and
+simple_exp :: &lt;attribute&gt; [type:]&lt;binary_op&gt; &lt;value&gt;
+          | &lt;unary_op&gt; &lt;attribute&gt;
+          | date &lt;date_expr&gt;
+type :: string | version | number
+binary_op :: lt | gt | lte | gte | eq | ne
+unary_op :: defined | not_defined
 
-        date_expr :: lt &lt;end&gt;
-                     | gt &lt;start&gt;
-                     | in_range start=&lt;start&gt; end=&lt;end&gt;
-                     | in_range start=&lt;start&gt; &lt;duration&gt;
-                     | date_spec &lt;date_spec&gt;
-        duration|date_spec ::
-                     hours=&lt;value&gt;
-                     | monthdays=&lt;value&gt;
-                     | weekdays=&lt;value&gt;
-                     | yearsdays=&lt;value&gt;
-                     | months=&lt;value&gt;
-                     | weeks=&lt;value&gt;
-                     | years=&lt;value&gt;
-                     | weekyears=&lt;value&gt;
-                     | moon=&lt;value&gt;</pre>
+date_expr :: lt &lt;end&gt;
+         | gt &lt;start&gt;
+         | in_range start=&lt;start&gt; end=&lt;end&gt;
+         | in_range start=&lt;start&gt; &lt;duration&gt;
+         | date_spec &lt;date_spec&gt;
+duration|date_spec ::
+         hours=&lt;value&gt;
+         | monthdays=&lt;value&gt;
+         | weekdays=&lt;value&gt;
+         | yearsdays=&lt;value&gt;
+         | months=&lt;value&gt;
+         | weeks=&lt;value&gt;
+         | years=&lt;value&gt;
+         | weekyears=&lt;value&gt;
+         | moon=&lt;value&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Examples:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        location conn_1 internal_www 100: node1
+<pre>location conn_1 internal_www 100: node1
 
-        location conn_1 internal_www \
-          rule 50: #uname eq node1 \
-          rule pingd: defined pingd
+location conn_1 internal_www \
+  rule 50: #uname eq node1 \
+  rule pingd: defined pingd
 
-        location conn_2 dummy_float \
-          rule -inf: not_defined pingd or pingd number:lte 0</pre>
+location conn_2 dummy_float \
+  rule -inf: not_defined pingd or pingd number:lte 0</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2223,17 +2525,17 @@ instance attributes.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        colocation &lt;id&gt; &lt;score&gt;: &lt;rsc&gt;[:&lt;role&gt;] &lt;with-rsc&gt;[:&lt;role&gt;]
-          [node-attribute=&lt;node_attr&gt;]
+<pre>colocation &lt;id&gt; &lt;score&gt;: &lt;rsc&gt;[:&lt;role&gt;] &lt;with-rsc&gt;[:&lt;role&gt;]
+  [node-attribute=&lt;node_attr&gt;]
 
-        colocation &lt;id&gt; &lt;score&gt;: &lt;rsc&gt;[:&lt;role&gt;] &lt;rsc&gt;[:&lt;role&gt;] ...
-          [node-attribute=&lt;node_attr&gt;]</pre>
+colocation &lt;id&gt; &lt;score&gt;: &lt;rsc&gt;[:&lt;role&gt;] &lt;rsc&gt;[:&lt;role&gt;] ...
+  [node-attribute=&lt;node_attr&gt;]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        colocation never_put_apache_with_dummy -inf: apache dummy
-        colocation c1 inf: A ( B C )</pre>
+<pre>colocation never_put_apache_with_dummy -inf: apache dummy
+colocation c1 inf: A ( B C )</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2262,7 +2564,7 @@ different combination, for whatever reason, just set one of the
 attributes within the set. Something like this:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    crm(live)configure# order o1 Mandatory: [ A B sequential=true ] C</pre>
+<pre>crm(live)configure# order o1 Mandatory: [ A B sequential=true ] C</pre>
 </div></div>
 <div class="paragraph"><p>It is up to you to find out whether such a combination makes
 sense.</p></div>
@@ -2270,17 +2572,17 @@ sense.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        order &lt;id&gt; {kind|&lt;score&gt;}: &lt;rsc&gt;[:&lt;action&gt;] &lt;rsc&gt;[:&lt;action&gt;] ...
-          [symmetrical=&lt;bool&gt;]
+<pre>order &lt;id&gt; {kind|&lt;score&gt;}: &lt;rsc&gt;[:&lt;action&gt;] &lt;rsc&gt;[:&lt;action&gt;] ...
+  [symmetrical=&lt;bool&gt;]
 
-        kind :: Mandatory | Optional | Serialize</pre>
+kind :: Mandatory | Optional | Serialize</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        order c_apache_1 Mandatory: apache:start ip_1
-        order o1 Serialize: A ( B C )
-        order order_2 Mandatory: [ A B ] C</pre>
+<pre>order c_apache_1 Mandatory: apache:start ip_1
+order o1 Serialize: A ( B C )
+order order_2 Mandatory: [ A B ] C</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2297,17 +2599,17 @@ multi-state.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        rsc_ticket &lt;id&gt; &lt;ticket_id&gt;: &lt;rsc&gt;[:&lt;role&gt;] [&lt;rsc&gt;[:&lt;role&gt;] ...]
-          [loss-policy=&lt;loss_policy_action&gt;]
+<pre>rsc_ticket &lt;id&gt; &lt;ticket_id&gt;: &lt;rsc&gt;[:&lt;role&gt;] [&lt;rsc&gt;[:&lt;role&gt;] ...]
+  [loss-policy=&lt;loss_policy_action&gt;]
 
-        loss_policy_action :: stop | demote | fence | freeze</pre>
+loss_policy_action :: stop | demote | fence | freeze</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        rsc_ticket ticket-A_public-ip ticket-A: public-ip
-        rsc_ticket ticket-A_bigdb ticket-A: bigdb loss-policy=fence
-        rsc_ticket ticket-B_storage ticket-B: drbd-a:Master drbd-b:Master</pre>
+<pre>rsc_ticket ticket-A_public-ip ticket-A: public-ip
+rsc_ticket ticket-A_bigdb ticket-A: bigdb loss-policy=fence
+rsc_ticket ticket-B_storage ticket-B: drbd-a:Master drbd-b:Master</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2316,12 +2618,12 @@ multi-state.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        property [$id=&lt;set_id&gt;] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
+<pre>property [$id=&lt;set_id&gt;] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        property stonith-enabled=true</pre>
+<pre>property stonith-enabled=true</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2330,12 +2632,12 @@ multi-state.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        rsc_defaults [$id=&lt;set_id&gt;] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
+<pre>rsc_defaults [$id=&lt;set_id&gt;] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        rsc_defaults failure-timeout=3m</pre>
+<pre>rsc_defaults failure-timeout=3m</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2353,20 +2655,20 @@ That should reduce the configuration size in some stonith setups.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        fencing_topology stonith_resources [stonith_resources ...]
-        fencing_topology fencing_order [fencing_order ...]
+<pre>fencing_topology stonith_resources [stonith_resources ...]
+fencing_topology fencing_order [fencing_order ...]
 
-        fencing_order :: &lt;node&gt;: stonith_resources [stonith_resources ...]
+fencing_order :: &lt;node&gt;: stonith_resources [stonith_resources ...]
 
-        stonith_resources :: &lt;rsc&gt;[,&lt;rsc&gt;...]</pre>
+stonith_resources :: &lt;rsc&gt;[,&lt;rsc&gt;...]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        fencing_topology poison-pill power
-        fencing_topology \
-            node-a: poison-pill power
-            node-b: ipmi serial</pre>
+<pre>fencing_topology poison-pill power
+fencing_topology \
+    node-a: poison-pill power
+    node-b: ipmi serial</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2392,34 +2694,34 @@ status is necessary for various monitoring tools such as
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        role &lt;role-id&gt; rule [rule ...]
+<pre>role &lt;role-id&gt; rule [rule ...]
 
-        rule :: acl-right cib-spec [attribute:&lt;attribute&gt;]
+rule :: acl-right cib-spec [attribute:&lt;attribute&gt;]
 
-        acl-right :: read | write | deny
+acl-right :: read | write | deny
 
-        cib-spec :: xpath-spec | tag-ref-spec
-        xpath-spec :: xpath:&lt;xpath&gt; | shortcut
-        tag-ref-spec :: tag:&lt;tag&gt; | ref:&lt;id&gt; | tag:&lt;tag&gt; ref:&lt;id&gt;
+cib-spec :: xpath-spec | tag-ref-spec
+xpath-spec :: xpath:&lt;xpath&gt; | shortcut
+tag-ref-spec :: tag:&lt;tag&gt; | ref:&lt;id&gt; | tag:&lt;tag&gt; ref:&lt;id&gt;
 
-        shortcut :: meta:&lt;rsc&gt;[:&lt;attr&gt;]
-                    params:&lt;rsc&gt;[:&lt;attr&gt;]
-                    utilization:&lt;rsc&gt;
-                    location:&lt;rsc&gt;
-                    property[:&lt;attr&gt;]
-                    node[:&lt;node&gt;]
-                    nodeattr[:&lt;attr&gt;]
-                    nodeutil[:&lt;node&gt;]
-                    status</pre>
+shortcut :: meta:&lt;rsc&gt;[:&lt;attr&gt;]
+        params:&lt;rsc&gt;[:&lt;attr&gt;]
+        utilization:&lt;rsc&gt;
+        location:&lt;rsc&gt;
+        property[:&lt;attr&gt;]
+        node[:&lt;node&gt;]
+        nodeattr[:&lt;attr&gt;]
+        nodeutil[:&lt;node&gt;]
+        status</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        role app1_admin \
-            write meta:app1:target-role \
-            write meta:app1:is-managed \
-            write location:app1 \
-            read ref:app1</pre>
+<pre>role app1_admin \
+    write meta:app1:target-role \
+    write meta:app1:is-managed \
+    write location:app1 \
+    read ref:app1</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2432,17 +2734,17 @@ best practice.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        user &lt;uid&gt; {roles|rules}
+<pre>user &lt;uid&gt; {roles|rules}
 
-        roles :: role:&lt;role-ref&gt; [role:&lt;role-ref&gt; ...]
-        rules :: rule [rule ...]</pre>
+roles :: role:&lt;role-ref&gt; [role:&lt;role-ref&gt; ...]
+rules :: rule [rule ...]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        user joe \
-            role:app1_admin \
-            role:read_all</pre>
+<pre>user joe \
+    role:app1_admin \
+    role:read_all</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2451,12 +2753,12 @@ best practice.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        op_defaults [$id=&lt;set_id&gt;] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
+<pre>op_defaults [$id=&lt;set_id&gt;] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        op_defaults record-pending=true</pre>
+<pre>op_defaults record-pending=true</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2468,26 +2770,34 @@ several, depending on version. Currently supported schemas are
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        schema [&lt;schema&gt;]</pre>
+<pre>schema [&lt;schema&gt;]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        schema pacemaker-1.1</pre>
+<pre>schema pacemaker-1.1</pre>
 </div></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_configure_show"><span class="monospaced">show</span></h4>
 <div class="paragraph"><p>The <span class="monospaced">show</span> command displays objects. It may display all objects
 or a set of objects. The user may also choose to see only objects
-which were changed.
-Optionally, the XML code may be displayed instead of the CLI
-representation.</p></div>
+which were changed.</p></div>
+<div class="paragraph"><p>Optionally, the XML code may be displayed instead of the CLI
+representation by passing <span class="monospaced">xml</span> as the first argument.</p></div>
+<div class="paragraph"><p>To show all objects of a certain type, use the <span class="monospaced">type:</span> prefix.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        show [xml] [&lt;id&gt; ...]
-        show [xml] changed</pre>
+<pre>show [xml] [&lt;id&gt; ...]
+show [xml] changed</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>show webapp
+show type:primitive
+show xml type:node</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2500,8 +2810,8 @@ object. If you do that, don&#8217;t modify any id attributes.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        edit [xml] [&lt;id&gt; ...]
-        edit [xml] changed</pre>
+<pre>edit [xml] [&lt;id&gt; ...]
+edit [xml] changed</pre>
 </div></div>
 <div class="sidebarblock">
 <div class="content">
@@ -2529,14 +2839,26 @@ spaces.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        filter &lt;prog&gt; [xml] [&lt;id&gt; ...]
-        filter &lt;prog&gt; [xml] changed</pre>
+<pre>filter &lt;prog&gt; [xml] [&lt;id&gt; ...]
+filter &lt;prog&gt; [xml] changed</pre>
 </div></div>
 <div class="paragraph"><p>Examples:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        filter "sed '/^primitive/s/target-role=[^ ]*//'"
-        # crm configure filter "sed '/^primitive/s/target-role=[^ ]*//'"</pre>
+<pre>filter "sed '/^primitive/s/target-role=[^ ]*//'"
+# crm configure filter "sed '/^primitive/s/target-role=[^ ]*//'"
+crm configure &lt;&lt;END
+  filter "sed '/threshold=\"1\"/s/=\"1\"/=\"0\"/g'"
+END</pre>
+</div></div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Note on quotation marks</div>
+<div class="paragraph"><p>Filter commands which feature a blend of quotation marks can be
+difficult to get right, especially when used directly from bash, since
+bash does its own quotation parsing. In these cases, it can be easier
+to supply the filter command as standard input. See the last example
+above.</p></div>
 </div></div>
 </div>
 <div class="sect3">
@@ -2548,7 +2870,7 @@ related constraints are removed as well.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        delete &lt;id&gt; [&lt;id&gt;...]</pre>
+<pre>delete &lt;id&gt; [&lt;id&gt;...]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2559,7 +2881,7 @@ primitive.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        default-timeouts &lt;id&gt; [&lt;id&gt;...]</pre>
+<pre>default-timeouts &lt;id&gt; [&lt;id&gt;...]</pre>
 </div></div>
 <div class="sidebarblock">
 <div class="content">
@@ -2579,7 +2901,7 @@ command won&#8217;t have the same effect.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        rename &lt;old_id&gt; &lt;new_id&gt;</pre>
+<pre>rename &lt;old_id&gt; &lt;new_id&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2590,13 +2912,13 @@ are <span class="monospaced">after</span> and <span class="monospaced">before</s
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        modgroup &lt;id&gt; add &lt;id&gt; [after &lt;id&gt;|before &lt;id&gt;]
-        modgroup &lt;id&gt; remove &lt;id&gt;</pre>
+<pre>modgroup &lt;id&gt; add &lt;id&gt; [after &lt;id&gt;|before &lt;id&gt;]
+modgroup &lt;id&gt; remove &lt;id&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Examples:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        modgroup share1 add storage2 before share1-fs</pre>
+<pre>modgroup share1 add storage2 before share1-fs</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2606,7 +2928,7 @@ during this session are lost.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        refresh</pre>
+<pre>refresh</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2618,7 +2940,7 @@ strange/interesting/unwelcome effects.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        erase [nodes]</pre>
+<pre>erase [nodes]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2647,14 +2969,14 @@ installed. Use <span class="monospaced">simulate</span> to enfore using <span cl
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        ptest [nograph] [v...] [scores] [actions] [utilization]</pre>
+<pre>ptest [nograph] [v...] [scores] [actions] [utilization]</pre>
 </div></div>
 <div class="paragraph"><p>Examples:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        ptest scores
-        ptest vvvvv
-        simulate actions</pre>
+<pre>ptest scores
+ptest vvvvv
+simulate actions</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2676,13 +2998,13 @@ root or setup the <span class="monospaced">sudoers</span> file appropriately.</p
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        rsctest &lt;rsc_id&gt; [&lt;rsc_id&gt; ...] [&lt;node_id&gt; ...]</pre>
+<pre>rsctest &lt;rsc_id&gt; [&lt;rsc_id&gt; ...] [&lt;node_id&gt; ...]</pre>
 </div></div>
 <div class="paragraph"><p>Examples:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        rsctest my_ip websvc
-        rsctest websvc nodeB</pre>
+<pre>rsctest my_ip websvc
+rsctest websvc nodeB</pre>
 </div></div>
 </div>
 </div>
@@ -2694,9 +3016,9 @@ shadow CIB instead of to the live cluster. This short excerpt
 shows how:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    crm(live)configure# cib new test-2
-    INFO: test-2 shadow CIB created
-    crm(test-2)configure# commit</pre>
+<pre>crm(live)configure# cib new test-2
+INFO: test-2 shadow CIB created
+crm(test-2)configure# commit</pre>
 </div></div>
 <div class="paragraph"><p>Note how the current CIB in the prompt changed from <span class="monospaced">live</span> to
 <span class="monospaced">test-2</span> after issuing the <span class="monospaced">cib new</span> command. See also the
@@ -2714,12 +3036,12 @@ user to make a good CRM configuration out of it. See also the
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        template [xml] url</pre>
+<pre>template [xml] url</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        template two-apaches.txt</pre>
+<pre>template two-apaches.txt</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2734,7 +3056,7 @@ If you know that it&#8217;s fine to still apply them add <span class="monospaced
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        commit [force]</pre>
+<pre>commit [force]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2743,7 +3065,7 @@ If you know that it&#8217;s fine to still apply them add <span class="monospaced
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        verify</pre>
+<pre>verify</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2754,14 +3076,14 @@ you may try to upgrade it to the latest revision. The command
 to perform the upgrade is:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    # cibadmin --upgrade --force</pre>
+<pre># cibadmin --upgrade --force</pre>
 </div></div>
 <div class="paragraph"><p>If we don&#8217;t recognize the current CIB as the old one, but you&#8217;re
 sure that it is, you may force the command.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        upgrade [force]</pre>
+<pre>upgrade [force]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2771,12 +3093,12 @@ sure that it is, you may force the command.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        save [xml] &lt;file&gt;</pre>
+<pre>save [xml] &lt;file&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        save myfirstcib.txt</pre>
+<pre>save myfirstcib.txt</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2789,15 +3111,15 @@ The file may be a CLI file or an XML file.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        load [xml] &lt;method&gt; URL
+<pre>load [xml] &lt;method&gt; URL
 
-        method :: replace | update</pre>
+method :: replace | update</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        load xml update myfirstcib.xml
-        load xml replace http://storage.big.com/cibs/bigcib.xml</pre>
+<pre>load xml update myfirstcib.xml
+load xml replace http://storage.big.com/cibs/bigcib.xml</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2817,18 +3139,18 @@ subcommand also prints the location of the ini file.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        graph [&lt;gtype&gt; [&lt;file&gt; [&lt;img_format&gt;]]]
-        graph exportsettings
+<pre>graph [&lt;gtype&gt; [&lt;file&gt; [&lt;img_format&gt;]]]
+graph exportsettings
 
-        gtype :: dot
-        img_format :: `dot` output format (see the `-T` option)</pre>
+gtype :: dot
+img_format :: `dot` output format (see the `-T` option)</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        graph dot
-        graph dot clu1.conf.dot
-        graph dot clu1.conf.svg svg</pre>
+<pre>graph dot
+graph dot clu1.conf.dot
+graph dot clu1.conf.svg svg</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2844,7 +3166,7 @@ use <span class="monospaced">xml</span> for configuration.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        xml &lt;xml&gt;</pre>
+<pre>xml &lt;xml&gt;</pre>
 </div></div>
 </div>
 </div>
@@ -2867,13 +3189,13 @@ configuration.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        new &lt;config&gt; &lt;template&gt; [&lt;template&gt; ...] [params name=value ...]"</pre>
+<pre>new &lt;config&gt; &lt;template&gt; [&lt;template&gt; ...] [params name=value ...]</pre>
 </div></div>
-<div class="paragraph"><p>Examples:</p></div>
+<div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        new vip virtual-ip
-        new bigfs ocfs2 params device=/dev/sdx8 directory=/bigfs</pre>
+<pre>new vip virtual-ip
+new bigfs ocfs2 params device=/dev/sdx8 directory=/bigfs</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2883,7 +3205,7 @@ configuration.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        load &lt;config&gt;</pre>
+<pre>load &lt;config&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2892,7 +3214,7 @@ configuration.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        edit [&lt;config&gt;]</pre>
+<pre>edit [&lt;config&gt;]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2902,7 +3224,7 @@ removed by force.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        delete &lt;config&gt; [force]</pre>
+<pre>delete &lt;config&gt; [force]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2911,7 +3233,7 @@ removed by force.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        list [templates]</pre>
+<pre>list [templates]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2922,9 +3244,9 @@ default, the CIB is replaced, unless the method is set to
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        apply [&lt;method&gt;] [&lt;config&gt;]
+<pre>apply [&lt;method&gt;] [&lt;config&gt;]
 
-        method :: replace | update</pre>
+method :: replace | update</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2933,7 +3255,7 @@ default, the CIB is replaced, unless the method is set to
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        show [&lt;config&gt;]</pre>
+<pre>show [&lt;config&gt;]</pre>
 </div></div>
 </div>
 </div>
@@ -2977,13 +3299,13 @@ running cluster status section.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        load {&lt;file&gt;|shadow:&lt;cib&gt;|live}</pre>
+<pre>load {&lt;file&gt;|shadow:&lt;cib&gt;|live}</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        load bug-12299.xml
-        load shadow:test1</pre>
+<pre>load bug-12299.xml
+load shadow:test1</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2999,12 +3321,12 @@ as they are run.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        save [&lt;file&gt;|shadow:&lt;cib&gt;]</pre>
+<pre>save [&lt;file&gt;|shadow:&lt;cib&gt;]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        save bug-12299.xml</pre>
+<pre>save bug-12299.xml</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3014,7 +3336,7 @@ essentially shows the latest <span class="monospaced">load</span> argument.</p><
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        origin</pre>
+<pre>origin</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3025,7 +3347,7 @@ readable output of all changes.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        show [changed]</pre>
+<pre>show [changed]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3067,12 +3389,12 @@ has unexpectedly disappeared.
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        node &lt;node&gt; {online|offline|unclean}</pre>
+<pre>node &lt;node&gt; {online|offline|unclean}</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        node xen-b unclean</pre>
+<pre>node xen-b unclean</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3086,26 +3408,26 @@ ignored.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        op &lt;operation&gt; &lt;resource&gt; &lt;exit_code&gt; [&lt;op_status&gt;] [&lt;node&gt;]
+<pre>op &lt;operation&gt; &lt;resource&gt; &lt;exit_code&gt; [&lt;op_status&gt;] [&lt;node&gt;]
 
-        operation :: probe | monitor[:&lt;n&gt;] | start | stop |
-           promote | demote | notify | migrate_to | migrate_from
-        exit_code :: &lt;rc&gt; | success | generic | args |
-           unimplemented | perm | installed | configured | not_running |
-           master | failed_master
-        op_status :: pending | done | cancelled | timeout | notsupported | error
+operation :: probe | monitor[:&lt;n&gt;] | start | stop |
+   promote | demote | notify | migrate_to | migrate_from
+exit_code :: &lt;rc&gt; | success | generic | args |
+   unimplemented | perm | installed | configured | not_running |
+   master | failed_master
+op_status :: pending | done | cancelled | timeout | notsupported | error
 
-        n :: the monitor interval in seconds; if omitted, the first
-           recurring operation is referenced
-        rc :: numeric exit code in range 0..9</pre>
+n :: the monitor interval in seconds; if omitted, the first
+   recurring operation is referenced
+rc :: numeric exit code in range 0..9</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        op start d1 xen-b generic
-        op start d1 xen-b 1
-        op monitor d1 xen-b not_running
-        op stop d1 xen-b 0 timeout</pre>
+<pre>op start d1 xen-b generic
+op start d1 xen-b 1
+op monitor d1 xen-b not_running
+op stop d1 xen-b 0 timeout</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3114,12 +3436,12 @@ ignored.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        quorum &lt;bool&gt;</pre>
+<pre>quorum &lt;bool&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        quorum false</pre>
+<pre>quorum false</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3129,12 +3451,12 @@ Granted tickets could be activated or put in standby.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        ticket &lt;ticket&gt; {grant|revoke|activate|standby}</pre>
+<pre>ticket &lt;ticket&gt; {grant|revoke|activate|standby}</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        ticket ticketA grant</pre>
+<pre>ticket ticketA grant</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3148,12 +3470,12 @@ to display the changes graphically.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        run [nograph] [v...] [scores] [utilization]</pre>
+<pre>run [nograph] [v...] [scores] [utilization]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        run</pre>
+<pre>run</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3168,12 +3490,39 @@ to display the changes graphically.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        simulate [nograph] [v...] [scores] [utilization]</pre>
+<pre>simulate [nograph] [v...] [scores] [utilization]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        simulate</pre>
+<pre>simulate</pre>
+</div></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cmdhelp_assist"><span class="monospaced">assist</span></h3>
+<div class="paragraph"><p>The <span class="monospaced">assist</span> sublevel is a collection of helper
+commands that create or modify resources and
+constraints, to simplify the creation of certain
+configurations.</p></div>
+<div class="paragraph"><p>For more information on individual commands, see
+the help text for those commands.</p></div>
+<div class="sect3">
+<h4 id="cmdhelp_assist_weak-bond"><span class="monospaced">weak-bond</span></h4>
+<div class="paragraph"><p>A colocation between a group of resources says that the resources
+should be located together, but it also means that those resources are
+dependent on each other. If one of the resources fails, the others
+will be restarted.</p></div>
+<div class="paragraph"><p>If this is not desired, it is possible to circumvent: By placing the
+resources in a non-sequential set and colocating the set with a dummy
+resource which is not monitored, the resources will be placed together
+but will have no further dependency on each other.</p></div>
+<div class="paragraph"><p>This command creates both the constraint and the dummy resource needed
+for such a colocation.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>weak-bond resource-1 resource-2</pre>
 </div></div>
 </div>
 </div>
@@ -3203,31 +3552,33 @@ needs to be investigated. Of course, it is still possible to
 further reduce the time range.</p></div>
 <div class="paragraph"><p>If you think you may have found a bug or just need clarification
 from developers or your support, the <span class="monospaced">session pack</span> command can
-help create a report. This is an example:</p></div>
+help create a report.</p></div>
+<div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    crm(live)history# timeframe "Jul 18 12:00" "Jul 18 12:30"
-    crm(live)history# session save strange_restart
-    crm(live)history# session pack
-    Report saved in .../strange_restart.tar.bz2
-    crm(live)history#</pre>
+<pre>crm(live)history# timeframe "Jul 18 12:00" "Jul 18 12:30"
+crm(live)history# session save strange_restart
+crm(live)history# session pack
+Report saved in .../strange_restart.tar.bz2
+crm(live)history#</pre>
 </div></div>
 <div class="paragraph"><p>In order to reduce report size and allow developers to
 concentrate on the issue, you should beforehand limit the time
 frame. Giving a meaningful session name helps too.</p></div>
 <div class="sect3">
-<h4 id="_span_class_monospaced_info_span"><span class="monospaced">info</span></h4>
-<div class="paragraph"><p>The <span class="monospaced">info</span> command shows most important information about the
-cluster.</p></div>
+<h4 id="cmdhelp_history_info"><span class="monospaced">info</span></h4>
+<div class="paragraph"><p>The <span class="monospaced">info</span> command provides a summary of the information source, which
+can be either a live cluster snapshot or a previously generated
+report.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        info</pre>
+<pre>info</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        info</pre>
+<pre>info</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3239,12 +3590,12 @@ first wait until it finishes.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        latest</pre>
+<pre>latest</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        latest</pre>
+<pre>latest</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3258,12 +3609,12 @@ covers wide range of date formats. For instance:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-3:00          (today at 3am)
+3:00      (today at 3am)
 </p>
 </li>
 <li>
 <p>
-15:00         (today at 3pm)
+15:00     (today at 3pm)
 </p>
 </li>
 <li>
@@ -3287,14 +3638,14 @@ Tue Sep 15 20:46:27 CEST 2010
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        limit [&lt;from_time&gt; [&lt;to_time&gt;]]</pre>
+<pre>limit [&lt;from_time&gt; [&lt;to_time&gt;]]</pre>
 </div></div>
 <div class="paragraph"><p>Examples:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        limit 10:15
-        limit 15h22m 16h
-        limit "Sun 5 20:46" "Sun 5 22:00"</pre>
+<pre>limit 10:15
+limit 15h22m 16h
+limit "Sun 5 20:46" "Sun 5 22:00"</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3309,15 +3660,15 @@ is not removed on exit.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        source [&lt;dir&gt;|&lt;file&gt;|live]</pre>
+<pre>source [&lt;dir&gt;|&lt;file&gt;|live]</pre>
 </div></div>
 <div class="paragraph"><p>Examples:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        source live
-        source /tmp/customer_case_22.tar.bz2
-        source /tmp/customer_case_22
-        source</pre>
+<pre>source live
+source /tmp/customer_case_22.tar.bz2
+source /tmp/customer_case_22
+source</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3329,7 +3680,7 @@ the logs. If you want to make a completely new report, specify
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        refresh [force]</pre>
+<pre>refresh [force]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3338,14 +3689,14 @@ the logs. If you want to make a completely new report, specify
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        detail &lt;detail_level&gt;
+<pre>detail &lt;detail_level&gt;
 
-        detail_level :: small integer (defaults to 0)</pre>
+detail_level :: small integer (defaults to 0)</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        detail 1</pre>
+<pre>detail 1</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3355,12 +3706,12 @@ it is necessary to set the list of nodes.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        setnodes node &lt;node&gt; [&lt;node&gt; ...]</pre>
+<pre>setnodes node &lt;node&gt; [&lt;node&gt; ...]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        setnodes node_a node_b</pre>
+<pre>setnodes node_a node_b</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3375,14 +3726,14 @@ which are part of a group are shown.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        resource &lt;rsc&gt; [&lt;rsc&gt; ...]</pre>
+<pre>resource &lt;rsc&gt; [&lt;rsc&gt; ...]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        resource bigdb public_ip
-        resource my_.*_db2
-        resource ping_clone</pre>
+<pre>resource bigdb public_ip
+resource my_.*_db2
+resource ping_clone</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3393,12 +3744,12 @@ node names or extended regular expressions.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        node &lt;node&gt; [&lt;node&gt; ...]</pre>
+<pre>node &lt;node&gt; [&lt;node&gt; ...]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        node node1</pre>
+<pre>node node1</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3416,12 +3767,12 @@ may actually happen fairly often.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        log [&lt;node&gt;]</pre>
+<pre>log [&lt;node&gt; [&lt;node&gt; ...] ]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        log node-a</pre>
+<pre>log node-a</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3435,12 +3786,12 @@ Excludes are saved along with the history sessions.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        exclude [&lt;regex&gt;|clear]</pre>
+<pre>exclude [&lt;regex&gt;|clear]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        exclude kernel.*ocfs2</pre>
+<pre>exclude kernel.*ocfs2</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3452,16 +3803,16 @@ report directory. Add <span class="monospaced">v</span> to also see the creation
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        peinputs [{&lt;range&gt;|&lt;number&gt;} ...] [v]
+<pre>peinputs [{&lt;range&gt;|&lt;number&gt;} ...] [v]
 
-        range :: &lt;n1&gt;:&lt;n2&gt;</pre>
+range :: &lt;n1&gt;:&lt;n2&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        peinputs
-        peinputs 440:444 446
-        peinputs v</pre>
+<pre>peinputs
+peinputs 440:444 446
+peinputs v</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3495,22 +3846,22 @@ the transition are printed.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        transition [&lt;number&gt;|&lt;index&gt;|&lt;file&gt;] [nograph] [v...] [scores] [actions] [utilization]
-        transition showdot [&lt;number&gt;|&lt;index&gt;|&lt;file&gt;]
-        transition log [&lt;number&gt;|&lt;index&gt;|&lt;file&gt;]
-        transition save [&lt;number&gt;|&lt;index&gt;|&lt;file&gt; [name]]</pre>
+<pre>transition [&lt;number&gt;|&lt;index&gt;|&lt;file&gt;] [nograph] [v...] [scores] [actions] [utilization]
+transition showdot [&lt;number&gt;|&lt;index&gt;|&lt;file&gt;]
+transition log [&lt;number&gt;|&lt;index&gt;|&lt;file&gt;]
+transition save [&lt;number&gt;|&lt;index&gt;|&lt;file&gt; [name]]</pre>
 </div></div>
 <div class="paragraph"><p>Examples:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        transition
-        transition 444
-        transition -1
-        transition pe-error-3.bz2
-        transition node-a/pengine/pe-input-2.bz2
-        transition showdot 444
-        transition log
-        transition save 0 enigma-22</pre>
+<pre>transition
+transition 444
+transition -1
+transition pe-error-3.bz2
+transition node-a/pengine/pe-input-2.bz2
+transition showdot 444
+transition log
+transition save 0 enigma-22</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3521,15 +3872,15 @@ configuration output is the same as <span class="monospaced">crm configure show<
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        show &lt;pe&gt; [status]
+<pre>show &lt;pe&gt; [status]
 
-        pe :: &lt;number&gt;|&lt;index&gt;|&lt;file&gt;|live</pre>
+pe :: &lt;number&gt;|&lt;index&gt;|&lt;file&gt;|live</pre>
 </div></div>
 <div class="paragraph"><p>Examples:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        show 2066
-        show pe-input-2080.bz2 status</pre>
+<pre>show 2066
+show pe-input-2080.bz2 status</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3540,17 +3891,17 @@ which was active at the time. See also <a href="#cmdhelp_configure_graph">genera
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        graph &lt;pe&gt; [&lt;gtype&gt; [&lt;file&gt; [&lt;img_format&gt;]]]
+<pre>graph &lt;pe&gt; [&lt;gtype&gt; [&lt;file&gt; [&lt;img_format&gt;]]]
 
-        gtype :: dot
-        img_format :: `dot` output format (see the `-T` option)</pre>
+gtype :: dot
+img_format :: `dot` output format (see the `-T` option)</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        graph -1
-        graph 322 dot clu1.conf.dot
-        graph 322 dot clu1.conf.svg svg</pre>
+<pre>graph -1
+graph 322 dot clu1.conf.dot
+graph 322 dot clu1.conf.svg svg</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3567,15 +3918,40 @@ one transition.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        diff &lt;pe&gt; &lt;pe&gt; [status] [html]
+<pre>diff &lt;pe&gt; &lt;pe&gt; [status] [html]
 
-        pe :: &lt;number&gt;|&lt;index&gt;|&lt;file&gt;|live</pre>
+pe :: &lt;number&gt;|&lt;index&gt;|&lt;file&gt;|live</pre>
 </div></div>
 <div class="paragraph"><p>Examples:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        diff 2066 2067
-        diff pe-input-2080.bz2 live status</pre>
+<pre>diff 2066 2067
+diff pe-input-2080.bz2 live status</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_history_wdiff"><span class="monospaced">wdiff</span></h4>
+<div class="paragraph"><p>A transition represents a change in cluster configuration or
+state. Use <span class="monospaced">wdiff</span> to see what has changed between two
+transitions as word differences on a line-by-line basis.</p></div>
+<div class="paragraph"><p>If you want to specify the current cluster configuration and
+status, use the string <span class="monospaced">live</span>.</p></div>
+<div class="paragraph"><p>Normally, the first transition specified should be the one which
+is older, but we are not going to enforce that.</p></div>
+<div class="paragraph"><p>Note that a single configuration update may result in more than
+one transition.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>wdiff &lt;pe&gt; &lt;pe&gt; [status]
+
+pe :: &lt;number&gt;|&lt;index&gt;|&lt;file&gt;|live</pre>
+</div></div>
+<div class="paragraph"><p>Examples:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>wdiff 2066 2067
+wdiff pe-input-2080.bz2 live status</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3594,16 +3970,43 @@ then be sent to support.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        session [{save|load|delete} &lt;name&gt; | pack [&lt;name&gt;] | update | list]</pre>
+<pre>session [{save|load|delete} &lt;name&gt; | pack [&lt;name&gt;] | update | list]</pre>
 </div></div>
 <div class="paragraph"><p>Examples:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        session save bnc966622
-        session load rsclost-2
-        session list</pre>
+<pre>session save bnc966622
+session load rsclost-2
+session list</pre>
 </div></div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="cmdhelp_root_report"><span class="monospaced">report</span></h3>
+<div class="paragraph"><p>Interface to a tool for creating a cluster report. A report is an
+archive containing log files, configuration files, system information
+and other relevant data for a given time period. This is a useful tool
+for collecting data to attach to bug reports, or for detecting the
+root cause of errors resulting in resource failover, for example.</p></div>
+<div class="paragraph"><p>See <span class="monospaced">crmsh_hb_report(8)</span> for more details on arguments,
+or call <span class="monospaced">crm report -h</span></p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>report -f {time|"cts:"testnum} [-t time] [-u user] [-l file]
+       [-n nodes] [-E files] [-p patt] [-L patt] [-e prog]
+       [-MSDZAVsvhd] [dest]</pre>
+</div></div>
+<div class="paragraph"><p>Examples:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>report -f 2pm report_1
+report -f "2007/9/5 12:30" -t "2007/9/5 14:00" report_2
+report -f 1:00 -t 3:00 -l /var/log/cluster/ha-debug report_3
+report -f "09sep07 2:00" -u hbadmin report_4
+report -f 18:00 -p "usern.*" -p "admin.*" report_5
+report -f cts:133 ctstest_133</pre>
+</div></div>
 </div>
 <div class="sect2">
 <h3 id="_span_class_monospaced_end_span_span_class_monospaced_cd_span_span_class_monospaced_up_span"><span class="monospaced">end</span> (<span class="monospaced">cd</span>, <span class="monospaced">up</span>)</h3>
@@ -3612,7 +4015,7 @@ the parent level. This command is available everywhere.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        end</pre>
+<pre>end</pre>
 </div></div>
 </div>
 <div class="sect2">
@@ -3622,7 +4025,7 @@ specified topic (command). This command is available everywhere.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>        help [&lt;topic&gt;]</pre>
+<pre>help [&lt;topic&gt;]</pre>
 </div></div>
 </div>
 <div class="sect2">
@@ -3644,9 +4047,10 @@ in the XML format.</p></div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_author">AUTHOR</h2>
+<h2 id="_authors">AUTHORS</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>Dejan Muhamedagic, &lt;<a href="mailto:dejan@suse.de">dejan@suse.de</a>&gt;
+Kristoffer Gronlund &lt;<a href="mailto:kgronlund@suse.com">kgronlund@suse.com</a>&gt;
 and many OTHERS</p></div>
 </div>
 </div>
@@ -3660,14 +4064,15 @@ ptest(8), dotty(1), crm_simulate(8), cibadmin(8)</p></div>
 <div class="sect1">
 <h2 id="_copying">COPYING</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>Copyright (C) 2008-2011 Dejan Muhamedagic. Free use of this
-software is granted under the terms of the GNU General Public License (GPL).</p></div>
+<div class="paragraph"><p>Copyright (C) 2008-2013 Dejan Muhamedagic.
+Copyright (C) 2013 Kristoffer Gronlund.</p></div>
+<div class="paragraph"><p>Free use of this software is granted under the terms of the GNU General Public License (GPL).</p></div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-04-03 18:14:37 CEST
+Last updated 2014-04-03 18:15:31 CEST
 </div>
 </div>
 </div>
