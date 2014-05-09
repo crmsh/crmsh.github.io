@@ -154,6 +154,7 @@
 <div class="toclevel3"><a href="#cmdhelp_configure_role">role</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_user">user</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_op_defaults">op</a></div>
+<div class="toclevel3"><a href="#cmdhelp_configure_tag">tag</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_schema">schema</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_show">show</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_edit">edit</a></div>
@@ -2955,6 +2956,23 @@ rules :: rule [rule ...]</pre>
 </div></div>
 </div>
 <div class="sect3">
+<h4 id="cmdhelp_configure_tag"><span class="monospaced">tag</span></h4>
+<div class="paragraph"><p>Define a resource tag. A tag is an id referring to one or more
+resources, without implying any constraints between the tagged
+resources. This can be useful for grouping conceptually related
+resources.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>tag &lt;tag-name&gt;: &lt;rsc&gt; [&lt;rsc&gt; ...]</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>tag web: p-webserver p-vip</pre>
+</div></div>
+</div>
+<div class="sect3">
 <h4 id="cmdhelp_configure_schema"><span class="monospaced">schema</span></h4>
 <div class="paragraph"><p>CIB&#8217;s content is validated by a RNG schema. Pacemaker supports
 several, depending on version. Currently supported schemas are
@@ -4265,9 +4283,12 @@ Copyright (C) 2013 Kristoffer Gronlund.</p></div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-04-03 18:14:37 CEST
+Last updated 2014-05-09 22:52:34 CEST
 </div>
 </div>
 </div>
+
+<a href="https://github.com/crmsh/crmsh"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+
 </body>
 </html>
