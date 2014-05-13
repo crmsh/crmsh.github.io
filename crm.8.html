@@ -2418,8 +2418,10 @@ attributes at the <span class="monospaced">node</span> level.</p></div>
 <div class="content monospaced">
 <pre>node [$id=&lt;id&gt;] &lt;uname&gt;[:&lt;type&gt;]
   [description=&lt;description&gt;]
-  [attributes &lt;param&gt;=&lt;value&gt; [&lt;param&gt;=&lt;value&gt;...]]
-  [utilization &lt;param&gt;=&lt;value&gt; [&lt;param&gt;=&lt;value&gt;...]]
+  [attributes [$id=&lt;id&gt;] [&lt;score&gt;:] [rule...]
+    &lt;param&gt;=&lt;value&gt; [&lt;param&gt;=&lt;value&gt;...]] | $id-ref=&lt;ref&gt;
+  [utilization [$id=&lt;id&gt;] [&lt;score&gt;:] [rule...]
+    &lt;param&gt;=&lt;value&gt; [&lt;param&gt;=&lt;value&gt;...]] | $id-ref=&lt;ref&gt;
 
 type :: normal | member | ping</pre>
 </div></div>
@@ -2460,7 +2462,8 @@ type and which share most of the configuration. See
   [operations id_spec]
     [op op_type [&lt;attribute&gt;=&lt;value&gt;...] ...]
 
-attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...] | $id-ref=&lt;id&gt;
+attr_list :: [$id=&lt;id&gt;] [&lt;score&gt;:] [rule...]
+             &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...]] | $id-ref=&lt;id&gt;
 id_spec :: $id=&lt;id&gt; | $id-ref=&lt;id&gt;
 op_type :: start | stop | monitor</pre>
 </div></div>
@@ -2487,7 +2490,12 @@ primitive r0 ocf:linbit:drbd \
   op monitor role=Slave interval=300s
 
 primitive xen0 @vm_scheme1 \
-  params xmfile=/etc/xen/vm/xen0</pre>
+  params xmfile=/etc/xen/vm/xen0
+
+primitive mySpecialRsc Special \
+  params 3: rule #uname eq node1 interface=eth1 \
+  params 2: rule #uname eq node2 interface=eth2 port=8888 \
+  params 1: interface=eth0 port=9999</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2670,9 +2678,9 @@ unary_op :: defined | not_defined
 
 date_expr :: lt &lt;end&gt;
          | gt &lt;start&gt;
-         | in_range start=&lt;start&gt; end=&lt;end&gt;
-         | in_range start=&lt;start&gt; &lt;duration&gt;
-         | date_spec &lt;date_spec&gt;
+         | in start=&lt;start&gt; end=&lt;end&gt;
+         | in start=&lt;start&gt; &lt;duration&gt;
+         | spec &lt;date_spec&gt;
 duration|date_spec ::
          hours=&lt;value&gt;
          | monthdays=&lt;value&gt;
@@ -2812,12 +2820,13 @@ rsc_ticket ticket-B_storage ticket-B: drbd-a:Master drbd-b:Master</pre>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>property [$id=&lt;set_id&gt;] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
+<pre>property [$id=&lt;set_id&gt;] [rule ...] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>property stonith-enabled=true</pre>
+<pre>property stonith-enabled=true
+property rule date spec years=2014 stonith-enabled=false</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2826,7 +2835,7 @@ rsc_ticket ticket-B_storage ticket-B: drbd-a:Master drbd-b:Master</pre>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>rsc_defaults [$id=&lt;set_id&gt;] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
+<pre>rsc_defaults [$id=&lt;set_id&gt;] [rule ...] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
@@ -2947,7 +2956,7 @@ rules :: rule [rule ...]</pre>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>op_defaults [$id=&lt;set_id&gt;] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
+<pre>op_defaults [$id=&lt;set_id&gt;] [rule ...] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
@@ -4283,7 +4292,7 @@ Copyright (C) 2013 Kristoffer Gronlund.</p></div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-05-09 22:52:34 CEST
+Last updated 2014-05-13 15:51:54 CEST
 </div>
 </div>
 </div>
