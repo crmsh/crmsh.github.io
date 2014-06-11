@@ -2815,15 +2815,15 @@ Resource pattern: <span class="monospaced">location loc1 /web.*/ 100: node1</spa
 </p>
 </li>
 </ul></div>
-<div class="paragraph"><p>For more details on how to configure resource sets, see
-<a href="#cmdhelp_configure_resourcesets"><span class="monospaced">Resource sets</span></a>.</p></div>
+<div class="paragraph"><p>The syntax for resource sets is described in detail for <a href="#cmdhelp_configure_colocation"><span class="monospaced">colocation</span></a>.</p></div>
+<div class="paragraph"><p>For more details on how to configure resource sets, see <a href="#cmdhelp_configure_resourcesets"><span class="monospaced">Resource sets</span></a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>location &lt;id&gt; rsc [role=&lt;role&gt;] {node_pref|rules}
 
 rsc :: /&lt;rsc-pattern&gt;/
-        | { &lt;rsc-set&gt; }
+        | { resource_sets }
         | &lt;rsc&gt;
 
 node_pref :: &lt;score&gt;: &lt;node&gt;
@@ -2899,8 +2899,15 @@ instance attributes.</p></div>
 <pre>colocation &lt;id&gt; &lt;score&gt;: &lt;rsc&gt;[:&lt;role&gt;] &lt;with-rsc&gt;[:&lt;role&gt;]
   [node-attribute=&lt;node_attr&gt;]
 
-colocation &lt;id&gt; &lt;score&gt;: &lt;rsc&gt;[:&lt;role&gt;] &lt;rsc&gt;[:&lt;role&gt;] ...
-  [node-attribute=&lt;node_attr&gt;]</pre>
+colocation &lt;id&gt; &lt;score&gt;: resource_sets
+  [node-attribute=&lt;node_attr&gt;]
+
+resource_sets :: resource_set [resource_set ...]
+
+resource_set :: ["("|"["] &lt;rsc&gt;[:&lt;role&gt;] [&lt;rsc&gt;[:&lt;role&gt;] ...] \
+                [attributes]  [")"|"]"]
+
+attributes :: [require-all=(true|false)] [sequential=(true|false)]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
@@ -2930,10 +2937,22 @@ That is still valid but deprecated.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>order &lt;id&gt; {kind|&lt;score&gt;}: &lt;rsc&gt;[:&lt;action&gt;] &lt;rsc&gt;[:&lt;action&gt;] ...
-  [symmetrical=&lt;bool&gt;]
+<pre>order &lt;id&gt; {kind|&lt;score&gt;}: first then [symmetrical=&lt;bool&gt;]
 
-kind :: Mandatory | Optional | Serialize</pre>
+order &lt;id&gt; {kind|&lt;score&gt;}: resource_sets [symmetrical=&lt;bool&gt;]
+
+kind :: Mandatory | Optional | Serialize
+
+first :: &lt;rsc&gt;[:&lt;action&gt;]
+
+then ::  &lt;rsc&gt;[:&lt;action&gt;]
+
+resource_sets :: resource_set [resource_set ...]
+
+resource_set :: ["["|"("] &lt;rsc&gt;[:&lt;action&gt;] [&lt;rsc&gt;[:&lt;action&gt;] ...] \
+                [attributes] ["]"|")"]
+
+attributes :: [require-all=(true|false)] [sequential=(true|false)]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
@@ -4506,7 +4525,7 @@ Copyright (C) 2013 Kristoffer Gronlund.</p></div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-06-10 15:45:57 CEST
+Last updated 2014-06-11 10:47:12 CEST
 </div>
 </div>
 </div>
