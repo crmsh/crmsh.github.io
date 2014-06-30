@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<title>crmsh</title>
+<subtitle>Cluster manager shell news</subtitle>
+<link href="http://crmsh.github.io/atom.xml" rel="self" />
+<link href="http://crmsh.github.io/" />
+<id>tag:crmsh.github.io,2014:/atom</id>
+<updated>2014-06-30T09:00:00CET</updated>
+<entry>
+<title>Announcing crmsh release 2.1</title>
+<id>tag:crmsh.github.io,2014:/atom::3abce7707cc7844ec05205b297b3033995543e4e</id>
+<updated>2014-06-30T09:00:00CET</updated>
+<link>http://crmsh.github.io/news/2014-06-30-release-2_1</link>
+<content type="html">
+&lt;pre&gt;
+
+Today we are proud to announce the release of `crmsh` version 2.1!
+This version primarily fixes all known issues found since the release
+of `crmsh` 2.0 in April, but also has some major new features.
+
+A massive thank you to everyone who has helped out with bug fixes,
+comments and contributions for this release!
+
+For a complete list of changes since the previous version, please
+refer to the changelog:
+
+* https://github.com/crmsh/crmsh/blob/2.1.0/ChangeLog
+
+Packages for several popular Linux distributions can be downloaded
+from the Stable repository at the OBS:
+
+* http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/
+
+Zip archive of the tagged release:
+
+* https://github.com/crmsh/crmsh/archive/2.1.0.zip
+
+Here are some of the highlights of this release:
+
+== Rule expressions in attribute lists
+
+One of the biggest features in this release is full support for rule
+expressions wherever the XML syntax allows them.
+
+Here is an example of using rule expressions in an attribute list in
+order to set the virtual IP of an IPAddr2 resource to a different
+value on a specific node.
+
+----
+primitive vip-on-node1 IPAddr2 \
+    rule 10: #uname eq node1 ip=10.0.0.5 \
+    rule 1: ip=10.0.0.6
+----
+
+== Tags in the CIB
+
+A new feature added to Pacemaker recently is tags. This is a way
+to refer to multiple resources at once without creating any
+colocation or ordering relationship between them. For example, you
+could add all resources related to the database to a db tag, and
+then stop or start them all with a single command.
+
+----
+tag db drbd:Master fs sql-db
+----
+
+It is also possible to refer to tags in constraints.
+
+== Wildcards in show/edit
+
+The configure show and edit commands can now use glob-style
+wildcards to refer to multiple resources:
+
+----
+configure edit db-*
+----
+
+== Nvpair references
+
+Sometimes, different resources name the same parameters with different
+names. For example, an IPAddr2 may have an ip parameter that should be
+the same as a web servers server_ip parameter. By using nvpair
+references, it is possible to configure the ip in a single location.
+
+Note that this is a new feature in Pacemaker 1.1.12 and up.
+
+----
+primitive vip IPAddr2 params $my-ip:ip=192.168.0.1
+primitive www apache params @my-ip:server_ip
+----
+
+== New ACL syntax
+
+The support for Access Control Lists has been revised in Pacemaker
+1.1.12, and this release of crmsh supports the new syntax. Two new 
+commands have been added: `acl_target` and `acl_group`. For more details,
+see the documentation.
+
+Thank you,
+
+Kristoffer and Dejan
+
+
+&lt;/pre&gt;
+
+</content>
+<author>
+<name>Kristoffer Gronlund</name>
+<email>kgronlund@suse.com</email>
+</author>
+</entry>
+
+</feed>

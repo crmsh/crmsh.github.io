@@ -4,32 +4,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="generator" content="AsciiDoc 8.6.8">
 <title>crmsh - Development</title>
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<link rel="stylesheet" href="css/crm.css" type="text/css">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/crm.css" type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono' rel='stylesheet' type='text/css'>
+<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="crmsh atom feed">
 </head>
 <body>
 <div id="header">
-<h1><a href="index.html"><span class="fa-stack">
+<h1><a href="/index.html"><span class="fa-stack">
   <i class="fa fa-square fa-stack-2x"></i>
   <i class="fa fa-terminal fa-stack-1x fa-inverse"></i>
 </span>crmsh</a></h1>
 <div id="topbar">
 <ul>
-<li><a href="documentation.html">Documentation</a></li>
-<li><a href="tutorials.html">Guides & Tutorials</a></li>
-<li><a href="development.html">Development</a></li>
-<li><a href="faq.html">FAQ</a></li>
-<li><a href="about.html">About</a></li>
+<li><a href="/news">News</a></li>
+<li><a href="/documentation">Documentation</a></li>
+<li><a href="/development">Development</a></li>
+<li><a href="/about">About</a></li>
 </ul>
 </div>
 </div>
 <!--TOC-->
 <div id="toc">
 <div class="toclevel1"><a href="#_tools">Tools</a></div>
-<div class="toclevel1"><a href="#_building_crmsh">Building crmsh</a></div>
-<div class="toclevel2"><a href="#_unit_tests">Unit tests</a></div>
-<div class="toclevel2"><a href="#_regression_tests">Regression tests</a></div>
+<div class="toclevel1"><a href="#_get_the_source">Get the source</a></div>
+<div class="toclevel2"><a href="#_tests">Tests</a></div>
 </div>
 <div id="container">
 <div id="content">
@@ -54,17 +53,17 @@ all very much welcome!</p></div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_building_crmsh">Building crmsh</h2>
+<h2 id="_get_the_source">Get the source</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>The source code for <span class="monospaced">crmsh</span> is kept in a
 <a href="http://git-scm.com/">git</a> repository
-hosted at <a href="https://github.com">github</a>. Use the
-command-line tool <span class="monospaced">git</span> to get a working copy:</p></div>
+hosted at <a href="https://github.com">github</a>. Use <span class="monospaced">git</span> to get a working copy:</p></div>
 <div class="listingblock">
 <div class="content monospaced">
 <pre>git clone https://github.com/crmsh/crmsh.git</pre>
 </div></div>
-<div class="paragraph"><p><span class="monospaced">crmsh</span> needs the source code to <span class="monospaced">cluster-glue</span> and <span class="monospaced">pacemaker</span> when
+<div class="paragraph"><p><span class="monospaced">crmsh</span> needs the development headers for <a href="http://hg.linux-ha.org/glue">cluster-glue</a> and
+<a href="https://github.com/ClusterLabs/pacemaker">pacemaker</a> when
 installing. On openSUSE, these are packaged as <span class="monospaced">libglue-devel</span> and
 <span class="monospaced">libpacemaker-devel</span>.</p></div>
 <div class="listingblock">
@@ -76,8 +75,8 @@ make
 make install</pre>
 </div></div>
 <div class="sect2">
-<h3 id="_unit_tests">Unit tests</h3>
-<div class="paragraph"><p>The test suite uses nose. On most distributions, this can be installed
+<h3 id="_tests">Tests</h3>
+<div class="paragraph"><p>The unit tests for <span class="monospaced">crmsh</span> require <span class="monospaced">nose</span> to run. On most distributions, this can be installed
 by installing the package <span class="monospaced">python-nose</span>, or using <span class="monospaced">pip</span>.</p></div>
 <div class="paragraph"><p>To run the unit test suite, go to the source code directory of <span class="monospaced">crmsh</span>
 and call:</p></div>
@@ -85,12 +84,9 @@ and call:</p></div>
 <div class="content monospaced">
 <pre>./test/unit-tests.sh</pre>
 </div></div>
-</div>
-<div class="sect2">
-<h3 id="_regression_tests">Regression tests</h3>
-<div class="paragraph"><p><span class="monospaced">crmsh</span> comes with a regression test suite. The regression tests need
-to run after installation, on a system which has pacemaker
-installed. To execute the tests, call:</p></div>
+<div class="paragraph"><p><span class="monospaced">crmsh</span> also comes with a comprehensive regression test suite. The regression tests need
+to run after installation, on a system which has both crmsh and pacemaker installed.</p></div>
+<div class="paragraph"><p>To execute the tests, call:</p></div>
 <div class="listingblock">
 <div class="content monospaced">
 <pre>/usr/share/crmsh/tests/regression.sh
@@ -100,10 +96,9 @@ cat crmtestout/regression.out</pre>
 </div>
 </div>
 </div>
+</div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2014-06-26 11:29:23 CEST
-</div>
 </div>
 </div>
 

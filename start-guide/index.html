@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="AsciiDoc 8.6.8">
+<title>crmsh - Getting Started</title>
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/crm.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono' rel='stylesheet' type='text/css'>
+<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="crmsh atom feed">
+</head>
+<body>
+<div id="header">
+<h1><a href="/index.html"><span class="fa-stack">
+  <i class="fa fa-square fa-stack-2x"></i>
+  <i class="fa fa-terminal fa-stack-1x fa-inverse"></i>
+</span>crmsh</a></h1>
+<div id="topbar">
+<ul>
+<li><a href="/news">News</a></li>
+<li><a href="/documentation">Documentation</a></li>
+<li><a href="/development">Development</a></li>
+<li><a href="/about">About</a></li>
+</ul>
+</div>
+</div>
+<!--TOC-->
+<div id="toc">
+<div class="toclevel1"><a href="#_the_cluster_stack">The cluster stack</a></div>
+<div class="toclevel1"><a href="#_ssh">SSH</a></div>
+<div class="toclevel1"><a href="#_install_and_configure">Install and configure</a></div>
+<div class="toclevel1"><a href="#_start_pacemaker">Start Pacemaker</a></div>
+<div class="toclevel1"><a href="#_check_cluster_status">Check cluster status</a></div>
+<div class="toclevel1"><a href="#_cluster_health_check">Cluster health check</a></div>
+<div class="toclevel1"><a href="#_adding_a_resource">Adding a resource</a></div>
+</div>
+<div id="container">
+<div id="content">
+<h1>Getting Started</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph"><p>So, you&#8217;ve successfully installed <span class="monospaced">crmsh</span> on one or more machines, and
+now you want to configure a basic cluster. This guide is intended to
+provide step-by-step instructions for configuring Pacemaker
+with a single resource capable of failing over between a pair of
+nodes, and then builds on that base to cover some more advanced topics
+of cluster management.</p></div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph"><p>Haven&#8217;t installed yet? Please follow the
+<a href="/installation">installation instructions</a>
+before continuing this guide. Only <span class="monospaced">crmsh</span> and
+its dependencies need to be installed before
+following this guide.</p></div>
+</div></div>
+<div class="paragraph"><p>Before continuing, make sure that this command executes successfully
+on all nodes, and returns a version number that is <span class="monospaced">2.1</span> or higher:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm version</pre>
+</div></div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Example cluster</div>
+<div class="paragraph"><p>These are the machines used as an example in this guide. Please
+replace the references to these names and IP addresses to the values
+appropriate for your cluster:</p></div>
+<table class="tableblock frame-all grid-all"
+style="
+width:100%;
+">
+<col style="width:50%;">
+<col style="width:50%;">
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top" >Name  </th>
+<th class="tableblock halign-left valign-top" >IP</th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">bob</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">10.0.0.3</p></td>
+</tr>
+</tfoot>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">alice</p></td>
+<td class="tableblock halign-left valign-top" ><p class="tableblock">10.0.0.2</p></td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_cluster_stack">The cluster stack</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>The composition of the GNU/Linux cluster stack has changed somewhat
+over the years. The stack described here is the currently most common
+variant, but there are other ways of configuring these tools.</p></div>
+<div class="paragraph"><p>Simply put, a High Availability cluster is a set of machines (commonly
+referred to as <strong>nodes</strong>) with redundant capacity, such that if one or
+more of these machines experience failure of any kind, the other nodes
+in the cluster can take over the responsibilities previously handled
+by the failed node.</p></div>
+<div class="paragraph"><p>The cluster stack is a set of programs running on all of these nodes,
+communicating with each other over the network to monitor each other
+and deciding where, when and how resources are stopped, started or
+reconfigured.</p></div>
+<div class="paragraph"><p>The main component of the stack is <strong>Pacemaker</strong>, the software
+responsible for managing cluster resources, allocating them to cluster
+nodes according to the rules specified in the <strong>CIB</strong>.</p></div>
+<div class="paragraph"><p>The CIB is an XML document maintained by Pacemaker, which describes
+all cluster resources, their configuration and the constraints that
+decide where and how they are managed. This document is not edited
+directly, and with the help of <span class="monospaced">crmsh</span> it is possible to avoid
+exposure to the underlying XML at all.</p></div>
+<div class="paragraph"><p>Beneath Pacemaker in the stack sits <strong>Corosync</strong>, a cluster
+communication system. Corosync provides the communication capabilities
+and cluster membership functionality used by Pacemaker. Corosync is
+configured through the file <span class="monospaced">/etc/corosync/corosync.conf</span>. <span class="monospaced">crmsh</span>
+provides tools for configuring corosync similar to Pacemaker.</p></div>
+<div class="paragraph"><p>Aside from these two components, the stack also consists of a
+collection of <strong>Resource Agents</strong>. These are basically scripts that wrap
+software that the cluster needs to manage, providing a unified
+interface to configuration, supervision and management of the
+software. For example, there are agents that handle virtual IP
+resources, web servers, databases and filesystems.</p></div>
+<div class="paragraph"><p><span class="monospaced">crmsh</span> is a command line tool which interfaces against all of these
+components, providing a unified interface for configuration and
+management of the whole cluster stack.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ssh">SSH</h2>
+<div class="sectionbody">
+<div class="paragraph"><p><span class="monospaced">crmsh</span> runs as a command line tool on any one of the cluster
+nodes. In order for to to control all cluster nodes, it needs to be
+able to execute commands remotely. <span class="monospaced">crmsh</span> does this by invoking
+<span class="monospaced">ssh</span>.</p></div>
+<div class="paragraph"><p>Configure <span class="monospaced">/etc/hosts</span> on each of the nodes so that the names of the
+other nodes map to the IP addresses of those nodes. For example in a
+cluster consisting of <span class="monospaced">alice</span> and <span class="monospaced">bob</span>, executing <span class="monospaced">ping bob</span> when
+logged in as root on <span class="monospaced">alice</span> should successfully locate <span class="monospaced">bob</span> on the
+network. If the IP address of <span class="monospaced">bob</span> is <span class="monospaced">10.0.0.3</span>, this means the
+following line should be entered into <span class="monospaced">/etc/hosts</span> on <span class="monospaced">alice</span>:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>10.0.0.3      bob</pre>
+</div></div>
+<div class="paragraph"><p>Once this is done, <span class="monospaced">crmsh</span> can handle the rest.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_install_and_configure">Install and configure</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>To create the necessary SSH keys, install the basic packages and
+configure <span class="monospaced">systemd</span> to manage Corosync and Pacemaker, the following
+command is provided by <span class="monospaced">crmsh</span>:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm cluster init nodes=alice,bob</pre>
+</div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_start_pacemaker">Start Pacemaker</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>To start Corosync and Pacemaker, the following command can be used:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm cluster start</pre>
+</div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_check_cluster_status">Check cluster status</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>To see if Pacemaker is running, what nodes are part of the cluster and
+what resources are active, use the <span class="monospaced">status</span> command:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm status</pre>
+</div></div>
+<div class="paragraph"><p>If this command fails or times out, there is some problem with
+Pacemaker or Corosync on the local machine. Perhaps some dependency is
+missing, a firewall is blocking cluster communication or some other
+unrelated problem has occurred. If this is the case, the <span class="monospaced">cluster
+health</span> command may be of use.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cluster_health_check">Cluster health check</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>To check the health status of the machines in the cluster, use the
+following command:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm cluster health</pre>
+</div></div>
+<div class="paragraph"><p>This command will perform multiple diagnostics on all nodes in the
+cluster, and return information about low disk space, communication
+issues or problems with mismatching software versions between nodes,
+for example.</p></div>
+<div class="paragraph"><p>If no cluster has been configured or there is some fundamental problem
+with cluster communications, <span class="monospaced">crmsh</span> may be unable to figure out what
+nodes are part of the cluster. If this is the case, the list of nodes
+can be provided to the health command directly:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm cluster health nodes=alice,bob</pre>
+</div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_adding_a_resource">Adding a resource</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>To test the cluster and make sure it is working properly, we can
+configure a Dummy resource. The Dummy resource agent is a simple
+resource that doesn&#8217;t actually manage any software. It exposes a
+single numerical parameter called <span class="monospaced">state</span> which can be used to test
+the basic functionality of the cluster before introducing the
+complexities of actual resources.</p></div>
+<div class="paragraph"><p>To configure a Dummy resource, run the following command:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm configure primitive p0 Dummy</pre>
+</div></div>
+<div class="paragraph"><p>This creates a new resource, gives it the name <span class="monospaced">p0</span> and sets the
+agent for the resource to be the <span class="monospaced">Dummy</span> agent.</p></div>
+<div class="paragraph"><p><span class="monospaced">crm status</span> should now show the <span class="monospaced">p0</span> resource as started on one
+of the cluster nodes.</p></div>
+<div class="paragraph"><p>The resource can be stopped or started using the <span class="monospaced">resource start</span> and
+<span class="monospaced">resource stop</span> commands:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm resource stop p0
+crm resource start p0</pre>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+</div>
+</div>
+
+<a href="https://github.com/crmsh/crmsh"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+</body>
+</html>

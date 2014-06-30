@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="AsciiDoc 8.6.8">
+<title>crmsh - Announcing crmsh release 2.1</title>
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/crm.css" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono' rel='stylesheet' type='text/css'>
+<link href="/atom.xml" type="application/atom+xml" rel="alternate" title="crmsh atom feed">
+</head>
+<body>
+<div id="header">
+<h1><a href="/index.html"><span class="fa-stack">
+  <i class="fa fa-square fa-stack-2x"></i>
+  <i class="fa fa-terminal fa-stack-1x fa-inverse"></i>
+</span>crmsh</a></h1>
+<div id="topbar">
+<ul>
+<li><a href="/news">News</a></li>
+<li><a href="/documentation">Documentation</a></li>
+<li><a href="/development">Development</a></li>
+<li><a href="/about">About</a></li>
+</ul>
+</div>
+</div>
+<!--TOC-->
+<div id="toc">
+<div class="toclevel1"><a href="#_rule_expressions_in_attribute_lists">Rule expressions in attribute lists</a></div>
+<div class="toclevel1"><a href="#_tags_in_the_cib">Tags in the CIB</a></div>
+<div class="toclevel1"><a href="#_wildcards_in_show_edit">Wildcards in show/edit</a></div>
+<div class="toclevel1"><a href="#_nvpair_references">Nvpair references</a></div>
+<div class="toclevel1"><a href="#_new_acl_syntax">New ACL syntax</a></div>
+</div>
+<div id="container">
+<div id="content">
+<h1>Announcing crmsh release 2.1</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph"><p>Today we are proud to announce the release of <span class="monospaced">crmsh</span> version 2.1!
+This version primarily fixes all known issues found since the release
+of <span class="monospaced">crmsh</span> 2.0 in April, but also has some major new features.</p></div>
+<div class="paragraph"><p>A massive thank you to everyone who has helped out with bug fixes,
+comments and contributions for this release!</p></div>
+<div class="paragraph"><p>For a complete list of changes since the previous version, please
+refer to the changelog:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="https://github.com/crmsh/crmsh/blob/2.1.0/ChangeLog">https://github.com/crmsh/crmsh/blob/2.1.0/ChangeLog</a>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Packages for several popular Linux distributions can be downloaded
+from the Stable repository at the OBS:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/">http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/</a>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Zip archive of the tagged release:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="https://github.com/crmsh/crmsh/archive/2.1.0.zip">https://github.com/crmsh/crmsh/archive/2.1.0.zip</a>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Here are some of the highlights of this release:</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_rule_expressions_in_attribute_lists">Rule expressions in attribute lists</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>One of the biggest features in this release is full support for rule
+expressions wherever the XML syntax allows them.</p></div>
+<div class="paragraph"><p>Here is an example of using rule expressions in an attribute list in
+order to set the virtual IP of an IPAddr2 resource to a different
+value on a specific node.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>primitive vip-on-node1 IPAddr2 \
+    rule 10: #uname eq node1 ip=10.0.0.5 \
+    rule 1: ip=10.0.0.6</pre>
+</div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tags_in_the_cib">Tags in the CIB</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>A new feature added to Pacemaker recently is tags. This is a way
+to refer to multiple resources at once without creating any
+colocation or ordering relationship between them. For example, you
+could add all resources related to the database to a db tag, and
+then stop or start them all with a single command.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>tag db drbd:Master fs sql-db</pre>
+</div></div>
+<div class="paragraph"><p>It is also possible to refer to tags in constraints.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wildcards_in_show_edit">Wildcards in show/edit</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>The configure show and edit commands can now use glob-style
+wildcards to refer to multiple resources:</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>configure edit db-*</pre>
+</div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nvpair_references">Nvpair references</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Sometimes, different resources name the same parameters with different
+names. For example, an IPAddr2 may have an ip parameter that should be
+the same as a web servers server_ip parameter. By using nvpair
+references, it is possible to configure the ip in a single location.</p></div>
+<div class="paragraph"><p>Note that this is a new feature in Pacemaker 1.1.12 and up.</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>primitive vip IPAddr2 params $my-ip:ip=192.168.0.1
+primitive www apache params @my-ip:server_ip</pre>
+</div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_new_acl_syntax">New ACL syntax</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>The support for Access Control Lists has been revised in Pacemaker
+1.1.12, and this release of crmsh supports the new syntax. Two new
+commands have been added: <span class="monospaced">acl_target</span> and <span class="monospaced">acl_group</span>. For more details,
+see the documentation.</p></div>
+<div class="paragraph"><p>Thank you,</p></div>
+<div class="paragraph"><p>Kristoffer and Dejan</p></div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+</div>
+</div>
+
+<a href="https://github.com/crmsh/crmsh"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+
+</body>
+</html>
