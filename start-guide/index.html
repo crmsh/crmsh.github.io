@@ -29,6 +29,8 @@
 <div class="toclevel1"><a href="#_the_cluster_stack">The cluster stack</a></div>
 <div class="toclevel1"><a href="#_ssh">SSH</a></div>
 <div class="toclevel1"><a href="#_install_and_configure">Install and configure</a></div>
+<div class="toclevel1"><a href="#_firewall">Firewall</a></div>
+<div class="toclevel1"><a href="#_quorum">Quorum</a></div>
 <div class="toclevel1"><a href="#_start_pacemaker">Start Pacemaker</a></div>
 <div class="toclevel1"><a href="#_check_cluster_status">Check cluster status</a></div>
 <div class="toclevel1"><a href="#_cluster_health_check">Cluster health check</a></div>
@@ -143,25 +145,123 @@ able to execute commands remotely. <span class="monospaced">crmsh</span> does th
 other nodes map to the IP addresses of those nodes. For example in a
 cluster consisting of <span class="monospaced">alice</span> and <span class="monospaced">bob</span>, executing <span class="monospaced">ping bob</span> when
 logged in as root on <span class="monospaced">alice</span> should successfully locate <span class="monospaced">bob</span> on the
-network. If the IP address of <span class="monospaced">bob</span> is <span class="monospaced">10.0.0.3</span>, this means the
-following line should be entered into <span class="monospaced">/etc/hosts</span> on <span class="monospaced">alice</span>:</p></div>
+network. Given the IP addresses of <span class="monospaced">alice</span> and <span class="monospaced">bob</span> above, the
+following should be entered into <span class="monospaced">/etc/hosts</span> on both nodes:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>10.0.0.3      bob</pre>
+<pre>10.0.0.2      alice
+10.0.0.3      bob</pre>
 </div></div>
-<div class="paragraph"><p>Once this is done, <span class="monospaced">crmsh</span> can handle the rest.</p></div>
+<div class="paragraph"><p>Once this is done, SSH keys need to be installed for password-less
+access between the nodes. This is something that will hopefully be
+automated in the future, but is unfortunately a manual step at this
+point in time.</p></div>
+<div class="paragraph"><p>The following commands should be executed as <span class="monospaced">root</span> on one of the
+nodes (in this example, <span class="monospaced">alice</span>):</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre># ensure that the ssh server is started
+sudo systemctl start sshd
+# create the shared key
+mkdir -m 700 -p /root/.ssh
+ssh-keygen -q -f /root/.ssh/id_rsa -C "Cluster Internal" -N ''
+cat /root/.ssh/id_rsa.pub &gt;&gt; /root/.ssh/authorized_keys</pre>
+</div></div>
+<div class="paragraph"><p>On the other nodes in the cluster (in this example, <span class="monospaced">bob</span>), execute
+the following as <span class="monospaced">root</span>:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>mkdir -m 700 -p /root/.ssh
+scp -oStrictHostKeyChecking=no \
+    root@alice:'/root/.ssh/id_rsa*' /root/.ssh
+grep -q -s "$(cat /root/.ssh/id_rsa.pub)" /root/.ssh/authorized_keys \
+    || append /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys</pre>
+</div></div>
+<div class="paragraph"><p>This enables SSH to connect without prompting for a password between
+the nodes. Make sure this works before continuing with this guide.</p></div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_install_and_configure">Install and configure</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>To create the necessary SSH keys, install the basic packages and
-configure <span class="monospaced">systemd</span> to manage Corosync and Pacemaker, the following
-command is provided by <span class="monospaced">crmsh</span>:</p></div>
+<div class="paragraph"><p>To install the basic packages and configure <span class="monospaced">systemd</span> to manage
+Corosync and Pacemaker, the following command is provided by <span class="monospaced">crmsh</span>:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>crm cluster init nodes=alice,bob</pre>
 </div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_firewall">Firewall</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>If your cluster nodes have a firewall configured, you will need to
+open the following ports to ensure cluster configuration:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+TCP: 5560
+</p>
+</li>
+<li>
+<p>
+UDP: 5404, 5405
+</p>
+</li>
+<li>
+<p>
+TCP: 21064 (if using DLM)
+</p>
+</li>
+<li>
+<p>
+TCP: 30865 (if using csync2)
+</p>
+</li>
+<li>
+<p>
+TCP: 7630 (if using the hawk web UI)
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_quorum">Quorum</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>At this point, corosync needs to be configured for the particular
+cluster being created. First of all, <span class="monospaced">quorum</span> needs to taken into
+consideration. To make things as easy as possible, it is advisable to
+have a total number of nodes in the cluster that is not divisible by
+two. In other words, the number of nodes in the cluster should usually
+be either 3 or 5. This is to ensure <em>quorum</em>, that is, in the case
+of a loss of network connectivity between some subsets of nodes, one
+of the network partitions will either have more members than the
+others, or every node in the cluster will be isolated.</p></div>
+<div class="paragraph"><p>To configure corosync to manage quorum for you, you need to enable
+<span class="monospaced">votequorum</span> in the corosync configuration. To do this, the following
+command can be used:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm corosync set quorum.provider corosync_votequorum</pre>
+</div></div>
+<div class="paragraph"><p>Corosync also needs to know the number of nodes required to be
+considered a majority vote. Usually, this should be set to 2:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm corosync set quorum.expected_votes 2</pre>
+</div></div>
+<div class="paragraph"><p>After changing the quorum settings, the changes need to be propagated
+across the cluster and corosync needs to be restarted. To do this, the
+following sequence of commands can be used:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm corosync push
+crm cluster stop
+crm cluster start</pre>
+</div></div>
+<div class="paragraph"><p>Note start restarting the cluster is only necessary if the cluster has
+already been started.</p></div>
 </div>
 </div>
 <div class="sect1">
@@ -230,7 +330,23 @@ complexities of actual resources.</p></div>
 <div class="paragraph"><p>This creates a new resource, gives it the name <span class="monospaced">p0</span> and sets the
 agent for the resource to be the <span class="monospaced">Dummy</span> agent.</p></div>
 <div class="paragraph"><p><span class="monospaced">crm status</span> should now show the <span class="monospaced">p0</span> resource as started on one
-of the cluster nodes.</p></div>
+of the cluster nodes:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre># crm status
+Last updated: Wed Jul  2 21:49:26 2014
+Last change: Wed Jul  2 21:49:19 2014
+Stack: corosync
+Current DC: alice (2) - partition with quorum
+Version: 1.1.11-c3f1a7f
+2 Nodes configured
+1 Resources configured
+
+
+Online: [ alice bob ]
+
+ p0     (ocf::heartbeat:Dummy): Started alice</pre>
+</div></div>
 <div class="paragraph"><p>The resource can be stopped or started using the <span class="monospaced">resource start</span> and
 <span class="monospaced">resource stop</span> commands:</p></div>
 <div class="literalblock">
