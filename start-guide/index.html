@@ -174,8 +174,7 @@ the following as <span class="monospaced">root</span>:</p></div>
 <pre>mkdir -m 700 -p /root/.ssh
 scp -oStrictHostKeyChecking=no \
     root@alice:'/root/.ssh/id_rsa*' /root/.ssh
-grep -q -s "$(cat /root/.ssh/id_rsa.pub)" /root/.ssh/authorized_keys \
-    || append /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys</pre>
+cat /root/.ssh/id_rsa.pub &gt;&gt; /root/.ssh/authorized_keys</pre>
 </div></div>
 <div class="paragraph"><p>This enables SSH to connect without prompting for a password between
 the nodes. Make sure this works before continuing with this guide.</p></div>
