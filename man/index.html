@@ -1023,7 +1023,7 @@ can be used to give the attribute a different identifier:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>primitive dummy-1 params $dummy-state-on:state=1
-primitive dummy-2 params @state</pre>
+primitive dummy-2 params @dummy-state-on</pre>
 </div></div>
 <div class="paragraph"><p>There is also the possibility that two resources both use the same
 attribute value but with different names. For example, a web server
@@ -2962,9 +2962,9 @@ That is still valid but deprecated.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>order &lt;id&gt; {kind|&lt;score&gt;}: first then [symmetrical=&lt;bool&gt;]
+<pre>order &lt;id&gt; [{kind|&lt;score&gt;}:] first then [symmetrical=&lt;bool&gt;]
 
-order &lt;id&gt; {kind|&lt;score&gt;}: resource_sets [symmetrical=&lt;bool&gt;]
+order &lt;id&gt; [{kind|&lt;score&gt;}:] resource_sets [symmetrical=&lt;bool&gt;]
 
 kind :: Mandatory | Optional | Serialize
 
@@ -2982,9 +2982,10 @@ attributes :: [require-all=(true|false)] [sequential=(true|false)]</pre>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>order c_apache_1 Mandatory: apache:start ip_1
-order o1 Serialize: A ( B C )
-order order_2 Mandatory: [ A B ] C</pre>
+<pre>order o-1 Mandatory: apache:start ip_1
+order o-2 Serialize: A ( B C )
+order o-3 inf: [ A B ] C
+order o-4 first-resource then-resource</pre>
 </div></div>
 </div>
 <div class="sect3">

@@ -27,14 +27,19 @@
 <!--TOC-->
 <div id="toc">
 <div class="toclevel1"><a href="#topics_Description">Program description</a></div>
-<div class="toclevel1"><a href="#topics_CommandLine">Available command line options</a></div>
-<div class="toclevel1"><a href="#topics_Introduction">Introduction to the user interface</a></div>
-<div class="toclevel1"><a href="#topics_Shadows">Shadow CIB usage</a></div>
-<div class="toclevel1"><a href="#topics_Templates">Configuration templates</a></div>
-<div class="toclevel1"><a href="#topics_Testing">Resource testing</a></div>
-<div class="toclevel1"><a href="#topics_Completion">Tab completion</a></div>
-<div class="toclevel1"><a href="#topics_Checks">Configuration semantic checks</a></div>
-<div class="toclevel1"><a href="#topics_Security">Access Control Lists (ACL)</a></div>
+<div class="toclevel1"><a href="#topics_CommandLine">Command line options</a></div>
+<div class="toclevel1"><a href="#topics_Introduction">Introduction</a></div>
+<div class="toclevel2"><a href="#topics_Introduction_Interface">User interface</a></div>
+<div class="toclevel2"><a href="#topics_Introcution_Completion">Tab completion</a></div>
+<div class="toclevel1"><a href="#topics_Features">Features</a></div>
+<div class="toclevel2"><a href="#topics_Features_Shadows">Shadow CIB usage</a></div>
+<div class="toclevel2"><a href="#topics_Features_Checks">Configuration semantic checks</a></div>
+<div class="toclevel2"><a href="#topics_Features_Templates">Configuration templates</a></div>
+<div class="toclevel2"><a href="#topics_Features_Testing">Resource testing</a></div>
+<div class="toclevel2"><a href="#topics_Features_Security">Access Control Lists (ACL)</a></div>
+<div class="toclevel2"><a href="#topics_Features_Resourcesets">Syntax: Resource sets</a></div>
+<div class="toclevel2"><a href="#topics_Features_AttributeListReferences">Syntax: Attribute list references</a></div>
+<div class="toclevel2"><a href="#topics_Features_AttributeReferences">Syntax: Attribute references</a></div>
 <div class="toclevel1"><a href="#topics_Reference">Command reference</a></div>
 <div class="toclevel3"><a href="#cmdhelp_root_status">status</a></div>
 <div class="toclevel2"><a href="#cmdhelp_cluster">cluster</a></div>
@@ -153,7 +158,10 @@
 <div class="toclevel3"><a href="#cmdhelp_configure_fencing_topology">fencing</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_role">role</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_user">user</a></div>
+<div class="toclevel3"><a href="#cmdhelp_configure_acl_target">acl</a></div>
+<div class="toclevel3"><a href="#cmdhelp_configure_acl_group">acl</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_op_defaults">op</a></div>
+<div class="toclevel3"><a href="#cmdhelp_configure_tag">tag</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_schema">schema</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_show">show</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_edit">edit</a></div>
@@ -197,6 +205,7 @@
 <div class="toclevel3"><a href="#cmdhelp_cibstatus_simulate">simulate</a></div>
 <div class="toclevel2"><a href="#cmdhelp_assist">assist</a></div>
 <div class="toclevel3"><a href="#cmdhelp_assist_weak-bond">weak-bond</a></div>
+<div class="toclevel3"><a href="#cmdhelp_assist_template">template</a></div>
 <div class="toclevel2"><a href="#cmdhelp_history">history</a></div>
 <div class="toclevel3"><a href="#cmdhelp_history_info">info</a></div>
 <div class="toclevel3"><a href="#cmdhelp_history_latest">latest</a></div>
@@ -383,15 +392,38 @@ is commonly used when displaying configurations.</p></div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="topics_Introduction">Introduction to the user interface</h2>
+<h2 id="topics_Introduction">Introduction</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>Arguably the most important aspect of <span class="monospaced">crm</span> is the user
-interface. We begin with an informal introduction so that the
-reader may get acquainted with it and get a general feeling of
-the tool. It is probably best just to give some examples:</p></div>
-<div class="paragraph"><p>The main purpose of <span class="monospaced">crm</span> is to provide a simple yet powerful
-interface to the cluster stack. To get started and to give new users a
-feel for how to use it, lets just jump straight into some examples:</p></div>
+<div class="paragraph"><p>This section of the user guide covers general topics about the user
+interface and describes some of the features of <span class="monospaced">crmsh</span> in detail.</p></div>
+<div class="sect2">
+<h3 id="topics_Introduction_Interface">User interface</h3>
+<div class="paragraph"><p>The main purpose of <span class="monospaced">crmsh</span> is to provide a simple yet powerful
+interface to the cluster stack. There are two main modes of operation
+with the user interface of <span class="monospaced">crmsh</span>:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Command line (single-shot) use - Use <span class="monospaced">crm</span> as a regular UNIX command
+  from your usual shell. <span class="monospaced">crm</span> has full bash completion built in, so
+  using it in this manner should be as comfortable and familiar as
+  using any other command-line tool.
+</p>
+</li>
+<li>
+<p>
+Interactive mode - By calling <span class="monospaced">crm</span> without arguments, or by calling
+  it with only a sublevel as argument, <span class="monospaced">crm</span> enters the interactive
+  mode. In this mode, it acts as its own command shell, which
+  remembers which sublevel you are currently in and allows for rapid
+  and convenient execution of multiple commands within the same
+  sublevel. This mode also has full tab completion, as well as
+  built-in interactive help and syntax highlighting.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Here are a few examples of using <span class="monospaced">crm</span> both as a command-line tool and
+as an interactive shell:</p></div>
 <div class="literalblock">
 <div class="title">Command line (one-shot) use:</div>
 <div class="content monospaced">
@@ -449,10 +481,6 @@ crm(live)# node standby node4</pre>
   commit
 EOF</pre>
 </div></div>
-<div class="paragraph"><p>If you have ever done a CRM style configuration before, the examples
-above should be immediately understandable without too much
-difficulty. The <span class="monospaced">crm</span> provides a means to efficiently manage a
-cluster, and to put a configuration together in a simple and concise manner.</p></div>
 <div class="paragraph"><p>The <span class="monospaced">crm</span> interface is hierarchical, with commands organized into
 separate levels by functionality. To list the available levels and
 commands, either execute <span class="monospaced">help &lt;level&gt;</span>, or, if at the top level of
@@ -460,14 +488,60 @@ the shell, simply typing <span class="monospaced">help</span> will provide an ov
 available levels and commands.</p></div>
 <div class="paragraph"><p>The <span class="monospaced">(live)</span> string in the <span class="monospaced">crm</span> prompt signifies that the current CIB
 in use is the cluster live configuration. It is also possible to
-work with so-called shadow CIBs. These are separate, inactive
+work with so-called <a href="#topics_Features_Shadows">shadow CIBs</a>. These are separate, inactive
 configurations stored in files, that can be applied and thereby
 replace the live configuration at any time.</p></div>
 </div>
+<div class="sect2">
+<h3 id="topics_Introcution_Completion">Tab completion</h3>
+<div class="paragraph"><p>The <span class="monospaced">crm</span> makes extensive use of tab completion. The completion
+is both static (i.e. for <span class="monospaced">crm</span> commands) and dynamic. The latter
+takes into account the current status of the cluster or
+information from installed resource agents. Sometimes, completion
+may also be used to get short help on resource parameters. Here
+are a few examples:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm(live)resource# &lt;TAB&gt;&lt;TAB&gt;
+bye           failcount     move          restart       unmigrate
+cd            help          param         show          unmove
+cleanup       list          promote       start         up
+demote        manage        quit          status        utilization
+end           meta          refresh       stop
+exit          migrate       reprobe       unmanage
+
+crm(live)configure# primitive fence-1 &lt;TAB&gt;&lt;TAB&gt;
+heartbeat:  lsb:    ocf:    stonith:
+
+crm(live)configure# primitive fence-1 stonith:&lt;TAB&gt;&lt;TAB&gt;
+apcmaster                external/ippower9258     fence_legacy
+apcmastersnmp            external/kdumpcheck      ibmhmc
+apcsmart                 external/libvirt         ipmilan
+
+crm(live)configure# primitive fence-1 stonith:ipmilan params &lt;TAB&gt;&lt;TAB&gt;
+auth=      hostname=  ipaddr=    login=     password=  port=      priv=
+
+crm(live)configure# primitive fence-1 stonith:ipmilan params auth=&lt;TAB&gt;&lt;TAB&gt;
+auth* (string)
+    The authorization type of the IPMI session ("none", "straight", "md2", or "md5")</pre>
+</div></div>
+<div class="paragraph"><p><span class="monospaced">crmsh</span> also comes with bash completion usable directly from the
+system shell. This should be installed automatically with the command
+itself.</p></div>
+</div>
+</div>
 </div>
 <div class="sect1">
-<h2 id="topics_Shadows">Shadow CIB usage</h2>
+<h2 id="topics_Features">Features</h2>
 <div class="sectionbody">
+<div class="paragraph"><p>The feature set of crmsh covers a wide range of functionality, and
+understanding how and when to use the various features of the shell
+can be difficult. This section of the guide describes some of the
+features and use cases of <span class="monospaced">crmsh</span> in more depth. The intention is to
+provide a deeper understanding of these features, but also to serve as
+a guide to using them.</p></div>
+<div class="sect2">
+<h3 id="topics_Features_Shadows">Shadow CIB usage</h3>
 <div class="paragraph"><p>A Shadow CIB is a normal cluster configuration stored in a file.
 They may be manipulated in much the same way as the <em>live</em> CIB, with
 the key difference that changes to a shadow CIB have no effect on the
@@ -490,10 +564,47 @@ INFO: test-2 shadow CIB created
 crm(test-2)configure# commit</pre>
 </div></div>
 </div>
+<div class="sect2">
+<h3 id="topics_Features_Checks">Configuration semantic checks</h3>
+<div class="paragraph"><p>Resource definitions may be checked against the meta-data
+provided with the resource agents. These checks are currently
+carried out:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+are required parameters set
+</p>
+</li>
+<li>
+<p>
+existence of defined parameters
+</p>
+</li>
+<li>
+<p>
+timeout values for operations
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>The parameter checks are obvious and need no further explanation.
+Failures in these checks are treated as configuration errors.</p></div>
+<div class="paragraph"><p>The timeouts for operations should be at least as long as those
+recommended in the meta-data. Too short timeout values are a
+common mistake in cluster configurations and, even worse, they
+often slip through if cluster testing was not thorough. Though
+operation timeouts issues are treated as warnings, make sure that
+the timeouts are usable in your environment. Note also that the
+values given are just <em>advisory minimum</em>---your resources may
+require longer timeouts.</p></div>
+<div class="paragraph"><p>User may tune the frequency of checks and the treatment of errors
+by the <a href="#cmdhelp_options_check-frequency"><span class="monospaced">check-frequency</span></a> and
+<a href="#cmdhelp_options_check-mode"><span class="monospaced">check-mode</span></a> preferences.</p></div>
+<div class="paragraph"><p>Note that if the <span class="monospaced">check-frequency</span> is set to <span class="monospaced">always</span> and the
+<span class="monospaced">check-mode</span> to <span class="monospaced">strict</span>, errors are not tolerated and such
+configuration cannot be saved.</p></div>
 </div>
-<div class="sect1">
-<h2 id="topics_Templates">Configuration templates</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="topics_Features_Templates">Configuration templates</h3>
 <div class="paragraph"><p>Configuration templates are ready made configurations created by
 cluster experts. They are designed in such a way so that users
 may generate valid cluster configurations with minimum effort.
@@ -660,10 +771,8 @@ following steps:</p></div>
 </li>
 </ul></div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="topics_Testing">Resource testing</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="topics_Features_Testing">Resource testing</h3>
 <div class="paragraph"><p>The amount of detail in a cluster makes all configurations prone
 to errors. By far the largest number of issues in a cluster is
 due to bad resource configuration. The shell can help quickly
@@ -724,97 +833,17 @@ doesn&#8217;t know if a resource can run on a node at all in case of an
 asymmetric cluster. It is up to the user to specify a list of
 eligible nodes if a resource is not meant to run on every node.</p></div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="topics_Completion">Tab completion</h2>
-<div class="sectionbody">
-<div class="paragraph"><p>The <span class="monospaced">crm</span> makes extensive use of tab completion. The completion
-is both static (i.e. for <span class="monospaced">crm</span> commands) and dynamic. The latter
-takes into account the current status of the cluster or
-information from installed resource agents. Sometimes, completion
-may also be used to get short help on resource parameters. Here a
-few examples:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>crm(live)# resource
-crm(live)resource# &lt;TAB&gt;&lt;TAB&gt;
-bye           failcount     move          restart       unmigrate
-cd            help          param         show          unmove
-cleanup       list          promote       start         up
-demote        manage        quit          status        utilization
-end           meta          refresh       stop
-exit          migrate       reprobe       unmanage
-crm(live)resource# end
-crm(live)# configure
-crm(live)configure# primitive fence-1 &lt;TAB&gt;&lt;TAB&gt;
-heartbeat:  lsb:    ocf:    stonith:
-crm(live)configure# primitive fence-1 stonith:&lt;TAB&gt;&lt;TAB&gt;
-apcmaster                external/ippower9258     fence_legacy
-apcmastersnmp            external/kdumpcheck      ibmhmc
-apcsmart                 external/libvirt         ipmilan
-baytech                  external/nut             meatware
-bladehpi                 external/rackpdu         null
-cyclades                 external/riloe           nw_rpc100s
-drac3                    external/sbd             rcd_serial
-external/drac5           external/ssh             rps10
-external/dracmc-telnet   external/ssh-bad         ssh
-external/hmchttp         external/ssh-slow        suicide
-external/ibmrsa          external/vmware          wti_mpc
-external/ibmrsa-telnet   external/xen0            wti_nps
-external/ipmi            external/xen0-ha
-crm(live)configure# primitive fence-1 stonith:ipmilan params &lt;TAB&gt;&lt;TAB&gt;
-auth=      hostname=  ipaddr=    login=     password=  port=      priv=
-crm(live)configure# primitive fence-1 stonith:ipmilan params auth=&lt;TAB&gt;&lt;TAB&gt;
-auth* (string)
-    The authorization type of the IPMI session ("none", "straight", "md2", or "md5")
-crm(live)configure# primitive fence-1 stonith:ipmilan params auth=</pre>
+<div class="sect2">
+<h3 id="topics_Features_Security">Access Control Lists (ACL)</h3>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Note on ACLs in Pacemaker 1.1.12</div>
+<div class="paragraph"><p>The support for ACLs has been revised in Pacemaker version 1.1.12 and
+up. Depending on which version you are using, the information in this
+section may no longer be accurate. Look for the <span class="monospaced">acl_target</span> and
+<span class="monospaced">acl_group</span> configuration elements for more details on the new
+syntax.</p></div>
 </div></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="topics_Checks">Configuration semantic checks</h2>
-<div class="sectionbody">
-<div class="paragraph"><p>Resource definitions may be checked against the meta-data
-provided with the resource agents. These checks are currently
-carried out:</p></div>
-<div class="ulist"><ul>
-<li>
-<p>
-are required parameters set
-</p>
-</li>
-<li>
-<p>
-existence of defined parameters
-</p>
-</li>
-<li>
-<p>
-timeout values for operations
-</p>
-</li>
-</ul></div>
-<div class="paragraph"><p>The parameter checks are obvious and need no further explanation.
-Failures in these checks are treated as configuration errors.</p></div>
-<div class="paragraph"><p>The timeouts for operations should be at least as long as those
-recommended in the meta-data. Too short timeout values are a
-common mistake in cluster configurations and, even worse, they
-often slip through if cluster testing was not thorough. Though
-operation timeouts issues are treated as warnings, make sure that
-the timeouts are usable in your environment. Note also that the
-values given are just <em>advisory minimum</em>---your resources may
-require longer timeouts.</p></div>
-<div class="paragraph"><p>User may tune the frequency of checks and the treatment of errors
-by the <a href="#cmdhelp_options_check-frequency"><span class="monospaced">check-frequency</span></a> and
-<a href="#cmdhelp_options_check-mode"><span class="monospaced">check-mode</span></a> preferences.</p></div>
-<div class="paragraph"><p>Note that if the <span class="monospaced">check-frequency</span> is set to <span class="monospaced">always</span> and the
-<span class="monospaced">check-mode</span> to <span class="monospaced">strict</span>, errors are not tolerated and such
-configuration cannot be saved.</p></div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="topics_Security">Access Control Lists (ACL)</h2>
-<div class="sectionbody">
 <div class="paragraph"><p>By default, the users from the <span class="monospaced">haclient</span> group have full access
 to the cluster (or, more precisely, to the CIB). Access control
 lists allow for finer access control to the cluster.</p></div>
@@ -860,9 +889,12 @@ following role:</p></div>
 readable.</p></div>
 <div class="paragraph"><p>Some of the ACL rules in the examples above are expanded by the
 shell to XPath specifications. For instance,
-<span class="monospaced">meta:bigdb:target-role</span> is a shortcut for
-<span class="monospaced">//primitive[@id='bigdb']/meta_attributes/nvpair[@name='target-role']</span>.
-You can see the expansion by showing XML:</p></div>
+<span class="monospaced">meta:bigdb:target-role</span> expands to:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>//primitive[@id='bigdb']/meta_attributes/nvpair[@name='target-role']</pre>
+</div></div>
+<div class="paragraph"><p>You can see the expansion by showing XML:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>crm(live) configure# show xml bigdb_admin
@@ -883,6 +915,130 @@ going to be recognized as shortcut:</p></div>
 <div class="paragraph"><p>XPath is a powerful language, but you should try to keep your ACL
 xpaths simple and the builtin shortcuts should be used whenever
 possible.</p></div>
+</div>
+<div class="sect2">
+<h3 id="topics_Features_Resourcesets">Syntax: Resource sets</h3>
+<div class="paragraph"><p>Using resource sets can be a bit confusing unless one knows the
+details of the implementation in Pacemaker as well as how to interpret
+the syntax provided by <span class="monospaced">crmsh</span>.</p></div>
+<div class="paragraph"><p>Three different types of resource sets are provided by <span class="monospaced">crmsh</span>, and
+each one implies different values for the two resource set attributes,
+<span class="monospaced">sequential</span> and <span class="monospaced">require-all</span>.</p></div>
+<div class="dlist"><dl>
+<dt class="hdlist1">
+<span class="monospaced">sequential</span>
+</dt>
+<dd>
+<p>
+  If true, the resources in the set do not depend on each other
+  internally. Setting <span class="monospaced">sequential</span> to <span class="monospaced">true</span> implies a strict order of
+  dependency within the set.
+</p>
+</dd>
+<dt class="hdlist1">
+<span class="monospaced">require-all</span>
+</dt>
+<dd>
+<p>
+  If false, only one resource in the set is required to fulfil the
+  requirements of the set. The set of A, B and C with <span class="monospaced">require-all</span>
+  set to <span class="monospaced">false</span> is be read as "A OR B OR C" when its dependencies
+  are resolved.
+</p>
+</dd>
+</dl></div>
+<div class="paragraph"><p>The three types of resource sets modify the attributes in the
+following way:</p></div>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+Implicit sets (no brackets). <span class="monospaced">sequential=true</span>, <span class="monospaced">require-all=true</span>
+</p>
+</li>
+<li>
+<p>
+Parenthesis set (<span class="monospaced">(</span> &#8230; <span class="monospaced">)</span>). <span class="monospaced">sequential=false</span>, <span class="monospaced">require-all=true</span>
+</p>
+</li>
+<li>
+<p>
+Bracket set (<span class="monospaced">[</span> &#8230; <span class="monospaced">]</span>). <span class="monospaced">sequential=false</span>, <span class="monospaced">require-all=false</span>
+</p>
+</li>
+</ol></div>
+<div class="paragraph"><p>To create a set with the properties <span class="monospaced">sequential=true</span> and
+<span class="monospaced">require-all=false</span>, explicitly set <span class="monospaced">sequential</span> in a bracketed set,
+<span class="monospaced">[ A B C sequential=true ]</span>.</p></div>
+<div class="paragraph"><p>To create multiple sets with both <span class="monospaced">sequential</span> and <span class="monospaced">require-all</span> set to
+true, explicitly set <span class="monospaced">sequential</span> in a parenthesis set:
+<span class="monospaced">A B ( C D sequential=true )</span>.</p></div>
+</div>
+<div class="sect2">
+<h3 id="topics_Features_AttributeListReferences">Syntax: Attribute list references</h3>
+<div class="paragraph"><p>Attribute lists are used to set attributes and parameters for
+resources, constraints and property definitions. For example, to set
+the virtual IP used by an <span class="monospaced">IPAddr</span> resource the attribute <span class="monospaced">ip</span> can be
+set in an attribute list for that resource.</p></div>
+<div class="paragraph"><p>Attribute lists can have identifiers that name them, and other
+resources can reuse the same attribute list by referring to that name
+using an <span class="monospaced">$id-ref</span>. For example, the following statement defines a
+simple dummy resource with an attribute list which sets the parameter
+<span class="monospaced">state</span> to the value 1 and sets the identifier for the attribute list
+to <span class="monospaced">on-state</span>:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>primitive dummy-1 Dummy params $id=on-state state=1</pre>
+</div></div>
+<div class="paragraph"><p>To refer to this attribute list from a different resource, refer to
+the <span class="monospaced">on-state</span> name using an id-ref:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>primitive dummy-2 Dummy params $id-ref=on-state</pre>
+</div></div>
+<div class="paragraph"><p>The resource <span class="monospaced">dummy-2</span> will now also have the parameter <span class="monospaced">state</span> set to the value 1.</p></div>
+</div>
+<div class="sect2">
+<h3 id="topics_Features_AttributeReferences">Syntax: Attribute references</h3>
+<div class="paragraph"><p>In some cases, referencing complete attribute lists is too
+coarse-grained, for example if two different parameters with different
+names should have the same value set. Instead of having to copy the
+value in multiple places, it is possible to create references to
+individual attributes in attribute lists.</p></div>
+<div class="paragraph"><p>To name an attribute in order to be able to refer to it later, prefix
+the attribute name with a <span class="monospaced">$</span> character (as seen above with the
+special names <span class="monospaced">$id</span> and <span class="monospaced">$id-ref</span>:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>primitive dummy-1 Dummy params $state=1</pre>
+</div></div>
+<div class="paragraph"><p>The identifier <span class="monospaced">state</span> can now be used to refer to this attribute from other
+primitives, using the <span class="monospaced">@&lt;id&gt;</span> syntax:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>primitive dummy-2 Dummy params @state</pre>
+</div></div>
+<div class="paragraph"><p>In some cases, using the attribute name as the identifier doesn&#8217;t work
+due to name clashes. In this case, the syntax <span class="monospaced">$&lt;id&gt;:&lt;name&gt;=&lt;value&gt;</span>
+can be used to give the attribute a different identifier:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>primitive dummy-1 params $dummy-state-on:state=1
+primitive dummy-2 params @dummy-state-on</pre>
+</div></div>
+<div class="paragraph"><p>There is also the possibility that two resources both use the same
+attribute value but with different names. For example, a web server
+may have a parameter <span class="monospaced">server_ip</span> for setting the IP address where it
+listens for incoming requests, and a virtual IP resource may have a
+parameter called <span class="monospaced">ip</span> which sets the IP address it creates. To
+configure these two resources with an IP without repeating the value,
+the reference can be given a name using the syntax <span class="monospaced">@&lt;id&gt;:&lt;name&gt;</span>.</p></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>primitive virtual-ip IPaddr2 params $vip:ip=192.168.1.100
+primitive webserver apache params @vip:server_ip</pre>
+</div></div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -929,7 +1085,7 @@ of the cluster messaging layer, file system setup and more.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cluster_stop"><span class="monospaced">start</span></h4>
+<h4 id="cmdhelp_cluster_stop"><span class="monospaced">stop</span></h4>
 <div class="paragraph"><p>Stops the cluster-related system services on this node.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -1021,7 +1177,7 @@ statement on all nodes in the cluster, and reports the result.</p></div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="cmdhelp_script"><span class="monospaced">cluster</span></h3>
+<h3 id="cmdhelp_script"><span class="monospaced">script</span></h3>
 <div class="paragraph"><p>Cluster scripts can perform cluster-wide configuration,
 validation and management. See the <span class="monospaced">list</span> command for
 an overview of available scripts.</p></div>
@@ -1704,29 +1860,35 @@ If there are many nodes, the command may take a while.</p></div>
 stored in <span class="monospaced">$HA_VARLIB/trace_ra</span>. If the operation to be traced is
 monitor, note that the number of trace files can grow very
 quickly.</p></div>
+<div class="paragraph"><p>If no operation name is given, crmsh will attempt to trace all
+operations for the RA. This includes any configured operations, start
+and stop as well as promote/demote for multistate resources.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>trace &lt;rsc&gt; &lt;op&gt; [&lt;interval&gt;]</pre>
+<pre>trace &lt;rsc&gt; [&lt;op&gt; [&lt;interval&gt;] ]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>trace fs start</pre>
+<pre>trace fs start
+trace webserver</pre>
 </div></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_resource_untrace"><span class="monospaced">untrace</span></h4>
-<div class="paragraph"><p>Stop tracing RA for the given operation.</p></div>
+<div class="paragraph"><p>Stop tracing RA for the given operation. If no operation name is
+given, crmsh will attempt to stop tracing all operations in resource.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>untrace &lt;rsc&gt; &lt;op&gt; [&lt;interval&gt;]</pre>
+<pre>untrace &lt;rsc&gt; [&lt;op&gt; [&lt;interval&gt;] ]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>untrace fs start</pre>
+<pre>untrace fs start
+untrace webserver</pre>
 </div></div>
 </div>
 </div>
@@ -1955,7 +2117,7 @@ level :: operator | administrator | expert</pre>
 <div class="title">Note on security</div>
 <div class="paragraph"><p>The <span class="monospaced">skill-level</span> option is advisory only. There is nothing
 stopping any users change their skill level (see
-<a href="#topics_Security">Access Control Lists (ACL)</a> on how to enforce
+<a href="#topics_Features_Security">Access Control Lists (ACL)</a> on how to enforce
 access control).</p></div>
 </div></div>
 </div>
@@ -2106,7 +2268,7 @@ Experts may want to change the setting to <span class="monospaced">on-verify</sp
 <div class="paragraph"><p>The checks require that resource agents are present. If they are
 not installed at the configuration time set this preference to
 <span class="monospaced">never</span>.</p></div>
-<div class="paragraph"><p>See <a href="#topics_Checks">Configuration semantic checks</a> for more details.</p></div>
+<div class="paragraph"><p>See <a href="#topics_Features_Checks">Configuration semantic checks</a> for more details.</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_options_check-mode"><span class="monospaced">check-mode</span></h4>
@@ -2114,7 +2276,7 @@ not installed at the configuration time set this preference to
 done in the <span class="monospaced">strict</span> mode or in the <span class="monospaced">relaxed</span> mode. In the former
 certain problems are treated as configuration errors. In the
 <span class="monospaced">relaxed</span> mode all are treated as warnings. The default is <span class="monospaced">strict</span>.</p></div>
-<div class="paragraph"><p>See <a href="#topics_Checks">Configuration semantic checks</a> for more details.</p></div>
+<div class="paragraph"><p>See <a href="#topics_Features_Checks">Configuration semantic checks</a> for more details.</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_options_add-quotes"><span class="monospaced">add-quotes</span></h4>
@@ -2343,68 +2505,25 @@ manage ACL:</p></div>
 </p>
 </li>
 </ul></div>
+<div class="paragraph"><p>In Pacemaker 1.1.12 and up, these commands replace the <span class="monospaced">user</span> command
+for handling ACLs:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<span class="monospaced">acl_target</span>
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">acl_group</span>
+</p>
+</li>
+</ul></div>
 <div class="paragraph"><p>The changes are applied to the current CIB only on ending the
 configuration session or using the <span class="monospaced">commit</span> command.</p></div>
 <div class="paragraph"><p>Comments start with <span class="monospaced">#</span> in the first line. The comments are tied
 to the element which follows. If the element moves, its comments
 will follow.</p></div>
-<div class="sect3">
-<h4 id="_resource_sets">Resource sets</h4>
-<div class="paragraph"><p>Using resource sets can be a bit confusing unless one knows the
-details of the implementation in Pacemaker as well as how to interpret
-the syntax provided by <span class="monospaced">crmsh</span>.</p></div>
-<div class="paragraph"><p>Three different types of resource sets are provided by <span class="monospaced">crmsh</span>, and
-each one implies different values for the two resource set attributes,
-<span class="monospaced">sequential</span> and <span class="monospaced">require-all</span>.</p></div>
-<div class="dlist"><dl>
-<dt class="hdlist1">
-<span class="monospaced">sequential</span>
-</dt>
-<dd>
-<p>
-  If true, the resources in the set do not depend on each other
-  internally. Setting <span class="monospaced">sequential</span> to true implies a strict order of
-  dependency within the set.
-</p>
-</dd>
-<dt class="hdlist1">
-<span class="monospaced">require-all</span>
-</dt>
-<dd>
-<p>
-  If false, only one resource in the set is required to fulfil the
-  requirements of the set. The set of <span class="monospaced">A, B and C</span> with <span class="monospaced">require-all</span>
-  set to <span class="monospaced">false</span> is be read as <span class="monospaced">A OR B OR C</span> when its dependencies
-  are resolved.
-</p>
-</dd>
-</dl></div>
-<div class="paragraph"><p>The three types of resource sets modify the attributes in the
-following way:</p></div>
-<div class="olist arabic"><ol class="arabic">
-<li>
-<p>
-Implicit sets (no brackets). <span class="monospaced">sequential=true</span>, <span class="monospaced">require-all=true</span>
-</p>
-</li>
-<li>
-<p>
-Parenthesis set (<span class="monospaced">( ... )</span>). <span class="monospaced">sequential=false</span>, <span class="monospaced">require-all=true</span>
-</p>
-</li>
-<li>
-<p>
-Bracket set (<span class="monospaced">[ ... ]</span>). <span class="monospaced">sequential=false</span>, <span class="monospaced">require-all=false</span>
-</p>
-</li>
-</ol></div>
-<div class="paragraph"><p>To create a set with the properties <span class="monospaced">sequential=true</span> and
-<span class="monospaced">require-all=false</span>, explicitly set <span class="monospaced">sequential</span> in a bracketed set,
-<span class="monospaced">[ A B C sequential=true ]</span>.</p></div>
-<div class="paragraph"><p>To create multiple sets with both <span class="monospaced">sequential</span> and <span class="monospaced">require-all</span> set to
-true, explicitly set <span class="monospaced">sequential</span> in a parenthesis set:
-<span class="monospaced">A B ( C D sequential=true )</span>.</p></div>
-</div>
 <div class="sect3">
 <h4 id="cmdhelp_configure_node"><span class="monospaced">node</span></h4>
 <div class="paragraph"><p>The node command describes a cluster node. Nodes in the CIB are
@@ -2417,10 +2536,12 @@ attributes at the <span class="monospaced">node</span> level.</p></div>
 <div class="content monospaced">
 <pre>node [$id=&lt;id&gt;] &lt;uname&gt;[:&lt;type&gt;]
   [description=&lt;description&gt;]
-  [attributes &lt;param&gt;=&lt;value&gt; [&lt;param&gt;=&lt;value&gt;...]]
-  [utilization &lt;param&gt;=&lt;value&gt; [&lt;param&gt;=&lt;value&gt;...]]
+  [attributes [$id=&lt;id&gt;] [&lt;score&gt;:] [rule...]
+    &lt;param&gt;=&lt;value&gt; [&lt;param&gt;=&lt;value&gt;...]] | $id-ref=&lt;ref&gt;
+  [utilization [$id=&lt;id&gt;] [&lt;score&gt;:] [rule...]
+    &lt;param&gt;=&lt;value&gt; [&lt;param&gt;=&lt;value&gt;...]] | $id-ref=&lt;ref&gt;
 
-type :: normal | member | ping</pre>
+type :: normal | member | ping | remote</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
@@ -2434,20 +2555,63 @@ node big_node attributes memory=64</pre>
 <div class="paragraph"><p>The primitive command describes a resource. It may be referenced
 only once in group, clone, or master-slave objects. If it&#8217;s not
 referenced, then it is placed as a single resource in the CIB.</p></div>
-<div class="paragraph"><p>Operations may be specified in three ways. "Anonymous" as a
-simple list of "op" specifications. Use that if you don&#8217;t want to
-reference the set of operations elsewhere. That&#8217;s by far the most
-common way to define operations. If reusing operation sets is
-desired, use the "operations" keyword along with the id to give
-the operations set a name and the id-ref to reference another set
-of operations.</p></div>
-<div class="paragraph"><p>Operation&#8217;s attributes which are not recognized are saved as
+<div class="paragraph"><p>Operations may be specified anonymously, as a group or by reference:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+"Anonymous", as a list of <span class="monospaced">op</span> specifications. Use this
+  method if you don&#8217;t need to reference the set of operations
+  elsewhere. This is the most common way to define operations.
+</p>
+</li>
+<li>
+<p>
+If reusing operation sets is desired, use the <span class="monospaced">operations</span> keyword
+  along with an id to give the operations set a name. Use the
+  <span class="monospaced">operations</span> keyword and an id-ref value set to the id of another
+  operations set, to apply the same set of operations to this
+  primitive.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Operation attributes which are not recognized are saved as
 instance attributes of that operation. A typical example is
 <span class="monospaced">OCF_CHECK_LEVEL</span>.</p></div>
 <div class="paragraph"><p>For multistate resources, roles are specified as <span class="monospaced">role=&lt;role&gt;</span>.</p></div>
 <div class="paragraph"><p>A template may be defined for resources which are of the same
 type and which share most of the configuration. See
 <a href="#cmdhelp_configure_rsc_template"><span class="monospaced">rsc_template</span></a> for more information.</p></div>
+<div class="paragraph"><p>Attributes containing time values, such as the <span class="monospaced">interval</span> attribute on
+operations, are configured either as a plain number, which is
+interpreted as a time in seconds, or using one of the following
+suffixes:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<span class="monospaced">s</span>, <span class="monospaced">sec</span> - time in seconds (same as no suffix)
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">ms</span>, <span class="monospaced">msec</span> - time in milliseconds
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">us</span>, <span class="monospaced">usec</span> - time in microseconds
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">m</span>, <span class="monospaced">min</span> - time in minutes
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">h</span>, <span class="monospaced">hr</span> - time in hours
+</p>
+</li>
+</ul></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -2459,7 +2623,8 @@ type and which share most of the configuration. See
   [operations id_spec]
     [op op_type [&lt;attribute&gt;=&lt;value&gt;...] ...]
 
-attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...] | $id-ref=&lt;id&gt;
+attr_list :: [$id=&lt;id&gt;] [&lt;score&gt;:] [rule...]
+             &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...]] | $id-ref=&lt;id&gt;
 id_spec :: $id=&lt;id&gt; | $id-ref=&lt;id&gt;
 op_type :: start | stop | monitor</pre>
 </div></div>
@@ -2486,7 +2651,12 @@ primitive r0 ocf:linbit:drbd \
   op monitor role=Slave interval=300s
 
 primitive xen0 @vm_scheme1 \
-  params xmfile=/etc/xen/vm/xen0</pre>
+  params xmfile=/etc/xen/vm/xen0
+
+primitive mySpecialRsc Special \
+  params 3: rule #uname eq node1 interface=eth1 \
+  params 2: rule #uname eq node2 interface=eth2 port=8888 \
+  params 1: interface=eth0 port=9999</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2645,12 +2815,43 @@ primitive xen1 @public_vm \
 <div class="paragraph"><p><span class="monospaced">location</span> defines the preference of nodes for the given
 resource. The location constraints consist of one or more rules
 which specify a score to be awarded if the rule matches.</p></div>
+<div class="paragraph"><p>The resource referenced by the location constraint can be one of the
+following:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Plain resource reference: <span class="monospaced">location loc1 webserver 100: node1</span>
+</p>
+</li>
+<li>
+<p>
+Resource set in curly brackets: <span class="monospaced">location loc1 { virtual-ip webserver } 100: node1</span>
+</p>
+</li>
+<li>
+<p>
+Tag containing resource ids: <span class="monospaced">location loc1 tag1 100: node1</span>
+</p>
+</li>
+<li>
+<p>
+Resource pattern: <span class="monospaced">location loc1 /web.*/ 100: node1</span>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>The syntax for resource sets is described in detail for <a href="#cmdhelp_configure_colocation"><span class="monospaced">colocation</span></a>.</p></div>
+<div class="paragraph"><p>For more details on how to configure resource sets, see
+<a href="#topics_Features_Resourcesets"><span class="monospaced">Syntax: Resource sets</span></a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>location &lt;id&gt; &lt;rsc&gt; {node_pref|rules}
+<pre>location &lt;id&gt; rsc [role=&lt;role&gt;] {node_pref|rules}
 
-node_pref :: &lt;score&gt;: &lt;node&gt; [role=&lt;role&gt;]
+rsc :: /&lt;rsc-pattern&gt;/
+        | { resource_sets }
+        | &lt;rsc&gt;
+
+node_pref :: &lt;score&gt;: &lt;node&gt;
 
 rules ::
   rule [id_spec] [$role=&lt;role&gt;] &lt;score&gt;: &lt;expression&gt;
@@ -2669,9 +2870,9 @@ unary_op :: defined | not_defined
 
 date_expr :: lt &lt;end&gt;
          | gt &lt;start&gt;
-         | in_range start=&lt;start&gt; end=&lt;end&gt;
-         | in_range start=&lt;start&gt; &lt;duration&gt;
-         | date_spec &lt;date_spec&gt;
+         | in start=&lt;start&gt; end=&lt;end&gt;
+         | in start=&lt;start&gt; &lt;duration&gt;
+         | spec &lt;date_spec&gt;
 duration|date_spec ::
          hours=&lt;value&gt;
          | monthdays=&lt;value&gt;
@@ -2713,16 +2914,25 @@ to allow for sets of resources which don&#8217;t depend on each other
 in terms of state. The shell syntax for such sets is to put
 resources in parentheses.</p></div>
 <div class="paragraph"><p>Sets cannot be nested.</p></div>
-<div class="paragraph"><p>The optional &#8216;node-attribute` references an attribute in nodes&#8217;
+<div class="paragraph"><p>The optional <span class="monospaced">node-attribute</span> references an attribute in nodes'
 instance attributes.</p></div>
+<div class="paragraph"><p>For more details on how to configure resource sets, see
+<a href="#topics_Features_Resourcesets"><span class="monospaced">Syntax: Resource sets</span></a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>colocation &lt;id&gt; &lt;score&gt;: &lt;rsc&gt;[:&lt;role&gt;] &lt;with-rsc&gt;[:&lt;role&gt;]
   [node-attribute=&lt;node_attr&gt;]
 
-colocation &lt;id&gt; &lt;score&gt;: &lt;rsc&gt;[:&lt;role&gt;] &lt;rsc&gt;[:&lt;role&gt;] ...
-  [node-attribute=&lt;node_attr&gt;]</pre>
+colocation &lt;id&gt; &lt;score&gt;: resource_sets
+  [node-attribute=&lt;node_attr&gt;]
+
+resource_sets :: resource_set [resource_set ...]
+
+resource_set :: ["("|"["] &lt;rsc&gt;[:&lt;role&gt;] [&lt;rsc&gt;[:&lt;role&gt;] ...] \
+                [attributes]  [")"|"]"]
+
+attributes :: [require-all=(true|false)] [sequential=(true|false)]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
@@ -2747,35 +2957,35 @@ resources in a set has done, enclose the set in brackets (<span class="monospace
 one of these settings instead of score. Previous versions mapped
 scores <span class="monospaced">0</span> and <span class="monospaced">inf</span> to keywords <span class="monospaced">advisory</span> and <span class="monospaced">mandatory</span>.
 That is still valid but deprecated.</p></div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">Note on resource sets' XML attributes</div>
-<div class="paragraph"><p>The XML attribute <span class="monospaced">require-all</span> controls whether all resources in
-a set are, well, required. The bracketed sets actually have this
-attribute as well as <span class="monospaced">sequential</span> set to <span class="monospaced">false</span>. If you need a
-different combination, for whatever reason, just set one of the
-attributes within the set. Something like this:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>crm(live)configure# order o1 Mandatory: [ A B sequential=true ] C</pre>
-</div></div>
-<div class="paragraph"><p>It is up to you to find out whether such a combination makes
-sense.</p></div>
-</div></div>
+<div class="paragraph"><p>For more details on how to configure resource sets, see
+<a href="#topics_Features_Resourcesets"><span class="monospaced">Syntax: Resource sets</span></a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>order &lt;id&gt; {kind|&lt;score&gt;}: &lt;rsc&gt;[:&lt;action&gt;] &lt;rsc&gt;[:&lt;action&gt;] ...
-  [symmetrical=&lt;bool&gt;]
+<pre>order &lt;id&gt; [{kind|&lt;score&gt;}:] first then [symmetrical=&lt;bool&gt;]
 
-kind :: Mandatory | Optional | Serialize</pre>
+order &lt;id&gt; [{kind|&lt;score&gt;}:] resource_sets [symmetrical=&lt;bool&gt;]
+
+kind :: Mandatory | Optional | Serialize
+
+first :: &lt;rsc&gt;[:&lt;action&gt;]
+
+then ::  &lt;rsc&gt;[:&lt;action&gt;]
+
+resource_sets :: resource_set [resource_set ...]
+
+resource_set :: ["["|"("] &lt;rsc&gt;[:&lt;action&gt;] [&lt;rsc&gt;[:&lt;action&gt;] ...] \
+                [attributes] ["]"|")"]
+
+attributes :: [require-all=(true|false)] [sequential=(true|false)]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>order c_apache_1 Mandatory: apache:start ip_1
-order o1 Serialize: A ( B C )
-order order_2 Mandatory: [ A B ] C</pre>
+<pre>order o-1 Mandatory: apache:start ip_1
+order o-2 Serialize: A ( B C )
+order o-3 inf: [ A B ] C
+order o-4 first-resource then-resource</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2811,12 +3021,13 @@ rsc_ticket ticket-B_storage ticket-B: drbd-a:Master drbd-b:Master</pre>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>property [$id=&lt;set_id&gt;] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
+<pre>property [$id=&lt;set_id&gt;] [rule ...] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>property stonith-enabled=true</pre>
+<pre>property stonith-enabled=true
+property rule date spec years=2014 stonith-enabled=false</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2825,7 +3036,7 @@ rsc_ticket ticket-B_storage ticket-B: drbd-a:Master drbd-b:Master</pre>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>rsc_defaults [$id=&lt;set_id&gt;] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
+<pre>rsc_defaults [$id=&lt;set_id&gt;] [rule ...] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
@@ -2874,7 +3085,7 @@ combination of tag and id references. If an attribute is
 appended, then the specification applies only to that attribute
 of the matching element.</p></div>
 <div class="paragraph"><p>There is a number of shortcuts for XPath specifications. The
-<span class="monospaced">meta,</span> <span class="monospaced">params</span>, and <span class="monospaced">utilization</span> shortcuts reference resource
+<span class="monospaced">meta</span>, <span class="monospaced">params</span>, and <span class="monospaced">utilization</span> shortcuts reference resource
 meta attributes, parameters, and utilization respectively. The
 <span class="monospaced">location</span> may be used to specify location constraints most of
 the time to allow resource <span class="monospaced">move</span> and <span class="monospaced">unmove</span> commands. The
@@ -2941,12 +3152,40 @@ rules :: rule [rule ...]</pre>
 </div></div>
 </div>
 <div class="sect3">
+<h4 id="cmdhelp_configure_acl_target"><span class="monospaced">acl_target</span></h4>
+<div class="paragraph"><p>Defines an ACL target.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>acl_target &lt;tid&gt; [&lt;role&gt; ...]</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>acl_target joe resource_admin constraint_editor</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_configure_acl_group"><span class="monospaced">acl_group</span></h4>
+<div class="paragraph"><p>Defines an ACL group.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>acl_group &lt;gid&gt; [&lt;role&gt; ...]</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>acl_group hacluster operator</pre>
+</div></div>
+</div>
+<div class="sect3">
 <h4 id="cmdhelp_configure_op_defaults"><span class="monospaced">op_defaults</span></h4>
 <div class="paragraph"><p>Set defaults for the operations meta attributes.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>op_defaults [$id=&lt;set_id&gt;] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
+<pre>op_defaults [$id=&lt;set_id&gt;] [rule ...] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
@@ -2955,10 +3194,54 @@ rules :: rule [rule ...]</pre>
 </div></div>
 </div>
 <div class="sect3">
+<h4 id="cmdhelp_configure_tag"><span class="monospaced">tag</span></h4>
+<div class="paragraph"><p>Define a resource tag. A tag is an id referring to one or more
+resources, without implying any constraints between the tagged
+resources. This can be useful for grouping conceptually related
+resources.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>tag &lt;tag-name&gt;: &lt;rsc&gt; [&lt;rsc&gt; ...]</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>tag web: p-webserver p-vip</pre>
+</div></div>
+</div>
+<div class="sect3">
 <h4 id="cmdhelp_configure_schema"><span class="monospaced">schema</span></h4>
 <div class="paragraph"><p>CIB&#8217;s content is validated by a RNG schema. Pacemaker supports
-several, depending on version. Currently supported schemas are
-<span class="monospaced">pacemaker-1.0</span>, <span class="monospaced">pacemaker-1.1</span>, and <span class="monospaced">pacemaker-1.2</span>.</p></div>
+several, depending on version. At least the following schemas are
+accepted by <span class="monospaced">crmsh</span>:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<span class="monospaced">pacemaker-1.0</span>
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">pacemaker-1.1</span>
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">pacemaker-1.2</span>
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">pacemaker-1.3</span>
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">pacemaker-2.0</span>
+</p>
+</li>
+</ul></div>
 <div class="paragraph"><p>Use this command to display or switch to another RNG schema.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -3060,10 +3343,12 @@ above.</p></div>
 a container object, such as a group, and it is the only resource
 in that container, then the container is deleted as well. Any
 related constraints are removed as well.</p></div>
+<div class="paragraph"><p>If the object is a started resource, it will not be deleted unless the
+<span class="monospaced">--force</span> flag is passed to the command, or the <span class="monospaced">force</span> option is set.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>delete &lt;id&gt; [&lt;id&gt;...]</pre>
+<pre>delete [--force] &lt;id&gt; [&lt;id&gt;...]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3244,8 +3529,9 @@ elsewhere, commands in a configure session don&#8217;t have immediate
 effect on the CIB. All changes are applied at one point in time,
 either using <span class="monospaced">commit</span> or when the user leaves the configure
 level. In case the CIB in use changed in the meantime, presumably
-by somebody else, the crm shell will refuse to apply the changes.
-If you know that it&#8217;s fine to still apply them add <span class="monospaced">force</span>.</p></div>
+by somebody else, the crm shell will refuse to apply the changes.</p></div>
+<div class="paragraph"><p>If you know that it&#8217;s fine to still apply them, add <span class="monospaced">force</span> to the
+command line.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -3336,7 +3622,7 @@ subcommand also prints the location of the ini file.</p></div>
 graph exportsettings
 
 gtype :: dot
-img_format :: `dot` output format (see the `-T` option)</pre>
+img_format :: `dot` output format (see the +-T+ option)</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
@@ -3718,6 +4004,17 @@ for such a colocation.</p></div>
 <pre>weak-bond resource-1 resource-2</pre>
 </div></div>
 </div>
+<div class="sect3">
+<h4 id="cmdhelp_assist_template"><span class="monospaced">template</span></h4>
+<div class="paragraph"><p>This command takes a list of primitives as argument, and creates a new
+<span class="monospaced">rsc_template</span> for these primitives. It can only do this if the
+primitives do not already share a template and are of the same type.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>template primitive-1 primitive-2 primitive-3</pre>
+</div></div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="cmdhelp_history"><span class="monospaced">history</span></h3>
@@ -4087,7 +4384,7 @@ which was active at the time. See also <a href="#cmdhelp_configure_graph">genera
 <pre>graph &lt;pe&gt; [&lt;gtype&gt; [&lt;file&gt; [&lt;img_format&gt;]]]
 
 gtype :: dot
-img_format :: `dot` output format (see the `-T` option)</pre>
+img_format :: `dot` output format (see the +-T+ option)</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
