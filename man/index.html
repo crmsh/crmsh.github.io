@@ -207,6 +207,10 @@
 <div class="toclevel2"><a href="#cmdhelp_assist">assist</a></div>
 <div class="toclevel3"><a href="#cmdhelp_assist_template">template</a></div>
 <div class="toclevel3"><a href="#cmdhelp_assist_weak-bond">weak-bond</a></div>
+<div class="toclevel2"><a href="#cmdhelp_maintenance">maintenance</a></div>
+<div class="toclevel3"><a href="#cmdhelp_maintenance_on">on</a></div>
+<div class="toclevel3"><a href="#cmdhelp_maintenance_off">off</a></div>
+<div class="toclevel3"><a href="#cmdhelp_maintenance_action">action</a></div>
 <div class="toclevel2"><a href="#cmdhelp_history">history</a></div>
 <div class="toclevel3"><a href="#cmdhelp_history_detail">detail</a></div>
 <div class="toclevel3"><a href="#cmdhelp_history_diff">diff</a></div>
@@ -4070,6 +4074,72 @@ for such a colocation.</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>weak-bond resource-1 resource-2</pre>
+</div></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cmdhelp_maintenance"><span class="monospaced">maintenance</span> - Maintenance mode commands</h3>
+<div class="paragraph"><p>Maintenance mode commands are commands that manipulate resources
+directly without going through the cluster infrastructure. Therefore,
+it is essential to ensure that the cluster does not attempt to monitor
+or manipulate the resources while these commands are being executed.</p></div>
+<div class="paragraph"><p>To ensure this, these commands require that maintenance mode is set
+either for the particular resource, or for the whole cluster.</p></div>
+<div class="sect3">
+<h4 id="cmdhelp_maintenance_on"><span class="monospaced">on</span></h4>
+<div class="paragraph"><p>Enables maintenances mode, either for the whole cluster
+or for the given resource.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>on
+on &lt;rsc&gt;</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>on rsc1</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_maintenance_off"><span class="monospaced">off</span></h4>
+<div class="paragraph"><p>Disables maintenances mode, either for the whole cluster
+or for the given resource.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>off
+off &lt;rsc&gt;</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>off rsc1</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_maintenance_action"><span class="monospaced">action</span></h4>
+<div class="paragraph"><p>Invokes the given action for the resource. This is
+done directly via the resource agent, so the command must
+be issued while the cluster or the resource is in
+maintenance mode.</p></div>
+<div class="paragraph"><p>Unless the action is <span class="monospaced">start</span> or <span class="monospaced">monitor</span>, the action must be invoked
+on the same node as where the resource is running. If the resource is
+running on multiple nodes, the command will fail.</p></div>
+<div class="paragraph"><p>To use pssh for executing resource actions on multiple nodes, append
+<span class="monospaced">ssh</span> after the action name. This requires SSH access to be configured
+between the nodes and the pssh package to be installed.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>action &lt;rsc&gt; &lt;action&gt;
+action &lt;rsc&gt; &lt;action&gt; ssh</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>action webserver reload
+action webserver monitor ssh</pre>
 </div></div>
 </div>
 </div>
