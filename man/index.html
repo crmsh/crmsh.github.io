@@ -2707,9 +2707,12 @@ primitive.</p></div>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">Note on <span class="monospaced">default-timeouts</span></div>
-<div class="paragraph"><p>You may be happy using this, but your applications may not. And
-it will tell you so at the worst possible moment. You have been
-warned.</p></div>
+<div class="paragraph"><p>The use of this command is discouraged in favor of manually
+determining the best timeouts required for the particular
+configuration. Relying on the resource agent to supply appropriate
+timeouts can cause the resource to fail at the worst possible moment.</p></div>
+<div class="paragraph"><p>Appropriate timeouts for resource actions are context-sensitive, and
+should be carefully considered with the whole configuration in mind.</p></div>
 </div></div>
 </div>
 <div class="sect3">
