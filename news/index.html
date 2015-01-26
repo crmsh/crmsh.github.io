@@ -90,41 +90,6 @@ doc: Document probe op in resource trace (bnc#905050)
 </li>
 <li>
 <p>
-low: ui_resource: --reprobe and --refresh are deprecated (bnc#905092)
-</p>
-</li>
-<li>
-<p>
-doc: Document deprecation of refresh and reprobe (bnc#905092)
-</p>
-</li>
-<li>
-<p>
-medium: parse: Support resource-discovery in location constraints
-</p>
-</li>
-<li>
-<p>
-medium: pacemaker: Support pacemaker-next as schema
-</p>
-</li>
-<li>
-<p>
-medium: cibconfig: Allow unsupported schemas with warning
-</p>
-</li>
-<li>
-<p>
-medium: ra: Use correct path for crmd (#67)
-</p>
-</li>
-<li>
-<p>
-medium: cmd_status: Show pending if available, enable extra options
-</p>
-</li>
-<li>
-<p>
 high: config: Fix path to system-wide crm.conf (#67)
 </p>
 </li>
@@ -140,16 +105,6 @@ low: cliformat: Colorize id: as identifier (boo#905338)
 </li>
 <li>
 <p>
-medium: cibconfig: Revised CIB schema handling
-</p>
-</li>
-<li>
-<p>
-medium: ui_configure: Add replace option to commit
-</p>
-</li>
-<li>
-<p>
 medium: cibconfig: Don&#8217;t bump epoch if stripping version
 </p>
 </li>
@@ -160,32 +115,42 @@ medium: ui_context: Lazily import readline
 </li>
 <li>
 <p>
-medium: ui_configure: selectors in save command
-</p>
-</li>
-<li>
-<p>
 medium: config: Add core.ignore_missing_metadata (#68) (boo#905910)
 </p>
 </li>
 <li>
 <p>
-Medium: config: add alwayscolor to display output option
+medium: cibconfig: Strip digest from v1 diffs (bnc#914098)
 </p>
 </li>
 <li>
 <p>
-doc: Clarify documentation for property (boo#905637)
+medium: cibconfig: Detect v1 format and don&#8217;t patch container changes (bnc#914098)
 </p>
 </li>
 <li>
 <p>
-doc: Add documentation section describing rule expressions (boo#905637)
+high: xmlutil: Treat node type=member as normal (boo#904698)
 </p>
 </li>
 <li>
 <p>
-doc: Link to documentation on rule expressions
+medium: xmlutil: Use idmgmt when creating new elements (bnc#901543)
+</p>
+</li>
+<li>
+<p>
+low: ui_resource: --reprobe and --refresh are deprecated (bnc#905092)
+</p>
+</li>
+<li>
+<p>
+doc: Document deprecation of refresh and reprobe (bnc#905092)
+</p>
+</li>
+<li>
+<p>
+medium: parse: Support resource-discovery in location constraints
 </p>
 </li>
 <li>
@@ -200,22 +165,12 @@ medium: cibconfig: Delete containers first in edits (boo#905268)
 </li>
 <li>
 <p>
-doc: Improved documentation for show and save
-</p>
-</li>
-<li>
-<p>
-doc: Add note about modeline for vim syntax
-</p>
-</li>
-<li>
-<p>
 medium: ui_history: Fix crash using empty object set
 </p>
 </li>
 <li>
 <p>
-utils: append_file: open destination in append-mode (boo#907528)
+Low: term: get rid of annying ^O in piped-to-less-R output
 </p>
 </li>
 <li>
@@ -230,57 +185,67 @@ medium: parse: Enable name[=value] for nvpair (#71)
 </li>
 <li>
 <p>
-Low: term: get rid of annying ^O in piped-to-less-R output
-</p>
-</li>
-<li>
-<p>
-high: parse: Implicit initial parameter list
-</p>
-</li>
-<li>
-<p>
-high: crm_pssh: Switch to python-parallax over pssh (bnc#905116)
-</p>
-</li>
-<li>
-<p>
-low: report: Fix references to PSSH
-</p>
-</li>
-<li>
-<p>
-low: report: Delay Report creation until use
-</p>
-</li>
-<li>
-<p>
 medium: utils: Check if path basename is less (#74)
 </p>
 </li>
 <li>
 <p>
-medium: ui_options: Accept prefix or suffix of option as argument
+medium: utils: crm_daemon_dir is added to PATH in envsetup (#67)
 </p>
 </li>
 <li>
 <p>
-medium: Remove CIB version in case no --no-version.
+medium: cmd_status: Show pending if available, enable extra options
 </p>
 </li>
 <li>
 <p>
-low: cibconfig: Use LXML to remove version data more robustly (#75)
+high: utils: Locate binaries across sudo boundary (bnc#912483)
 </p>
 </li>
 <li>
 <p>
-low: crm_gv: Avoid crashing if passed None in my_edge
+Medium: history: match error/crit messages of pcmk 1.1.12
 </p>
 </li>
 <li>
 <p>
-low: cibconfig: Protect against dereferencing None when building graph
+low: ui_options: Add underscore aliases for legacy options
+</p>
+</li>
+<li>
+<p>
+medium: constants: Fix transition start detection
+</p>
+</li>
+<li>
+<p>
+medium: constants: Update transition regex (#77)
+</p>
+</li>
+<li>
+<p>
+medium: orderedset: Add OrderedSet type
+</p>
+</li>
+<li>
+<p>
+medium: cibconfig: Use orderedset to avoid reordering bugs (#79)
+</p>
+</li>
+<li>
+<p>
+low: xmlutil: logic bug in sanity_check_nvpairs
+</p>
+</li>
+<li>
+<p>
+medium: util: Don&#8217;t fall back to current time
+</p>
+</li>
+<li>
+<p>
+medium: report: Fall back to end_ts = start_ts
 </p>
 </li>
 </ul></div>
