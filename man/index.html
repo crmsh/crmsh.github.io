@@ -40,6 +40,7 @@
 <div class="toclevel2"><a href="#topics_Features_Resourcesets">Syntax: Resource sets</a></div>
 <div class="toclevel2"><a href="#topics_Features_AttributeListReferences">Syntax: Attribute list references</a></div>
 <div class="toclevel2"><a href="#topics_Features_AttributeReferences">Syntax: Attribute references</a></div>
+<div class="toclevel2"><a href="#topics_Syntax_RuleExpressions">Syntax: Rule expressions</a></div>
 <div class="toclevel1"><a href="#topics_Reference">Command reference</a></div>
 <div class="toclevel3"><a href="#cmdhelp_root_status">status</a></div>
 <div class="toclevel2"><a href="#cmdhelp_cluster">cluster</a></div>
@@ -315,8 +316,8 @@ is commonly used when displaying configurations.</p></div>
 </dt>
 <dd>
 <p>
-    Choose one of the output options: <span class="monospaced">plain</span>, <span class="monospaced">color</span>, or
-    <span class="monospaced">uppercase</span>. The default is <span class="monospaced">color</span> if the terminal emulation
+    Choose one of the output options: <span class="monospaced">plain</span>, <span class="monospaced">color-always</span>, <span class="monospaced">color</span>,
+    or <span class="monospaced">uppercase</span>. The default is <span class="monospaced">color</span> if the terminal emulation
     supports colors. Otherwise, <span class="monospaced">plain</span> is used.
 </p>
 </dd>
@@ -1044,6 +1045,66 @@ the reference can be given a name using the syntax <span class="monospaced">@&lt
 primitive webserver apache params @vip:server_ip</pre>
 </div></div>
 </div>
+<div class="sect2">
+<h3 id="topics_Syntax_RuleExpressions">Syntax: Rule expressions</h3>
+<div class="paragraph"><p>Many of the configuration commands in <span class="monospaced">crmsh</span> now support the use of
+<em>rule expressions</em>, which can influence what attributes apply to a
+resource or under which conditions a constraint is applied, depending
+on changing conditions like date, time, the value of attributes and
+more.</p></div>
+<div class="paragraph"><p>Here is an example of a simple rule expression used to apply a
+a different resource parameter on the node named <span class="monospaced">node1</span>:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>primitive my_resource Special \
+  params 2: rule #uname eq node1 interface=eth1 \
+  params 1: interface=eth0</pre>
+</div></div>
+<div class="paragraph"><p>This primitive resource has two lists of parameters with descending
+priority. The parameter list with the highest priority is applied
+first, but only if the rule expressions for that parameter list all
+apply. In this case, the rule <span class="monospaced">#uname eq node1</span> limits the parameter
+list so that it is only applied on `node1.</p></div>
+<div class="paragraph"><p>Note that rule expressions are not terminated and are immediately
+followed by the data to which the rule is applied. In this case, the
+name-value pair <span class="monospaced">interface=eth1</span>.</p></div>
+<div class="paragraph"><p>Rule expressions can contain multiple expressions connected using the
+boolean operator <span class="monospaced">or</span> and <span class="monospaced">and</span>. The full syntax for rule expressions
+is listed below.</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>rules ::
+  rule [id_spec] [$role=&lt;role&gt;] &lt;score&gt;: &lt;expression&gt;
+  [rule [id_spec] [$role=&lt;role&gt;] &lt;score&gt;: &lt;expression&gt; ...]
+
+id_spec :: $id=&lt;id&gt; | $id-ref=&lt;id&gt;
+score :: &lt;number&gt; | &lt;attribute&gt; | [-]inf
+expression :: &lt;simple_exp&gt; [bool_op &lt;simple_exp&gt; ...]
+bool_op :: or | and
+simple_exp :: &lt;attribute&gt; [type:]&lt;binary_op&gt; &lt;value&gt;
+          | &lt;unary_op&gt; &lt;attribute&gt;
+          | date &lt;date_expr&gt;
+type :: string | version | number
+binary_op :: lt | gt | lte | gte | eq | ne
+unary_op :: defined | not_defined
+
+date_expr :: lt &lt;end&gt;
+         | gt &lt;start&gt;
+         | in start=&lt;start&gt; end=&lt;end&gt;
+         | in start=&lt;start&gt; &lt;duration&gt;
+         | spec &lt;date_spec&gt;
+duration|date_spec ::
+         hours=&lt;value&gt;
+         | monthdays=&lt;value&gt;
+         | weekdays=&lt;value&gt;
+         | yearsdays=&lt;value&gt;
+         | months=&lt;value&gt;
+         | weeks=&lt;value&gt;
+         | years=&lt;value&gt;
+         | weekyears=&lt;value&gt;
+         | moon=&lt;value&gt;</pre>
+</div></div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1742,6 +1803,12 @@ attribute.</p></div>
 <div class="sect3">
 <h4 id="cmdhelp_resource_refresh"><span class="monospaced">refresh</span></h4>
 <div class="paragraph"><p>Refresh CIB from the LRM status.</p></div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Note</div>
+<div class="paragraph"><p><span class="monospaced">refresh</span> has been deprecated and is now
+an alias for <span class="monospaced">cleanup</span>.</p></div>
+</div></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -1751,6 +1818,12 @@ attribute.</p></div>
 <div class="sect3">
 <h4 id="cmdhelp_resource_reprobe"><span class="monospaced">reprobe</span></h4>
 <div class="paragraph"><p>Probe for resources not started by the CRM.</p></div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Note</div>
+<div class="paragraph"><p><span class="monospaced">reprobe</span> has been deprecated and is now
+an alias for <span class="monospaced">cleanup</span>.</p></div>
+</div></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -1863,6 +1936,9 @@ quickly.</p></div>
 <div class="paragraph"><p>If no operation name is given, crmsh will attempt to trace all
 operations for the RA. This includes any configured operations, start
 and stop as well as promote/demote for multistate resources.</p></div>
+<div class="paragraph"><p>To trace the probe operation which exists for all resources, either
+set a trace for <span class="monospaced">monitor</span> with interval <span class="monospaced">0</span>, or use <span class="monospaced">probe</span> as the
+operation name.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -1872,7 +1948,9 @@ and stop as well as promote/demote for multistate resources.</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>trace fs start
-trace webserver</pre>
+trace webserver
+trace webserver probe
+trace fs monitor 0</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2293,10 +2371,13 @@ all children attributes are left intact. Finally, if set to
 <h4 id="cmdhelp_options_output"><span class="monospaced">output</span></h4>
 <div class="paragraph"><p><span class="monospaced">crm</span> can adorn configurations in two ways: in color (similar to
 for instance the <span class="monospaced">ls --color</span> command) and by showing keywords in
-upper case. Possible values are <span class="monospaced">plain</span>, <span class="monospaced">color</span>, and
-<em>uppercase</em>. It is possible to combine the latter two in order to
-get an upper case xmass tree. Just set this option to
-<span class="monospaced">color,uppercase</span>.</p></div>
+upper case. Possible values are <span class="monospaced">plain</span>, <span class="monospaced">color-always</span>, <span class="monospaced">color</span>,
+and <em>uppercase</em>. It is possible to combine <span class="monospaced">uppercase</span> with one
+of the color values in order to get an upper case xmass tree. Just
+set this option to <span class="monospaced">color,uppercase</span> or <span class="monospaced">color-always,uppercase</span>.
+In case you need color codes in pipes, <span class="monospaced">color-always</span> forces color
+codes even in case the terminal is not a tty (just like <span class="monospaced">ls
+--color=always</span>).</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_options_pager"><span class="monospaced">pager</span></h4>
@@ -2688,10 +2769,14 @@ level. In case the CIB in use changed in the meantime, presumably
 by somebody else, the crm shell will refuse to apply the changes.</p></div>
 <div class="paragraph"><p>If you know that it&#8217;s fine to still apply them, add <span class="monospaced">force</span> to the
 command line.</p></div>
+<div class="paragraph"><p>To disable CIB patching and apply the changes by replacing the CIB
+completely, add <span class="monospaced">replace</span> to the command line. Note that this can lead
+to previous changes being overwritten if some other process
+concurrently modifies the CIB.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>commit [force]</pre>
+<pre>commit [force] [replace]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2947,9 +3032,12 @@ Resource pattern: <span class="monospaced">location loc1 /web.*/ 100: node1</spa
 </p>
 </li>
 </ul></div>
-<div class="paragraph"><p>The syntax for resource sets is described in detail for <a href="#cmdhelp_configure_colocation"><span class="monospaced">colocation</span></a>.</p></div>
+<div class="paragraph"><p>The syntax for resource sets is described in detail for
+<a href="#cmdhelp_configure_colocation"><span class="monospaced">colocation</span></a>.</p></div>
 <div class="paragraph"><p>For more details on how to configure resource sets, see
 <a href="#topics_Features_Resourcesets"><span class="monospaced">Syntax: Resource sets</span></a>.</p></div>
+<div class="paragraph"><p>For more information on rule expressions, see
+<a href="#topics_Syntax_RuleExpressions">Syntax: Rule expressions</a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -3113,6 +3201,8 @@ node big_node attributes memory=64</pre>
 <div class="sect3">
 <h4 id="cmdhelp_configure_op_defaults"><span class="monospaced">op_defaults</span></h4>
 <div class="paragraph"><p>Set defaults for the operations meta attributes.</p></div>
+<div class="paragraph"><p>For more information on rule expressions, see
+<a href="#topics_Syntax_RuleExpressions">Syntax: Rule expressions</a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -3238,7 +3328,7 @@ suffixes:</p></div>
 <div class="content monospaced">
 <pre>primitive &lt;rsc&gt; {[&lt;class&gt;:[&lt;provider&gt;:]]&lt;type&gt;|@&lt;template&gt;}
   [description=&lt;description&gt;]
-  [params attr_list]
+  [[params] attr_list]
   [meta attr_list]
   [utilization attr_list]
   [operations id_spec]
@@ -3258,7 +3348,7 @@ op_type :: start | stop | monitor</pre>
   op monitor interval=30m timeout=60s
 
 primitive www8 apache \
-  params configfile=/etc/apache/www8.conf \
+  configfile=/etc/apache/www8.conf \
   operations $id-ref=apache_ops
 
 primitive db0 mysql \
@@ -3271,8 +3361,7 @@ primitive r0 ocf:linbit:drbd \
   op monitor role=Master interval=60s \
   op monitor role=Slave interval=300s
 
-primitive xen0 @vm_scheme1 \
-  params xmfile=/etc/xen/vm/xen0
+primitive xen0 @vm_scheme1 xmfile=/etc/xen/vm/xen0
 
 primitive mySpecialRsc Special \
   params 3: rule #uname eq node1 interface=eth1 \
@@ -3282,11 +3371,16 @@ primitive mySpecialRsc Special \
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_configure_property"><span class="monospaced">property</span></h4>
-<div class="paragraph"><p>Set the cluster (<span class="monospaced">crm_config</span>) options.</p></div>
+<div class="paragraph"><p>Set cluster configuration properties. To list the
+available cluster configuration properties, use the
+<a href="#cmdhelp_ra_info"><span class="monospaced">ra info</span></a> command with <span class="monospaced">pengine</span>, <span class="monospaced">crmd</span>,
+<span class="monospaced">cib</span> and <span class="monospaced">stonithd</span> as arguments.</p></div>
+<div class="paragraph"><p>For more information on rule expressions, see
+<a href="#topics_Syntax_RuleExpressions">Syntax: Rule expressions</a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>property [$id=&lt;set_id&gt;] [rule ...] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
+<pre>property [&lt;set_id&gt;:] [rule ...] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
@@ -3374,6 +3468,8 @@ attributes and node capacity (utilization). The <span class="monospaced">status<
 references the whole status section of the CIB. Read access to
 status is necessary for various monitoring tools such as
 <span class="monospaced">crm_mon(8)</span> (aka <span class="monospaced">crm status</span>).</p></div>
+<div class="paragraph"><p>For more information on rule expressions, see
+<a href="#topics_Syntax_RuleExpressions">Syntax: Rule expressions</a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -3410,10 +3506,12 @@ shortcut :: meta:&lt;rsc&gt;[:&lt;attr&gt;]
 <div class="sect3">
 <h4 id="cmdhelp_configure_rsc_defaults"><span class="monospaced">rsc_defaults</span></h4>
 <div class="paragraph"><p>Set defaults for the resource meta attributes.</p></div>
+<div class="paragraph"><p>For more information on rule expressions, see
+<a href="#topics_Syntax_RuleExpressions">Syntax: Rule expressions</a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>rsc_defaults [$id=&lt;set_id&gt;] [rule ...] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
+<pre>rsc_defaults [&lt;set_id&gt;:] [rule ...] &lt;option&gt;=&lt;value&gt; [&lt;option&gt;=&lt;value&gt; ...]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
@@ -3515,15 +3613,19 @@ rsctest websvc nodeB</pre>
 <h4 id="cmdhelp_configure_save"><span class="monospaced">save</span></h4>
 <div class="paragraph"><p>Save the current configuration to a file. Optionally, as XML. Use
 <span class="monospaced">-</span> instead of file name to write the output to <span class="monospaced">stdout</span>.</p></div>
+<div class="paragraph"><p>The <span class="monospaced">save</span> command accepts the same selection arguments as the <span class="monospaced">show</span>
+command. See the <a href="#cmdhelp_configure_show">help section</a> for <span class="monospaced">show</span>
+for more details.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>save [xml] &lt;file&gt;</pre>
+<pre>save [xml] [&lt;id&gt; | type:&lt;type | tag:&lt;tag&gt; | changed ...] &lt;file&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>save myfirstcib.txt</pre>
+<pre>save myfirstcib.txt
+save web-server server-config.txt</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3593,24 +3695,39 @@ set vm-a.force_stop 1</pre>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_configure_show"><span class="monospaced">show</span></h4>
-<div class="paragraph"><p>The <span class="monospaced">show</span> command displays objects. It may display all objects
-or a set of objects. The user may also choose to see only objects
-which were changed.</p></div>
-<div class="paragraph"><p>Optionally, the XML code may be displayed instead of the CLI
-representation by passing <span class="monospaced">xml</span> as the first argument.</p></div>
+<div class="paragraph"><p>The <span class="monospaced">show</span> command displays CIB objects. Without any argument, it
+displays all objects in the CIB, but the set of objects displayed by
+<span class="monospaced">show</span> can be limited to only objects with the given IDs or by using
+one or more of the special prefixes described below.</p></div>
+<div class="paragraph"><p>The XML representation for the objects can be displayed by passing
+<span class="monospaced">xml</span> as the first argument.</p></div>
+<div class="paragraph"><p>To show one or more specific objects, pass the object IDs as
+arguments.</p></div>
 <div class="paragraph"><p>To show all objects of a certain type, use the <span class="monospaced">type:</span> prefix.</p></div>
+<div class="paragraph"><p>To show all objects in a tag, use the <span class="monospaced">tag:</span> prefix.</p></div>
+<div class="paragraph"><p>To show all modified objects, pass the argument <span class="monospaced">changed</span>.</p></div>
+<div class="paragraph"><p>The prefixes can be used together on a single command line. For
+example, to show both the tag itself and the objects tagged by it the
+following combination can be used: <span class="monospaced">show tag:my-tag my-tag</span>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>show [xml] [&lt;id&gt; ...]
-show [xml] changed</pre>
+<pre>show [xml] [&lt;id&gt; | changed | type:&lt;type&gt; | tag:&lt;id&gt; ...]
+
+type :: node | primitive | group | clone | ms | rsc_template
+      | location | colocation | order
+      | rsc_ticket
+      | property | rsc_defaults | op_defaults
+      | fencing_topology
+      | role | user | acl_target | acl_group
+      | tag</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>show webapp
 show type:primitive
-show xml type:node</pre>
+show xml tag:db tag:fs</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3671,6 +3788,8 @@ can be allowed access to parts of the CIB. The access is defined
 by a set of <span class="monospaced">read</span>, <span class="monospaced">write</span>, and <span class="monospaced">deny</span> rules as in role
 definitions or by referencing roles. The latter is considered
 best practice.</p></div>
+<div class="paragraph"><p>For more information on rule expressions, see
+<a href="#topics_Syntax_RuleExpressions">Syntax: Rule expressions</a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -4129,9 +4248,9 @@ maintenance mode.</p></div>
 <div class="paragraph"><p>Unless the action is <span class="monospaced">start</span> or <span class="monospaced">monitor</span>, the action must be invoked
 on the same node as where the resource is running. If the resource is
 running on multiple nodes, the command will fail.</p></div>
-<div class="paragraph"><p>To use pssh for executing resource actions on multiple nodes, append
+<div class="paragraph"><p>To use SSH for executing resource actions on multiple nodes, append
 <span class="monospaced">ssh</span> after the action name. This requires SSH access to be configured
-between the nodes and the pssh package to be installed.</p></div>
+between the nodes and the parallax python package to be installed.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -4162,8 +4281,8 @@ first say which period he or she wants to analyze. If not
 otherwise specified, the last hour is considered. Logs and other
 relevant information is collected using <span class="monospaced">hb_report</span>. Since this
 process takes some time and we always need fresh logs,
-information is refreshed in a much faster way using <span class="monospaced">pssh(1)</span>. If
-<span class="monospaced">python-pssh</span> is not found on the system, examining live cluster
+information is refreshed in a much faster way using the python parallax module. If
+<span class="monospaced">python-parallax</span> is not found on the system, examining live cluster
 is still possible though not as comfortable.</p></div>
 <div class="paragraph"><p>Apart from examining live cluster, events may be retrieved from a
 report generated by <span class="monospaced">hb_report</span> (see also the <span class="monospaced">-H</span> option). In
