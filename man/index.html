@@ -53,6 +53,7 @@
 <div class="toclevel3"><a href="#cmdhelp_cluster_status">status</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_stop">stop</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_wait_for_startup">wait_for_startup</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_diff">diff</a></div>
 <div class="toclevel2"><a href="#cmdhelp_script">script</a></div>
 <div class="toclevel3"><a href="#cmdhelp_script_describe">describe</a></div>
 <div class="toclevel3"><a href="#cmdhelp_script_list">list</a></div>
@@ -255,6 +256,7 @@
 management tool. Its goal is to assist as much as possible with the
 configuration and maintenance of Pacemaker-based High Availability
 clusters.</p></div>
+<div class="paragraph"><p>For more information on Pacemaker clusters, see <a href="http://clusterlabs.org/">http://clusterlabs.org/</a>.</p></div>
 <div class="paragraph"><p><span class="monospaced">crm</span> works both as a command-line tool to be called directly from the
 system shell, and as an interactive shell with extensive tab
 completion and help.</p></div>
@@ -983,7 +985,7 @@ true, explicitly set <span class="monospaced">sequential</span> in a parenthesis
 <h3 id="topics_Features_AttributeListReferences">Syntax: Attribute list references</h3>
 <div class="paragraph"><p>Attribute lists are used to set attributes and parameters for
 resources, constraints and property definitions. For example, to set
-the virtual IP used by an <span class="monospaced">IPAddr</span> resource the attribute <span class="monospaced">ip</span> can be
+the virtual IP used by an <span class="monospaced">IPAddr2</span> resource the attribute <span class="monospaced">ip</span> can be
 set in an attribute list for that resource.</p></div>
 <div class="paragraph"><p>Attribute lists can have identifiers that name them, and other
 resources can reuse the same attribute list by referring to that name
@@ -1269,6 +1271,24 @@ an argument.</p></div>
 <pre>wait_for_startup</pre>
 </div></div>
 </div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_diff"><span class="monospaced">diff</span></h4>
+<div class="paragraph"><p>Displays the difference, if any, between a given file
+on different nodes. If the second argument is <span class="monospaced">--checksum</span>,
+a checksum of the file will be calculated and displayed for
+each node.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>diff &lt;file&gt; [--checksum] [nodes...]</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>diff /etc/crm/crm.conf node2
+diff /etc/resolv.conf --checksum</pre>
+</div></div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="cmdhelp_script"><span class="monospaced">script</span> - Cluster script management</h3>
@@ -1370,9 +1390,8 @@ the <span class="monospaced">ring0_addr</span> address set in the configuration 
 <div class="paragraph"><p>Diffs the corosync configurations on different nodes. If no nodes are
 given as arguments, the corosync configurations on all nodes in the
 cluster are compared.</p></div>
-<div class="paragraph"><p><span class="monospaced">diff</span> takes an option argument <span class="monospaced">--checksum</span>, to force checksum mode.</p></div>
-<div class="paragraph"><p>If the number of nodes to compare are greater than two, <span class="monospaced">diff</span>
-automatically switches to checksum mode.</p></div>
+<div class="paragraph"><p><span class="monospaced">diff</span> takes an option argument <span class="monospaced">--checksum</span>, to display a checksum
+for each file instead of calculating a diff.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -3619,7 +3638,8 @@ for more details.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>save [xml] [&lt;id&gt; | type:&lt;type | tag:&lt;tag&gt; | changed ...] &lt;file&gt;</pre>
+<pre>save [xml] [&lt;id&gt; | type:&lt;type | tag:&lt;tag&gt; |
+            related:&lt;obj&gt; | changed ...] &lt;file&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
@@ -3705,6 +3725,7 @@ one or more of the special prefixes described below.</p></div>
 arguments.</p></div>
 <div class="paragraph"><p>To show all objects of a certain type, use the <span class="monospaced">type:</span> prefix.</p></div>
 <div class="paragraph"><p>To show all objects in a tag, use the <span class="monospaced">tag:</span> prefix.</p></div>
+<div class="paragraph"><p>To show all constraints related to a primitive, use the <span class="monospaced">related:</span> prefix.</p></div>
 <div class="paragraph"><p>To show all modified objects, pass the argument <span class="monospaced">changed</span>.</p></div>
 <div class="paragraph"><p>The prefixes can be used together on a single command line. For
 example, to show both the tag itself and the objects tagged by it the
@@ -3712,7 +3733,7 @@ following combination can be used: <span class="monospaced">show tag:my-tag my-t
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>show [xml] [&lt;id&gt; | changed | type:&lt;type&gt; | tag:&lt;id&gt; ...]
+<pre>show [xml] [&lt;id&gt; | changed | type:&lt;type&gt; | tag:&lt;id&gt; | related:&lt;obj&gt; ...]
 
 type :: node | primitive | group | clone | ms | rsc_template
       | location | colocation | order
@@ -3727,7 +3748,8 @@ type :: node | primitive | group | clone | ms | rsc_template
 <div class="content monospaced">
 <pre>show webapp
 show type:primitive
-show xml tag:db tag:fs</pre>
+show xml tag:db tag:fs
+show related:webapp</pre>
 </div></div>
 </div>
 <div class="sect3">
