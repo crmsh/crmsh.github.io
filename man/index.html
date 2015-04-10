@@ -144,7 +144,6 @@
 <div class="toclevel3"><a href="#cmdhelp_options_user">user</a></div>
 <div class="toclevel3"><a href="#cmdhelp_options_wait">wait</a></div>
 <div class="toclevel2"><a href="#cmdhelp_configure">configure</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_acl_group">acl_group</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_acl_target">acl_target</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_cib">cib</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_cibstatus">cibstatus</a></div>
@@ -848,9 +847,8 @@ eligible nodes if a resource is not meant to run on every node.</p></div>
 <div class="title">Note on ACLs in Pacemaker 1.1.12</div>
 <div class="paragraph"><p>The support for ACLs has been revised in Pacemaker version 1.1.12 and
 up. Depending on which version you are using, the information in this
-section may no longer be accurate. Look for the <span class="monospaced">acl_target</span> and
-<span class="monospaced">acl_group</span> configuration elements for more details on the new
-syntax.</p></div>
+section may no longer be accurate. Look for the <span class="monospaced">acl_target</span>
+configuration element for more details on the new syntax.</p></div>
 </div></div>
 <div class="paragraph"><p>By default, the users from the <span class="monospaced">haclient</span> group have full access
 to the cluster (or, more precisely, to the CIB). Access control
@@ -1112,12 +1110,18 @@ duration|date_spec ::
 <div class="sect1">
 <h2 id="topics_Reference">Command reference</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>Commands in crmsh follow a bash-like grammar to simplify the command
-line mode. Whitespace is significant, meaning that <span class="monospaced">key=value</span> is
-different from <span class="monospaced">key = value</span>. In some cases, the underlying Pacemaker
-grammar uses characters otherwise used by bash which need to be
-quoted. This includes the single and double quote characters, the hash
-or pound sign (<span class="monospaced">#</span>) and whitespace.</p></div>
+<div class="paragraph"><p>The commands are structured to be compatible with the shell command
+line. Sometimes, the underlying Pacemaker grammar uses characters that
+have special meaning in bash, that will need to be quoted. This
+includes the hash or pound sign (<span class="monospaced">#</span>), single and double quotes, and
+any significant whitespace.</p></div>
+<div class="paragraph"><p>Whitespace is also significant when assigning values, meaning that
+<span class="monospaced">key=value</span> is different from <span class="monospaced">key = value</span>.</p></div>
+<div class="paragraph"><p>Commands can be referenced using short-hand as long as the short-hand
+is unique. This can be either a prefix of the command name or a prefix
+string of characters found in the name.</p></div>
+<div class="paragraph"><p>For example, <span class="monospaced">status</span> can be abbreviated as <span class="monospaced">st</span> or <span class="monospaced">su</span>, and
+<span class="monospaced">configure</span> as <span class="monospaced">conf</span> or <span class="monospaced">cfg</span>.</p></div>
 <div class="paragraph"><p>The syntax for the commands is given below in an informal, BNF-like
 grammar.</p></div>
 <div class="ulist"><ul>
@@ -2645,17 +2649,12 @@ manage ACL:</p></div>
 </p>
 </li>
 </ul></div>
-<div class="paragraph"><p>In Pacemaker 1.1.12 and up, these commands replace the <span class="monospaced">user</span> command
+<div class="paragraph"><p>In Pacemaker 1.1.12 and up, this command replaces the <span class="monospaced">user</span> command
 for handling ACLs:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
 <span class="monospaced">acl_target</span>
-</p>
-</li>
-<li>
-<p>
-<span class="monospaced">acl_group</span>
 </p>
 </li>
 </ul></div>
@@ -2664,20 +2663,6 @@ configuration session or using the <span class="monospaced">commit</span> comman
 <div class="paragraph"><p>Comments start with <span class="monospaced">#</span> in the first line. The comments are tied
 to the element which follows. If the element moves, its comments
 will follow.</p></div>
-<div class="sect3">
-<h4 id="cmdhelp_configure_acl_group"><span class="monospaced">acl_group</span></h4>
-<div class="paragraph"><p>Defines an ACL group.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>acl_group &lt;gid&gt; [&lt;role&gt; ...]</pre>
-</div></div>
-<div class="paragraph"><p>Example:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>acl_group hacluster operator</pre>
-</div></div>
-</div>
 <div class="sect3">
 <h4 id="cmdhelp_configure_acl_target"><span class="monospaced">acl_target</span></h4>
 <div class="paragraph"><p>Defines an ACL target.</p></div>
@@ -3740,7 +3725,7 @@ type :: node | primitive | group | clone | ms | rsc_template
       | rsc_ticket
       | property | rsc_defaults | op_defaults
       | fencing_topology
-      | role | user | acl_target | acl_group
+      | role | user | acl_target
       | tag</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
@@ -3895,11 +3880,14 @@ removed by force.</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_template_list"><span class="monospaced">list</span></h4>
-<div class="paragraph"><p>List existing configurations or templates.</p></div>
+<div class="paragraph"><p>When called with no argument, lists existing templates and
+configurations.</p></div>
+<div class="paragraph"><p>Given the argument <span class="monospaced">templates</span>, lists the available templates.</p></div>
+<div class="paragraph"><p>Given the argument <span class="monospaced">configs</span>, lists the available configurations.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>list [templates]</pre>
+<pre>list [templates|configs]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3921,16 +3909,21 @@ is possible to have a configuration name equal a template name.</p></div>
 them directly on the command line.</p></div>
 <div class="paragraph"><p>The parameter name <span class="monospaced">id</span> is set by default to the name of the
 configuration.</p></div>
+<div class="paragraph"><p>If no parameters are being set and you don&#8217;t want a particular name
+for your configuration, you can call this command with a template name
+as the only parameter. A unique configuration name based on the
+template name will be generated.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>new &lt;config&gt; &lt;template&gt; [&lt;template&gt; ...] [params name=value ...]</pre>
+<pre>new [&lt;config&gt;] &lt;template&gt; [&lt;template&gt; ...] [params name=value ...]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>new vip virtual-ip
-new bigfs ocfs2 params device=/dev/sdx8 directory=/bigfs</pre>
+new bigfs ocfs2 params device=/dev/sdx8 directory=/bigfs
+new apache</pre>
 </div></div>
 </div>
 <div class="sect3">
