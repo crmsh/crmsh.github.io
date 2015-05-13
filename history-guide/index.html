@@ -26,13 +26,468 @@
 </div>
 <!--TOC-->
 <div id="toc">
+<div class="toclevel1"><a href="#_sample_cluster">Sample cluster</a></div>
+<div class="toclevel1"><a href="#_quick_amp_dirty_start">Quick (&amp; dirty) start</a></div>
+<div class="toclevel1"><a href="#_introduction_to_crmsh_span_class_monospaced_history_span">Introduction to crmsh <span class="monospaced">history</span></a></div>
+<div class="toclevel1"><a href="#_transitions">Transitions</a></div>
+<div class="toclevel1"><a href="#_resource_and_node_events">Resource and node events</a></div>
+<div class="toclevel1"><a href="#_viewing_logs">Viewing logs</a></div>
+<div class="toclevel1"><a href="#_external_reports_configurations_and_graphs">External reports, configurations, and graphs</a></div>
 </div>
 <div id="container">
 <div id="content">
 <h1>Cluster history</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph"><p>Work in Progress. Stay tuned.</p></div>
+<div class="paragraph"><p>This guide should help administrators and consultants tackle
+issues in Pacemaker cluster installations. We concentrate
+on troubleshooting and analysis methods with the crmsh history.</p></div>
+<div class="paragraph"><p>Cluster leaves numerous traces behind, more than any other
+system.  The logs and the rest are spread among all cluster nodes
+and multiple directories. The obvious difficulty is to show that
+information in a consolidated manner. This is where crmsh
+history helps.</p></div>
+<div class="paragraph"><p>Hopefully, the guide will help you investigate your
+specific issue with more efficiency and less effort.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sample_cluster">Sample cluster</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>In <a href="#Listing 1">[Listing 1]</a> a modestly complex sample cluster is shown with
+which we can experiment and break in some hopefully instructive
+ways.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="/img/icons/note.png" alt="Note">
+</td>
+<td class="content">We won&#8217;t be going into how to setup nodes or configure the
+          cluster. For that, please refer to the
+          <a href="/start-guide">Getting Started</a> document.</td>
+</tr></table>
+</div>
+<div class="listingblock">
+<div class="title">Listing 1: Sample cluster configuration<a id="Listing 1"></a></div>
+<div class="content"><div class="highlight"><pre><span class="k">node</span><span class="w"> </span><span class="n">167906357</span><span class="p">:</span><span class="w"> </span><span class="n">sle12-c</span><span class="w"></span>
+<span class="k">node</span><span class="w"> </span><span class="n">167906355</span><span class="p">:</span><span class="w"> </span><span class="n">sle12-a</span><span class="w"></span>
+<span class="k">primitive</span><span class="w"> </span><span class="n">s-libvirt</span><span class="w"> </span><span class="n">stonith</span><span class="p">:</span><span class="n">external</span><span class="p">/</span><span class="n">libvirt</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="k">params</span><span class="w"> </span><span class="na">hostlist</span><span class="p">=</span><span class="s">&quot;sle12-a sle12-c&quot;</span><span class="w"> </span><span class="na">hypervisor_uri</span><span class="p">=</span><span class="s">&quot;qemu+ssh://hex-10.suse.de/system?keyfile=/root/.ssh/xen&quot;</span><span class="w"> </span><span class="na">reset_method</span><span class="p">=</span><span class="s">reboot</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="k">op</span><span class="w"> </span><span class="n">monitor</span><span class="w"> </span><span class="na">interval</span><span class="p">=</span><span class="s">5m</span><span class="w"> </span><span class="na">timeout</span><span class="p">=</span><span class="s">60s</span><span class="w"></span>
+<span class="k">primitive</span><span class="w"> </span><span class="n">p_drbd_nfs</span><span class="w"> </span><span class="n">ocf</span><span class="p">:</span><span class="n">linbit</span><span class="p">:</span><span class="n">drbd</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="k">params</span><span class="w"> </span><span class="na">drbd_resource</span><span class="p">=</span><span class="s">nfs</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="k">op</span><span class="w"> </span><span class="n">monitor</span><span class="w"> </span><span class="na">interval</span><span class="p">=</span><span class="s">15</span><span class="w"> </span><span class="na">role</span><span class="p">=</span><span class="s">Master</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="k">op</span><span class="w"> </span><span class="n">monitor</span><span class="w"> </span><span class="na">interval</span><span class="p">=</span><span class="s">30</span><span class="w"> </span><span class="na">role</span><span class="p">=</span><span class="s">Slave</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="k">op</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="na">interval</span><span class="p">=</span><span class="s">0</span><span class="w"> </span><span class="na">timeout</span><span class="p">=</span><span class="s">300</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="k">op</span><span class="w"> </span><span class="n">stop</span><span class="w"> </span><span class="na">interval</span><span class="p">=</span><span class="s">0</span><span class="w"> </span><span class="na">timeout</span><span class="p">=</span><span class="s">120</span><span class="w"></span>
+<span class="k">primitive</span><span class="w"> </span><span class="n">nfs-vg</span><span class="w"> </span><span class="n">LVM</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="k">params</span><span class="w"> </span><span class="na">volgrpname</span><span class="p">=</span><span class="s">nfs-vg</span><span class="w"></span>
+<span class="k">primitive</span><span class="w"> </span><span class="n">fs1</span><span class="w"> </span><span class="n">Filesystem</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="k">params</span><span class="w"> </span><span class="na">device</span><span class="p">=</span><span class="s">&quot;/dev/nfs-vg/fs1&quot;</span><span class="w"> </span><span class="na">directory</span><span class="p">=</span><span class="s">&quot;/srv/nfs&quot;</span><span class="w"> </span><span class="na">fstype</span><span class="p">=</span><span class="s">ext3</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="k">op</span><span class="w"> </span><span class="n">monitor</span><span class="w"> </span><span class="na">interval</span><span class="p">=</span><span class="s">30s</span><span class="w"></span>
+<span class="k">primitive</span><span class="w"> </span><span class="n">virtual-ip</span><span class="w"> </span><span class="n">IPaddr2</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="k">params</span><span class="w"> </span><span class="na">ip</span><span class="p">=</span><span class="s">10.2.12.100</span><span class="w"></span>
+<span class="k">primitive</span><span class="w"> </span><span class="n">nfs-server</span><span class="w"> </span><span class="n">nfsserver</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="k">params</span><span class="w"> </span><span class="na">nfs_shared_infodir</span><span class="p">=</span><span class="s">&quot;/srv/nfs/state&quot;</span><span class="w"> </span><span class="na">nfs_ip</span><span class="p">=</span><span class="s">10.2.12.100</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="k">op</span><span class="w"> </span><span class="n">monitor</span><span class="w"> </span><span class="na">interval</span><span class="p">=</span><span class="s">30s</span><span class="w"></span>
+<span class="k">primitive</span><span class="w"> </span><span class="n">websrv</span><span class="w"> </span><span class="n">apache</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="k">params</span><span class="w"> </span><span class="na">configfile</span><span class="p">=</span><span class="s">&quot;/etc/apache2/httpd.conf&quot;</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="k">op</span><span class="w"> </span><span class="n">monitor</span><span class="w"> </span><span class="na">interval</span><span class="p">=</span><span class="s">30</span><span class="w"></span>
+<span class="k">primitive</span><span class="w"> </span><span class="n">websrv-ip</span><span class="w"> </span><span class="n">IPaddr2</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="k">params</span><span class="w"> </span><span class="na">ip</span><span class="p">=</span><span class="s">10.2.12.101</span><span class="w"></span>
+<span class="k">primitive</span><span class="w"> </span><span class="n">small-apache</span><span class="w"> </span><span class="n">apache</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="k">params</span><span class="w"> </span><span class="na">configfile</span><span class="p">=</span><span class="s">&quot;/etc/apache2/small.conf&quot;</span><span class="w"></span>
+<span class="k">group</span><span class="w"> </span><span class="n">nfs-disk</span><span class="w"> </span><span class="n">nfs-vg</span><span class="w"> </span><span class="n">fs1</span><span class="w"></span>
+<span class="k">group</span><span class="w"> </span><span class="n">nfs-srv</span><span class="w"> </span><span class="n">virtual-ip</span><span class="w"> </span><span class="n">nfs-server</span><span class="w"></span>
+<span class="k">ms</span><span class="w"> </span><span class="n">ms_drbd_nfs</span><span class="w"> </span><span class="n">p_drbd_nfs</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="k">meta</span><span class="w"> </span><span class="na">notify</span><span class="p">=</span><span class="s">true</span><span class="w"> </span><span class="na">clone-max</span><span class="p">=</span><span class="s">2</span><span class="w"></span>
+<span class="k">location</span><span class="w"> </span><span class="n">nfs-pref</span><span class="w"> </span><span class="n">virtual-ip</span><span class="w"> </span><span class="m">100:</span><span class="w"> </span><span class="n">sle12-a</span><span class="w"></span>
+<span class="k">location</span><span class="w"> </span><span class="n">websrv-pref</span><span class="w"> </span><span class="n">websrv</span><span class="w"> </span><span class="m">100:</span><span class="w"> </span><span class="n">sle12-c</span><span class="w"></span>
+<span class="k">colocation</span><span class="w"> </span><span class="n">vg-with-drbd</span><span class="w"> </span><span class="m">inf:</span><span class="w"> </span><span class="n">nfs-vg</span><span class="w"> </span><span class="n">ms_drbd_nfs</span><span class="p">:</span><span class="ow">Master</span><span class="w"></span>
+<span class="k">colocation</span><span class="w"> </span><span class="n">c-nfs</span><span class="w"> </span><span class="m">inf:</span><span class="w"> </span><span class="n">nfs-srv</span><span class="w"> </span><span class="n">nfs-disk</span><span class="w"></span>
+<span class="k">colocation</span><span class="w"> </span><span class="n">c-websrv</span><span class="w"> </span><span class="m">inf:</span><span class="w"> </span><span class="n">websrv</span><span class="w"> </span><span class="n">websrv-ip</span><span class="w"></span>
+<span class="k">colocation</span><span class="w"> </span><span class="n">small-apache-with-virtual-ip</span><span class="w"> </span><span class="m">inf:</span><span class="w"> </span><span class="n">small-apache</span><span class="w"> </span><span class="n">virtual-ip</span><span class="w"></span>
+<span class="n">#</span><span class="w"> </span><span class="n">need</span><span class="w"> </span><span class="n">fs1</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">NFS</span><span class="w"> </span><span class="n">server</span><span class="w"></span>
+<span class="k">order</span><span class="w"> </span><span class="n">o-nfs</span><span class="w"> </span><span class="m">inf:</span><span class="w"> </span><span class="n">nfs-disk</span><span class="w"> </span><span class="n">nfs-srv</span><span class="w"></span>
+<span class="n">#</span><span class="w"> </span><span class="n">websrv</span><span class="w"> </span><span class="n">serves</span><span class="w"> </span><span class="n">requests</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">IP</span><span class="w"> </span><span class="n">websrv-ip</span><span class="w"></span>
+<span class="k">order</span><span class="w"> </span><span class="n">o-websrv</span><span class="w"> </span><span class="m">inf:</span><span class="w"> </span><span class="n">websrv-ip</span><span class="w"> </span><span class="n">websrv</span><span class="w"></span>
+<span class="n">#</span><span class="w"> </span><span class="n">small</span><span class="w"> </span><span class="n">apache</span><span class="w"> </span><span class="n">serves</span><span class="w"> </span><span class="n">requests</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">IP</span><span class="w"> </span><span class="n">virtual-ip</span><span class="w"></span>
+<span class="k">order</span><span class="w"> </span><span class="n">virtual-ip-before-small-apache</span><span class="w"> </span><span class="m">inf:</span><span class="w"> </span><span class="n">virtual-ip</span><span class="w"> </span><span class="n">small-apache</span><span class="w"></span>
+<span class="n">#</span><span class="w"> </span><span class="n">drbd</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">nfs-vg</span><span class="w"> </span><span class="n">PV</span><span class="w"></span>
+<span class="k">order</span><span class="w"> </span><span class="n">drbd-before-nfs-vg</span><span class="w"> </span><span class="m">inf:</span><span class="w"> </span><span class="n">ms_drbd_nfs</span><span class="p">:</span><span class="ow">promote</span><span class="w"> </span><span class="n">nfs-vg</span><span class="p">:</span><span class="ow">start</span><span class="w"></span>
+<span class="k">property</span><span class="w"> </span><span class="n">cib-bootstrap-options</span><span class="p">:</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="na">dc-version</span><span class="p">=</span><span class="s">1.1.12-ad083a8</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="na">cluster-infrastructure</span><span class="p">=</span><span class="s">corosync</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="na">cluster-name</span><span class="p">=</span><span class="s">sle12-test3l-public</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="na">no-quorum-policy</span><span class="p">=</span><span class="s">ignore</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="na">last-lrm-refresh</span><span class="p">=</span><span class="s">1429192263</span><span class="w"></span>
+<span class="k">op_defaults</span><span class="w"> </span><span class="n">op-options</span><span class="p">:</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
+<span class="w">        </span><span class="na">timeout</span><span class="p">=</span><span class="s">120s</span><span class="w"></span>
+</pre></div></div></div>
+<div class="paragraph"><p>If you&#8217;re new to clusters, that configuration may look
+overwhelming. A graphical presentation in <a href="#Image 1">[Image 1]</a> of the
+essential elements and relations between them is easier on the eye
+(and the mind).</p></div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="/img/history-guide/sample-cluster.conf.png">
+<img src="/img/history-guide/sample-cluster.conf.png" alt="/img/history-guide/sample-cluster.conf.png">
+</a>
+</div>
+<div class="title">Image 1: Sample cluster configuration as a graph<a id="Image 1"></a></div>
+</div>
+<div class="paragraph"><p>As homework, try to match the two cluster representations.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_quick_amp_dirty_start">Quick (&amp; dirty) start</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>For the impatient, we give here a few examples of history use.</p></div>
+<div class="paragraph"><p>Most of the time you will be dealing with various resource
+(a.k.a. application) induced phenomena. For instance, while
+preparing this document we noticed that a probe failed repeatedly
+on a node which wasn&#8217;t even running the resource <a href="#Listing 2">[Listing 2]</a>.</p></div>
+<div class="listingblock">
+<div class="title">Listing 2: crm status output<a id="Listing 2"></a></div>
+<div class="content"><div class="highlight"><pre># crm status
+Last updated: Tue Dec 16 11:57:04 2014
+Last change: Tue Dec 16 11:53:22 2014
+Stack: corosync
+Current DC: sle12-c (167906357) - partition with quorum
+Version: 1.1.12-ad083a8
+2 Nodes configured
+10 Resources configured
+Online: [ sle12-a sle12-c ]
+[...]
+     nfs-server (ocf::heartbeat:nfsserver):     Started sle12-a
+[...]
+Failed actions:
+    nfs-server_monitor_0 on sle12-c &#39;unknown error&#39; (1): call=298, status=complete,
+    last-rc-change=&#39;Tue Dec 16 11:53:23 2014&#39;, queued=0ms, exec=135ms
+</pre></div></div></div>
+<div class="paragraph"><p>The history <span class="monospaced">resource</span> command shows log messages relevant to the
+supplied resource <a href="#Listing 3">[Listing 3]</a>.</p></div>
+<div class="listingblock">
+<div class="title">Listing 3: Logs on failed <span class="monospaced">nfs-server</span> probe operation<a id="Listing 3"></a></div>
+<div class="content"><div class="highlight"><pre># crm history resource nfs-server
+<span class="-Color-Cyan">INFO</span>: fetching new logs, please wait ...
+<span class="-Color-Green">Dec 16 11:53:23 sle12-c nfsserver(nfs-server)[14911]: <img src="/img/icons/callouts/1.png" alt="1"> ERROR: NFS server is up, but the locking daemons are down</span>
+<span class="-Color-Green">Dec 16 11:53:23 sle12-c crmd[2823]:   notice: te_rsc_command: Initiating action 54: stop nfs-server_stop_0 on sle12-a</span>
+<span class="-Color-Green">Dec 16 11:53:23 sle12-c crmd[2823]:   notice: te_rsc_command: Initiating action 3: stop nfs-server_stop_0 on sle12-c (local)</span>
+<span class="-Color-Green">Dec 16 11:53:23 sle12-c nfsserver(nfs-server)[14944]: INFO: Stopping NFS server ...</span>
+<span class="-Color-Green">Dec 16 11:53:23 sle12-c nfsserver(nfs-server)[14944]: INFO: Stopping sm-notify</span>
+<span class="-Color-Green">Dec 16 11:53:23 sle12-c nfsserver(nfs-server)[14944]: INFO: Stopping rpc.statd</span>
+<span class="-Color-Green">Dec 16 11:53:23 sle12-c nfsserver(nfs-server)[14944]: INFO: NFS server stopped</span>
+<span class="-Color-Green">Dec 16 11:53:23 sle12-c crmd[2823]:   notice: te_rsc_command: Initiating action 55: start nfs-server_start_0 on sle12-a</span>
+Dec 16 11:53:23 sle12-a nfsserver(nfs-server)[23255]: INFO: Stopping NFS server ...
+Dec 16 11:53:23 sle12-a nfsserver(nfs-server)[23255]: INFO: Stopping sm-notify
+Dec 16 11:53:23 sle12-a nfsserver(nfs-server)[23255]: INFO: Stopping rpc.statd
+Dec 16 11:53:23 sle12-a nfsserver(nfs-server)[23255]: INFO: NFS server stopped
+Dec 16 11:53:23 sle12-a nfsserver(nfs-server)[23320]: INFO: Starting NFS server ...
+Dec 16 11:53:23 sle12-a nfsserver(nfs-server)[23320]: INFO: Starting rpc.statd.
+Dec 16 11:53:24 sle12-a nfsserver(nfs-server)[23320]: INFO: executing sm-notify
+Dec 16 11:53:24 sle12-a nfsserver(nfs-server)[23320]: INFO: NFS server started
+Dec 16 11:53:24 sle12-a lrmd[6904]: <img src="/img/icons/callouts/2.png" alt="2">  notice: operation_finished: nfs-server_start_0:23320:stderr [ id: rpcuser: no such user ]
+Dec 16 11:53:24 sle12-a lrmd[6904]: message repeated 3 times: [   notice: operation_finished: nfs-server_start_0:23320:stderr [ id: rpcuser: no such user ]]
+</pre></div></div></div>
+<div class="colist arabic"><table>
+<tr><td><img src="/img/icons/callouts/1.png" alt="1"></td><td>
+NFS server error message.
+</td></tr>
+<tr><td><img src="/img/icons/callouts/2.png" alt="2"></td><td>
+Warning about a non-existing user id.
+</td></tr>
+</table></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="/img/icons/note.png" alt="Note">
+</td>
+<td class="content">Messages logged by resource agents are always tagged with
+      <em>type(ID)</em> (in <a href="#Listing 3">[Listing 3]</a>: <span class="monospaced">nfsserver(nfs-server)</span>).
+     <br>
+          Everything dumped to <span class="monospaced">stderr/stdout</span> (in <a href="#Listing 3">[Listing 3]</a>:
+          <span class="monospaced">id: rpcuser: no such user</span>) is captured and subsequently
+          logged by <span class="monospaced">lrmd</span>. The <span class="monospaced">stdout</span> output is at the <em>info</em>
+          severity which is by default <em>not</em> logged by pacemaker
+          since version 1.1.12.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>At the very top we see error message reporting that the
+NFS server is running, but some other stuff, apparently
+unexpectedly, is not. However, we know that it cannot be
+running on the <em>c</em> node as it is already running on the <em>a</em> node.
+Not being able to figure out what is going on, we had to turn on
+tracing of the resource agent. <a href="#Listing 4">[Listing 4]</a> shows how to do
+that.</p></div>
+<div class="listingblock">
+<div class="title">Listing 4: Set <span class="monospaced">nfs-server</span> probe operation resource tracing<a id="Listing 4"></a></div>
+<div class="content"><div class="highlight"><pre># crm resource trace nfs-server monitor 0
+<span class="-Color-Cyan">INFO</span>: Trace for nfs-server:monitor is written to /var/lib/heartbeat/trace_ra/
+<span class="-Color-Cyan">INFO</span>: Trace set, restart nfs-server to trace non-monitor operations
+# crm resource cleanup nfs-server
+Cleaning up nfs-server on sle12-a
+Cleaning up nfs-server on sle12-c
+Waiting for 2 replies from the CRMd.. OK
+</pre></div></div></div>
+<div class="paragraph"><p>Trace of the <span class="monospaced">nfsserver</span> RA revealed that the <span class="monospaced">nfs-server</span> init
+script (used internally by the resource agent) <em>always</em> exits
+with success for status. That was actually due to the recent port
+to systemd and erroneous interpretation of <span class="monospaced">systemctl status</span>
+semantics: it always exits with success (due to some paradigm
+shift, we guess). FYI, <span class="monospaced">systemctl is-active</span> should be used
+instead and it does report a service status as expected.</p></div>
+<div class="paragraph"><p>As a bonus, a minor issue about a non-existing user id <span class="monospaced">rpcuser</span>
+is also revealed.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="/img/icons/note.png" alt="Note">
+</td>
+<td class="content">Messages in the crm history log output are colored
+      depending on the originating host.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>The rest of this document gives more details about crmsh history.
+If you&#8217;re more of a just-try-it-out person, enter <span class="monospaced">crm history</span>
+and experiment. With <span class="monospaced">history</span> commands you cannot really break
+anything (fingers crossed).</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_introduction_to_crmsh_span_class_monospaced_history_span">Introduction to crmsh <span class="monospaced">history</span></h2>
+<div class="sectionbody">
+<div class="paragraph"><p>The history crmsh feature, as the name suggests, deals with the
+past. It was conceived as a facility to bring to the fore all
+trails pacemaker cluster leaves behind which are relevant to a
+particular resource, node, or event. It is used in the first
+place as a troubleshooting tool, but it can also be helpful in
+studying pacemaker clusters.</p></div>
+<div class="paragraph"><p>To begin, we run the <span class="monospaced">info</span> command which gives an overview, as
+shown in <a href="#Listing 5">[Listing 5]</a>.</p></div>
+<div class="listingblock">
+<div class="title">Listing 5: Basic history information<a id="Listing 5"></a></div>
+<div class="content"><div class="highlight"><pre># crm history
+<span class="-Color-Green">crm(live)history# </span>timeframe &quot;Apr 15 20:25&quot; &quot;Apr 15 20:35&quot;
+<span class="-Color-Green">crm(live)history# </span>info
+Source: live
+Created on: Thu Apr 16 11:32:36 CEST 2015
+By: report -Z -Q -f Wed Apr 15 20:25:00 2015 -t 2015-04-15 20:35:00 /var/cache/crm/history/live
+Period: 2015-04-15 20:25:00 - 2015-04-15 20:35:00
+Nodes: sle12-a <span class="-Color-Green">sle12-c</span>
+Groups: nfs-srv nfs-disk
+Resources: s-libvirt p_drbd_nfs nfs-vg fs1 virtual-ip nfs-server websrv websrv-ip small-apache
+Transitions: <span class="-Color-Green">1906</span> <span class="-Color-Green">1907</span>
+<span class="-Color-Green">crm(live)history# </span>peinputs v
+Date       Start    End       Filename      Client     User       Origin
+====       =====    ===       ========      ======     ====       ======
+2015-04-15 20:29:59 20:30:01  <span class="-Color-Green">pe-input-1906</span> no-client  no-user    no-origin
+2015-04-15 20:30:14 20:30:15  <span class="-Color-Green">pe-input-1907</span> no-client  no-user    no-origin
+</pre></div></div></div>
+<div class="paragraph"><p>The <span class="monospaced">timeframe</span> command limits the observed period and helps
+focus on the events of interest. Here we wanted to look at the
+10 minute period. Two transitions were executed during this time.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_transitions">Transitions</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Transitions are basic units capturing cluster movements
+(resource operations and node events). A transition
+consists of a set of actions to reach a desired cluster
+status as specified in the cluster configuration by the
+user.</p></div>
+<div class="paragraph"><p>Every configuration or status change results in a transition.</p></div>
+<div class="paragraph"><p>Every transition is also a CIB, which is how cluster
+configuration and status are stored. Transitions are saved
+to files, the so called PE (Policy Engine) inputs.</p></div>
+<div class="paragraph"><p>In  <a href="#Listing 6">[Listing 6]</a> we show how to display transitions.
+The listing is annotated to explain the output in more detail.</p></div>
+<div class="listingblock">
+<div class="title">Listing 6: Viewing transitions<a id="Listing 6"></a></div>
+<div class="content"><div class="highlight"><pre><span class="-Color-Green">crm(live)history# </span>transition <img src="/img/icons/callouts/1.png" alt="1">
+<span class="-Color-Cyan">INFO</span>: running ptest with /var/cache/crm/history/live/sle12-c/pengine/pe-input-1907.bz2
+<span class="-Color-Cyan">INFO</span>: starting dotty to show transition graph <img src="/img/icons/callouts/2.png" alt="2">
+Current cluster status: <img src="/img/icons/callouts/3.png" alt="3">
+Online: [ sle12-a sle12-c ]
+ s-libvirt      (stonith:external/libvirt):     Started sle12-c
+ ...
+ small-apache   (ocf::heartbeat:apache):        Stopped
+Transition Summary:
+ * Start   small-apache (sle12-a)
+Executing cluster transition:
+ * Resource action: small-apache    start on sle12-a
+Revised cluster status:
+Online: [ sle12-a sle12-c ]
+ s-libvirt      (stonith:external/libvirt):     Started sle12-c
+ ...
+ small-apache   (ocf::heartbeat:apache):        Started sle12-a
+
+Transition sle12-c:pe-input-1907 (20:30:14 - 20:30:15): <img src="/img/icons/callouts/4.png" alt="4">
+        total 1 actions: 1 Complete
+<span class="-Color-Green">Apr 15 20:30:14 sle12-c crmd[1136]:   notice: te_rsc_command: Initiating action 60: start small-apache_start_0 on sle12-a</span>
+Apr 15 20:30:14 sle12-a apache(small-apache)[1586]: INFO: AH00558: httpd2: Could not reliably determine the server&#39;s fully qualified domain name, using 10.2.12.51. Set the &#39;ServerName&#39; directive globally to suppress this message
+</pre></div></div></div>
+<div class="colist arabic"><table>
+<tr><td><img src="/img/icons/callouts/1.png" alt="1"></td><td>
+The transition command without arguments displays the latest
+transition.
+</td></tr>
+<tr><td><img src="/img/icons/callouts/2.png" alt="2"></td><td>
+Graph of transition actions is provided by <span class="monospaced">graphviz</span>. See
+<a href="#Image 2">[Image 2]</a>.
+</td></tr>
+<tr><td><img src="/img/icons/callouts/3.png" alt="3"></td><td>
+Output of <span class="monospaced">crm_simulate</span> with irrelevant stuff edited out.
+<span class="monospaced">crm_simulate</span> was formerly known as <span class="monospaced">ptest</span>.
+</td></tr>
+<tr><td><img src="/img/icons/callouts/4.png" alt="4"></td><td>
+Transition summary followed by selection of log messages.
+History weeds out messages which are of lesser importance. See
+<a href="#Listing 8">[Listing 8]</a> if you want to see what history has been hiding
+from you here.
+</td></tr>
+</table></div>
+<div class="paragraph"><p>Incidentally, if you wonder why all transitions in these examples
+are green, that is not because they were green in any sense of
+the color, but just due to that being color of node <em>c</em>: as
+chance would have it, <em>c</em> was calling shots at the time (being
+Designated Coordinator or DC). That is also why all <span class="monospaced">crmd</span> and
+<span class="monospaced">pengine</span> messages are coming from <em>c</em>.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="/img/icons/note.png" alt="Note">
+</td>
+<td class="content">Transitions are the basis of pacemaker operation, make sure
+that you understand them.</td>
+</tr></table>
+</div>
+<div class="paragraph"><p>What you cannot see in the listing is a graph generated and shown
+in a separate window in your X11 display. <a href="#Image 2">[Image 2]</a> may not be
+very involved, but we reckon it&#8217;s as good a start as starts go.</p></div>
+<div class="imageblock">
+<div class="content">
+<a class="image" href="/img/history-guide/smallapache-start.png">
+<img src="/img/history-guide/smallapache-start.png" alt="/img/history-guide/smallapache-start.png">
+</a>
+</div>
+<div class="title">Image 2: Graph for transition 1907<a id="Image 2"></a></div>
+</div>
+<div class="paragraph"><p>It may sometimes be useful to see what changed between two
+transitions. History <span class="monospaced">diff</span> command is in action in <a href="#Listing 7">[Listing 7]</a>.</p></div>
+<div class="listingblock">
+<div class="title">Listing 7: Viewing transitions<a id="Listing 7"></a></div>
+<div class="content"><div class="highlight"><pre><span class="-Color-Green">crm(live)history# </span>diff -1 0 <img src="/img/icons/callouts/1.png" alt="1">
+--- -1
++++ 0
+@@ -11 +11 @@
+-<span class="-Color-Yellow">primitive</span> small-apache apache <span class="-Color-Yellow">params</span> <span class="-Color-Cyan">configfile</span>=<span class="-Color-Red">&quot;/etc/apache2/small.conf&quot;</span> <span class="-Color-Yellow">meta</span> <span class="-Color-Cyan">target-role</span>=<span class="-Color-Red">Stopped</span>
++<span class="-Color-Yellow">primitive</span> small-apache apache <span class="-Color-Yellow">params</span> <span class="-Color-Cyan">configfile</span>=<span class="-Color-Red">&quot;/etc/apache2/small.conf&quot;</span> <span class="-Color-Yellow">meta</span> <span class="-Color-Cyan">target-role</span>=<span class="-Color-Red">Started</span>
+<span class="-Color-Green">crm(live)history# </span>diff -1 0 status <img src="/img/icons/callouts/2.png" alt="2">
+--- -1
++++ 0
+@@ -15 +14,0 @@
+- small-apache  (ocf::heartbeat:apache):        Started sle12-a
+</pre></div></div></div>
+<div class="colist arabic"><table>
+<tr><td><img src="/img/icons/callouts/1.png" alt="1"></td><td>
+Configuration diff between two last transitions. Transitions
+may be referenced with indexes starting at 0 and going backwards.
+</td></tr>
+<tr><td><img src="/img/icons/callouts/2.png" alt="2"></td><td>
+Status diff between two last transitions.
+</td></tr>
+</table></div>
+<div class="paragraph"><p>Whereas configuration diff is (hopefully) obvious, status diff
+needs some explanation: the status section of the PE inputs
+(transitions) always lags behind the configuration.  This is
+because at the time the transition is saved to a file, the
+actions of that transition are yet to be executed. So, the status
+section of transition <em>N</em> corresponds to the configuration <em>N-1</em>.</p></div>
+<div class="listingblock">
+<div class="title">Listing 8: Full transition log<a id="Listing 8"></a></div>
+<div class="content"><div class="highlight"><pre><span class="-Color-Green">crm(live)history# </span>transition log
+<span class="-Color-Cyan">INFO</span>: retrieving information from cluster nodes, please wait ...
+<span class="-Color-Green">Apr 15 20:30:14 sle12-c crmd[1136]:   notice: do_state_transition: State transition S_IDLE -&gt; S_POLICY_ENGINE [ input=I_PE_CALC cause=C_FSA_INTERNAL origin=abort_transition_graph ]</span>
+<span class="-Color-Green">Apr 15 20:30:14 sle12-c stonithd[1132]:   notice: unpack_config: On loss of CCM Quorum: Ignore</span>
+<span class="-Color-Green">Apr 15 20:30:14 sle12-c pengine[1135]:   notice: unpack_config: On loss of CCM Quorum: Ignore</span>
+<span class="-Color-Green">Apr 15 20:30:14 sle12-c pengine[1135]:   notice: LogActions: Start   small-apache#011(sle12-a)</span>
+<span class="-Color-Green">Apr 15 20:30:14 sle12-c crmd[1136]:   notice: do_te_invoke: Processing graph 123 (ref=pe_calc-dc-1429122614-234) derived from /var/lib/pacemaker/pengine/pe-input-1907.bz2</span>
+<span class="-Color-Green">Apr 15 20:30:14 sle12-c crmd[1136]:   notice: te_rsc_command: Initiating action 60: start small-apache_start_0 on sle12-a</span>
+<span class="-Color-Green">Apr 15 20:30:14 sle12-c pengine[1135]:   notice: process_pe_message: Calculated Transition 123: /var/lib/pacemaker/pengine/pe-input-1907.bz2</span>
+Apr 15 20:30:14 sle12-a stonithd[1160]:   notice: unpack_config: On loss of CCM Quorum: Ignore
+Apr 15 20:30:14 sle12-a apache(small-apache)[1586]: INFO: AH00558: httpd2: Could not reliably determine the server&#39;s fully qualified domain name, using 10.2.12.51. Set the &#39;ServerName&#39; directive globally to suppress this message
+Apr 15 20:30:14 sle12-a crmd[1164]:   notice: process_lrm_event: Operation small-apache_start_0: ok (node=sle12-a, call=69, rc=0, cib-update=48, confirmed=true)
+<span class="-Color-Green">Apr 15 20:30:15 sle12-c crmd[1136]:   notice: run_graph: Transition 123 (Complete=1, Pending=0, Fired=0, Skipped=0, Incomplete=0, Source=/var/lib/pacemaker/pengine/pe-input-1907.bz2): Complete</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_resource_and_node_events">Resource and node events</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Apart from transitions, events such as resource start or stop are
+what we usually want to examine. In our extremely exciting
+example of apache resource restart, the history <span class="monospaced">resource</span>
+command picks the most interesting resource related messages as
+shown in <a href="#Listing 9">[Listing 9]</a>. Again, history shows only the most
+important log parts.</p></div>
+<div class="admonitionblock">
+<table><tr>
+<td class="icon">
+<img src="/img/icons/note.png" alt="Note">
+</td>
+<td class="content">If you want to see more detail (which may not always be
+          recommendable), then use the history <span class="monospaced">detail</span> command to
+          increase the level of detail displayed.</td>
+</tr></table>
+</div>
+<div class="listingblock">
+<div class="title">Listing 9: Resource related messages<a id="Listing 9"></a></div>
+<div class="content"><div class="highlight"><pre><span class="-Color-Green">crm(live)history# </span>resource small-apache
+<span class="-Color-Green">Apr 15 20:29:59 sle12-c crmd[1136]:   notice: te_rsc_command: Initiating action 60: stop small-apache_stop_0 on sle12-a</span>
+Apr 15 20:29:59 sle12-a apache(small-apache)[1366]: INFO: Attempting graceful stop of apache PID 9155
+Apr 15 20:30:01 sle12-a apache(small-apache)[1366]: INFO: apache stopped.
+Apr 15 20:30:14 sle12-a apache(small-apache)[1586]: INFO: AH00558: httpd2: Could not reliably determine the server&#39;s fully qualified domain name, using 10.2.12.51. Set the &#39;ServerName&#39; directive globally to suppress this message
+<span class="-Color-Green">Apr 15 20:30:14 sle12-c crmd[1136]:   notice: te_rsc_command: Initiating action 60: start small-apache_start_0 on sle12-a</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Node related events are node start and stop (cluster-wise),
+node membership changes, and stonith events (aka node fence).
+We&#8217;ll refrain from showing examples of the history <span class="monospaced">node</span>
+command&#8212;it is analogue to the <span class="monospaced">resource</span> command.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_viewing_logs">Viewing logs</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>History <span class="monospaced">log</span> command, unsurprisingly, displays logs. The
+messages from various nodes are weaved and shown in different
+colors for the sake of easier viewing. Unlike other history
+commands, <span class="monospaced">log</span> shows all messages captured in the report. If you
+find some of them irrelevant they can be filtered out:
+the <span class="monospaced">exclude</span> command takes extended regular expressions and it
+is additive. We usually set the exclude expression to at least
+<span class="monospaced">ssh|systemd|kernel</span>. Use <span class="monospaced">exclude clear</span> to remove all
+expressions. And don&#8217;t forget the <span class="monospaced">timeframe</span> command that
+imposes a time window on the report.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_external_reports_configurations_and_graphs">External reports, configurations, and graphs</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>The information source history works with is <span class="monospaced">hb_report</span>
+generated report. Even when examining live cluster, <span class="monospaced">hb_report</span> is
+run behind the scene to collect the data before presenting it to
+the user. Well, at least to generate the first report: there is a
+special procedure for log refreshing and collecting new PE
+inputs, which runs much faster than creating a report from
+scratch. However, juggling with multiple sources, appending logs,
+moving time windows, may not always be foolproof, and if
+the source gets borked you can always ask for a brand new report
+with <span class="monospaced">refresh force</span>.</p></div>
+<div class="paragraph"><p>Analyzing reports from external source is no different from what
+we&#8217;ve seen so far. In fact, there&#8217;s a <span class="monospaced">source</span> command which
+tells history where to look for data.</p></div>
 </div>
 </div>
 </div>

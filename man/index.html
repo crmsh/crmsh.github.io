@@ -49,6 +49,7 @@
 <div class="toclevel3"><a href="#cmdhelp_cluster_init">init</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_remove">remove</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_run">run</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_copy">copy</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_start">start</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_status">status</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_stop">stop</a></div>
@@ -180,6 +181,7 @@
 <div class="toclevel3"><a href="#cmdhelp_configure_schema">schema</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_set">set</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_show">show</a></div>
+<div class="toclevel3"><a href="#cmdhelp_configure_show_property">show_property</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_tag">tag</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_template">template</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_upgrade">upgrade</a></div>
@@ -1232,6 +1234,22 @@ statement on all nodes in the cluster, and reports the result.</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>run "cat /proc/uptime"</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_copy"><span class="monospaced">copy</span></h4>
+<div class="paragraph"><p>Copy file to other cluster nodes.</p></div>
+<div class="paragraph"><p>Copies the given file to all other nodes unless given a
+list of nodes to copy to as argument.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>copy &lt;filename&gt; [nodes ...]</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>copy /etc/motd</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3718,7 +3736,12 @@ following combination can be used: <span class="monospaced">show tag:my-tag my-t
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>show [xml] [&lt;id&gt; | changed | type:&lt;type&gt; | tag:&lt;id&gt; | related:&lt;obj&gt; ...]
+<pre>show [xml] [&lt;id&gt;
+           | changed
+           | type:&lt;type&gt;
+           | tag:&lt;id&gt;
+           | related:&lt;obj&gt;
+           ...]
 
 type :: node | primitive | group | clone | ms | rsc_template
       | location | colocation | order
@@ -3738,6 +3761,30 @@ show related:webapp</pre>
 </div></div>
 </div>
 <div class="sect3">
+<h4 id="cmdhelp_configure_show_property"><span class="monospaced">show-property</span></h4>
+<div class="paragraph"><p>Show the value of the given property. If the value is not set, the
+command will print the default value for the property, if known.</p></div>
+<div class="paragraph"><p>If no property name is passed to the command, the list of known
+cluster properties is printed.</p></div>
+<div class="paragraph"><p>If the property is set multiple times, for example using multiple
+property sets with different rule expressions, the output of this
+command is undefined.</p></div>
+<div class="paragraph"><p>Pass the argument <span class="monospaced">-t</span> or <span class="monospaced">--true</span> to <span class="monospaced">show-property</span> to translate
+the argument value into <span class="monospaced">true</span> or <span class="monospaced">false</span>. If the value is not
+set, the command will print <span class="monospaced">false</span>.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>show-property [-t|--true] [&lt;name&gt;]</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>show-property stonith-enabled
+show-property -t maintenance-mode</pre>
+</div></div>
+</div>
+<div class="sect3">
 <h4 id="cmdhelp_configure_tag"><span class="monospaced">tag</span></h4>
 <div class="paragraph"><p>Define a resource tag. A tag is an id referring to one or more
 resources, without implying any constraints between the tagged
@@ -3746,12 +3793,14 @@ resources.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>tag &lt;tag-name&gt;: &lt;rsc&gt; [&lt;rsc&gt; ...]</pre>
+<pre>tag &lt;tag-name&gt;: &lt;rsc&gt; [&lt;rsc&gt; ...]
+tag &lt;tag-name&gt; &lt;rsc&gt; [&lt;rsc&gt; ...]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>tag web: p-webserver p-vip</pre>
+<pre>tag web: p-webserver p-vip
+tag ips server-vip admin-vip</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3772,20 +3821,22 @@ user to make a good CRM configuration out of it. See also the
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_configure_upgrade"><span class="monospaced">upgrade</span></h4>
-<div class="paragraph"><p>If you get the <span class="monospaced">CIB not supported</span> error, which typically means
-that the current CIB version is coming from the older release,
-you may try to upgrade it to the latest revision. The command
-to perform the upgrade is:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre># cibadmin --upgrade --force</pre>
-</div></div>
-<div class="paragraph"><p>If we don&#8217;t recognize the current CIB as the old one, but you&#8217;re
-sure that it is, you may force the command.</p></div>
+<div class="paragraph"><p>Attempts to upgrade the CIB to validate with the current
+version. Commonly, this is required if the error
+<span class="monospaced">CIB not supported</span> occurs. It typically means that the
+active CIB version is coming from an older release.</p></div>
+<div class="paragraph"><p>As a safety precaution, the force argument is required if the
+<span class="monospaced">validation-with</span> attribute is set to anything other than
+<span class="monospaced">0.6</span>. Thus in most cases, it is required.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>upgrade [force]</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>upgrade force</pre>
 </div></div>
 </div>
 <div class="sect3">
