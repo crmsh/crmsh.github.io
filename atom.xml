@@ -5,7 +5,36 @@
 <link href="http://crmsh.github.io/atom.xml" rel="self" />
 <link href="http://crmsh.github.io/" />
 <id>tag:crmsh.github.io,2014:/atom</id>
-<updated>2015-05-13T15:30:00CET</updated>
+<updated>2015-05-25T13:30:00CET</updated>
+<entry>
+<title>Getting Started translated to Japanese</title>
+<id>tag:crmsh.github.io,2014:/atom::0dc9284eb5642057136d7f2c754e699c0579fdfe</id>
+<updated>2015-05-25T13:30:00CET</updated>
+<link>http://crmsh.github.io/news/2015-05-25-getting-started-jp</link>
+<content type="html">
+&lt;pre&gt;
+
+Many thanks to Motoharu Kubo at 3ware for offering to translate the
+`crmsh` documentation to Japanese!
+
+The first document to be translated is the link:/start-guide/[Getting Started] guide,
+now available in Japanese at the following location:
+
+* https://blog.3ware.co.jp/2015/05/crmsh-getting-started/
+
+Thank you,
+Kristoffer and Dejan
+
+
+&lt;/pre&gt;
+
+</content>
+<author>
+<name>Kristoffer Gronlund</name>
+<email>kgronlund@suse.com</email>
+</author>
+</entry>
+
 <entry>
 <title>Announcing crmsh stable release 2.1.4</title>
 <id>tag:crmsh.github.io,2014:/atom::42ff35c4489d046ef8eeff7b0c1d7a75d51b5f25</id>

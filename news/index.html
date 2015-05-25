@@ -26,157 +26,39 @@
 </div>
 <!--TOC-->
 <div id="toc">
-<div class="toclevel1"><a href="#_announcing_crmsh_stable_release_2_1_4">Announcing crmsh stable release 2.1.4</a></div>
-<div class="toclevel3"><a href="#_history_guide">History Guide</a></div>
-<div class="toclevel3"><a href="#_hawk_presentation">Hawk Presentation</a></div>
-<div class="toclevel3"><a href="#_2_2_0_development_news">2.2.0 Development News</a></div>
-<div class="toclevel3"><a href="#_2_1_4_details">2.1.4 Details</a></div>
+<div class="toclevel1"><a href="#_getting_started_translated_to_japanese">Getting Started translated to Japanese</a></div>
 </div>
 <div id="container">
 <div id="content">
 <h1>News</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph"><p><a href="/news/2015-05-13-release-2_1_4">2015-05-13 15:30</a></p></div>
+<div class="paragraph"><p><a href="/news/2015-05-25-getting-started-jp">2015-05-25 13:30</a></p></div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_announcing_crmsh_stable_release_2_1_4">Announcing crmsh stable release 2.1.4</h2>
+<h2 id="_getting_started_translated_to_japanese">Getting Started translated to Japanese</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>Today we are proud to announce the release of <span class="monospaced">crmsh</span> version 2.1.4!
-2.1.4 is a minor bug fix release with no major issues, so users
-already running 2.1.3 are mostly fine. Instead, the main reason
-for releasing 2.1.4 is as an excuse to talk about some other things
-that are happening with crmsh!</p></div>
-<div class="paragraph"><p>The details for this release are available below.</p></div>
-<div class="sect3">
-<h4 id="_history_guide">History Guide</h4>
-<div class="paragraph"><p>Dejan has written a guide to using the crmsh history
-command. For those who are unfamiliar with the history explorer or
-want to know more about how to use it, this guide is a great
-introduction to what it does and how to use it.</p></div>
-<div class="paragraph"><p>History is not a new crmsh feature, but, as we failed to
-advertise it and nothing works without proper marketing, it
-probably hasn&#8217;t seen a very wide use. That&#8217;s surely a pity and we
-hope that this gentle history guide is going to help.</p></div>
-<div class="paragraph"><p>So, if you use crmsh and if you need help troubleshooting
-clusters (I surely do!), take a look here:</p></div>
-<div class="paragraph"><p><a href="http://crmsh.github.io/history-guide/">http://crmsh.github.io/history-guide/</a></p></div>
-<div class="paragraph"><p>FYI, the comprehensive crmsh help also has a short description of
-the feature:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>crm history help</pre>
-</div></div>
-<div class="paragraph"><p>Goes without saying: all commands are described too.</p></div>
-<div class="paragraph"><p>If you don&#8217;t use crmsh, you&#8217;ll still find a lot of useful
-information in the guide, so don&#8217;t skip it.</p></div>
-</div>
-<div class="sect3">
-<h4 id="_hawk_presentation">Hawk Presentation</h4>
-<div class="paragraph"><p>I presented Hawk [1] and the History Explorer interface which
-builds upon the crmsh history feature at openSUSE conf in The Hague
-earlier this month. The video of that presentation is online here:</p></div>
-<iframe width="420" height="315" src="https://www.youtube.com/embed/mngfxzXkFLw" frameborder="0" allowfullscreen></iframe>
-<div class="paragraph"><p><a href="https://www.youtube.com/watch?v=mngfxzXkFLw">https://www.youtube.com/watch?v=mngfxzXkFLw</a></p></div>
-<div class="paragraph"><p>[1]: <a href="https://github.com/ClusterLabs/hawk">https://github.com/ClusterLabs/hawk</a></p></div>
-</div>
-<div class="sect3">
-<h4 id="_2_2_0_development_news">2.2.0 Development News</h4>
-<div class="paragraph"><p>While 2.1.4 is the latest stable release, I am also working on releasing
-2.2.0 which will come with a bunch of new features. I&#8217;m still working
-on some of these and not everything is in the repository yet, so
-2.2.0 is probably at least a month or so away still. I was perhaps
-a bit optimistic when I tagged RC1 back in October last year. ;)</p></div>
-<div class="paragraph"><p>However, right now I&#8217;d like to focus on one thing that is already in
-2.2.0 and which is available if you use the development packages from
-OBS: command shorthands. This makes crmsh a lot more convenient to use
-from the command line. Basically, you can use any unambiguous subset
-of a command name to refer to that command, and crmsh will figure out
-what you mean. This may sound confusing, so an example will help with
-explaining what I mean:</p></div>
-<div class="paragraph"><p>This is one way of showing the current cluster configuration:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>crm configure show</pre>
-</div></div>
-<div class="paragraph"><p>However, now you can shorten this to the following:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>crm cfg show</pre>
-</div></div>
-<div class="paragraph"><p>Other examples of shorthand are <span class="monospaced">crm rsc stop r1</span> or <span class="monospaced">crm st</span>
-for status. And of course, tab completion in bash still works for
-the shorthand variants.</p></div>
-<div class="paragraph"><p>The examples used here are not comprehensive. crmsh is pretty clever
-at figuring out which command was intended. Download the development
-release and try it out!</p></div>
-</div>
-<div class="sect3">
-<h4 id="_2_1_4_details">2.1.4 Details</h4>
-<div class="paragraph"><p>For a complete list of changes since the previous version, please
-refer to the changelog:</p></div>
+<div class="paragraph"><p>Many thanks to Motoharu Kubo at 3ware for offering to translate the
+<span class="monospaced">crmsh</span> documentation to Japanese!</p></div>
+<div class="paragraph"><p>The first document to be translated is the <a href="/start-guide/">Getting Started</a> guide,
+now available in Japanese at the following location:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-<a href="https://github.com/ClusterLabs/crmsh/blob/2.1.4/ChangeLog">https://github.com/ClusterLabs/crmsh/blob/2.1.4/ChangeLog</a>
+<a href="https://blog.3ware.co.jp/2015/05/crmsh-getting-started/">https://blog.3ware.co.jp/2015/05/crmsh-getting-started/</a>
 </p>
 </li>
 </ul></div>
-<div class="paragraph"><p>Packages for several popular Linux distributions can be downloaded
-from the Stable repository at the OBS:</p></div>
-<div class="ulist"><ul>
-<li>
-<p>
-<a href="http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/">http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/</a>
-</p>
-</li>
-</ul></div>
-<div class="paragraph"><p>Archives of the tagged release:</p></div>
-<div class="ulist"><ul>
-<li>
-<p>
-<a href="https://github.com/ClusterLabs/crmsh/archive/2.1.4.tar.gz">https://github.com/ClusterLabs/crmsh/archive/2.1.4.tar.gz</a>
-</p>
-</li>
-<li>
-<p>
-<a href="https://github.com/ClusterLabs/crmsh/archive/2.1.4.zip">https://github.com/ClusterLabs/crmsh/archive/2.1.4.zip</a>
-</p>
-</li>
-</ul></div>
-<div class="paragraph"><p>Changes since the previous release:</p></div>
-<div class="ulist"><ul>
-<li>
-<p>
-Medium: hb_report: use faster zypper interface if available
-</p>
-</li>
-<li>
-<p>
-medium: ui_configure: Wait for DC when removing running resource
-</p>
-</li>
-<li>
-<p>
-low: schema: Don&#8217;t leak PacemakerError exceptions (#93)
-</p>
-</li>
-<li>
-<p>
-parse: Don&#8217;t require trailing colon in tag definitions
-</p>
-</li>
-<li>
-<p>
-medium: utils: Allow 1/0 as boolean values for parameters
-</p>
-</li>
-</ul></div>
-<div class="paragraph"><p>Thank you,</p></div>
-<div class="paragraph"><p>Kristoffer and Dejan</p></div>
+<div class="paragraph"><p>Thank you,
+Kristoffer and Dejan</p></div>
 <hr>
 <div class="ulist"><ul>
+<li>
+<p>
+<a href="/news/2015-05-13-release-2_1_4">2015-05-13 15:30 Announcing crmsh stable release 2.1.4</a>
+</p>
+</li>
 <li>
 <p>
 <a href="/news/2015-04-10-release-2_1_3">2015-04-10 12:30 Announcing crmsh stable release 2.1.3</a>
@@ -199,7 +81,6 @@ medium: utils: Allow 1/0 as boolean values for parameters
 </li>
 </ul></div>
 <div class="paragraph"><p><a href="https://savannah.nongnu.org/news/?group_id=10890">Old News Archive</a></p></div>
-</div>
 </div>
 </div>
 </div>
