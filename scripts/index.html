@@ -36,10 +36,12 @@
 <div class="toclevel2"><a href="#_how_scripts_work_in_detail">How scripts work, in detail</a></div>
 <div class="toclevel2"><a href="#_actions">Actions</a></div>
 <div class="toclevel2"><a href="#_basic_structure">Basic structure</a></div>
+<div class="toclevel2"><a href="#_command_arguments">Command arguments</a></div>
 <div class="toclevel2"><a href="#_remote_permissions">Remote permissions</a></div>
 <div class="toclevel2"><a href="#_running_scripts_without_a_cluster">Running scripts without a cluster</a></div>
 <div class="toclevel2"><a href="#_running_in_validate_mode">Running in validate mode</a></div>
 <div class="toclevel2"><a href="#_helper_library">Helper library</a></div>
+<div class="toclevel2"><a href="#_the_handles_language">The handles language</a></div>
 </div>
 <div id="container">
 <div id="content">
@@ -81,7 +83,7 @@ integrated way to perform tasks across the cluster that would
 otherwise be tedious, repetitive and error-prone. The scripts
 functionality in the crm shell is mainly inspired by Ansible, a
 light-weight and efficient configuration management tool.</p></div>
-<div class="paragraph"><p>Scripts are implemented using the <span class="monospaced">parallel-ssh</span> package which
+<div class="paragraph"><p>Scripts are implemented using the python <span class="monospaced">parallax</span> package which
 provides a thin wrapper on top of SSH. This allows the scripts to
 function through the usual SSH channels used for system maintenance,
 requiring no additional software to be installed or maintained.</p></div>
@@ -135,17 +137,18 @@ run health verbose=true</pre>
 </div></div>
 <div class="sect3">
 <h4 id="_single_stepping_a_script">Single-stepping a script</h4>
-<div class="paragraph"><p>It is possible to run a script step-by-step, with manual intervention
-between steps. First of all, list the steps of the script to run:</p></div>
+<div class="paragraph"><p>It is possible to run a script action-by-action, with manual intervention
+between actions. First of all, list the actions to perform given a
+certain set of parameter values:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>crm script steps health</pre>
+<pre>crm script verify health</pre>
 </div></div>
-<div class="paragraph"><p>To execute a single step, two things need to be provided:</p></div>
+<div class="paragraph"><p>To execute a single action, two things need to be provided:</p></div>
 <div class="olist arabic"><ol class="arabic">
 <li>
 <p>
-The name of the step to execute (printed by <span class="monospaced">steps</span>)
+The index of the action to execute (printed by <span class="monospaced">verify</span>)
 </p>
 </li>
 <li>
@@ -154,26 +157,22 @@ a file in which <span class="monospaced">crmsh</span> stores the state of execut
 </p>
 </li>
 </ol></div>
-<div class="paragraph"><p>Note that it is entirely possible to run steps out-of-order, however
-this is unlikely to work in practice since steps often rely on the
-output of previous steps.</p></div>
-<div class="paragraph"><p>The following command will execute the first step of the <span class="monospaced">health</span>
+<div class="paragraph"><p>Note that it is entirely possible to run actions out-of-order, however
+this is unlikely to work in practice since actions often rely on the
+outcome of previous actions.</p></div>
+<div class="paragraph"><p>The following command will execute the first action of the <span class="monospaced">health</span>
 script and store the output in a temporary file named <span class="monospaced">health.json</span>:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>crm script run health \
-    step='Collect cluster information' \
-    statefile='health.json'</pre>
+<pre>crm script run health action=1 statefile='health.json'</pre>
 </div></div>
 <div class="paragraph"><p>The statefile contains the script parameters and the output of
 previous steps, encoded as <span class="monospaced">json</span> data.</p></div>
-<div class="paragraph"><p>To continue executing the next step in sequence, replace the step name
-with the next step:</p></div>
+<div class="paragraph"><p>To continue executing the next action in sequence, enter the next
+action index:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>crm script run health \
-    step='Report cluster state' \
-    statefile='health.json'</pre>
+<pre>crm script run health action=2 statefile='health.json'</pre>
 </div></div>
 <div class="paragraph"><p>Note that the <span class="monospaced">dry_run</span> flag that can be used to do partial execution
 of scripts is not taken into consideration when single-stepping
@@ -190,11 +189,11 @@ the script to allow <span class="monospaced">crmsh</span> to find it, and how to
 script works as intended.</p></div>
 <div class="sect2">
 <h3 id="_how_scripts_work_in_detail">How scripts work, in detail</h3>
-<div class="paragraph"><p>When the script runs, the steps defined in <span class="monospaced">main.yml</span> as described
-below are executed one at a time. Each step describes an action that
-is applied to the cluster, either by calling out and running scripts
-on each of the cluster nodes, or by running a script locally on the
-node from which the command was executed.</p></div>
+<div class="paragraph"><p>When the script runs, the actions defined in <span class="monospaced">main.yml</span> as described
+below are executed one at a time. Each action prescribes a
+modification that is applied to the cluster. Some actions work by
+calling out to scripts on each of the cluster nodes, and others apply
+only on the local node from which the script was executed.</p></div>
 </div>
 <div class="sect2">
 <h3 id="_actions">Actions</h3>
@@ -205,7 +204,89 @@ type.</p></div>
 <div class="paragraph"><p>Here are the types of script actions that can be performed:</p></div>
 <div class="dlist"><dl>
 <dt class="hdlist1">
-Collect
+cib
+</dt>
+<dd>
+<div class="ulist"><ul>
+<li>
+<p>
+Applies a new CIB configuration to the cluster
+</p>
+</li>
+</ul></div>
+</dd>
+<dt class="hdlist1">
+install
+</dt>
+<dd>
+<div class="ulist"><ul>
+<li>
+<p>
+Ensures that the given list of packages is installed on all
+    cluster nodes using the system package manager.
+</p>
+</li>
+</ul></div>
+</dd>
+<dt class="hdlist1">
+service
+</dt>
+<dd>
+<div class="ulist"><ul>
+<li>
+<p>
+Manages system services using the system init tools. The argument
+    should be a space-separated list of &lt;service&gt;:&lt;state&gt; pairs.
+</p>
+</li>
+</ul></div>
+</dd>
+<dt class="hdlist1">
+call
+</dt>
+<dd>
+<div class="ulist"><ul>
+<li>
+<p>
+Run a shell command as specified in the action, either on the
+    local node on or all nodes.
+</p>
+</li>
+</ul></div>
+</dd>
+<dt class="hdlist1">
+copy
+</dt>
+<dd>
+<div class="ulist"><ul>
+<li>
+<p>
+Installs a file on the cluster nodes.
+</p>
+</li>
+<li>
+<p>
+Using a configuration template, install a file on the cluster
+    nodes.
+</p>
+</li>
+</ul></div>
+</dd>
+<dt class="hdlist1">
+crm
+</dt>
+<dd>
+<div class="ulist"><ul>
+<li>
+<p>
+Runs the given command using the <span class="monospaced">crm</span> shell. This can be used to
+    start and stop resources, for example.
+</p>
+</li>
+</ul></div>
+</dd>
+<dt class="hdlist1">
+collect
 </dt>
 <dd>
 <div class="ulist"><ul>
@@ -223,7 +304,7 @@ Gathers information about the nodes, both general information and
 </ul></div>
 </dd>
 <dt class="hdlist1">
-Validate
+validate
 </dt>
 <dd>
 <div class="ulist"><ul>
@@ -242,7 +323,7 @@ Validate parameter values and node state based on collected
 </ul></div>
 </dd>
 <dt class="hdlist1">
-Apply
+apply
 </dt>
 <dd>
 <div class="ulist"><ul>
@@ -260,7 +341,7 @@ Applies changes, returning information about the applied changes
 </ul></div>
 </dd>
 <dt class="hdlist1">
-Apply-Local
+apply_local
 </dt>
 <dd>
 <div class="ulist"><ul>
@@ -279,7 +360,7 @@ Applies changes to the cluster, where an action taken on a single
 </ul></div>
 </dd>
 <dt class="hdlist1">
-Report
+report
 </dt>
 <dd>
 <div class="ulist"><ul>
@@ -290,7 +371,7 @@ Runs on the local node
 </li>
 <li>
 <p>
-This is similar to the <em>Apply-Local</em> action, with the difference
+This is similar to the <em>apply_local</em> action, with the difference
     that the output of a Report action is not interpreted as JSON data
     to be passed to the next action. Instead, the output is printed to
     the screen.
@@ -328,20 +409,34 @@ each section means.</p></div>
 <div class="content"><div class="highlight"><pre><span class="nn">---</span>
 <span class="c1"># The triple-dash indicates that this is a yaml document.</span>
 <span class="c1"># All yaml documents should begin with this line.</span>
-<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Check uptime of nodes</span>
-  <span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="p-Indicator">&gt;</span>
+<span class="c1"># The version must be exactly 2.2, and must always be</span>
+<span class="c1"># specified in the script. If the version is missing or</span>
+<span class="c1"># is less than 2.2, the script is assumed to be a legacy</span>
+<span class="c1"># script (specified in the format used before crmsh 2.2).</span>
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">version</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2.2</span>
+  <span class="l-Scalar-Plain">shortdesc</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Check uptime of nodes</span>
+  <span class="l-Scalar-Plain">longdesc</span><span class="p-Indicator">:</span> <span class="p-Indicator">&gt;</span>
     <span class="no">This script will fetch the uptime of</span>
     <span class="no">all nodes and report which node has been</span>
     <span class="no">up the longest.</span>
   <span class="l-Scalar-Plain">parameters</span><span class="p-Indicator">:</span>
-    <span class="c1"># Parameters must have a name and description.</span>
+    <span class="c1"># Parameters must have a name.</span>
     <span class="c1"># If a default value is provided, the parameter</span>
     <span class="c1"># is considered optional. Parameters without a</span>
     <span class="c1"># default value must be provided when running the</span>
     <span class="c1"># script.</span>
+    <span class="c1"># To require a parameter to be explicitly provided</span>
+    <span class="c1"># by the user, set required to true.</span>
+    <span class="c1"># To require the value of the parameter to be unique</span>
+    <span class="c1"># across the cluster, set unique to true. This setting</span>
+    <span class="c1"># is not enforced by crmsh, but can be useful as</span>
+    <span class="c1"># documentation.</span>
     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">show_all</span>
-      <span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Show all uptimes</span>
-      <span class="l-Scalar-Plain">default</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+      <span class="l-Scalar-Plain">shortdesc</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Show all uptimes</span>
+      <span class="l-Scalar-Plain">longdesc</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Enable to print all uptimes, not only a summary.</span>
+      <span class="l-Scalar-Plain">value</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+      <span class="l-Scalar-Plain">required</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+      <span class="l-Scalar-Plain">unique</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
   <span class="l-Scalar-Plain">steps</span><span class="p-Indicator">:</span>
     <span class="c1"># Steps consist of a descriptive name and an action which</span>
     <span class="c1"># calls a script to do its work. The script should be an</span>
@@ -351,6 +446,25 @@ each section means.</p></div>
     <span class="c1"># the cluster nodes know how to execute them.</span>
     <span class="c1">#</span>
     <span class="c1"># These are the valid actions:</span>
+    <span class="c1"># cib:</span>
+    <span class="c1">#     Apply the given CIB configuration. The configuration</span>
+    <span class="c1">#     can refer to script variables using a mustaschioed</span>
+    <span class="c1">#     syntax described in the documentation.</span>
+    <span class="c1"># install:</span>
+    <span class="c1">#     Install the given space-separated list of packages</span>
+    <span class="c1">#     using the system package manager.</span>
+    <span class="c1"># service:</span>
+    <span class="c1">#     Manages system services using the system init tools.</span>
+    <span class="c1">#     The argument should be a space-separated list of</span>
+    <span class="c1">#     &lt;service&gt;:&lt;state&gt; pairs.</span>
+    <span class="c1"># call:</span>
+    <span class="c1">#     Runs a shell command either on the current node or</span>
+    <span class="c1">#     on all nodes in the cluster. If the shell command</span>
+    <span class="c1">#     fails, the action fails as well.</span>
+    <span class="c1"># crm:</span>
+    <span class="c1">#     Runs the given crm command line.</span>
+    <span class="c1"># copy:</span>
+    <span class="c1">#     Copy a file to all of the cluster nodes.</span>
     <span class="c1"># collect:</span>
     <span class="c1">#     Runs on all nodes. Should not perform changes, only</span>
     <span class="c1">#     gather and return information.</span>
@@ -376,8 +490,12 @@ each section means.</p></div>
     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Report uptime</span>
       <span class="l-Scalar-Plain">report</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">report.py</span>
 </pre></div></div></div>
-<div class="paragraph"><p>The actions must not be Python scripts. They can be plain bash scripts
-or any other executable script as long as the nodes have the necessary
+</div>
+<div class="sect2">
+<h3 id="_command_arguments">Command arguments</h3>
+<div class="paragraph"><p>The actions that accept a command as argument must not refer to
+commands written in python. They can be plain bash scripts or any
+other executable script as long as the nodes have the necessary
 dependencies installed. However, see below why implementing scripts in
 Python is easier.</p></div>
 <div class="paragraph"><p>Actions report their progress either by returning JSON on standard
@@ -582,6 +700,23 @@ with producing output in the correct format, parsing the
 </p>
 </dd>
 </dl></div>
+</div>
+<div class="sect2">
+<h3 id="_the_handles_language">The handles language</h3>
+<div class="paragraph"><p>CIB configurations and commands can refer to the value of parameters
+in the text of the action. This is done using a custom language,
+similar to handlebars.</p></div>
+<div class="paragraph"><p>The language accepts the following constructions:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>{{name}} = Inserts the value of the parameter &lt;name&gt;
+{{script:name}} = Inserts the value of the parameter &lt;name&gt; from the
+                  included script named &lt;script&gt;.
+{{#name}} ... {{/name}} = Inserts the text between the mustasches when
+                          name is truthy.
+{{^name}} ... {{/name}} = Inserts the text between the mustasches when
+                          name is falsy.</pre>
+</div></div>
 </div>
 </div>
 </div>

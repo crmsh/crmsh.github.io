@@ -107,13 +107,13 @@ ways.</p></div>
 <span class="k">colocation</span><span class="w"> </span><span class="n">c-nfs</span><span class="w"> </span><span class="m">inf:</span><span class="w"> </span><span class="n">nfs-srv</span><span class="w"> </span><span class="n">nfs-disk</span><span class="w"></span>
 <span class="k">colocation</span><span class="w"> </span><span class="n">c-websrv</span><span class="w"> </span><span class="m">inf:</span><span class="w"> </span><span class="n">websrv</span><span class="w"> </span><span class="n">websrv-ip</span><span class="w"></span>
 <span class="k">colocation</span><span class="w"> </span><span class="n">small-apache-with-virtual-ip</span><span class="w"> </span><span class="m">inf:</span><span class="w"> </span><span class="n">small-apache</span><span class="w"> </span><span class="n">virtual-ip</span><span class="w"></span>
-<span class="n">#</span><span class="w"> </span><span class="n">need</span><span class="w"> </span><span class="n">fs1</span><span class="w"> </span><span class="n">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">NFS</span><span class="w"> </span><span class="n">server</span><span class="w"></span>
+<span class="c"># need fs1 for the NFS server</span>
 <span class="k">order</span><span class="w"> </span><span class="n">o-nfs</span><span class="w"> </span><span class="m">inf:</span><span class="w"> </span><span class="n">nfs-disk</span><span class="w"> </span><span class="n">nfs-srv</span><span class="w"></span>
-<span class="n">#</span><span class="w"> </span><span class="n">websrv</span><span class="w"> </span><span class="n">serves</span><span class="w"> </span><span class="n">requests</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">IP</span><span class="w"> </span><span class="n">websrv-ip</span><span class="w"></span>
+<span class="c"># websrv serves requests at IP websrv-ip</span>
 <span class="k">order</span><span class="w"> </span><span class="n">o-websrv</span><span class="w"> </span><span class="m">inf:</span><span class="w"> </span><span class="n">websrv-ip</span><span class="w"> </span><span class="n">websrv</span><span class="w"></span>
-<span class="n">#</span><span class="w"> </span><span class="n">small</span><span class="w"> </span><span class="n">apache</span><span class="w"> </span><span class="n">serves</span><span class="w"> </span><span class="n">requests</span><span class="w"> </span><span class="n">at</span><span class="w"> </span><span class="n">IP</span><span class="w"> </span><span class="n">virtual-ip</span><span class="w"></span>
+<span class="c"># small apache serves requests at IP virtual-ip</span>
 <span class="k">order</span><span class="w"> </span><span class="n">virtual-ip-before-small-apache</span><span class="w"> </span><span class="m">inf:</span><span class="w"> </span><span class="n">virtual-ip</span><span class="w"> </span><span class="n">small-apache</span><span class="w"></span>
-<span class="n">#</span><span class="w"> </span><span class="n">drbd</span><span class="w"> </span><span class="n">device</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">nfs-vg</span><span class="w"> </span><span class="n">PV</span><span class="w"></span>
+<span class="c"># drbd device is the nfs-vg PV</span>
 <span class="k">order</span><span class="w"> </span><span class="n">drbd-before-nfs-vg</span><span class="w"> </span><span class="m">inf:</span><span class="w"> </span><span class="n">ms_drbd_nfs</span><span class="p">:</span><span class="ow">promote</span><span class="w"> </span><span class="n">nfs-vg</span><span class="p">:</span><span class="ow">start</span><span class="w"></span>
 <span class="k">property</span><span class="w"> </span><span class="n">cib-bootstrap-options</span><span class="p">:</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
 <span class="w">        </span><span class="na">dc-version</span><span class="p">=</span><span class="s">1.1.12-ad083a8</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
@@ -170,15 +170,15 @@ supplied resource <a href="#Listing 3">[Listing 3]</a>.</p></div>
 <div class="listingblock">
 <div class="title">Listing 3: Logs on failed <span class="monospaced">nfs-server</span> probe operation<a id="Listing 3"></a></div>
 <div class="content"><div class="highlight"><pre># crm history resource nfs-server
-<span class="-Color-Cyan">INFO</span>: fetching new logs, please wait ...
-<span class="-Color-Green">Dec 16 11:53:23 sle12-c nfsserver(nfs-server)[14911]: <img src="/img/icons/callouts/1.png" alt="1"> ERROR: NFS server is up, but the locking daemons are down</span>
-<span class="-Color-Green">Dec 16 11:53:23 sle12-c crmd[2823]:   notice: te_rsc_command: Initiating action 54: stop nfs-server_stop_0 on sle12-a</span>
-<span class="-Color-Green">Dec 16 11:53:23 sle12-c crmd[2823]:   notice: te_rsc_command: Initiating action 3: stop nfs-server_stop_0 on sle12-c (local)</span>
-<span class="-Color-Green">Dec 16 11:53:23 sle12-c nfsserver(nfs-server)[14944]: INFO: Stopping NFS server ...</span>
-<span class="-Color-Green">Dec 16 11:53:23 sle12-c nfsserver(nfs-server)[14944]: INFO: Stopping sm-notify</span>
-<span class="-Color-Green">Dec 16 11:53:23 sle12-c nfsserver(nfs-server)[14944]: INFO: Stopping rpc.statd</span>
-<span class="-Color-Green">Dec 16 11:53:23 sle12-c nfsserver(nfs-server)[14944]: INFO: NFS server stopped</span>
-<span class="-Color-Green">Dec 16 11:53:23 sle12-c crmd[2823]:   notice: te_rsc_command: Initiating action 55: start nfs-server_start_0 on sle12-a</span>
+<span class="gt">INFO</span>: fetching new logs, please wait ...
+<span class="gi">Dec 16 11:53:23 sle12-c nfsserver(nfs-server)[14911]: <img src="/img/icons/callouts/1.png" alt="1"> ERROR: NFS server is up, but the locking daemons are down</span>
+<span class="gi">Dec 16 11:53:23 sle12-c crmd[2823]:   notice: te_rsc_command: Initiating action 54: stop nfs-server_stop_0 on sle12-a</span>
+<span class="gi">Dec 16 11:53:23 sle12-c crmd[2823]:   notice: te_rsc_command: Initiating action 3: stop nfs-server_stop_0 on sle12-c (local)</span>
+<span class="gi">Dec 16 11:53:23 sle12-c nfsserver(nfs-server)[14944]: INFO: Stopping NFS server ...</span>
+<span class="gi">Dec 16 11:53:23 sle12-c nfsserver(nfs-server)[14944]: INFO: Stopping sm-notify</span>
+<span class="gi">Dec 16 11:53:23 sle12-c nfsserver(nfs-server)[14944]: INFO: Stopping rpc.statd</span>
+<span class="gi">Dec 16 11:53:23 sle12-c nfsserver(nfs-server)[14944]: INFO: NFS server stopped</span>
+<span class="gi">Dec 16 11:53:23 sle12-c crmd[2823]:   notice: te_rsc_command: Initiating action 55: start nfs-server_start_0 on sle12-a</span>
 Dec 16 11:53:23 sle12-a nfsserver(nfs-server)[23255]: INFO: Stopping NFS server ...
 Dec 16 11:53:23 sle12-a nfsserver(nfs-server)[23255]: INFO: Stopping sm-notify
 Dec 16 11:53:23 sle12-a nfsserver(nfs-server)[23255]: INFO: Stopping rpc.statd
@@ -223,8 +223,8 @@ that.</p></div>
 <div class="listingblock">
 <div class="title">Listing 4: Set <span class="monospaced">nfs-server</span> probe operation resource tracing<a id="Listing 4"></a></div>
 <div class="content"><div class="highlight"><pre># crm resource trace nfs-server monitor 0
-<span class="-Color-Cyan">INFO</span>: Trace for nfs-server:monitor is written to /var/lib/heartbeat/trace_ra/
-<span class="-Color-Cyan">INFO</span>: Trace set, restart nfs-server to trace non-monitor operations
+<span class="gt">INFO</span>: Trace for nfs-server:monitor is written to /var/lib/heartbeat/trace_ra/
+<span class="gt">INFO</span>: Trace set, restart nfs-server to trace non-monitor operations
 # crm resource cleanup nfs-server
 Cleaning up nfs-server on sle12-a
 Cleaning up nfs-server on sle12-c
@@ -268,21 +268,21 @@ shown in <a href="#Listing 5">[Listing 5]</a>.</p></div>
 <div class="listingblock">
 <div class="title">Listing 5: Basic history information<a id="Listing 5"></a></div>
 <div class="content"><div class="highlight"><pre># crm history
-<span class="-Color-Green">crm(live)history# </span>timeframe &quot;Apr 15 20:25&quot; &quot;Apr 15 20:35&quot;
-<span class="-Color-Green">crm(live)history# </span>info
+<span class="gi">crm(live)history# </span>timeframe &quot;Apr 15 20:25&quot; &quot;Apr 15 20:35&quot;
+<span class="gi">crm(live)history# </span>info
 Source: live
 Created on: Thu Apr 16 11:32:36 CEST 2015
 By: report -Z -Q -f Wed Apr 15 20:25:00 2015 -t 2015-04-15 20:35:00 /var/cache/crm/history/live
 Period: 2015-04-15 20:25:00 - 2015-04-15 20:35:00
-Nodes: sle12-a <span class="-Color-Green">sle12-c</span>
+Nodes: sle12-a <span class="gi">sle12-c</span>
 Groups: nfs-srv nfs-disk
 Resources: s-libvirt p_drbd_nfs nfs-vg fs1 virtual-ip nfs-server websrv websrv-ip small-apache
-Transitions: <span class="-Color-Green">1906</span> <span class="-Color-Green">1907</span>
-<span class="-Color-Green">crm(live)history# </span>peinputs v
+Transitions: <span class="gi">1906</span> <span class="gi">1907</span>
+<span class="gi">crm(live)history# </span>peinputs v
 Date       Start    End       Filename      Client     User       Origin
 ====       =====    ===       ========      ======     ====       ======
-2015-04-15 20:29:59 20:30:01  <span class="-Color-Green">pe-input-1906</span> no-client  no-user    no-origin
-2015-04-15 20:30:14 20:30:15  <span class="-Color-Green">pe-input-1907</span> no-client  no-user    no-origin
+2015-04-15 20:29:59 20:30:01  <span class="gi">pe-input-1906</span> no-client  no-user    no-origin
+2015-04-15 20:30:14 20:30:15  <span class="gi">pe-input-1907</span> no-client  no-user    no-origin
 </pre></div></div></div>
 <div class="paragraph"><p>The <span class="monospaced">timeframe</span> command limits the observed period and helps
 focus on the events of interest. Here we wanted to look at the
@@ -305,9 +305,9 @@ to files, the so called PE (Policy Engine) inputs.</p></div>
 The listing is annotated to explain the output in more detail.</p></div>
 <div class="listingblock">
 <div class="title">Listing 6: Viewing transitions<a id="Listing 6"></a></div>
-<div class="content"><div class="highlight"><pre><span class="-Color-Green">crm(live)history# </span>transition <img src="/img/icons/callouts/1.png" alt="1">
-<span class="-Color-Cyan">INFO</span>: running ptest with /var/cache/crm/history/live/sle12-c/pengine/pe-input-1907.bz2
-<span class="-Color-Cyan">INFO</span>: starting dotty to show transition graph <img src="/img/icons/callouts/2.png" alt="2">
+<div class="content"><div class="highlight"><pre><span class="gi">crm(live)history# </span>transition <img src="/img/icons/callouts/1.png" alt="1">
+<span class="gt">INFO</span>: running ptest with /var/cache/crm/history/live/sle12-c/pengine/pe-input-1907.bz2
+<span class="gt">INFO</span>: starting dotty to show transition graph <img src="/img/icons/callouts/2.png" alt="2">
 Current cluster status: <img src="/img/icons/callouts/3.png" alt="3">
 Online: [ sle12-a sle12-c ]
  s-libvirt      (stonith:external/libvirt):     Started sle12-c
@@ -325,7 +325,7 @@ Online: [ sle12-a sle12-c ]
 
 Transition sle12-c:pe-input-1907 (20:30:14 - 20:30:15): <img src="/img/icons/callouts/4.png" alt="4">
         total 1 actions: 1 Complete
-<span class="-Color-Green">Apr 15 20:30:14 sle12-c crmd[1136]:   notice: te_rsc_command: Initiating action 60: start small-apache_start_0 on sle12-a</span>
+<span class="gi">Apr 15 20:30:14 sle12-c crmd[1136]:   notice: te_rsc_command: Initiating action 60: start small-apache_start_0 on sle12-a</span>
 Apr 15 20:30:14 sle12-a apache(small-apache)[1586]: INFO: AH00558: httpd2: Could not reliably determine the server&#39;s fully qualified domain name, using 10.2.12.51. Set the &#39;ServerName&#39; directive globally to suppress this message
 </pre></div></div></div>
 <div class="colist arabic"><table>
@@ -378,13 +378,13 @@ very involved, but we reckon it&#8217;s as good a start as starts go.</p></div>
 transitions. History <span class="monospaced">diff</span> command is in action in <a href="#Listing 7">[Listing 7]</a>.</p></div>
 <div class="listingblock">
 <div class="title">Listing 7: Viewing transitions<a id="Listing 7"></a></div>
-<div class="content"><div class="highlight"><pre><span class="-Color-Green">crm(live)history# </span>diff -1 0 <img src="/img/icons/callouts/1.png" alt="1">
+<div class="content"><div class="highlight"><pre><span class="gi">crm(live)history# </span>diff -1 0 <img src="/img/icons/callouts/1.png" alt="1">
 --- -1
 +++ 0
 @@ -11 +11 @@
--<span class="-Color-Yellow">primitive</span> small-apache apache <span class="-Color-Yellow">params</span> <span class="-Color-Cyan">configfile</span>=<span class="-Color-Red">&quot;/etc/apache2/small.conf&quot;</span> <span class="-Color-Yellow">meta</span> <span class="-Color-Cyan">target-role</span>=<span class="-Color-Red">Stopped</span>
-+<span class="-Color-Yellow">primitive</span> small-apache apache <span class="-Color-Yellow">params</span> <span class="-Color-Cyan">configfile</span>=<span class="-Color-Red">&quot;/etc/apache2/small.conf&quot;</span> <span class="-Color-Yellow">meta</span> <span class="-Color-Cyan">target-role</span>=<span class="-Color-Red">Started</span>
-<span class="-Color-Green">crm(live)history# </span>diff -1 0 status <img src="/img/icons/callouts/2.png" alt="2">
+-<span class="g-Keyword">primitive</span> small-apache apache <span class="g-Keyword">params</span> <span class="gt">configfile</span>=<span class="gr">&quot;/etc/apache2/small.conf&quot;</span> <span class="g-Keyword">meta</span> <span class="gt">target-role</span>=<span class="gr">Stopped</span>
++<span class="g-Keyword">primitive</span> small-apache apache <span class="g-Keyword">params</span> <span class="gt">configfile</span>=<span class="gr">&quot;/etc/apache2/small.conf&quot;</span> <span class="g-Keyword">meta</span> <span class="gt">target-role</span>=<span class="gr">Started</span>
+<span class="gi">crm(live)history# </span>diff -1 0 status <img src="/img/icons/callouts/2.png" alt="2">
 --- -1
 +++ 0
 @@ -15 +14,0 @@
@@ -407,19 +407,19 @@ actions of that transition are yet to be executed. So, the status
 section of transition <em>N</em> corresponds to the configuration <em>N-1</em>.</p></div>
 <div class="listingblock">
 <div class="title">Listing 8: Full transition log<a id="Listing 8"></a></div>
-<div class="content"><div class="highlight"><pre><span class="-Color-Green">crm(live)history# </span>transition log
-<span class="-Color-Cyan">INFO</span>: retrieving information from cluster nodes, please wait ...
-<span class="-Color-Green">Apr 15 20:30:14 sle12-c crmd[1136]:   notice: do_state_transition: State transition S_IDLE -&gt; S_POLICY_ENGINE [ input=I_PE_CALC cause=C_FSA_INTERNAL origin=abort_transition_graph ]</span>
-<span class="-Color-Green">Apr 15 20:30:14 sle12-c stonithd[1132]:   notice: unpack_config: On loss of CCM Quorum: Ignore</span>
-<span class="-Color-Green">Apr 15 20:30:14 sle12-c pengine[1135]:   notice: unpack_config: On loss of CCM Quorum: Ignore</span>
-<span class="-Color-Green">Apr 15 20:30:14 sle12-c pengine[1135]:   notice: LogActions: Start   small-apache#011(sle12-a)</span>
-<span class="-Color-Green">Apr 15 20:30:14 sle12-c crmd[1136]:   notice: do_te_invoke: Processing graph 123 (ref=pe_calc-dc-1429122614-234) derived from /var/lib/pacemaker/pengine/pe-input-1907.bz2</span>
-<span class="-Color-Green">Apr 15 20:30:14 sle12-c crmd[1136]:   notice: te_rsc_command: Initiating action 60: start small-apache_start_0 on sle12-a</span>
-<span class="-Color-Green">Apr 15 20:30:14 sle12-c pengine[1135]:   notice: process_pe_message: Calculated Transition 123: /var/lib/pacemaker/pengine/pe-input-1907.bz2</span>
+<div class="content"><div class="highlight"><pre><span class="gi">crm(live)history# </span>transition log
+<span class="gt">INFO</span>: retrieving information from cluster nodes, please wait ...
+<span class="gi">Apr 15 20:30:14 sle12-c crmd[1136]:   notice: do_state_transition: State transition S_IDLE -&gt; S_POLICY_ENGINE [ input=I_PE_CALC cause=C_FSA_INTERNAL origin=abort_transition_graph ]</span>
+<span class="gi">Apr 15 20:30:14 sle12-c stonithd[1132]:   notice: unpack_config: On loss of CCM Quorum: Ignore</span>
+<span class="gi">Apr 15 20:30:14 sle12-c pengine[1135]:   notice: unpack_config: On loss of CCM Quorum: Ignore</span>
+<span class="gi">Apr 15 20:30:14 sle12-c pengine[1135]:   notice: LogActions: Start   small-apache#011(sle12-a)</span>
+<span class="gi">Apr 15 20:30:14 sle12-c crmd[1136]:   notice: do_te_invoke: Processing graph 123 (ref=pe_calc-dc-1429122614-234) derived from /var/lib/pacemaker/pengine/pe-input-1907.bz2</span>
+<span class="gi">Apr 15 20:30:14 sle12-c crmd[1136]:   notice: te_rsc_command: Initiating action 60: start small-apache_start_0 on sle12-a</span>
+<span class="gi">Apr 15 20:30:14 sle12-c pengine[1135]:   notice: process_pe_message: Calculated Transition 123: /var/lib/pacemaker/pengine/pe-input-1907.bz2</span>
 Apr 15 20:30:14 sle12-a stonithd[1160]:   notice: unpack_config: On loss of CCM Quorum: Ignore
 Apr 15 20:30:14 sle12-a apache(small-apache)[1586]: INFO: AH00558: httpd2: Could not reliably determine the server&#39;s fully qualified domain name, using 10.2.12.51. Set the &#39;ServerName&#39; directive globally to suppress this message
 Apr 15 20:30:14 sle12-a crmd[1164]:   notice: process_lrm_event: Operation small-apache_start_0: ok (node=sle12-a, call=69, rc=0, cib-update=48, confirmed=true)
-<span class="-Color-Green">Apr 15 20:30:15 sle12-c crmd[1136]:   notice: run_graph: Transition 123 (Complete=1, Pending=0, Fired=0, Skipped=0, Incomplete=0, Source=/var/lib/pacemaker/pengine/pe-input-1907.bz2): Complete</span>
+<span class="gi">Apr 15 20:30:15 sle12-c crmd[1136]:   notice: run_graph: Transition 123 (Complete=1, Pending=0, Fired=0, Skipped=0, Incomplete=0, Source=/var/lib/pacemaker/pengine/pe-input-1907.bz2): Complete</span>
 </pre></div></div></div>
 </div>
 </div>
@@ -444,12 +444,12 @@ important log parts.</p></div>
 </div>
 <div class="listingblock">
 <div class="title">Listing 9: Resource related messages<a id="Listing 9"></a></div>
-<div class="content"><div class="highlight"><pre><span class="-Color-Green">crm(live)history# </span>resource small-apache
-<span class="-Color-Green">Apr 15 20:29:59 sle12-c crmd[1136]:   notice: te_rsc_command: Initiating action 60: stop small-apache_stop_0 on sle12-a</span>
+<div class="content"><div class="highlight"><pre><span class="gi">crm(live)history# </span>resource small-apache
+<span class="gi">Apr 15 20:29:59 sle12-c crmd[1136]:   notice: te_rsc_command: Initiating action 60: stop small-apache_stop_0 on sle12-a</span>
 Apr 15 20:29:59 sle12-a apache(small-apache)[1366]: INFO: Attempting graceful stop of apache PID 9155
 Apr 15 20:30:01 sle12-a apache(small-apache)[1366]: INFO: apache stopped.
 Apr 15 20:30:14 sle12-a apache(small-apache)[1586]: INFO: AH00558: httpd2: Could not reliably determine the server&#39;s fully qualified domain name, using 10.2.12.51. Set the &#39;ServerName&#39; directive globally to suppress this message
-<span class="-Color-Green">Apr 15 20:30:14 sle12-c crmd[1136]:   notice: te_rsc_command: Initiating action 60: start small-apache_start_0 on sle12-a</span>
+<span class="gi">Apr 15 20:30:14 sle12-c crmd[1136]:   notice: te_rsc_command: Initiating action 60: start small-apache_start_0 on sle12-a</span>
 </pre></div></div></div>
 <div class="paragraph"><p>Node related events are node start and stop (cluster-wise),
 node membership changes, and stonith events (aka node fence).

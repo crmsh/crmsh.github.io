@@ -30,7 +30,8 @@
 <div class="toclevel1"><a href="#topics_CommandLine">Command line options</a></div>
 <div class="toclevel1"><a href="#topics_Introduction">Introduction</a></div>
 <div class="toclevel2"><a href="#topics_Introduction_Interface">User interface</a></div>
-<div class="toclevel2"><a href="#topics_Introcution_Completion">Tab completion</a></div>
+<div class="toclevel2"><a href="#topics_Introduction_Completion">Tab completion</a></div>
+<div class="toclevel2"><a href="#topics_Introduction_Shorthand">Shorthand syntax</a></div>
 <div class="toclevel1"><a href="#topics_Features">Features</a></div>
 <div class="toclevel2"><a href="#topics_Features_Shadows">Shadow CIB usage</a></div>
 <div class="toclevel2"><a href="#topics_Features_Checks">Configuration semantic checks</a></div>
@@ -56,11 +57,11 @@
 <div class="toclevel3"><a href="#cmdhelp_cluster_wait_for_startup">wait_for_startup</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_diff">diff</a></div>
 <div class="toclevel2"><a href="#cmdhelp_script">script</a></div>
-<div class="toclevel3"><a href="#cmdhelp_script_describe">describe</a></div>
 <div class="toclevel3"><a href="#cmdhelp_script_list">list</a></div>
-<div class="toclevel3"><a href="#cmdhelp_script_run">run</a></div>
-<div class="toclevel3"><a href="#cmdhelp_script_steps">steps</a></div>
+<div class="toclevel3"><a href="#cmdhelp_script_show">show</a></div>
 <div class="toclevel3"><a href="#cmdhelp_script_verify">verify</a></div>
+<div class="toclevel3"><a href="#cmdhelp_script_run">run</a></div>
+<div class="toclevel3"><a href="#cmdhelp_script_json">json</a></div>
 <div class="toclevel2"><a href="#cmdhelp_corosync">corosync</a></div>
 <div class="toclevel3"><a href="#cmdhelp_corosync_add-node">add-node</a></div>
 <div class="toclevel3"><a href="#cmdhelp_corosync_del-node">del-node</a></div>
@@ -97,6 +98,7 @@
 <div class="toclevel3"><a href="#cmdhelp_resource_manage">manage</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_meta">meta</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_migrate">migrate</a></div>
+<div class="toclevel3"><a href="#cmdhelp_resource_ban">ban</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_param">param</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_promote">promote</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_refresh">refresh</a></div>
@@ -257,7 +259,7 @@
 management tool. Its goal is to assist as much as possible with the
 configuration and maintenance of Pacemaker-based High Availability
 clusters.</p></div>
-<div class="paragraph"><p>For more information on Pacemaker clusters, see <a href="http://clusterlabs.org/">http://clusterlabs.org/</a>.</p></div>
+<div class="paragraph"><p>For more information on Pacemaker itself, see <a href="http://clusterlabs.org/">http://clusterlabs.org/</a>.</p></div>
 <div class="paragraph"><p><span class="monospaced">crm</span> works both as a command-line tool to be called directly from the
 system shell, and as an interactive shell with extensive tab
 completion and help.</p></div>
@@ -266,25 +268,13 @@ consistent interface to Pacemaker, but it also provides tools for
 managing the creation and configuration of High Availability clusters
 from scratch. To learn more about this aspect of <span class="monospaced">crm</span>, see the
 <span class="monospaced">cluster</span> section below.</p></div>
-<div class="paragraph"><p>The Pacemaker configuration is stored in something called a CIB file,
-where CIB stands for Cluster Information Base. The CIB is a set of
-instructions coded in XML which is synchronized across the cluster.</p></div>
-<div class="paragraph"><p>Editing the CIB is a challenge, not only due to its complexity and
-wide variety of options, but also because XML is more computer than
-user friendly. To help with this task, the <span class="monospaced">crm</span> shell provides a
-small and simple line-oriented configuration language consistent with
-the other commands available in the shell. For more information about
-this language and how to use it, see the <span class="monospaced">configure</span> section below.</p></div>
-<div class="paragraph"><p><span class="monospaced">crm</span> provides a consistent and well-documented interface to most of
-the management tools included in Pacemaker, for example
-<span class="monospaced">crm_resource(8)</span> or <span class="monospaced">crm_attribute(8)</span>. Instead of having to remember
-the various flags and options available for each tool, <span class="monospaced">crm</span> hides all
-of the arcane detail.</p></div>
-<div class="paragraph"><p><span class="monospaced">crm</span> can also function as a cluster scripting tool, and can be fed
-multi-line sets of commands either directly from standard input or via
-a file. Templates with ready made configurations may help newbies
-learn about the cluster configuration or facilitate testing
-procedures.</p></div>
+<div class="paragraph"><p>The <span class="monospaced">crm</span> shell can be used to manage every aspect of configuring and
+maintaining a cluster. It provides a simplified line-based syntax on
+top of the XML configuration format used by Pacemaker, commands for
+starting and stopping resources, tools for exploring the history of a
+cluster including log scraping and a set of cluster scripts useful for
+automating the setup and installation of services on the cluster
+nodes.</p></div>
 <div class="paragraph"><p>The <span class="monospaced">crm</span> shell is line oriented: every command must start and finish
 on the same line. It is possible to use a continuation character (<span class="monospaced">\</span>)
 to write one command in two or more lines. The continuation character
@@ -392,8 +382,8 @@ is commonly used when displaying configurations.</p></div>
 </dt>
 <dd>
 <p>
-    Extra directory where crm looks for cluster scripts. Can be a semi-colon
-    separated list of directories.
+    Extra directory where crm looks for cluster scripts, or a list of
+    directories separated by semi-colons (e.g. <span class="monospaced">/dir1;/dir2;etc.</span>).
 </p>
 </dd>
 </dl></div>
@@ -501,7 +491,7 @@ configurations stored in files, that can be applied and thereby
 replace the live configuration at any time.</p></div>
 </div>
 <div class="sect2">
-<h3 id="topics_Introcution_Completion">Tab completion</h3>
+<h3 id="topics_Introduction_Completion">Tab completion</h3>
 <div class="paragraph"><p>The <span class="monospaced">crm</span> makes extensive use of tab completion. The completion
 is both static (i.e. for <span class="monospaced">crm</span> commands) and dynamic. The latter
 takes into account the current status of the cluster or
@@ -536,6 +526,21 @@ auth* (string)
 <div class="paragraph"><p><span class="monospaced">crmsh</span> also comes with bash completion usable directly from the
 system shell. This should be installed automatically with the command
 itself.</p></div>
+</div>
+<div class="sect2">
+<h3 id="topics_Introduction_Shorthand">Shorthand syntax</h3>
+<div class="paragraph"><p>When using the <span class="monospaced">crm</span> shell to manage clusters, you will end up typing
+a lot of commands many times over. Clear command names like
+<span class="monospaced">configure</span> help in understanding and learning to use the cluster
+shell, but is easy to misspell and is tedious to type repeatedly. The
+interactive mode and tab completion both help with this, but the <span class="monospaced">crm</span>
+shell also has the ability to understand a variety of shorthand
+aliases for all of the commands.</p></div>
+<div class="paragraph"><p>For example, instead of typing <span class="monospaced">crm status</span>, you can type <span class="monospaced">crm st</span> or
+<span class="monospaced">crm stat</span>. Instead of <span class="monospaced">crm configure</span> you can type <span class="monospaced">crm cfg</span> or even
+<span class="monospaced">crm cf</span>. <span class="monospaced">crm resource</span> can be shorted as <span class="monospaced">crm rsc</span>, and so on.</p></div>
+<div class="paragraph"><p>The exact list of accepted aliases is too long to print in full, but
+experimentation and typoes should help in discovering more of them.</p></div>
 </div>
 </div>
 </div>
@@ -613,6 +618,14 @@ configuration cannot be saved.</p></div>
 </div>
 <div class="sect2">
 <h3 id="topics_Features_Templates">Configuration templates</h3>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Deprecation note</div>
+<div class="paragraph"><p>Configuration templates have been deprecated in favor of the more
+capable <span class="monospaced">cluster scripts</span>. To learn how to use cluster scripts, see
+the dedicated documentation on the <span class="monospaced">crmsh</span> website at
+<a href="http://crmsh.github.io/">http://crmsh.github.io/</a>, or in the <a href="#cmdhelp_script">Script section</a>.</p></div>
+</div></div>
 <div class="paragraph"><p>Configuration templates are ready made configurations created by
 cluster experts. They are designed in such a way so that users
 may generate valid cluster configurations with minimum effort.
@@ -1158,12 +1171,33 @@ The rest are literals (strings, <span class="monospaced">:</span>, <span class="
 <div class="paragraph"><p>Show cluster status. The status is displayed by <span class="monospaced">crm_mon</span>. Supply
 additional arguments for more information or different format.
 See <span class="monospaced">crm_mon(8)</span> for more details.</p></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>status
+status simple
+status full</pre>
+</div></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>status [&lt;option&gt; ...]
 
-option :: bynode | inactive | ops | timing | failcounts</pre>
+option :: full
+        | bynode
+        | inactive
+        | ops
+        | timing
+        | failcounts
+        | verbose
+        | quiet
+        | html
+        | xml
+        | simple
+        | tickets
+        | noheaders
+        | detail
+        | brief</pre>
 </div></div>
 </div>
 <div class="sect2">
@@ -1313,36 +1347,83 @@ diff /etc/resolv.conf --checksum</pre>
 </div>
 <div class="sect2">
 <h3 id="cmdhelp_script"><span class="monospaced">script</span> - Cluster script management</h3>
-<div class="paragraph"><p>Cluster scripts can perform cluster-wide configuration,
-validation and management. See the <span class="monospaced">list</span> command for
-an overview of available scripts.</p></div>
+<div class="paragraph"><p>A big part of the configuration and management of a cluster is
+collecting information about all cluster nodes and deploying changes
+to those nodes. Often, just performing the same procedure on all nodes
+will encounter problems, due to subtle differences in the
+configuration.</p></div>
+<div class="paragraph"><p>For example, when configuring a cluster for the first time, the
+software needs to be installed and configured on all nodes before the
+cluster software can be launched and configured using <span class="monospaced">crmsh</span>. This
+process is cumbersome and error-prone, and the goal is for scripts to
+make this process easier.</p></div>
+<div class="paragraph"><p>Scripts are implemented using the python <span class="monospaced">parallax</span> package which
+provides a thin wrapper on top of SSH. This allows the scripts to
+function through the usual SSH channels used for system maintenance,
+requiring no additional software to be installed or maintained.</p></div>
 <div class="sect3">
-<h4 id="cmdhelp_script_describe"><span class="monospaced">describe</span></h4>
-<div class="paragraph"><p>Prints a description and short summary of the cluster script, with
-descriptions of all parameters, both required and optional.</p></div>
+<h4 id="cmdhelp_script_list"><span class="monospaced">list</span></h4>
+<div class="paragraph"><p>Lists the available scripts, sorted by category. Scripts that have the
+special <span class="monospaced">Script</span> category are hidden by default, since they are mainly
+used by other scripts or commands. To also show these, pass <span class="monospaced">all</span> as
+argument.</p></div>
+<div class="paragraph"><p>To get a flat list of script names, not sorted by category, pass
+<span class="monospaced">names</span> as an extra argument.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>describe &lt;script&gt;</pre>
+<pre>list [all] [names]</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>list
+list all names</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_script_list"><span class="monospaced">list</span></h4>
-<div class="paragraph"><p>Lists the available cluster scripts.</p></div>
+<h4 id="cmdhelp_script_show"><span class="monospaced">show</span></h4>
+<div class="paragraph"><p>Prints a description and short summary of the script, with
+descriptions of the accepted parameters.</p></div>
+<div class="paragraph"><p>Advanced parameters are hidden by default. To show the complete list
+of parameters accepted by the script, pass <span class="monospaced">all</span> as argument.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>list</pre>
+<pre>show &lt;script&gt; [all]</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>show virtual-ip</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_script_verify"><span class="monospaced">verify</span></h4>
+<div class="paragraph"><p>Checks the given parameter values, and returns a list
+of actions that will be executed when running the script
+if provided the same list of parameter values.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>verify &lt;script&gt; [args...]</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>verify sbd id=sbd-1 node=node1 sbd_device=/dev/disk/by-uuid/F00D-CAFE</pre>
 </div></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_script_run"><span class="monospaced">run</span></h4>
-<div class="paragraph"><p>Runs a cluster script. Can optionally take at least two arguments:
+<div class="paragraph"><p>Given a list of parameter values, this command will execute the
+actions specified by the cluster script. The format for the parameter
+values is the same as for the <span class="monospaced">verify</span> command.</p></div>
+<div class="paragraph"><p>Can optionally take at least two parameters:
 * <span class="monospaced">nodes=&lt;nodes&gt;</span>: List of nodes that the script runs over
 * <span class="monospaced">dry_run=yes|no</span>: If set, the script will not perform any modifications.</p></div>
-<div class="paragraph"><p>Additional arguments may be available depending on the cluster
-script. Use the <span class="monospaced">describe</span> command to see what arguments are
-provided.</p></div>
+<div class="paragraph"><p>Additional parameters may be available depending on the script.</p></div>
+<div class="paragraph"><p>Use the <span class="monospaced">show</span> command to see what parameters are available.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -1351,30 +1432,42 @@ provided.</p></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>run health dry_run=yes verbose=yes
-run init nodes="node-1 node-2 node-3"</pre>
+<pre>run apache install=true
+run sbd id=sbd-1 node=node1 sbd_device=/dev/disk/by-uuid/F00D-CAFE</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_script_steps"><span class="monospaced">steps</span></h4>
-<div class="paragraph"><p>List the names of all steps in the cluster script.</p></div>
-<div class="paragraph"><p>This command is intended for use by automated tools
-and the web frontend.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
+<h4 id="cmdhelp_script_json"><span class="monospaced">json</span></h4>
+<div class="paragraph"><p>This command provides a JSON API for the cluster scripts, intended for
+use in user interface tools that want to interact with the cluster via
+scripts.</p></div>
+<div class="paragraph"><p>The command takes a single argument, which should be a JSON array with
+the first member identifying the command to perform.</p></div>
+<div class="paragraph"><p>The output is line-based: Commands that return multiple results will
+return them line-by-line, ending with a terminator value: "end".</p></div>
+<div class="paragraph"><p>When providing parameter values to this command, they should be
+provided as nested objects, so <span class="monospaced">virtual-ip:ip=192.168.0.5</span> on the
+command line becomes the JSON object
+<span class="monospaced">{"virtual-ip":{"ip":"192.168.0.5"}}</span>.</p></div>
+<div class="paragraph"><p>API:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>steps &lt;script&gt;</pre>
-</div></div>
-</div>
-<div class="sect3">
-<h4 id="cmdhelp_script_verify"><span class="monospaced">verify</span></h4>
-<div class="paragraph"><p>Mainly useful when creating new scripts, this command
-verifies that the script definition has all necessary
-fields and that the referenced actions exist.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>verify &lt;script&gt;</pre>
+<pre>["list"]
+=&gt; [{name, shortdesc, category}]
+
+["show", &lt;name&gt;]
+=&gt; [{name, shortdesc, longdesc, category, &lt;&lt;steps&gt;&gt;}]
+
+&lt;&lt;steps&gt;&gt; := [{name, shortdesc], longdesc, required, parameters, steps}]
+
+&lt;&lt;params&gt;&gt; := [{name, shortdesc, longdesc, required, unique, advanced,
+                type, value, example}]
+
+["verify", &lt;name&gt;, &lt;&lt;values&gt;&gt;]
+=&gt; [{shortdesc, longdesc, text, nodes}]
+
+["run", &lt;name&gt;, &lt;&lt;values&gt;&gt;]
+=&gt; [{shortdesc, rc, output|error}]</pre>
 </div></div>
 </div>
 </div>
@@ -1812,6 +1905,17 @@ constraint will no longer be active.</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>migrate &lt;rsc&gt; [&lt;node&gt;] [&lt;lifetime&gt;] [force]</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_resource_ban"><span class="monospaced">ban</span></h4>
+<div class="paragraph"><p>Ban a resource from running on a certain node. If no node is given
+as argument, the resource is banned from the current location.</p></div>
+<div class="paragraph"><p>See <span class="monospaced">migrate</span> for details on other arguments.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>ban &lt;rsc&gt; [&lt;node&gt;] [&lt;lifetime&gt;] [force]</pre>
 </div></div>
 </div>
 <div class="sect3">
