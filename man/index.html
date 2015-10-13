@@ -1093,12 +1093,12 @@ is listed below.</p></div>
 
 id_spec :: $id=&lt;id&gt; | $id-ref=&lt;id&gt;
 score :: &lt;number&gt; | &lt;attribute&gt; | [-]inf
-expression :: &lt;simple_exp&gt; [bool_op &lt;simple_exp&gt; ...]
+expression :: &lt;simple_exp&gt; [&lt;bool_op&gt; &lt;simple_exp&gt; ...]
 bool_op :: or | and
 simple_exp :: &lt;attribute&gt; [type:]&lt;binary_op&gt; &lt;value&gt;
           | &lt;unary_op&gt; &lt;attribute&gt;
           | date &lt;date_expr&gt;
-type :: string | version | number
+type :: &lt;string&gt; | &lt;version&gt; | &lt;number&gt;
 binary_op :: lt | gt | lte | gte | eq | ne
 unary_op :: defined | not_defined
 
@@ -2828,8 +2828,8 @@ single primitive resource or one group of resources.</p></div>
 <div class="content monospaced">
 <pre>clone &lt;name&gt; &lt;rsc&gt;
   [description=&lt;description&gt;]
-  [meta attr_list]
-  [params attr_list]
+  [meta &lt;attr_list&gt;]
+  [params &lt;attr_list&gt;]
 
 attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...] | $id-ref=&lt;id&gt;</pre>
 </div></div>
@@ -2857,8 +2857,11 @@ to allow for sets of resources which don&#8217;t depend on each other
 in terms of state. The shell syntax for such sets is to put
 resources in parentheses.</p></div>
 <div class="paragraph"><p>Sets cannot be nested.</p></div>
-<div class="paragraph"><p>The optional <span class="monospaced">node-attribute</span> references an attribute in nodes'
-instance attributes.</p></div>
+<div class="paragraph"><p>The optional <span class="monospaced">node-attribute</span> can be used to colocate resources on a
+set of nodes and not necessarily on the same node. For example, by
+setting a node attribute <span class="monospaced">color</span> on all nodes and setting the
+<span class="monospaced">node-attribute</span> value to <span class="monospaced">color</span> as well, the colocated resources
+will be placed on any node that has the same color.</p></div>
 <div class="paragraph"><p>For more details on how to configure resource sets, see
 <a href="#topics_Features_Resourcesets"><span class="monospaced">Syntax: Resource sets</span></a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -2867,13 +2870,13 @@ instance attributes.</p></div>
 <pre>colocation &lt;id&gt; &lt;score&gt;: &lt;rsc&gt;[:&lt;role&gt;] &lt;with-rsc&gt;[:&lt;role&gt;]
   [node-attribute=&lt;node_attr&gt;]
 
-colocation &lt;id&gt; &lt;score&gt;: resource_sets
+colocation &lt;id&gt; &lt;score&gt;: &lt;resource_sets&gt;
   [node-attribute=&lt;node_attr&gt;]
 
-resource_sets :: resource_set [resource_set ...]
+resource_sets :: &lt;resource_set&gt; [&lt;resource_set&gt; ...]
 
 resource_set :: ["("|"["] &lt;rsc&gt;[:&lt;role&gt;] [&lt;rsc&gt;[:&lt;role&gt;] ...] \
-                [attributes]  [")"|"]"]
+                [&lt;attributes&gt;]  [")"|"]"]
 
 attributes :: [require-all=(true|false)] [sequential=(true|false)]</pre>
 </div></div>
@@ -2985,23 +2988,34 @@ resources which all need to succeed and whitespace for serial
 order. It is not allowed to use whitespace around comma.</p></div>
 <div class="paragraph"><p>If the node is left out, the order is used for all nodes.
 That should reduce the configuration size in some stonith setups.</p></div>
+<div class="paragraph"><p>From Pacemaker version 1.1.14, it is possible to use a node attribute
+as the <span class="monospaced">target</span> in a fencing topology. The syntax for this usage is
+described below.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>fencing_topology stonith_resources [stonith_resources ...]
-fencing_topology fencing_order [fencing_order ...]
+<pre>fencing_topology &lt;stonith_resources&gt; [&lt;stonith_resources&gt; ...]
+fencing_topology &lt;fencing_order&gt; [&lt;fencing_order&gt; ...]
 
-fencing_order :: &lt;node&gt;: stonith_resources [stonith_resources ...]
+fencing_order :: &lt;target&gt; &lt;stonith_resources&gt; [&lt;stonith_resources&gt; ...]
 
-stonith_resources :: &lt;rsc&gt;[,&lt;rsc&gt;...]</pre>
+stonith_resources :: &lt;rsc&gt;[,&lt;rsc&gt;...]
+target :: &lt;node&gt;: | attr:&lt;node-attribute&gt;=&lt;value&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>fencing_topology poison-pill power
+<pre># Only kill the power if poison-pill fails
+fencing_topology poison-pill power
+
+# As above for node-a, but a different strategy for node-b
 fencing_topology \
-    node-a: poison-pill power
-    node-b: ipmi serial</pre>
+    node-a: poison-pill power \
+    node-b: ipmi serial
+
+# Fencing anything on rack 1 requires fencing via both APC 1 and 2,
+# to defeat the redundancy provided by two separate UPS units.
+fencing_topology attr:rack=1 apc01,apc02</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3157,6 +3171,8 @@ Resource pattern: <span class="monospaced">location loc1 /web.*/ 100: node1</spa
 </p>
 </li>
 </ul></div>
+<div class="paragraph"><p>The <span class="monospaced">resource-discovery</span> attribute allows probes to be selectively
+enabled or disabled per resource and node.</p></div>
 <div class="paragraph"><p>The syntax for resource sets is described in detail for
 <a href="#cmdhelp_configure_colocation"><span class="monospaced">colocation</span></a>.</p></div>
 <div class="paragraph"><p>For more details on how to configure resource sets, see
@@ -3166,11 +3182,13 @@ Resource pattern: <span class="monospaced">location loc1 /web.*/ 100: node1</spa
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>location &lt;id&gt; rsc [role=&lt;role&gt;] {node_pref|rules}
+<pre>location &lt;id&gt; &lt;rsc&gt; [&lt;attributes&gt;] {&lt;node_pref&gt;|&lt;rules&gt;}
 
 rsc :: /&lt;rsc-pattern&gt;/
         | { resource_sets }
         | &lt;rsc&gt;
+
+attributes :: role=&lt;role&gt; | resource-discovery=always|never|exclusive
 
 node_pref :: &lt;score&gt;: &lt;node&gt;
 
@@ -3180,7 +3198,7 @@ rules ::
 
 id_spec :: $id=&lt;id&gt; | $id-ref=&lt;id&gt;
 score :: &lt;number&gt; | &lt;attribute&gt; | [-]inf
-expression :: &lt;simple_exp&gt; [bool_op &lt;simple_exp&gt; ...]
+expression :: &lt;simple_exp&gt; [&lt;bool_op&gt; &lt;simple_exp&gt; ...]
 bool_op :: or | and
 simple_exp :: &lt;attribute&gt; [type:]&lt;binary_op&gt; &lt;value&gt;
           | &lt;unary_op&gt; &lt;attribute&gt;
@@ -3215,7 +3233,10 @@ location conn_1 internal_www \
   rule pingd: defined pingd
 
 location conn_2 dummy_float \
-  rule -inf: not_defined pingd or pingd number:lte 0</pre>
+  rule -inf: not_defined pingd or pingd number:lte 0
+
+# never probe for rsc1 on node1
+location no-probe rsc1 resource-discovery=never -inf: node1</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -4436,31 +4457,36 @@ action webserver monitor ssh</pre>
 </div>
 <div class="sect2">
 <h3 id="cmdhelp_history"><span class="monospaced">history</span> - Cluster history</h3>
-<div class="paragraph"><p>Examining Pacemaker&#8217;s history is a particularly involved task.
-The number of subsystems to be considered, the complexity of the
-configuration, and the set of various information sources, most
-of which are not exactly human readable, keep analyzing resource
-or node problems accessible to only the most knowledgeable. Or,
-depending on the point of view, to the most persistent. The
-following set of commands has been devised in hope to make
-cluster history more accessible.</p></div>
-<div class="paragraph"><p>Of course, looking at <em>all</em> history could be time consuming
-regardless of how good tools at hand are. Therefore, one should
-first say which period he or she wants to analyze. If not
-otherwise specified, the last hour is considered. Logs and other
-relevant information is collected using <span class="monospaced">hb_report</span>. Since this
-process takes some time and we always need fresh logs,
-information is refreshed in a much faster way using the python parallax module. If
-<span class="monospaced">python-parallax</span> is not found on the system, examining live cluster
-is still possible though not as comfortable.</p></div>
-<div class="paragraph"><p>Apart from examining live cluster, events may be retrieved from a
-report generated by <span class="monospaced">hb_report</span> (see also the <span class="monospaced">-H</span> option). In
-that case we assume that the period stretching the whole report
-needs to be investigated. Of course, it is still possible to
-further reduce the time range.</p></div>
-<div class="paragraph"><p>If you think you may have found a bug or just need clarification
-from developers or your support, the <span class="monospaced">session pack</span> command can
-help create a report.</p></div>
+<div class="paragraph"><p>Examining Pacemaker&#8217;s history is a particularly involved task. The
+number of subsystems to be considered, the complexity of the
+configuration, and the set of various information sources, most of
+which are not exactly human readable, keep analyzing resource or node
+problems accessible to only the most knowledgeable. Or, depending on
+the point of view, to the most persistent. The following set of
+commands has been devised in hope to make cluster history more
+accessible.</p></div>
+<div class="paragraph"><p>Of course, looking at <em>all</em> history could be time consuming regardless
+of how good the tools at hand are. Therefore, one should first say
+which period he or she wants to analyze. If not otherwise specified,
+the last hour is considered. Logs and other relevant information is
+collected using <span class="monospaced">crm report</span>. Since this process takes some time and
+we always need fresh logs, information is refreshed in a much faster
+way using the python parallax module. If <span class="monospaced">python-parallax</span> is not
+found on the system, examining a live cluster is still possible&#8201;&#8212;&#8201;though not as comfortable.</p></div>
+<div class="paragraph"><p>Apart from examining a live cluster, events may be retrieved from a
+report generated by <span class="monospaced">crm report</span> (see also the <span class="monospaced">-H</span> option). In that
+case we assume that the period stretching the whole report needs to be
+investigated. Of course, it is still possible to further reduce the
+time range.</p></div>
+<div class="paragraph"><p>If you have discovered an issue that you want to show someone else,
+you can use the <span class="monospaced">session pack</span> command to save the current session as
+a tarball, similar to those generated by <span class="monospaced">crm report</span>.</p></div>
+<div class="paragraph"><p>In order to minimize the size of the tarball, and to make it easier
+for others to find the interesting events, it is recommended to limit
+the time frame which the saved session covers. This can be done using
+the <span class="monospaced">timeframe</span> command (example below).</p></div>
+<div class="paragraph"><p>It is also possible to name the saved session using the <span class="monospaced">session save</span>
+command.</p></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -4470,12 +4496,11 @@ crm(live)history# session pack
 Report saved in .../strange_restart.tar.bz2
 crm(live)history#</pre>
 </div></div>
-<div class="paragraph"><p>In order to reduce report size and allow developers to
-concentrate on the issue, you should beforehand limit the time
-frame. Giving a meaningful session name helps too.</p></div>
 <div class="sect3">
 <h4 id="cmdhelp_history_detail"><span class="monospaced">detail</span></h4>
-<div class="paragraph"><p>How much detail to show from the logs.</p></div>
+<div class="paragraph"><p>How much detail to show from the logs. Valid detail levels are either
+<span class="monospaced">0</span> or <span class="monospaced">1</span>, where <span class="monospaced">1</span> is the highest detail level. The default detail
+level is <span class="monospaced">0</span>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -4589,21 +4614,21 @@ first wait until it finishes.</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_history_limit"><span class="monospaced">limit</span> (<span class="monospaced">timeframe</span>)</h4>
-<div class="paragraph"><p>All history commands look at events within certain period. It
-defaults to the last hour for the live cluster source. There is
-no limit for the <span class="monospaced">hb_report</span> source. Use this command to set the
-timeframe.</p></div>
-<div class="paragraph"><p>The time period is parsed by the dateutil python module. It
-covers wide range of date formats. For instance:</p></div>
+<div class="paragraph"><p>This command can be used to modify the time span to examine. All
+history commands look at events within a certain time span.</p></div>
+<div class="paragraph"><p>For the <span class="monospaced">live</span> source, the default time span is the <em>last hour</em>.</p></div>
+<div class="paragraph"><p>There is no time span limit for the <span class="monospaced">hb_report</span> source.</p></div>
+<div class="paragraph"><p>The time period is parsed by the <span class="monospaced">dateutil</span> python module. It
+covers a wide range of date formats. For instance:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-3:00      (today at 3am)
+3:00          (today at 3am)
 </p>
 </li>
 <li>
 <p>
-15:00     (today at 3pm)
+15:00         (today at 3pm)
 </p>
 </li>
 <li>
@@ -4612,10 +4637,16 @@ covers wide range of date formats. For instance:</p></div>
 </p>
 </li>
 </ul></div>
-<div class="paragraph"><p>We won&#8217;t bother to give definition of the time specification in
-usage below. Either use common sense or read the
-<a href="http://labix.org/python-dateutil">dateutil</a> documentation.</p></div>
-<div class="paragraph"><p>If dateutil is not available, then the time is parsed using
+<div class="paragraph"><p>For more examples of valid time/date statements, please refer to the
+<span class="monospaced">python-dateutil</span> documentation:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="https://dateutil.readthedocs.org/">dateutil.readthedocs.org</a>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>If the dateutil module is not available, then the time is parsed using
 strptime and only the kind as printed by <span class="monospaced">date(1)</span> is allowed:</p></div>
 <div class="ulist"><ul>
 <li>
@@ -4627,7 +4658,7 @@ Tue Sep 15 20:46:27 CEST 2010
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>limit [&lt;from_time&gt; [&lt;to_time&gt;]]</pre>
+<pre>limit [&lt;from_time&gt;] [&lt;to_time&gt;]</pre>
 </div></div>
 <div class="paragraph"><p>Examples:</p></div>
 <div class="literalblock">
@@ -4842,13 +4873,18 @@ input file numbers collide. In that case provide some unique part
 of the path to the file.</p></div>
 <div class="paragraph"><p>After the <span class="monospaced">ptest</span> output, logs about events that happened during
 the transition are printed.</p></div>
+<div class="paragraph"><p>The <span class="monospaced">tags</span> subcommand scans the logs for the transition and return a
+list of key events during that transition. For example, the tag
+<span class="monospaced">error</span> will be returned if there are any errors logged during the
+transition.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>transition [&lt;number&gt;|&lt;index&gt;|&lt;file&gt;] [nograph] [v...] [scores] [actions] [utilization]
 transition showdot [&lt;number&gt;|&lt;index&gt;|&lt;file&gt;]
 transition log [&lt;number&gt;|&lt;index&gt;|&lt;file&gt;]
-transition save [&lt;number&gt;|&lt;index&gt;|&lt;file&gt; [name]]</pre>
+transition save [&lt;number&gt;|&lt;index&gt;|&lt;file&gt; [name]]
+transition tags [&lt;number&gt;|&lt;index&gt;|&lt;file&gt;]</pre>
 </div></div>
 <div class="paragraph"><p>Examples:</p></div>
 <div class="literalblock">
