@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="AsciiDoc 8.6.8">
+<meta name="generator" content="AsciiDoc 8.6.9">
 <title>crmsh - crm(8)</title>
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/crm.css" type="text/css">
@@ -90,6 +90,7 @@
 <div class="toclevel3"><a href="#cmdhelp_ra_info">info</a></div>
 <div class="toclevel3"><a href="#cmdhelp_ra_list">list</a></div>
 <div class="toclevel3"><a href="#cmdhelp_ra_providers">providers</a></div>
+<div class="toclevel3"><a href="#cmdhelp_ra_validate">validate</a></div>
 <div class="toclevel2"><a href="#cmdhelp_resource">resource</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_cleanup">cleanup</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_demote">demote</a></div>
@@ -104,6 +105,8 @@
 <div class="toclevel3"><a href="#cmdhelp_resource_refresh">refresh</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_reprobe">reprobe</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_restart">restart</a></div>
+<div class="toclevel3"><a href="#cmdhelp_resource_constraints">constraints</a></div>
+<div class="toclevel3"><a href="#cmdhelp_resource_operations">operations</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_scores">scores</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_secret">secret</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_start">start</a></div>
@@ -188,6 +191,7 @@
 <div class="toclevel3"><a href="#cmdhelp_configure_template">template</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_upgrade">upgrade</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_user">user</a></div>
+<div class="toclevel3"><a href="#cmdhelp_configure_validate_all">validate_all</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_verify">verify</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_xml">xml</a></div>
 <div class="toclevel2"><a href="#cmdhelp_template">template</a></div>
@@ -1804,6 +1808,17 @@ defaults to <span class="monospaced">ocf</span>.</p></div>
 <pre>providers apache</pre>
 </div></div>
 </div>
+<div class="sect3">
+<h4 id="cmdhelp_ra_validate"><span class="monospaced">validate</span></h4>
+<div class="paragraph"><p>If the resource agent supports the <span class="monospaced">validate-all</span> action, this calls
+the action with the given parameters, printing any warnings or errors
+reported by the agent.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>validate &lt;agent&gt; [&lt;key&gt;=&lt;value&gt; ...]</pre>
+</div></div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="cmdhelp_resource"><span class="monospaced">resource</span> - Resource management</h3>
@@ -1976,17 +1991,18 @@ an alias for <span class="monospaced">cleanup</span>.</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_resource_restart"><span class="monospaced">restart</span></h4>
-<div class="paragraph"><p>Restart a resource. This is essentially a shortcut for resource
-stop followed by a start. The shell is first going to wait for
-the stop to finish, that is for all resources to really stop, and
+<div class="paragraph"><p>Restart one or more resources. This is essentially a shortcut for
+resource stop followed by a start. The shell is first going to wait
+for the stop to finish, that is for all resources to really stop, and
 only then to order the start action. Due to this command
 entailing a whole set of operations, informational messages are
 printed to let the user see some progress.</p></div>
-<div class="paragraph"><p>For details on group management see <a href="#cmdhelp_options_manage-children"><span class="monospaced">options manage-children</span></a>.</p></div>
+<div class="paragraph"><p>For details on group management see
+<a href="#cmdhelp_options_manage-children"><span class="monospaced">options manage-children</span></a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>restart &lt;rsc&gt;</pre>
+<pre>restart &lt;rsc&gt; [&lt;rsc&gt; ...]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
@@ -1996,6 +2012,25 @@ INFO: ordering g_webserver to stop
 waiting for stop to finish .... done
 INFO: ordering g_webserver to start
 #</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_resource_constraints"><span class="monospaced">constraints</span></h4>
+<div class="paragraph"><p>Display the location and colocation constraints affecting the
+resource.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>constraints &lt;rsc&gt;</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_resource_operations"><span class="monospaced">operations</span></h4>
+<div class="paragraph"><p>Show active operations, optionally filtered by resource and node.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>operations [&lt;rsc&gt;] [&lt;node&gt;]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2037,38 +2072,41 @@ secret fence_1 set password secret_value</pre>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_resource_start"><span class="monospaced">start</span></h4>
-<div class="paragraph"><p>Start a resource by setting the <span class="monospaced">target-role</span> attribute. If there
-are multiple meta attributes sets, the attribute is set in all of
-them. If the resource is a clone, all <span class="monospaced">target-role</span> attributes
-are removed from the children resources.</p></div>
-<div class="paragraph"><p>For details on group management see <a href="#cmdhelp_options_manage-children"><span class="monospaced">options manage-children</span></a>.</p></div>
+<div class="paragraph"><p>Start one or more resources by setting the <span class="monospaced">target-role</span> attribute. If
+there are multiple meta attributes sets, the attribute is set in all
+of them. If the resource is a clone, all <span class="monospaced">target-role</span> attributes are
+removed from the children resources.</p></div>
+<div class="paragraph"><p>For details on group management see
+<a href="#cmdhelp_options_manage-children"><span class="monospaced">options manage-children</span></a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>start &lt;rsc&gt;</pre>
+<pre>start &lt;rsc&gt; [&lt;rsc&gt; ...]</pre>
 </div></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_resource_status"><span class="monospaced">status</span> (<span class="monospaced">show</span>, <span class="monospaced">list</span>)</h4>
-<div class="paragraph"><p>Print resource status. If the resource parameter is left out
-status of all resources is printed.</p></div>
+<div class="paragraph"><p>Print resource status. More than one resource can be shown at once. If
+the resource parameter is left out, the status of all resources is
+printed.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>status [&lt;rsc&gt;]</pre>
+<pre>status [&lt;rsc&gt; ...]</pre>
 </div></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_resource_stop"><span class="monospaced">stop</span></h4>
-<div class="paragraph"><p>Stop a resource using the <span class="monospaced">target-role</span> attribute. If there
+<div class="paragraph"><p>Stop one or more resources using the <span class="monospaced">target-role</span> attribute. If there
 are multiple meta attributes sets, the attribute is set in all of
-them. If the resource is a clone, all <span class="monospaced">target-role</span> attributes
-are removed from the children resources.</p></div>
-<div class="paragraph"><p>For details on group management see <a href="#cmdhelp_options_manage-children"><span class="monospaced">options manage-children</span></a>.</p></div>
+them. If the resource is a clone, all <span class="monospaced">target-role</span> attributes are
+removed from the children resources.</p></div>
+<div class="paragraph"><p>For details on group management see
+<a href="#cmdhelp_options_manage-children"><span class="monospaced">options manage-children</span></a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>stop &lt;rsc&gt;</pre>
+<pre>stop &lt;rsc&gt; [&lt;rsc&gt; ...]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3128,6 +3166,7 @@ a network URL. The <span class="monospaced">replace</span> method replaces the c
 configuration with the one from the source. The <span class="monospaced">update</span> tries to
 import the contents into the current configuration.
 The file may be a CLI file or an XML file.</p></div>
+<div class="paragraph"><p>If the URL is <span class="monospaced">-</span>, the configuration is read from standard input.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -3986,6 +4025,33 @@ rules :: rule [rule ...]</pre>
 <pre>user joe \
     role:app1_admin \
     role:read_all</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_configure_validate_all"><span class="monospaced">validate-all</span></h4>
+<div class="paragraph"><p>Call the <span class="monospaced">validate-all</span> action for the resource, if possible.</p></div>
+<div class="paragraph"><p>Limitations:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+The resource agent must implement the <span class="monospaced">validate-all</span> action.
+</p>
+</li>
+<li>
+<p>
+The current user must be root.
+</p>
+</li>
+<li>
+<p>
+The primitive resource must not use nvpair references.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>validate-all &lt;rsc&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">

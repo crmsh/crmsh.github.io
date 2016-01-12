@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="AsciiDoc 8.6.8">
+<meta name="generator" content="AsciiDoc 8.6.9">
 <title>crmsh - News</title>
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/crm.css" type="text/css">
@@ -26,34 +26,190 @@
 </div>
 <!--TOC-->
 <div id="toc">
-<div class="toclevel1"><a href="#_getting_started_translated_to_japanese">Getting Started translated to Japanese</a></div>
+<div class="toclevel1"><a href="#_announcing_crmsh_stable_release_2_1_5">Announcing crmsh stable release 2.1.5</a></div>
 </div>
 <div id="container">
 <div id="content">
 <h1>News</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph"><p><a href="/news/2015-05-25-getting-started-jp">2015-05-25 13:30</a></p></div>
+<div class="paragraph"><p><a href="/news/2016-01-12-release-2_1_5">2016-01-12 10:00</a></p></div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_getting_started_translated_to_japanese">Getting Started translated to Japanese</h2>
+<h2 id="_announcing_crmsh_stable_release_2_1_5">Announcing crmsh stable release 2.1.5</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>Many thanks to Motoharu Kubo at 3ware for offering to translate the
-<span class="monospaced">crmsh</span> documentation to Japanese!</p></div>
-<div class="paragraph"><p>The first document to be translated is the <a href="/start-guide/">Getting Started</a> guide,
-now available in Japanese at the following location:</p></div>
+<div class="paragraph"><p>Today we are proud to announce the release of <span class="monospaced">crmsh</span> version 2.1.5!
+This release mainly consists of bug fixes, as well as compatibility
+with Pacemaker 1.1.14.</p></div>
+<div class="paragraph"><p>For a complete list of changes since the previous version, please
+refer to the changelog:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-<a href="https://blog.3ware.co.jp/2015/05/crmsh-getting-started/">https://blog.3ware.co.jp/2015/05/crmsh-getting-started/</a>
+<a href="https://github.com/ClusterLabs/crmsh/blob/2.1.5/ChangeLog">https://github.com/ClusterLabs/crmsh/blob/2.1.5/ChangeLog</a>
 </p>
 </li>
 </ul></div>
-<div class="paragraph"><p>Thank you,
-Kristoffer and Dejan</p></div>
+<div class="paragraph"><p>Packages for several popular Linux distributions can be downloaded
+from the Stable repository at the OBS:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/">http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/</a>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Archives of the tagged release:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="https://github.com/ClusterLabs/crmsh/archive/2.1.5.tar.gz">https://github.com/ClusterLabs/crmsh/archive/2.1.5.tar.gz</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://github.com/ClusterLabs/crmsh/archive/2.1.5.zip">https://github.com/ClusterLabs/crmsh/archive/2.1.5.zip</a>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Changes since the previous release:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+medium: report: Try to load source as session if possible (bsc#927407)
+</p>
+</li>
+<li>
+<p>
+medium: crm_gv: Wrap non-identifier names in quotes (bsc#931837)
+</p>
+</li>
+<li>
+<p>
+medium: crm_gv: Improved quoting of non-identifier node names (bsc#931837)
+</p>
+</li>
+<li>
+<p>
+medium: crm_pkg: Fix cluster init bug on RH-based systems
+</p>
+</li>
+<li>
+<p>
+medium: hb_report: Collect logs from pacemaker.log
+</p>
+</li>
+<li>
+<p>
+medium: constants: Add <em>provides</em> meta attribute (bsc#936587)
+</p>
+</li>
+<li>
+<p>
+high: parse: Add attributes to terminator set (bsc#940920)
+</p>
+</li>
+<li>
+<p>
+Medium: cibconfig: skip sanity check for properties other than cib-bootstrap-options
+</p>
+</li>
+<li>
+<p>
+medium: config: Add report_tool_options (bsc#917638)
+</p>
+</li>
+<li>
+<p>
+low: main: Bash completion didn&#8217;t handle sudo correctly
+</p>
+</li>
+<li>
+<p>
+high: report: New detection to fix missing transitions (bnc#917131)
+</p>
+</li>
+<li>
+<p>
+medium: report: Add pacemaker.log to find_node_log list (bsc#941734)
+</p>
+</li>
+<li>
+<p>
+high: hb_report: Prefer pacemaker.log if it exists (bsc#941681)
+</p>
+</li>
+<li>
+<p>
+high: report: Output format from pacemaker has changed (bsc#941681)
+</p>
+</li>
+<li>
+<p>
+high: report: Update transition edge regexes (bsc#942906)
+</p>
+</li>
+<li>
+<p>
+medium: report: Reintroduce empty transition pruning (bsc#943291)
+</p>
+</li>
+<li>
+<p>
+medium: log_patterns: Remove reference to function name in log patterns (bsc#942906)
+</p>
+</li>
+<li>
+<p>
+low: hb_report: Collect libqb version (bsc#943327)
+</p>
+</li>
+<li>
+<p>
+high: parse: Fix crash when referencing score types by name (bsc#940194)
+</p>
+</li>
+<li>
+<p>
+low: constants: Add meta attributes for remote nodes
+</p>
+</li>
+<li>
+<p>
+low: ui_history: Swap from and to times if to &lt; from
+</p>
+</li>
+<li>
+<p>
+high: cibconfig: Do not fail on unknown pacemaker schemas (bsc#946893)
+</p>
+</li>
+<li>
+<p>
+high: log_patterns_118: Update the correct set of log patterns (bsc#942906)
+</p>
+</li>
+<li>
+<p>
+high: xmlutil: Order is significant in resource_set (bsc#955434)
+</p>
+</li>
+<li>
+<p>
+high: cibconfig: Fix XML import bug for cloned groups (bsc#959895)
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Thank you,</p></div>
+<div class="paragraph"><p>Kristoffer and Dejan</p></div>
 <hr>
 <div class="ulist"><ul>
+<li>
+<p>
+<a href="/news/2015-05-25-getting-started-jp">2015-05-25 13:30 Getting Started translated to Japanese</a>
+</p>
+</li>
 <li>
 <p>
 <a href="/news/2015-05-13-release-2_1_4">2015-05-13 15:30 Announcing crmsh stable release 2.1.4</a>

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="generator" content="AsciiDoc 8.6.9">
-<title>crmsh - Announcing crmsh release 2.1.1</title>
+<title>crmsh - Announcing crmsh stable release 2.1.5</title>
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/crm.css" type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700|Ubuntu+Mono' rel='stylesheet' type='text/css'>
@@ -29,21 +29,18 @@
 </div>
 <div id="container">
 <div id="content">
-<h1>Announcing crmsh release 2.1.1</h1>
+<h1>Announcing crmsh stable release 2.1.5</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph"><p>Today we are proud to announce the release of <span class="monospaced">crmsh</span> version 2.1.1!
-This version primarily fixes all known issues found since the release
-of <span class="monospaced">crmsh</span> 2.1 in June. We recommend that all users of crmsh upgrade
-to this version, especially if using Pacemaker 1.1.12 or newer.</p></div>
-<div class="paragraph"><p>A massive thank you to everyone who has helped out with bug fixes,
-comments and contributions for this release!</p></div>
+<div class="paragraph"><p>Today we are proud to announce the release of <span class="monospaced">crmsh</span> version 2.1.5!
+This release mainly consists of bug fixes, as well as compatibility
+with Pacemaker 1.1.14.</p></div>
 <div class="paragraph"><p>For a complete list of changes since the previous version, please
 refer to the changelog:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-<a href="https://github.com/crmsh/crmsh/blob/2.1.1/ChangeLog">https://github.com/crmsh/crmsh/blob/2.1.1/ChangeLog</a>
+<a href="https://github.com/ClusterLabs/crmsh/blob/2.1.5/ChangeLog">https://github.com/ClusterLabs/crmsh/blob/2.1.5/ChangeLog</a>
 </p>
 </li>
 </ul></div>
@@ -60,12 +57,12 @@ from the Stable repository at the OBS:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-<a href="https://github.com/crmsh/crmsh/archive/2.1.1.tar.gz">https://github.com/crmsh/crmsh/archive/2.1.1.tar.gz</a>
+<a href="https://github.com/ClusterLabs/crmsh/archive/2.1.5.tar.gz">https://github.com/ClusterLabs/crmsh/archive/2.1.5.tar.gz</a>
 </p>
 </li>
 <li>
 <p>
-<a href="https://github.com/crmsh/crmsh/archive/2.1.1.zip">https://github.com/crmsh/crmsh/archive/2.1.1.zip</a>
+<a href="https://github.com/ClusterLabs/crmsh/archive/2.1.5.zip">https://github.com/ClusterLabs/crmsh/archive/2.1.5.zip</a>
 </p>
 </li>
 </ul></div>
@@ -73,117 +70,127 @@ from the Stable repository at the OBS:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-cibconfig: Clean up output from crm_verify (bnc#893138)
+medium: report: Try to load source as session if possible (bsc#927407)
 </p>
 </li>
 <li>
 <p>
-high: constants: Add acl_target and acl_group to cib_cli_map (bnc#894041)
+medium: crm_gv: Wrap non-identifier names in quotes (bsc#931837)
 </p>
 </li>
 <li>
 <p>
-high: parse: split shortcuts into valid rules
+medium: crm_gv: Improved quoting of non-identifier node names (bsc#931837)
 </p>
 </li>
 <li>
 <p>
-medium: Handle broken CIB in find_objects
+medium: crm_pkg: Fix cluster init bug on RH-based systems
 </p>
 </li>
 <li>
 <p>
-high: scripts: Handle corosync.conf without nodelist in add-node (bnc#862577)
+medium: hb_report: Collect logs from pacemaker.log
 </p>
 </li>
 <li>
 <p>
-medium: config: Assign default path in all cases
+medium: constants: Add <em>provides</em> meta attribute (bsc#936587)
 </p>
 </li>
 <li>
 <p>
-high: cibconfig: Generate valid CLI syntax for attribute lists (bnc#897462)
+high: parse: Add attributes to terminator set (bsc#940920)
 </p>
 </li>
 <li>
 <p>
-high: cibconfig: Add tag:&lt;tag&gt; to get all resources in tag
+Medium: cibconfig: skip sanity check for properties other than cib-bootstrap-options
 </p>
 </li>
 <li>
 <p>
-doc: Documentation for show tag:&lt;tag&gt;
+medium: config: Add report_tool_options (bsc#917638)
 </p>
 </li>
 <li>
 <p>
-low: report: Sort list of nodes
+low: main: Bash completion didn&#8217;t handle sudo correctly
 </p>
 </li>
 <li>
 <p>
-high: parse: Allow empty attribute values in nvpairs (bnc#898625)
+high: report: New detection to fix missing transitions (bnc#917131)
 </p>
 </li>
 <li>
 <p>
-high: cibconfig: Delay reinitialization after commit
+medium: report: Add pacemaker.log to find_node_log list (bsc#941734)
 </p>
 </li>
 <li>
 <p>
-low: cibconfig: Improve wording of commit prompt
+high: hb_report: Prefer pacemaker.log if it exists (bsc#941681)
 </p>
 </li>
 <li>
 <p>
-low: cibconfig: Fix vim modeline
+high: report: Output format from pacemaker has changed (bsc#941681)
 </p>
 </li>
 <li>
 <p>
-high: report: Find nodes for any log type (boo#900654)
+high: report: Update transition edge regexes (bsc#942906)
 </p>
 </li>
 <li>
 <p>
-high: hb_report: Collect logs from journald (boo#900654)
+medium: report: Reintroduce empty transition pruning (bsc#943291)
 </p>
 </li>
 <li>
 <p>
-high: cibconfig: Don&#8217;t crash if given an invalid pattern (bnc#901714)
+medium: log_patterns: Remove reference to function name in log patterns (bsc#942906)
 </p>
 </li>
 <li>
 <p>
-high: xmlutil: Filter list of referenced resources (bnc#901714)
+low: hb_report: Collect libqb version (bsc#943327)
 </p>
 </li>
 <li>
 <p>
-medium: ui_resource: Only act on resources (#64)
+high: parse: Fix crash when referencing score types by name (bsc#940194)
 </p>
 </li>
 <li>
 <p>
-medium: ui_resource: Flatten, then filter (#64)
+low: constants: Add meta attributes for remote nodes
 </p>
 </li>
 <li>
 <p>
-high: ui_resource: Use correct name for error function (bnc#901453)
+low: ui_history: Swap from and to times if to &lt; from
 </p>
 </li>
 <li>
 <p>
-high: ui_resource: resource trace failed if operation existed (bnc#901453)
+high: cibconfig: Do not fail on unknown pacemaker schemas (bsc#946893)
 </p>
 </li>
 <li>
 <p>
-Improved test suite
+high: log_patterns_118: Update the correct set of log patterns (bsc#942906)
+</p>
+</li>
+<li>
+<p>
+high: xmlutil: Order is significant in resource_set (bsc#955434)
+</p>
+</li>
+<li>
+<p>
+high: cibconfig: Fix XML import bug for cloned groups (bsc#959895)
 </p>
 </li>
 </ul></div>
