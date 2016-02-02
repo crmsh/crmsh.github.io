@@ -19,6 +19,7 @@
 <ul>
 <li><a href="/news">News</a></li>
 <li><a href="/documentation">Documentation</a></li>
+<li><a href="/download">Download</a></li>
 <li><a href="/development">Development</a></li>
 <li><a href="/about">About</a></li>
 </ul>
@@ -186,7 +187,7 @@
 <div class="toclevel3"><a href="#cmdhelp_configure_schema">schema</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_set">set</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_show">show</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_show_property">show_property</a></div>
+<div class="toclevel3"><a href="#cmdhelp_configure_get_property">get_property</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_tag">tag</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_template">template</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_upgrade">upgrade</a></div>
@@ -1491,7 +1492,7 @@ sets only the address for ring0.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>add-node &lt;addr&gt;</pre>
+<pre>add-node &lt;addr&gt; [name]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3164,8 +3165,11 @@ group vm-and-services vm vm-sshd meta container="vm"</pre>
 <h4 id="cmdhelp_configure_load"><span class="monospaced">load</span></h4>
 <div class="paragraph"><p>Load a part of configuration (or all of it) from a local file or
 a network URL. The <span class="monospaced">replace</span> method replaces the current
-configuration with the one from the source. The <span class="monospaced">update</span> tries to
-import the contents into the current configuration.
+configuration with the one from the source. The <span class="monospaced">update</span> method
+tries to import the contents into the current configuration. The
+<span class="monospaced">push</span> method imports the contents into the current configuration
+and removes any lines that are not present in the given
+configuration.
 The file may be a CLI file or an XML file.</p></div>
 <div class="paragraph"><p>If the URL is <span class="monospaced">-</span>, the configuration is read from standard input.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -3173,13 +3177,14 @@ The file may be a CLI file or an XML file.</p></div>
 <div class="content monospaced">
 <pre>load [xml] &lt;method&gt; URL
 
-method :: replace | update</pre>
+method :: replace | update | push</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>load xml update myfirstcib.xml
-load xml replace http://storage.big.com/cibs/bigcib.xml</pre>
+load xml replace http://storage.big.com/cibs/bigcib.xml
+load xml push smallcib.xml</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3897,6 +3902,10 @@ arguments.</p></div>
 <div class="paragraph"><p>The prefixes can be used together on a single command line. For
 example, to show both the tag itself and the objects tagged by it the
 following combination can be used: <span class="monospaced">show tag:my-tag my-tag</span>.</p></div>
+<div class="paragraph"><p>To refine a selection of objects using multiple modifiers, the keywords
+<span class="monospaced">and</span> and <span class="monospaced">or</span> can be used. For example, to select all primitives tagged
+<span class="monospaced">foo</span>, the following combination can be used:
+<span class="monospaced">show type:primitive and tag:foo</span>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -3925,7 +3934,7 @@ show related:webapp</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_show_property"><span class="monospaced">show-property</span></h4>
+<h4 id="cmdhelp_configure_get_property"><span class="monospaced">get-property</span></h4>
 <div class="paragraph"><p>Show the value of the given property. If the value is not set, the
 command will print the default value for the property, if known.</p></div>
 <div class="paragraph"><p>If no property name is passed to the command, the list of known
@@ -3933,19 +3942,19 @@ cluster properties is printed.</p></div>
 <div class="paragraph"><p>If the property is set multiple times, for example using multiple
 property sets with different rule expressions, the output of this
 command is undefined.</p></div>
-<div class="paragraph"><p>Pass the argument <span class="monospaced">-t</span> or <span class="monospaced">--true</span> to <span class="monospaced">show-property</span> to translate
+<div class="paragraph"><p>Pass the argument <span class="monospaced">-t</span> or <span class="monospaced">--true</span> to <span class="monospaced">get-property</span> to translate
 the argument value into <span class="monospaced">true</span> or <span class="monospaced">false</span>. If the value is not
 set, the command will print <span class="monospaced">false</span>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>show-property [-t|--true] [&lt;name&gt;]</pre>
+<pre>get-property [-t|--true] [&lt;name&gt;]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>show-property stonith-enabled
-show-property -t maintenance-mode</pre>
+<pre>get-property stonith-enabled
+get-property -t maintenance-mode</pre>
 </div></div>
 </div>
 <div class="sect3">
