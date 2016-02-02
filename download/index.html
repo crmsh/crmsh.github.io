@@ -29,7 +29,9 @@
 <div id="toc">
 <div class="toclevel1"><a href="#_sles_opensuse">SLES / openSUSE</a></div>
 <div class="toclevel1"><a href="#_red_hat_fedora">Red Hat / Fedora</a></div>
+<div class="toclevel2"><a href="#_fedora_22">Fedora 22</a></div>
 <div class="toclevel1"><a href="#_debian">Debian</a></div>
+<div class="toclevel1"><a href="#_ubuntu">Ubuntu</a></div>
 <div class="toclevel1"><a href="#_gentoo">Gentoo</a></div>
 <div class="toclevel1"><a href="#_arch">Arch</a></div>
 <div class="toclevel1"><a href="#_source_packages">Source Packages</a></div>
@@ -64,12 +66,27 @@
 <h2 id="_red_hat_fedora">Red Hat / Fedora</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>We try to build Red Hat / Fedora-compatible RPM packages on the OBS (see above).</p></div>
+<div class="sect2">
+<h3 id="_fedora_22">Fedora 22</h3>
+<div class="paragraph"><p>Download <a href="http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/Fedora_22/network:ha-clustering:Stable.repo">network:ha-clustering:Stable.repo</a> and copy it to the <em>/etc/yum.repos.d/</em> directory as <span class="monospaced">root</span>.</p></div>
+<div class="paragraph"><p>Then, run</p></div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre>yum install crmsh</pre>
+</div></div>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_debian">Debian</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>The versions of <span class="monospaced">crmsh</span> and <span class="monospaced">pacemaker</span> currently available in the latest Debian release are quite old. Newer packages are available via the Debian-HA team <a href="https://wiki.debian.org/Debian-HA">wiki</a> and the distribution packages will hopefully be updated soon.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ubuntu">Ubuntu</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Packages for <span class="monospaced">crmsh</span> are available from the <a href="https://launchpad.net/ubuntu/+source/crmsh">Launchpad</a>.</p></div>
 </div>
 </div>
 <div class="sect1">
