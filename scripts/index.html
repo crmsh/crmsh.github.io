@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="AsciiDoc 8.6.8">
+<meta name="generator" content="AsciiDoc 8.6.9">
 <title>crmsh - Cluster Scripts</title>
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/crm.css" type="text/css">
@@ -590,7 +590,7 @@ learn more, see <a href="http:://yaml.org/">yaml.org</a>.</p></div>
 <div class="paragraph"><p>Here is an example <span class="monospaced">main.yml</span> file which wraps the resource agent
 <span class="monospaced">ocf:heartbeat:IPaddr2</span>.</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="c1"># The version must be exactly 2.2, and must always be</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="c1"># The version must be exactly 2.2, and must always be</span>
 <span class="c1"># specified in the script. If the version is missing or</span>
 <span class="c1"># is less than 2.2, the script is assumed to be a legacy</span>
 <span class="c1"># script (specified in the format used before crmsh 2.2).</span>
@@ -624,7 +624,7 @@ multiple optional steps, the optional installation of packages,
 defines multiple cluster resources and potentially calls bash commands
 on each of the cluster nodes.</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="c1"># Copyright (C) 2009 Dejan Muhamedagic</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="c1"># Copyright (C) 2009 Dejan Muhamedagic</span>
 <span class="c1"># Copyright (C) 2015 Kristoffer Gronlund</span>
 <span class="c1">#</span>
 <span class="c1"># License: GNU General Public License (GPL)</span>
@@ -721,7 +721,7 @@ what they can do.</p></div>
 <div class="paragraph"><p>With this knowledge, we can implement <span class="monospaced">fetch.py</span> and <span class="monospaced">report.py</span>.</p></div>
 <div class="paragraph"><p><span class="monospaced">fetch.py</span>:</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="ch">#!/usr/bin/env python</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="kn">import</span> <span class="nn">crm_script</span> <span class="kn">as</span> <span class="nn">crm</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="n">uptime</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/proc/uptime&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
@@ -731,7 +731,7 @@ what they can do.</p></div>
 </pre></div></div></div>
 <div class="paragraph"><p><span class="monospaced">report.py</span>:</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="ch">#!/usr/bin/env python</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
 <span class="kn">import</span> <span class="nn">crm_script</span> <span class="kn">as</span> <span class="nn">crm</span>
 <span class="n">show_all</span> <span class="o">=</span> <span class="n">crm</span><span class="o">.</span><span class="n">is_true</span><span class="p">(</span><span class="n">crm</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s1">&#39;show_all&#39;</span><span class="p">))</span>
 <span class="n">uptimes</span> <span class="o">=</span> <span class="n">crm</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
@@ -761,7 +761,7 @@ following command:</p></div>
 </div></div>
 <div class="paragraph"><p>Example output:</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="c1"># crm script run check-uptime</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="c1"># crm script run check-uptime</span>
 INFO: Check uptime of nodes
 INFO: Nodes: ha-three, ha-one
 OK: Fetch uptimes
@@ -776,7 +776,7 @@ following:</p></div>
 </div></div>
 <div class="paragraph"><p>Example output:</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span class="c1"># crm script run check-uptime show_all=yes</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="c1"># crm script run check-uptime show_all=yes</span>
 INFO: Check uptime of nodes
 INFO: Nodes: ha-three, ha-one
 OK: Fetch uptimes

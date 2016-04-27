@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="AsciiDoc 8.6.8">
+<meta name="generator" content="AsciiDoc 8.6.9">
 <title>crmsh - crm(8)</title>
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/crm.css" type="text/css">
@@ -3220,7 +3220,7 @@ from developers or your support, the <span class="monospaced">session pack</span
 help create a report. This is an example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>    crm(live)history# timeframe "Jul 18 12:00" "Jul 18 12:30"
+<pre>    crm(live)history# limit "Jul 18 12:00" "Jul 18 12:30"
     crm(live)history# session save strange_restart
     crm(live)history# session pack
     Report saved in .../strange_restart.tar.bz2

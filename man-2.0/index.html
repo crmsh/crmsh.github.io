@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="AsciiDoc 8.6.8">
+<meta name="generator" content="AsciiDoc 8.6.9">
 <title>crmsh - crm(8)</title>
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/crm.css" type="text/css">
@@ -139,6 +139,7 @@
 <div class="toclevel3"><a href="#cmdhelp_node_maintenance">maintenance</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_online">online</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_ready">ready</a></div>
+<div class="toclevel3"><a href="#cmdhelp_node_server">server</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_show">show</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_standby">standby</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_status">status</a></div>
@@ -200,7 +201,7 @@
 <div class="toclevel3"><a href="#cmdhelp_configure_schema">schema</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_set">set</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_show">show</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_show_property">show_property</a></div>
+<div class="toclevel3"><a href="#cmdhelp_configure_get_property">get_property</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_tag">tag</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_template">template</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_upgrade">upgrade</a></div>
@@ -253,6 +254,7 @@
 <div class="toclevel3"><a href="#cmdhelp_history_show">show</a></div>
 <div class="toclevel3"><a href="#cmdhelp_history_source">source</a></div>
 <div class="toclevel3"><a href="#cmdhelp_history_transition">transition</a></div>
+<div class="toclevel3"><a href="#cmdhelp_history_transitions">transitions</a></div>
 <div class="toclevel3"><a href="#cmdhelp_history_wdiff">wdiff</a></div>
 <div class="toclevel3"><a href="#cmdhelp_root_report">report</a></div>
 </div>
@@ -403,6 +405,16 @@ is commonly used when displaying configurations.</p></div>
 <p>
     Extra directory where crm looks for cluster scripts, or a list of
     directories separated by semi-colons (e.g. <span class="monospaced">/dir1;/dir2;etc.</span>).
+</p>
+</dd>
+<dt class="hdlist1">
+<strong>-o, --opt</strong>=<em>OPTION=VALUE</em>
+</dt>
+<dd>
+<p>
+     Set crmsh option temporarily. If the options are saved using
+     <span class="monospaced">options save</span> then the value passed here will also be saved.
+     Multiple options can be set by using <span class="monospaced">-o</span> multiple times.
 </p>
 </dd>
 </dl></div>
@@ -1505,7 +1517,7 @@ sets only the address for ring0.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>add-node &lt;addr&gt;</pre>
+<pre>add-node &lt;addr&gt; [name]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2301,6 +2313,19 @@ operations.</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>ready [&lt;node&gt;]</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_node_server"><span class="monospaced">server</span></h4>
+<div class="paragraph"><p>Remote nodes may have a configured server address which should
+be used when contacting the node. This command prints the
+server address if configured, else the node name.</p></div>
+<div class="paragraph"><p>If no parameter is given, the adresses or names for all nodes
+are printed.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>server [&lt;node&gt; ...]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3178,8 +3203,11 @@ group vm-and-services vm vm-sshd meta container="vm"</pre>
 <h4 id="cmdhelp_configure_load"><span class="monospaced">load</span></h4>
 <div class="paragraph"><p>Load a part of configuration (or all of it) from a local file or
 a network URL. The <span class="monospaced">replace</span> method replaces the current
-configuration with the one from the source. The <span class="monospaced">update</span> tries to
-import the contents into the current configuration.
+configuration with the one from the source. The <span class="monospaced">update</span> method
+tries to import the contents into the current configuration. The
+<span class="monospaced">push</span> method imports the contents into the current configuration
+and removes any lines that are not present in the given
+configuration.
 The file may be a CLI file or an XML file.</p></div>
 <div class="paragraph"><p>If the URL is <span class="monospaced">-</span>, the configuration is read from standard input.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -3187,13 +3215,14 @@ The file may be a CLI file or an XML file.</p></div>
 <div class="content monospaced">
 <pre>load [xml] &lt;method&gt; URL
 
-method :: replace | update</pre>
+method :: replace | update | push</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>load xml update myfirstcib.xml
-load xml replace http://storage.big.com/cibs/bigcib.xml</pre>
+load xml replace http://storage.big.com/cibs/bigcib.xml
+load xml push smallcib.xml</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3911,6 +3940,10 @@ arguments.</p></div>
 <div class="paragraph"><p>The prefixes can be used together on a single command line. For
 example, to show both the tag itself and the objects tagged by it the
 following combination can be used: <span class="monospaced">show tag:my-tag my-tag</span>.</p></div>
+<div class="paragraph"><p>To refine a selection of objects using multiple modifiers, the keywords
+<span class="monospaced">and</span> and <span class="monospaced">or</span> can be used. For example, to select all primitives tagged
+<span class="monospaced">foo</span>, the following combination can be used:
+<span class="monospaced">show type:primitive and tag:foo</span>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -3939,7 +3972,7 @@ show related:webapp</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_show_property"><span class="monospaced">show-property</span></h4>
+<h4 id="cmdhelp_configure_get_property"><span class="monospaced">get-property</span></h4>
 <div class="paragraph"><p>Show the value of the given property. If the value is not set, the
 command will print the default value for the property, if known.</p></div>
 <div class="paragraph"><p>If no property name is passed to the command, the list of known
@@ -3947,19 +3980,19 @@ cluster properties is printed.</p></div>
 <div class="paragraph"><p>If the property is set multiple times, for example using multiple
 property sets with different rule expressions, the output of this
 command is undefined.</p></div>
-<div class="paragraph"><p>Pass the argument <span class="monospaced">-t</span> or <span class="monospaced">--true</span> to <span class="monospaced">show-property</span> to translate
+<div class="paragraph"><p>Pass the argument <span class="monospaced">-t</span> or <span class="monospaced">--true</span> to <span class="monospaced">get-property</span> to translate
 the argument value into <span class="monospaced">true</span> or <span class="monospaced">false</span>. If the value is not
 set, the command will print <span class="monospaced">false</span>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>show-property [-t|--true] [&lt;name&gt;]</pre>
+<pre>get-property [-t|--true] [&lt;name&gt;]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>show-property stonith-enabled
-show-property -t maintenance-mode</pre>
+<pre>get-property stonith-enabled
+get-property -t maintenance-mode</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -4571,7 +4604,7 @@ command.</p></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>crm(live)history# timeframe "Jul 18 12:00" "Jul 18 12:30"
+<pre>crm(live)history# limit "Jul 18 12:00" "Jul 18 12:30"
 crm(live)history# session save strange_restart
 crm(live)history# session pack
 Report saved in .../strange_restart.tar.bz2
@@ -4997,6 +5030,21 @@ transition node-a/pengine/pe-input-2.bz2
 transition showdot 444
 transition log
 transition save 0 enigma-22</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_history_transitions"><span class="monospaced">transitions</span></h4>
+<div class="paragraph"><p>A transition represents a change in cluster configuration or
+state. This command lists the transitions in the current timeframe.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>transitions</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>transitions</pre>
 </div></div>
 </div>
 <div class="sect3">

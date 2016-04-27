@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="AsciiDoc 8.6.8">
+<meta name="generator" content="AsciiDoc 8.6.9">
 <title>crmsh - crm(8)</title>
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/crm.css" type="text/css">
@@ -139,6 +139,7 @@
 <div class="toclevel3"><a href="#cmdhelp_node_maintenance">maintenance</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_online">online</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_ready">ready</a></div>
+<div class="toclevel3"><a href="#cmdhelp_node_server">server</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_show">show</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_standby">standby</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_status">status</a></div>
@@ -253,6 +254,7 @@
 <div class="toclevel3"><a href="#cmdhelp_history_show">show</a></div>
 <div class="toclevel3"><a href="#cmdhelp_history_source">source</a></div>
 <div class="toclevel3"><a href="#cmdhelp_history_transition">transition</a></div>
+<div class="toclevel3"><a href="#cmdhelp_history_transitions">transitions</a></div>
 <div class="toclevel3"><a href="#cmdhelp_history_wdiff">wdiff</a></div>
 <div class="toclevel3"><a href="#cmdhelp_root_report">report</a></div>
 </div>
@@ -403,6 +405,16 @@ is commonly used when displaying configurations.</p></div>
 <p>
     Extra directory where crm looks for cluster scripts, or a list of
     directories separated by semi-colons (e.g. <span class="monospaced">/dir1;/dir2;etc.</span>).
+</p>
+</dd>
+<dt class="hdlist1">
+<strong>-o, --opt</strong>=<em>OPTION=VALUE</em>
+</dt>
+<dd>
+<p>
+     Set crmsh option temporarily. If the options are saved using
+     <span class="monospaced">options save</span> then the value passed here will also be saved.
+     Multiple options can be set by using <span class="monospaced">-o</span> multiple times.
 </p>
 </dd>
 </dl></div>
@@ -2301,6 +2313,19 @@ operations.</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>ready [&lt;node&gt;]</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_node_server"><span class="monospaced">server</span></h4>
+<div class="paragraph"><p>Remote nodes may have a configured server address which should
+be used when contacting the node. This command prints the
+server address if configured, else the node name.</p></div>
+<div class="paragraph"><p>If no parameter is given, the adresses or names for all nodes
+are printed.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>server [&lt;node&gt; ...]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -4579,7 +4604,7 @@ command.</p></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>crm(live)history# timeframe "Jul 18 12:00" "Jul 18 12:30"
+<pre>crm(live)history# limit "Jul 18 12:00" "Jul 18 12:30"
 crm(live)history# session save strange_restart
 crm(live)history# session pack
 Report saved in .../strange_restart.tar.bz2
@@ -5005,6 +5030,21 @@ transition node-a/pengine/pe-input-2.bz2
 transition showdot 444
 transition log
 transition save 0 enigma-22</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_history_transitions"><span class="monospaced">transitions</span></h4>
+<div class="paragraph"><p>A transition represents a change in cluster configuration or
+state. This command lists the transitions in the current timeframe.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>transitions</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>transitions</pre>
 </div></div>
 </div>
 <div class="sect3">

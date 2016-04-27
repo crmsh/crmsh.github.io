@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="AsciiDoc 8.6.8">
+<meta name="generator" content="AsciiDoc 8.6.9">
 <title>crmsh - Cluster history</title>
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/crm.css" type="text/css">
@@ -83,7 +83,7 @@ ways.</p></div>
 </div>
 <div class="listingblock">
 <div class="title">Listing 1: Sample cluster configuration<a id="Listing 1"></a></div>
-<div class="content"><div class="highlight"><pre><span class="k">node</span><span class="w"> </span><span class="n">167906357</span><span class="p">:</span><span class="w"> </span><span class="n">sle12-c</span><span class="w"></span>
+<div class="content"><div class="highlight"><pre><span></span><span class="k">node</span><span class="w"> </span><span class="n">167906357</span><span class="p">:</span><span class="w"> </span><span class="n">sle12-c</span><span class="w"></span>
 <span class="k">node</span><span class="w"> </span><span class="n">167906355</span><span class="p">:</span><span class="w"> </span><span class="n">sle12-a</span><span class="w"></span>
 <span class="k">primitive</span><span class="w"> </span><span class="n">s-libvirt</span><span class="w"> </span><span class="n">stonith</span><span class="p">:</span><span class="n">external</span><span class="p">/</span><span class="n">libvirt</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
 <span class="w">        </span><span class="k">params</span><span class="w"> </span><span class="na">hostlist</span><span class="p">=</span><span class="s">&quot;sle12-a sle12-c&quot;</span><span class="w"> </span><span class="na">hypervisor_uri</span><span class="p">=</span><span class="s">&quot;qemu+ssh://hex-10.suse.de/system?keyfile=/root/.ssh/xen&quot;</span><span class="w"> </span><span class="na">reset_method</span><span class="p">=</span><span class="s">reboot</span><span class="w"> </span><span class="p">\</span><span class="w"></span>
@@ -163,7 +163,7 @@ preparing this document we noticed that a probe failed repeatedly
 on a node which wasn&#8217;t even running the resource <a href="#Listing 2">[Listing 2]</a>.</p></div>
 <div class="listingblock">
 <div class="title">Listing 2: crm status output<a id="Listing 2"></a></div>
-<div class="content"><div class="highlight"><pre># crm status
+<div class="content"><div class="highlight"><pre><span></span># crm status
 Last updated: Tue Dec 16 11:57:04 2014
 Last change: Tue Dec 16 11:53:22 2014
 Stack: corosync
@@ -183,7 +183,7 @@ Failed actions:
 supplied resource <a href="#Listing 3">[Listing 3]</a>.</p></div>
 <div class="listingblock">
 <div class="title">Listing 3: Logs on failed <span class="monospaced">nfs-server</span> probe operation<a id="Listing 3"></a></div>
-<div class="content"><div class="highlight"><pre># crm history resource nfs-server
+<div class="content"><div class="highlight"><pre><span></span># crm history resource nfs-server
 <span class="gt">INFO</span>: fetching new logs, please wait ...
 <span class="gi">Dec 16 11:53:23 sle12-c nfsserver(nfs-server)[14911]: <img src="/img/icons/callouts/1.png" alt="1"> ERROR: NFS server is up, but the locking daemons are down</span>
 <span class="gi">Dec 16 11:53:23 sle12-c crmd[2823]:   notice: te_rsc_command: Initiating action 54: stop nfs-server_stop_0 on sle12-a</span>
@@ -236,7 +236,7 @@ tracing of the resource agent. <a href="#Listing 4">[Listing 4]</a> shows how to
 that.</p></div>
 <div class="listingblock">
 <div class="title">Listing 4: Set <span class="monospaced">nfs-server</span> probe operation resource tracing<a id="Listing 4"></a></div>
-<div class="content"><div class="highlight"><pre># crm resource trace nfs-server monitor 0
+<div class="content"><div class="highlight"><pre><span></span># crm resource trace nfs-server monitor 0
 <span class="gt">INFO</span>: Trace for nfs-server:monitor is written to /var/lib/heartbeat/trace_ra/
 <span class="gt">INFO</span>: Trace set, restart nfs-server to trace non-monitor operations
 # crm resource cleanup nfs-server
@@ -281,7 +281,7 @@ studying pacemaker clusters.</p></div>
 shown in <a href="#Listing 5">[Listing 5]</a>.</p></div>
 <div class="listingblock">
 <div class="title">Listing 5: Basic history information<a id="Listing 5"></a></div>
-<div class="content"><div class="highlight"><pre># crm history
+<div class="content"><div class="highlight"><pre><span></span># crm history
 <span class="gi">crm(live)history# </span>timeframe &quot;Apr 15 20:25&quot; &quot;Apr 15 20:35&quot;
 <span class="gi">crm(live)history# </span>info
 Source: live
@@ -319,7 +319,7 @@ to files, the so called PE (Policy Engine) inputs.</p></div>
 The listing is annotated to explain the output in more detail.</p></div>
 <div class="listingblock">
 <div class="title">Listing 6: Viewing transitions<a id="Listing 6"></a></div>
-<div class="content"><div class="highlight"><pre><span class="gi">crm(live)history# </span>transition <img src="/img/icons/callouts/1.png" alt="1">
+<div class="content"><div class="highlight"><pre><span></span><span class="gi">crm(live)history# </span>transition <img src="/img/icons/callouts/1.png" alt="1">
 <span class="gt">INFO</span>: running ptest with /var/cache/crm/history/live/sle12-c/pengine/pe-input-1907.bz2
 <span class="gt">INFO</span>: starting dotty to show transition graph <img src="/img/icons/callouts/2.png" alt="2">
 Current cluster status: <img src="/img/icons/callouts/3.png" alt="3">
@@ -392,7 +392,7 @@ very involved, but we reckon it&#8217;s as good a start as starts go.</p></div>
 transitions. History <span class="monospaced">diff</span> command is in action in <a href="#Listing 7">[Listing 7]</a>.</p></div>
 <div class="listingblock">
 <div class="title">Listing 7: Viewing transitions<a id="Listing 7"></a></div>
-<div class="content"><div class="highlight"><pre><span class="gi">crm(live)history# </span>diff -1 0 <img src="/img/icons/callouts/1.png" alt="1">
+<div class="content"><div class="highlight"><pre><span></span><span class="gi">crm(live)history# </span>diff -1 0 <img src="/img/icons/callouts/1.png" alt="1">
 --- -1
 +++ 0
 @@ -11 +11 @@
@@ -421,7 +421,7 @@ actions of that transition are yet to be executed. So, the status
 section of transition <em>N</em> corresponds to the configuration <em>N-1</em>.</p></div>
 <div class="listingblock">
 <div class="title">Listing 8: Full transition log<a id="Listing 8"></a></div>
-<div class="content"><div class="highlight"><pre><span class="gi">crm(live)history# </span>transition log
+<div class="content"><div class="highlight"><pre><span></span><span class="gi">crm(live)history# </span>transition log
 <span class="gt">INFO</span>: retrieving information from cluster nodes, please wait ...
 <span class="gi">Apr 15 20:30:14 sle12-c crmd[1136]:   notice: do_state_transition: State transition S_IDLE -&gt; S_POLICY_ENGINE [ input=I_PE_CALC cause=C_FSA_INTERNAL origin=abort_transition_graph ]</span>
 <span class="gi">Apr 15 20:30:14 sle12-c stonithd[1132]:   notice: unpack_config: On loss of CCM Quorum: Ignore</span>
@@ -458,7 +458,7 @@ important log parts.</p></div>
 </div>
 <div class="listingblock">
 <div class="title">Listing 9: Resource related messages<a id="Listing 9"></a></div>
-<div class="content"><div class="highlight"><pre><span class="gi">crm(live)history# </span>resource small-apache
+<div class="content"><div class="highlight"><pre><span></span><span class="gi">crm(live)history# </span>resource small-apache
 <span class="gi">Apr 15 20:29:59 sle12-c crmd[1136]:   notice: te_rsc_command: Initiating action 60: stop small-apache_stop_0 on sle12-a</span>
 Apr 15 20:29:59 sle12-a apache(small-apache)[1366]: INFO: Attempting graceful stop of apache PID 9155
 Apr 15 20:30:01 sle12-a apache(small-apache)[1366]: INFO: apache stopped.
