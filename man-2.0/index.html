@@ -58,24 +58,25 @@
 <div class="toclevel2"><a href="#topics_Syntax_RuleExpressions">Syntax: Rule expressions</a></div>
 <div class="toclevel1"><a href="#topics_Reference">Command reference</a></div>
 <div class="toclevel3"><a href="#cmdhelp_root_status">status</a></div>
+<div class="toclevel3"><a href="#cmdhelp_root_verify">verify</a></div>
 <div class="toclevel2"><a href="#cmdhelp_cluster">cluster</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_add">add</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_copy">copy</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_diff">diff</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_health">health</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_init">init</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_remove">remove</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_run">run</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cluster_copy">copy</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_start">start</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_status">status</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_stop">stop</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_wait_for_startup">wait_for_startup</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cluster_diff">diff</a></div>
 <div class="toclevel2"><a href="#cmdhelp_script">script</a></div>
+<div class="toclevel3"><a href="#cmdhelp_script_json">json</a></div>
 <div class="toclevel3"><a href="#cmdhelp_script_list">list</a></div>
+<div class="toclevel3"><a href="#cmdhelp_script_run">run</a></div>
 <div class="toclevel3"><a href="#cmdhelp_script_show">show</a></div>
 <div class="toclevel3"><a href="#cmdhelp_script_verify">verify</a></div>
-<div class="toclevel3"><a href="#cmdhelp_script_run">run</a></div>
-<div class="toclevel3"><a href="#cmdhelp_script_json">json</a></div>
 <div class="toclevel2"><a href="#cmdhelp_corosync">corosync</a></div>
 <div class="toclevel3"><a href="#cmdhelp_corosync_add-node">add-node</a></div>
 <div class="toclevel3"><a href="#cmdhelp_corosync_del-node">del-node</a></div>
@@ -106,21 +107,23 @@
 <div class="toclevel3"><a href="#cmdhelp_ra_providers">providers</a></div>
 <div class="toclevel3"><a href="#cmdhelp_ra_validate">validate</a></div>
 <div class="toclevel2"><a href="#cmdhelp_resource">resource</a></div>
+<div class="toclevel3"><a href="#cmdhelp_resource_ban">ban</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_cleanup">cleanup</a></div>
+<div class="toclevel3"><a href="#cmdhelp_resource_clear">clear</a></div>
+<div class="toclevel3"><a href="#cmdhelp_resource_constraints">constraints</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_demote">demote</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_failcount">failcount</a></div>
+<div class="toclevel3"><a href="#cmdhelp_resource_locate">locate</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_maintenance">maintenance</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_manage">manage</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_meta">meta</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_migrate">migrate</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_ban">ban</a></div>
+<div class="toclevel3"><a href="#cmdhelp_resource_move">move</a></div>
+<div class="toclevel3"><a href="#cmdhelp_resource_operations">operations</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_param">param</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_promote">promote</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_refresh">refresh</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_reprobe">reprobe</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_restart">restart</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_constraints">constraints</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_operations">operations</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_scores">scores</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_secret">secret</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_start">start</a></div>
@@ -128,7 +131,6 @@
 <div class="toclevel3"><a href="#cmdhelp_resource_stop">stop</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_trace">trace</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_unmanage">unmanage</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_unmigrate">unmigrate</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_untrace">untrace</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_utilization">utilization</a></div>
 <div class="toclevel2"><a href="#cmdhelp_node">node</a></div>
@@ -166,6 +168,7 @@
 <div class="toclevel3"><a href="#cmdhelp_options_wait">wait</a></div>
 <div class="toclevel2"><a href="#cmdhelp_configure">configure</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_acl_target">acl_target</a></div>
+<div class="toclevel3"><a href="#cmdhelp_configure_alert">alert</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_cib">cib</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_cibstatus">cibstatus</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_clone">clone</a></div>
@@ -177,6 +180,7 @@
 <div class="toclevel3"><a href="#cmdhelp_configure_erase">erase</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_fencing_topology">fencing_topology</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_filter">filter</a></div>
+<div class="toclevel3"><a href="#cmdhelp_configure_get_property">get_property</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_graph">graph</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_group">group</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_load">load</a></div>
@@ -201,7 +205,6 @@
 <div class="toclevel3"><a href="#cmdhelp_configure_schema">schema</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_set">set</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_show">show</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_get_property">get_property</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_tag">tag</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_template">template</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_upgrade">upgrade</a></div>
@@ -232,19 +235,19 @@
 <div class="toclevel3"><a href="#cmdhelp_assist_template">template</a></div>
 <div class="toclevel3"><a href="#cmdhelp_assist_weak-bond">weak-bond</a></div>
 <div class="toclevel2"><a href="#cmdhelp_maintenance">maintenance</a></div>
-<div class="toclevel3"><a href="#cmdhelp_maintenance_on">on</a></div>
-<div class="toclevel3"><a href="#cmdhelp_maintenance_off">off</a></div>
 <div class="toclevel3"><a href="#cmdhelp_maintenance_action">action</a></div>
+<div class="toclevel3"><a href="#cmdhelp_maintenance_off">off</a></div>
+<div class="toclevel3"><a href="#cmdhelp_maintenance_on">on</a></div>
 <div class="toclevel2"><a href="#cmdhelp_history">history</a></div>
 <div class="toclevel3"><a href="#cmdhelp_history_detail">detail</a></div>
 <div class="toclevel3"><a href="#cmdhelp_history_diff">diff</a></div>
+<div class="toclevel3"><a href="#cmdhelp_history_events">events</a></div>
 <div class="toclevel3"><a href="#cmdhelp_history_exclude">exclude</a></div>
 <div class="toclevel3"><a href="#cmdhelp_history_graph">graph</a></div>
 <div class="toclevel3"><a href="#cmdhelp_history_info">info</a></div>
 <div class="toclevel3"><a href="#cmdhelp_history_latest">latest</a></div>
 <div class="toclevel3"><a href="#cmdhelp_history_limit">limit</a></div>
 <div class="toclevel3"><a href="#cmdhelp_history_log">log</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_events">events</a></div>
 <div class="toclevel3"><a href="#cmdhelp_history_node">node</a></div>
 <div class="toclevel3"><a href="#cmdhelp_history_peinputs">peinputs</a></div>
 <div class="toclevel3"><a href="#cmdhelp_history_refresh">refresh</a></div>
@@ -1232,6 +1235,23 @@ option :: full
 </div></div>
 </div>
 <div class="sect2">
+<h3 id="cmdhelp_root_verify"><span class="monospaced">verify</span></h3>
+<div class="paragraph"><p>Performs basic checks for the cluster configuration and
+current status, reporting potential issues.</p></div>
+<div class="paragraph"><p>See <span class="monospaced">crm_verify(8)</span> and <span class="monospaced">crm_simulate(8)</span> for more details.</p></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>verify
+verify scores</pre>
+</div></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>verify [scores]</pre>
+</div></div>
+</div>
+<div class="sect2">
 <h3 id="cmdhelp_cluster"><span class="monospaced">cluster</span> - Cluster setup and management</h3>
 <div class="paragraph"><p>Whole-cluster configuration management with High Availability
 awareness.</p></div>
@@ -1253,6 +1273,40 @@ up to host the file system.</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>add &lt;node&gt;</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_copy"><span class="monospaced">copy</span></h4>
+<div class="paragraph"><p>Copy file to other cluster nodes.</p></div>
+<div class="paragraph"><p>Copies the given file to all other nodes unless given a
+list of nodes to copy to as argument.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>copy &lt;filename&gt; [nodes ...]</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>copy /etc/motd</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_diff"><span class="monospaced">diff</span></h4>
+<div class="paragraph"><p>Displays the difference, if any, between a given file
+on different nodes. If the second argument is <span class="monospaced">--checksum</span>,
+a checksum of the file will be calculated and displayed for
+each node.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>diff &lt;file&gt; [--checksum] [nodes...]</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>diff /etc/crm/crm.conf node2
+diff /etc/resolv.conf --checksum</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1301,22 +1355,6 @@ statement on all nodes in the cluster, and reports the result.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cluster_copy"><span class="monospaced">copy</span></h4>
-<div class="paragraph"><p>Copy file to other cluster nodes.</p></div>
-<div class="paragraph"><p>Copies the given file to all other nodes unless given a
-list of nodes to copy to as argument.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>copy &lt;filename&gt; [nodes ...]</pre>
-</div></div>
-<div class="paragraph"><p>Example:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>copy /etc/motd</pre>
-</div></div>
-</div>
-<div class="sect3">
 <h4 id="cmdhelp_cluster_start"><span class="monospaced">start</span></h4>
 <div class="paragraph"><p>Starts the cluster-related system services on this node.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -1357,24 +1395,6 @@ an argument.</p></div>
 <pre>wait_for_startup</pre>
 </div></div>
 </div>
-<div class="sect3">
-<h4 id="cmdhelp_cluster_diff"><span class="monospaced">diff</span></h4>
-<div class="paragraph"><p>Displays the difference, if any, between a given file
-on different nodes. If the second argument is <span class="monospaced">--checksum</span>,
-a checksum of the file will be calculated and displayed for
-each node.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>diff &lt;file&gt; [--checksum] [nodes...]</pre>
-</div></div>
-<div class="paragraph"><p>Example:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>diff /etc/crm/crm.conf node2
-diff /etc/resolv.conf --checksum</pre>
-</div></div>
-</div>
 </div>
 <div class="sect2">
 <h3 id="cmdhelp_script"><span class="monospaced">script</span> - Cluster script management</h3>
@@ -1393,6 +1413,40 @@ provides a thin wrapper on top of SSH. This allows the scripts to
 function through the usual SSH channels used for system maintenance,
 requiring no additional software to be installed or maintained.</p></div>
 <div class="sect3">
+<h4 id="cmdhelp_script_json"><span class="monospaced">json</span></h4>
+<div class="paragraph"><p>This command provides a JSON API for the cluster scripts, intended for
+use in user interface tools that want to interact with the cluster via
+scripts.</p></div>
+<div class="paragraph"><p>The command takes a single argument, which should be a JSON array with
+the first member identifying the command to perform.</p></div>
+<div class="paragraph"><p>The output is line-based: Commands that return multiple results will
+return them line-by-line, ending with a terminator value: "end".</p></div>
+<div class="paragraph"><p>When providing parameter values to this command, they should be
+provided as nested objects, so <span class="monospaced">virtual-ip:ip=192.168.0.5</span> on the
+command line becomes the JSON object
+<span class="monospaced">{"virtual-ip":{"ip":"192.168.0.5"}}</span>.</p></div>
+<div class="paragraph"><p>API:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>["list"]
+=&gt; [{name, shortdesc, category}]
+
+["show", &lt;name&gt;]
+=&gt; [{name, shortdesc, longdesc, category, &lt;&lt;steps&gt;&gt;}]
+
+&lt;&lt;steps&gt;&gt; := [{name, shortdesc], longdesc, required, parameters, steps}]
+
+&lt;&lt;params&gt;&gt; := [{name, shortdesc, longdesc, required, unique, advanced,
+                type, value, example}]
+
+["verify", &lt;name&gt;, &lt;&lt;values&gt;&gt;]
+=&gt; [{shortdesc, longdesc, text, nodes}]
+
+["run", &lt;name&gt;, &lt;&lt;values&gt;&gt;]
+=&gt; [{shortdesc, rc, output|error}]</pre>
+</div></div>
+</div>
+<div class="sect3">
 <h4 id="cmdhelp_script_list"><span class="monospaced">list</span></h4>
 <div class="paragraph"><p>Lists the available scripts, sorted by category. Scripts that have the
 special <span class="monospaced">Script</span> category are hidden by default, since they are mainly
@@ -1410,6 +1464,28 @@ argument.</p></div>
 <div class="content monospaced">
 <pre>list
 list all names</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_script_run"><span class="monospaced">run</span></h4>
+<div class="paragraph"><p>Given a list of parameter values, this command will execute the
+actions specified by the cluster script. The format for the parameter
+values is the same as for the <span class="monospaced">verify</span> command.</p></div>
+<div class="paragraph"><p>Can optionally take at least two parameters:
+* <span class="monospaced">nodes=&lt;nodes&gt;</span>: List of nodes that the script runs over
+* <span class="monospaced">dry_run=yes|no</span>: If set, the script will not perform any modifications.</p></div>
+<div class="paragraph"><p>Additional parameters may be available depending on the script.</p></div>
+<div class="paragraph"><p>Use the <span class="monospaced">show</span> command to see what parameters are available.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>run &lt;script&gt; [args...]</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>run apache install=true
+run sbd id=sbd-1 node=node1 sbd_device=/dev/disk/by-uuid/F00D-CAFE</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1443,62 +1519,6 @@ if provided the same list of parameter values.</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>verify sbd id=sbd-1 node=node1 sbd_device=/dev/disk/by-uuid/F00D-CAFE</pre>
-</div></div>
-</div>
-<div class="sect3">
-<h4 id="cmdhelp_script_run"><span class="monospaced">run</span></h4>
-<div class="paragraph"><p>Given a list of parameter values, this command will execute the
-actions specified by the cluster script. The format for the parameter
-values is the same as for the <span class="monospaced">verify</span> command.</p></div>
-<div class="paragraph"><p>Can optionally take at least two parameters:
-* <span class="monospaced">nodes=&lt;nodes&gt;</span>: List of nodes that the script runs over
-* <span class="monospaced">dry_run=yes|no</span>: If set, the script will not perform any modifications.</p></div>
-<div class="paragraph"><p>Additional parameters may be available depending on the script.</p></div>
-<div class="paragraph"><p>Use the <span class="monospaced">show</span> command to see what parameters are available.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>run &lt;script&gt; [args...]</pre>
-</div></div>
-<div class="paragraph"><p>Example:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>run apache install=true
-run sbd id=sbd-1 node=node1 sbd_device=/dev/disk/by-uuid/F00D-CAFE</pre>
-</div></div>
-</div>
-<div class="sect3">
-<h4 id="cmdhelp_script_json"><span class="monospaced">json</span></h4>
-<div class="paragraph"><p>This command provides a JSON API for the cluster scripts, intended for
-use in user interface tools that want to interact with the cluster via
-scripts.</p></div>
-<div class="paragraph"><p>The command takes a single argument, which should be a JSON array with
-the first member identifying the command to perform.</p></div>
-<div class="paragraph"><p>The output is line-based: Commands that return multiple results will
-return them line-by-line, ending with a terminator value: "end".</p></div>
-<div class="paragraph"><p>When providing parameter values to this command, they should be
-provided as nested objects, so <span class="monospaced">virtual-ip:ip=192.168.0.5</span> on the
-command line becomes the JSON object
-<span class="monospaced">{"virtual-ip":{"ip":"192.168.0.5"}}</span>.</p></div>
-<div class="paragraph"><p>API:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>["list"]
-=&gt; [{name, shortdesc, category}]
-
-["show", &lt;name&gt;]
-=&gt; [{name, shortdesc, longdesc, category, &lt;&lt;steps&gt;&gt;}]
-
-&lt;&lt;steps&gt;&gt; := [{name, shortdesc], longdesc, required, parameters, steps}]
-
-&lt;&lt;params&gt;&gt; := [{name, shortdesc, longdesc, required, unique, advanced,
-                type, value, example}]
-
-["verify", &lt;name&gt;, &lt;&lt;values&gt;&gt;]
-=&gt; [{shortdesc, longdesc, text, nodes}]
-
-["run", &lt;name&gt;, &lt;&lt;values&gt;&gt;]
-=&gt; [{shortdesc, rc, output|error}]</pre>
 </div></div>
 </div>
 </div>
@@ -1853,14 +1873,50 @@ reported by the agent.</p></div>
 <div class="paragraph"><p>All (or almost all) commands are implemented with the CRM tools
 such as <span class="monospaced">crm_resource(8)</span>.</p></div>
 <div class="sect3">
+<h4 id="cmdhelp_resource_ban"><span class="monospaced">ban</span></h4>
+<div class="paragraph"><p>Ban a resource from running on a certain node. If no node is given
+as argument, the resource is banned from the current location.</p></div>
+<div class="paragraph"><p>See <span class="monospaced">move</span> for details on other arguments.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>ban &lt;rsc&gt; [&lt;node&gt;] [&lt;lifetime&gt;] [force]</pre>
+</div></div>
+</div>
+<div class="sect3">
 <h4 id="cmdhelp_resource_cleanup"><span class="monospaced">cleanup</span></h4>
 <div class="paragraph"><p>Cleanup resource status. Typically done after the resource has
 temporarily failed. If a node is omitted, cleanup on all nodes.
 If there are many nodes, the command may take a while.</p></div>
+<div class="paragraph"><p><span class="monospaced">(Pacemaker 1.1.14)</span> Pass force to cleanup the resource itself,
+otherwise the cleanup command will apply to the parent resource (if
+any).</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>cleanup &lt;rsc&gt; [&lt;node&gt;]</pre>
+<pre>cleanup &lt;rsc&gt; [&lt;node&gt;] [force]</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_resource_clear"><span class="monospaced">clear</span> (<span class="monospaced">unmove</span>, <span class="monospaced">unmigrate</span>, <span class="monospaced">unban</span>)</h4>
+<div class="paragraph"><p>Remove any relocation constraint created by
+the <span class="monospaced">move</span>, <span class="monospaced">migrate</span> or <span class="monospaced">ban</span> command.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>clear &lt;rsc&gt;
+unmigrate &lt;rsc&gt;
+unban &lt;rsc&gt;</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_resource_constraints"><span class="monospaced">constraints</span></h4>
+<div class="paragraph"><p>Display the location and colocation constraints affecting the
+resource.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>constraints &lt;rsc&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1887,6 +1943,15 @@ failcount &lt;rsc&gt; show &lt;node&gt;</pre>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>failcount fs_0 delete node2</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_resource_locate"><span class="monospaced">locate</span></h4>
+<div class="paragraph"><p>Show the current location of one or more resources.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>locate [&lt;rsc&gt; ...]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1937,27 +2002,27 @@ meta &lt;rsc&gt; show &lt;attr&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_migrate"><span class="monospaced">migrate</span> (<span class="monospaced">move</span>)</h4>
-<div class="paragraph"><p>Migrate a resource to a different node. If node is left out, the
-resource is migrated by creating a constraint which prevents it from
-running on the current node. Additionally, you may specify a
-lifetime for the constraint---once it expires, the location
-constraint will no longer be active.</p></div>
+<h4 id="cmdhelp_resource_move"><span class="monospaced">move</span> (<span class="monospaced">migrate</span>)</h4>
+<div class="paragraph"><p>Move a resource away from its current location.</p></div>
+<div class="paragraph"><p>If the destination node is left out, the resource is migrated by
+creating a constraint which prevents it from running on the current
+node. For this type of constraint to be created, the <span class="monospaced">force</span> argument
+is required.</p></div>
+<div class="paragraph"><p>A lifetime may be given for the constraint. Once it expires, the
+location constraint will no longer be active.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>migrate &lt;rsc&gt; [&lt;node&gt;] [&lt;lifetime&gt;] [force]</pre>
+<pre>move &lt;rsc&gt; [&lt;node&gt;] [&lt;lifetime&gt;] [force]</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_ban"><span class="monospaced">ban</span></h4>
-<div class="paragraph"><p>Ban a resource from running on a certain node. If no node is given
-as argument, the resource is banned from the current location.</p></div>
-<div class="paragraph"><p>See <span class="monospaced">migrate</span> for details on other arguments.</p></div>
+<h4 id="cmdhelp_resource_operations"><span class="monospaced">operations</span></h4>
+<div class="paragraph"><p>Show active operations, optionally filtered by resource and node.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>ban &lt;rsc&gt; [&lt;node&gt;] [&lt;lifetime&gt;] [force]</pre>
+<pre>operations [&lt;rsc&gt;] [&lt;node&gt;]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2039,25 +2104,6 @@ INFO: ordering g_webserver to stop
 waiting for stop to finish .... done
 INFO: ordering g_webserver to start
 #</pre>
-</div></div>
-</div>
-<div class="sect3">
-<h4 id="cmdhelp_resource_constraints"><span class="monospaced">constraints</span></h4>
-<div class="paragraph"><p>Display the location and colocation constraints affecting the
-resource.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>constraints &lt;rsc&gt;</pre>
-</div></div>
-</div>
-<div class="sect3">
-<h4 id="cmdhelp_resource_operations"><span class="monospaced">operations</span></h4>
-<div class="paragraph"><p>Show active operations, optionally filtered by resource and node.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>operations [&lt;rsc&gt;] [&lt;node&gt;]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2173,15 +2219,6 @@ removed from the children resources.</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>unmanage &lt;rsc&gt;</pre>
-</div></div>
-</div>
-<div class="sect3">
-<h4 id="cmdhelp_resource_unmigrate"><span class="monospaced">unmigrate</span> (<span class="monospaced">unmove</span>)</h4>
-<div class="paragraph"><p>Remove the constraint generated by the previous migrate command.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>unmigrate &lt;rsc&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2877,6 +2914,54 @@ will follow.</p></div>
 </div></div>
 </div>
 <div class="sect3">
+<h4 id="cmdhelp_configure_alert"><span class="monospaced">alert</span></h4>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Version note</div>
+<div class="paragraph"><p>This feature is only available
+in Pacemaker 1.1.15+.</p></div>
+</div></div>
+<div class="paragraph"><p>Event-driven alerts enables calling scripts whenever interesting
+events occur in the cluster (nodes joining or leaving, resources
+starting or stopping, etc.).</p></div>
+<div class="paragraph"><p>The <span class="monospaced">path</span> is an arbitrary file path to an alert script.  Existing
+external scripts used with ClusterMon resources can be used as alert
+scripts, since the interface is compatible.</p></div>
+<div class="paragraph"><p>Each alert may have a number of receipients configured.  These will be
+passed to the script as arguments. The first recipient will also be
+passed as the <span class="monospaced">CRM_alert_recipient</span> environment variable, for
+compatibility with existing scripts that only support one recipient.</p></div>
+<div class="paragraph"><p>The available meta attributes are <span class="monospaced">timeout</span> (default 30s) and
+<span class="monospaced">timestamp-format</span> (default <span class="monospaced">"%H:%M:%S.%06N"</span>).</p></div>
+<div class="paragraph"><p>Some configurations may require each recipient to be delimited by
+brackets, to avoid ambiguity. In the example <span class="monospaced">alert-2</span> below, the meta
+attribute for <span class="monospaced">timeout</span> is defined after the recipient, so the
+brackets are used to ensure that the meta attribute is set for the
+alert and not just the recipient. This can be avoided by setting any
+alert attributes before defining the recipients.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>alert &lt;id&gt; &lt;path&gt; \
+  [attributes &lt;nvpair&gt; ...] \
+  [meta &lt;nvpair&gt; ...] \
+  [to [{] &lt;recipient&gt;
+    [attributes &lt;nvpair&gt; ...] \
+    [meta &lt;nvpair&gt; ...] [}] \
+    ...]</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>alert alert-1 /srv/pacemaker/pcmk_alert_sample.sh \
+    to /var/log/cluster-alerts.log
+
+alert alert-2 /srv/pacemaker/example_alert.sh \
+    meta timeout=60s \
+    to { /var/log/cluster-alerts.log }</pre>
+</div></div>
+</div>
+<div class="sect3">
 <h4 id="cmdhelp_configure_cib"><span class="monospaced">cib</span></h4>
 <div class="paragraph"><p>This level is for management of shadow CIBs. It is available at
 the <span class="monospaced">configure</span> level to enable saving intermediate changes to a
@@ -3133,6 +3218,30 @@ difficult to get right, especially when used directly from bash, since
 bash does its own quotation parsing. In these cases, it can be easier
 to supply the filter command as standard input. See the last example
 above.</p></div>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_configure_get_property"><span class="monospaced">get-property</span></h4>
+<div class="paragraph"><p>Show the value of the given property. If the value is not set, the
+command will print the default value for the property, if known.</p></div>
+<div class="paragraph"><p>If no property name is passed to the command, the list of known
+cluster properties is printed.</p></div>
+<div class="paragraph"><p>If the property is set multiple times, for example using multiple
+property sets with different rule expressions, the output of this
+command is undefined.</p></div>
+<div class="paragraph"><p>Pass the argument <span class="monospaced">-t</span> or <span class="monospaced">--true</span> to <span class="monospaced">get-property</span> to translate
+the argument value into <span class="monospaced">true</span> or <span class="monospaced">false</span>. If the value is not
+set, the command will print <span class="monospaced">false</span>.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>get-property [-t|--true] [&lt;name&gt;]</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>get-property stonith-enabled
+get-property -t maintenance-mode</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3972,30 +4081,6 @@ show related:webapp</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_get_property"><span class="monospaced">get-property</span></h4>
-<div class="paragraph"><p>Show the value of the given property. If the value is not set, the
-command will print the default value for the property, if known.</p></div>
-<div class="paragraph"><p>If no property name is passed to the command, the list of known
-cluster properties is printed.</p></div>
-<div class="paragraph"><p>If the property is set multiple times, for example using multiple
-property sets with different rule expressions, the output of this
-command is undefined.</p></div>
-<div class="paragraph"><p>Pass the argument <span class="monospaced">-t</span> or <span class="monospaced">--true</span> to <span class="monospaced">get-property</span> to translate
-the argument value into <span class="monospaced">true</span> or <span class="monospaced">false</span>. If the value is not
-set, the command will print <span class="monospaced">false</span>.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>get-property [-t|--true] [&lt;name&gt;]</pre>
-</div></div>
-<div class="paragraph"><p>Example:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>get-property stonith-enabled
-get-property -t maintenance-mode</pre>
-</div></div>
-</div>
-<div class="sect3">
 <h4 id="cmdhelp_configure_tag"><span class="monospaced">tag</span></h4>
 <div class="paragraph"><p>Define a resource tag. A tag is an id referring to one or more
 resources, without implying any constraints between the tagged
@@ -4512,38 +4597,6 @@ or manipulate the resources while these commands are being executed.</p></div>
 <div class="paragraph"><p>To ensure this, these commands require that maintenance mode is set
 either for the particular resource, or for the whole cluster.</p></div>
 <div class="sect3">
-<h4 id="cmdhelp_maintenance_on"><span class="monospaced">on</span></h4>
-<div class="paragraph"><p>Enables maintenances mode, either for the whole cluster
-or for the given resource.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>on
-on &lt;rsc&gt;</pre>
-</div></div>
-<div class="paragraph"><p>Example:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>on rsc1</pre>
-</div></div>
-</div>
-<div class="sect3">
-<h4 id="cmdhelp_maintenance_off"><span class="monospaced">off</span></h4>
-<div class="paragraph"><p>Disables maintenances mode, either for the whole cluster
-or for the given resource.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>off
-off &lt;rsc&gt;</pre>
-</div></div>
-<div class="paragraph"><p>Example:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>off rsc1</pre>
-</div></div>
-</div>
-<div class="sect3">
 <h4 id="cmdhelp_maintenance_action"><span class="monospaced">action</span></h4>
 <div class="paragraph"><p>Invokes the given action for the resource. This is
 done directly via the resource agent, so the command must
@@ -4566,6 +4619,38 @@ action &lt;rsc&gt; &lt;action&gt; ssh</pre>
 <div class="content monospaced">
 <pre>action webserver reload
 action webserver monitor ssh</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_maintenance_off"><span class="monospaced">off</span></h4>
+<div class="paragraph"><p>Disables maintenances mode, either for the whole cluster
+or for the given resource.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>off
+off &lt;rsc&gt;</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>off rsc1</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_maintenance_on"><span class="monospaced">on</span></h4>
+<div class="paragraph"><p>Enables maintenances mode, either for the whole cluster
+or for the given resource.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>on
+on &lt;rsc&gt;</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>on rsc1</pre>
 </div></div>
 </div>
 </div>
@@ -4651,6 +4736,25 @@ pe :: &lt;number&gt;|&lt;index&gt;|&lt;file&gt;|live</pre>
 <div class="content monospaced">
 <pre>diff 2066 2067
 diff pe-input-2080.bz2 live status</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_history_events"><span class="monospaced">events</span></h4>
+<div class="paragraph"><p>By analysing the log output and looking for particular
+patterns, the <span class="monospaced">events</span> command helps sifting through
+the logs to find when particular events like resources
+changing state or node failure may have occurred.</p></div>
+<div class="paragraph"><p>This can be used to generate a combined list of events
+from all nodes.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>events</pre>
+</div></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>events</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -4803,25 +4907,6 @@ may actually happen fairly often.</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>log node-a</pre>
-</div></div>
-</div>
-<div class="sect3">
-<h4 id="cmdhelp_history_events"><span class="monospaced">events</span></h4>
-<div class="paragraph"><p>By analysing the log output and looking for particular
-patterns, the <span class="monospaced">events</span> command helps sifting through
-the logs to find when particular events like resources
-changing state or node failure may have occurred.</p></div>
-<div class="paragraph"><p>This can be used to generate a combined list of events
-from all nodes.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>events</pre>
-</div></div>
-<div class="paragraph"><p>Example:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>events</pre>
 </div></div>
 </div>
 <div class="sect3">

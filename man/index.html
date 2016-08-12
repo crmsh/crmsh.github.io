@@ -2957,8 +2957,8 @@ alert attributes before defining the recipients.</p></div>
     to /var/log/cluster-alerts.log
 
 alert alert-2 /srv/pacemaker/example_alert.sh \
-    to { /var/log/cluster-alerts.log } \
-    meta timeout=60s</pre>
+    meta timeout=60s \
+    to { /var/log/cluster-alerts.log }</pre>
 </div></div>
 </div>
 <div class="sect3">
