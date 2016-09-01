@@ -5,7 +5,65 @@
 <link href="http://crmsh.github.io/atom.xml" rel="self" />
 <link href="http://crmsh.github.io/" />
 <id>tag:crmsh.github.io,2014:/atom</id>
-<updated>2016-08-12T10:30:00CET</updated>
+<updated>2016-09-01T09:00:00CET</updated>
+<entry>
+<title>Announcing crmsh stable release 2.1.7</title>
+<id>tag:crmsh.github.io,2014:/atom::5a0d62a7641f441baa3f1b7c33a17eeb0b19eb7f</id>
+<updated>2016-09-01T09:00:00CET</updated>
+<link>http://crmsh.github.io/news/2016-09-01-release-2_1_7</link>
+<content type="html">
+&lt;pre&gt;
+
+Today I are proud to announce the release of `crmsh` version 2.1.7!
+The major new thing in this release is a backports of the events-based
+alerts support from the 2.3 branch.
+
+Big thanks to Hideo Yamauchi for his patience and testing of the
+alerts backport.
+
+This time, the list of changes is small enough that I can add it right
+here:
+
+- high: parse: Backport of event-driven alerts parser (#150)
+- high: hb_report: Don't collect logs from journalctl if -M is set (bsc#990025)
+- high: hb_report: Skip lines without timestamps in log correctly (bsc#989810)
+- high: constants: Add maintenance to set of known attributes (bsc#981659)
+- high: utils: Avoid deadlock if DC changes during idle wait (bsc#978480)
+- medium: scripts: no-quorum-policy=ignore is deprecated (bsc#981056)
+- low: cibconfig: Don't mix up CLI name with XML tag
+
+You can also get the list of changes from the changelog:
+
+* https://github.com/ClusterLabs/crmsh/blob/2.1.7/ChangeLog
+
+Right now, I don't have a set of pre-built rpm packages for Linux
+distributions ready, but I am going to make this available soon. This
+is in particular for centOS 6.x which still relies on Python 2.6
+support which makes running the later releases there more
+difficult. These packages will most likely appear as a subrepository
+here (more details coming soon):
+
+* http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/
+
+Archives of the tagged release:
+
+* https://github.com/ClusterLabs/crmsh/archive/2.1.7.tar.gz
+* https://github.com/ClusterLabs/crmsh/archive/2.1.7.zip
+
+
+Thank you,
+
+Kristoffer
+
+&lt;/pre&gt;
+
+</content>
+<author>
+<name>Kristoffer Gronlund</name>
+<email>kgronlund@suse.com</email>
+</author>
+</entry>
+
 <entry>
 <title>Releasing crmsh version 2.3.0</title>
 <id>tag:crmsh.github.io,2014:/atom::4bfc1c4a817ea15e418a5f64a46844de1f022a43</id>
