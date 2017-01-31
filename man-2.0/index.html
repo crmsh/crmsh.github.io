@@ -984,7 +984,7 @@ each one implies different values for the two resource set attributes,
 </dt>
 <dd>
 <p>
-  If true, the resources in the set do not depend on each other
+  If false, the resources in the set do not depend on each other
   internally. Setting <span class="monospaced">sequential</span> to <span class="monospaced">true</span> implies a strict order of
   dependency within the set.
 </p>
@@ -1112,7 +1112,7 @@ a different resource parameter on the node named <span class="monospaced">node1<
 priority. The parameter list with the highest priority is applied
 first, but only if the rule expressions for that parameter list all
 apply. In this case, the rule <span class="monospaced">#uname eq node1</span> limits the parameter
-list so that it is only applied on `node1.</p></div>
+list so that it is only applied on <span class="monospaced">node1</span>.</p></div>
 <div class="paragraph"><p>Note that rule expressions are not terminated and are immediately
 followed by the data to which the rule is applied. In this case, the
 name-value pair <span class="monospaced">interface=eth1</span>.</p></div>
@@ -3154,6 +3154,9 @@ That should reduce the configuration size in some stonith setups.</p></div>
 <div class="paragraph"><p>From Pacemaker version 1.1.14, it is possible to use a node attribute
 as the <span class="monospaced">target</span> in a fencing topology. The syntax for this usage is
 described below.</p></div>
+<div class="paragraph"><p>From Pacemaker version 1.1.14, it is also possible to use regular
+expression patterns as the <span class="monospaced">target</span> in a fencing topology. The configured
+fencing sequence then applies to all devices matching the pattern.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -3163,7 +3166,7 @@ fencing_topology &lt;fencing_order&gt; [&lt;fencing_order&gt; ...]
 fencing_order :: &lt;target&gt; &lt;stonith_resources&gt; [&lt;stonith_resources&gt; ...]
 
 stonith_resources :: &lt;rsc&gt;[,&lt;rsc&gt;...]
-target :: &lt;node&gt;: | attr:&lt;node-attribute&gt;=&lt;value&gt;</pre>
+target :: &lt;node&gt;: | attr:&lt;node-attribute&gt;=&lt;value&gt; | pattern:&lt;pattern&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
@@ -3178,7 +3181,14 @@ fencing_topology \
 
 # Fencing anything on rack 1 requires fencing via both APC 1 and 2,
 # to defeat the redundancy provided by two separate UPS units.
-fencing_topology attr:rack=1 apc01,apc02</pre>
+fencing_topology attr:rack=1 apc01,apc02
+
+# Fencing for all machines named green.* is done using the pear
+# fencing device first, while all machines named red.* are fenced
+# using the apple fencing device first.
+fencing_topology \
+    pattern:green.* pear apple \
+    pattern:red.* apple pear</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -4053,6 +4063,11 @@ following combination can be used: <span class="monospaced">show tag:my-tag my-t
 <span class="monospaced">and</span> and <span class="monospaced">or</span> can be used. For example, to select all primitives tagged
 <span class="monospaced">foo</span>, the following combination can be used:
 <span class="monospaced">show type:primitive and tag:foo</span>.</p></div>
+<div class="paragraph"><p>To hide values when displaying the configuration, use the
+<span class="monospaced">obscure:&lt;glob&gt;</span> argument. This can be useful when sending the
+configuration over a public channel, to avoid exposing potentially
+sensitive information. The <span class="monospaced">&lt;glob&gt;</span> argument is a bash-style pattern
+matching attribute keys.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -4061,6 +4076,7 @@ following combination can be used: <span class="monospaced">show tag:my-tag my-t
            | type:&lt;type&gt;
            | tag:&lt;id&gt;
            | related:&lt;obj&gt;
+           | obscure:&lt;glob&gt;
            ...]
 
 type :: node | primitive | group | clone | ms | rsc_template
@@ -4077,7 +4093,8 @@ type :: node | primitive | group | clone | ms | rsc_template
 <pre>show webapp
 show type:primitive
 show xml tag:db tag:fs
-show related:webapp</pre>
+show related:webapp
+show type:primitive obscure:passwd</pre>
 </div></div>
 </div>
 <div class="sect3">

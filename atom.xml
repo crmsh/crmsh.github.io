@@ -5,7 +5,67 @@
 <link href="http://crmsh.github.io/atom.xml" rel="self" />
 <link href="http://crmsh.github.io/" />
 <id>tag:crmsh.github.io,2014:/atom</id>
-<updated>2016-09-05T19:00:00CET</updated>
+<updated>2017-01-31T10:00:00CET</updated>
+<entry>
+<title>Releasing crmsh version 3.0.0</title>
+<id>tag:crmsh.github.io,2014:/atom::f560e20c029af1548af2b3c31d9590d2af43383b</id>
+<updated>2017-01-31T10:00:00CET</updated>
+<link>http://crmsh.github.io/news/2017-01-31-release-3_0_0</link>
+<content type="html">
+&lt;pre&gt;
+
+Hello everyone!
+
+I'm happy to announce the release of crmsh version 3.0.0 today. The
+main reason for the major version bump is because I have merged the
+sleha-bootstrap project with crmsh, replacing the cluster
+init/add/remove commands with the corresponding commands from
+sleha-bootstrap.
+
+At the moment, these commands are highly specific to SLE and openSUSE,
+unfortunately. I am working on making them as distribution agnostic as
+possible, but would appreciate help from users of other distributions
+in making them work as well on those platforms as they do on
+SLE/openSUSE.
+
+Briefly, the &quot;cluster init&quot; command configures a complete cluster from
+scratch, including optional configuration of fencing via SBD, shared
+storage using OCFS2, setting up the Hawk web interface etc.
+
+There are some other changes in this release as well, see the
+ChangeLog for the complete list of changes:
+
+* https://github.com/ClusterLabs/crmsh/blob/3.0.0/ChangeLog
+
+The source code can be downloaded from Github:
+
+* https://github.com/ClusterLabs/crmsh/releases/tag/3.0.0
+
+This version of crmsh will be available in openSUSE Tumbleweed as soon
+as possible, and packages for several popular Linux distributions are
+available from the Stable repository at the OBS:
+
+* http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/
+
+Archives of the tagged release:
+
+* https://github.com/ClusterLabs/crmsh/archive/3.0.0.tar.gz
+* https://github.com/ClusterLabs/crmsh/archive/3.0.0.zip
+
+As usual, a huge thank you to all contributors and users of crmsh!
+
+Cheers,
+Kristoffer
+
+&lt;/pre&gt;
+
+</content>
+<author>
+<name>Kristoffer Gronlund</name>
+<email>kgronlund@suse.com</email>
+</author>
+</entry>
+
 <entry>
 <title>Releasing crmsh version 2.2.2</title>
 <id>tag:crmsh.github.io,2014:/atom::e9779f9908a4f049dd7c060dffeb173ec7f442b9</id>
