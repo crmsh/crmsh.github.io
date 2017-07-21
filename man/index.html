@@ -1346,23 +1346,23 @@ the geo cluster.</p></div>
 </p>
 </dd>
 <dt class="hdlist1">
-<strong>--arbitrator=IP</strong>
+<strong>-s DESC, --clusters=DESC</strong>
 </dt>
 <dd>
 <p>
-    IP address of geo cluster arbitrator
+    Geo cluster description (see details below)
 </p>
 </dd>
 <dt class="hdlist1">
-<strong>--clusters=DESC</strong>
+<strong>-a IP, --arbitrator=IP</strong>
 </dt>
 <dd>
 <p>
-    Cluster description (see details below)
+    IP address of geo cluster arbitrator (optional)
 </p>
 </dd>
 <dt class="hdlist1">
-<strong>--tickets=LIST</strong>
+<strong>-t LIST, --tickets=LIST</strong>
 </dt>
 <dd>
 <p>
@@ -1395,14 +1395,6 @@ to get the geo cluster configuration.</p></div>
 <div class="paragraph"><p>Options:</p></div>
 <div class="dlist"><dl>
 <dt class="hdlist1">
-<strong>--clusters=DESC</strong>
-</dt>
-<dd>
-<p>
-    Cluster description (see <span class="monospaced">geo-init</span> for details)
-</p>
-</dd>
-<dt class="hdlist1">
 <strong>-c IP, --cluster-node=IP</strong>
 </dt>
 <dd>
@@ -1430,18 +1422,29 @@ an existing cluster.</p></div>
 <div class="paragraph"><p>Options:</p></div>
 <div class="dlist"><dl>
 <dt class="hdlist1">
+<strong>-s DESC, --clusters=DESC</strong>
+</dt>
+<dd>
+<p>
+    Geo cluster description (see <span class="monospaced">geo-init</span> for details)
+</p>
+</dd>
+<dt class="hdlist1">
 <strong>-c IP, --cluster-node=IP</strong>
 </dt>
 <dd>
 <p>
-    IP address of an already-configured geo cluster or arbitrator
+    IP address of an already-configured geo cluster node
+    or arbitrator. This argument can also be a virtual IP
+    as long as it resolves to a node in an existing geo
+    cluster.
 </p>
 </dd>
 </dl></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>geo-join [options]</pre>
+<pre>geo-join --cluster-node &lt;node&gt; --clusters &lt;description&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1512,6 +1515,14 @@ option.</p></div>
 <dd>
 <p>
     Use the given watchdog device.
+</p>
+</dd>
+<dt class="hdlist1">
+<strong>-S, --enable-sbd</strong>
+</dt>
+<dd>
+<p>
+    Enable SBD even if no SBD device is configured (diskless mode).
 </p>
 </dd>
 </dl></div>

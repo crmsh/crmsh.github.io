@@ -5,7 +5,63 @@
 <link href="http://crmsh.github.io/atom.xml" rel="self" />
 <link href="http://crmsh.github.io/" />
 <id>tag:crmsh.github.io,2014:/atom</id>
-<updated>2017-01-31T10:00:00CET</updated>
+<updated>2017-07-21T11:00:00CET</updated>
+<entry>
+<title>Releasing crmsh version 3.0.1</title>
+<id>tag:crmsh.github.io,2014:/atom::9ec70f0acb53134ae5f7f9edd0f0379325a26451</id>
+<updated>2017-07-21T11:00:00CET</updated>
+<link>http://crmsh.github.io/news/2017-07-21-release-3_0_1</link>
+<content type="html">
+&lt;pre&gt;
+
+Hello everyone!
+
+I'm happy to announce the release of crmsh version 3.0.1 today. This
+is mainly a bug fix release, so no new exciting features and mainly
+fixes to the new bootstrap functionality added in 3.0.0.
+
+I would also like to take the opportinity to introduce a new core
+developer for crmsh, Xin Liang! For this release he has contributed
+some of the bug fixes discovered, but he has also contributed a
+rewrite of hb_report into Python, as well as worked on improving the
+tab completion support in crmsh. I also want to recognize the hard
+work of Shiwen Zhang who initially started the work of rewriting the
+hb_report script in Python.
+
+For the complete list of changes in this release, see the ChangeLog:
+
+* https://github.com/ClusterLabs/crmsh/blob/3.0.1/ChangeLog
+
+The source code can be downloaded from Github:
+
+* https://github.com/ClusterLabs/crmsh/releases/tag/3.0.1
+
+This version of crmsh (or a version very close to it) is already
+available in openSUSE Tumbleweed, and packages for several popular
+Linux distributions will be available from the Stable repository at
+the OBS:
+
+* http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/
+
+Archives of the tagged release:
+
+* https://github.com/ClusterLabs/crmsh/archive/3.0.1.tar.gz
+* https://github.com/ClusterLabs/crmsh/archive/3.0.1.zip
+
+As usual, a huge thank you to all contributors and users of crmsh!
+
+Cheers,
+Kristoffer
+
+&lt;/pre&gt;
+
+</content>
+<author>
+<name>Kristoffer Gronlund</name>
+<email>kgronlund@suse.com</email>
+</author>
+</entry>
+
 <entry>
 <title>Releasing crmsh version 3.0.0</title>
 <id>tag:crmsh.github.io,2014:/atom::f560e20c029af1548af2b3c31d9590d2af43383b</id>
