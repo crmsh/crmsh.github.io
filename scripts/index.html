@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="AsciiDoc 8.6.9">
+<meta name="generator" content="AsciiDoc 9.0.0rc2">
 <title>crmsh - Cluster Scripts</title>
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/crm.css" type="text/css">
@@ -51,6 +51,7 @@
 <div class="toclevel1"><a href="#_creating_a_script">Creating a script</a></div>
 <div class="toclevel2"><a href="#_how_scripts_work_in_detail">How scripts work, in detail</a></div>
 <div class="toclevel2"><a href="#_actions">Actions</a></div>
+<div class="toclevel3"><a href="#_when_expressions">When expressions</a></div>
 <div class="toclevel2"><a href="#_basic_structure">Basic structure</a></div>
 <div class="toclevel2"><a href="#_command_arguments">Command arguments</a></div>
 <div class="toclevel2"><a href="#_remote_permissions">Remote permissions</a></div>
@@ -564,6 +565,21 @@ This is similar to the <em>apply_local</em> action, with the difference
 </ul></div>
 </dd>
 </dl></div>
+<div class="sect3">
+<h4 id="_when_expressions">When expressions</h4>
+<div class="paragraph"><p>Actions can be made conditional on the value of script parameters using
+the <span class="monospaced">when:</span> expression. This expression has two basic forms.</p></div>
+<div class="paragraph"><p>The first form is in the form of the name of a script parameter. For
+example, given a boolean script parameter named <span class="monospaced">install</span>, an action
+can be made conditional on that parameter being true using the syntax
+<span class="monospaced">when: install</span>.</p></div>
+<div class="paragraph"><p>The second form is a more complex expression. All parameters are
+interpreted as either a string value or None if no value was provided.
+These can be compared to string literals using python-style
+comparators. For example, an action can be conditional on the string
+parameter <span class="monospaced">mode</span> having the value <span class="monospaced">"advanced"</span> using the following
+syntax: <span class="monospaced">when: mode == "advanced"</span>.</p></div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_basic_structure">Basic structure</h3>
@@ -721,27 +737,27 @@ what they can do.</p></div>
 <div class="paragraph"><p>With this knowledge, we can implement <span class="monospaced">fetch.py</span> and <span class="monospaced">report.py</span>.</p></div>
 <div class="paragraph"><p><span class="monospaced">fetch.py</span>:</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python3</span>
 <span class="kn">import</span> <span class="nn">crm_script</span> <span class="kn">as</span> <span class="nn">crm</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="n">uptime</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/proc/uptime&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">crm</span><span class="o">.</span><span class="n">exit_ok</span><span class="p">(</span><span class="n">uptime</span><span class="p">)</span>
-<span class="k">except</span><span class="p">:</span>
-    <span class="n">crm</span><span class="o">.</span><span class="n">exit_fail</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t open /proc/uptime&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">crm</span><span class="o">.</span><span class="n">exit_fail</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t open /proc/uptime: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">e</span><span class="p">))</span>
 </pre></div></div></div>
 <div class="paragraph"><p><span class="monospaced">report.py</span>:</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<div class="content"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python3</span>
 <span class="kn">import</span> <span class="nn">crm_script</span> <span class="kn">as</span> <span class="nn">crm</span>
 <span class="n">show_all</span> <span class="o">=</span> <span class="n">crm</span><span class="o">.</span><span class="n">is_true</span><span class="p">(</span><span class="n">crm</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s1">&#39;show_all&#39;</span><span class="p">))</span>
-<span class="n">uptimes</span> <span class="o">=</span> <span class="n">crm</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-<span class="n">max_uptime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;&#39;</span>
+<span class="n">uptimes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">crm</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+<span class="n">max_uptime</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">host</span><span class="p">,</span> <span class="n">uptime</span> <span class="ow">in</span> <span class="n">uptimes</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">uptime</span> <span class="o">&gt;</span> <span class="n">max_uptime</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-        <span class="n">max_uptime</span> <span class="o">=</span> <span class="n">uptime</span><span class="p">,</span> <span class="n">host</span>
+    <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">uptime</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">max_uptime</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">max_uptime</span> <span class="o">=</span> <span class="n">host</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">uptime</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">show_all</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s2">&quot;Uptimes: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">uptimes</span><span class="p">))</span>
-<span class="k">print</span> <span class="s2">&quot;Longest uptime is </span><span class="si">%s</span><span class="s2"> seconds on host </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">max_uptime</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Uptimes: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">uptimes</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Longest uptime is </span><span class="si">%s</span><span class="s2"> seconds on host </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">max_uptime</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">max_uptime</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div></div></div>
 <div class="paragraph"><p>See below for more details on the helper library <span class="monospaced">crm_script</span>.</p></div>
 <div class="paragraph"><p>Save the scripts as executable files in the same directory as the

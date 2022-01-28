@@ -56,6 +56,7 @@
 <div class="toclevel2"><a href="#topics_Features_AttributeListReferences">Syntax: Attribute list references</a></div>
 <div class="toclevel2"><a href="#topics_Features_AttributeReferences">Syntax: Attribute references</a></div>
 <div class="toclevel2"><a href="#topics_Syntax_RuleExpressions">Syntax: Rule expressions</a></div>
+<div class="toclevel1"><a href="#topics_Lifetime">Lifetime parameter format</a></div>
 <div class="toclevel1"><a href="#topics_Reference">Command reference</a></div>
 <div class="toclevel3"><a href="#cmdhelp_root_status">status</a></div>
 <div class="toclevel3"><a href="#cmdhelp_root_verify">verify</a></div>
@@ -63,9 +64,18 @@
 <div class="toclevel3"><a href="#cmdhelp_cluster_add">add</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_copy">copy</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_diff">diff</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_disable">disable</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_enable">enable</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_geo_init">geo_init</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_geo_init_arbitrator">geo_init_arbitrator</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_geo_join">geo_join</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_health">health</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_init">init</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_join">join</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_remove">remove</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_crash_test">crash_test</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_restart">restart</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_rename">rename</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_run">run</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_start">start</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_status">status</a></div>
@@ -122,7 +132,6 @@
 <div class="toclevel3"><a href="#cmdhelp_resource_param">param</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_promote">promote</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_refresh">refresh</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_reprobe">reprobe</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_restart">restart</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_scores">scores</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_secret">secret</a></div>
@@ -144,7 +153,6 @@
 <div class="toclevel3"><a href="#cmdhelp_node_server">server</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_show">show</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_standby">standby</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_status">status</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_status-attr">status-attr</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_utilization">utilization</a></div>
 <div class="toclevel2"><a href="#cmdhelp_site">site</a></div>
@@ -169,6 +177,7 @@
 <div class="toclevel2"><a href="#cmdhelp_configure">configure</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_acl_target">acl_target</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_alert">alert</a></div>
+<div class="toclevel3"><a href="#cmdhelp_configure_bundle">bundle</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_cib">cib</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_cibstatus">cibstatus</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_clone">clone</a></div>
@@ -535,15 +544,14 @@ are a few examples:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>crm(live)resource# &lt;TAB&gt;&lt;TAB&gt;
-bye           failcount     move          restart       unmigrate
-cd            help          param         show          unmove
-cleanup       list          promote       start         up
-demote        manage        quit          status        utilization
-end           meta          refresh       stop
-exit          migrate       reprobe       unmanage
+ban           demote        maintenance   param         scores        trace
+cd            failcount     manage        promote       secret        unmanage
+cleanup       help          meta          quit          start         untrace
+clear         locate        move          refresh       status        up
+constraints   ls            operations    restart       stop          utilization
 
 crm(live)configure# primitive fence-1 &lt;TAB&gt;&lt;TAB&gt;
-heartbeat:  lsb:    ocf:    stonith:
+lsb:      ocf:      service:  stonith:  systemd:
 
 crm(live)configure# primitive fence-1 stonith:&lt;TAB&gt;&lt;TAB&gt;
 apcmaster                external/ippower9258     fence_legacy
@@ -1156,6 +1164,26 @@ duration|date_spec ::
 </div>
 </div>
 <div class="sect1">
+<h2 id="topics_Lifetime">Lifetime parameter format</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Lifetimes can be specified in the ISO 8601 time format or the ISO 8601
+duration format. To distinguish between months and minutes, use the PT
+prefix before specifying minutes. The duration format is one of
+<span class="monospaced">PnYnMnDTnHnMnS</span>, <span class="monospaced">PnW</span>, <span class="monospaced">P&lt;date&gt;T&lt;time&gt;</span>.</p></div>
+<div class="paragraph"><p>P = duration. Y = year. M = month. W = week. D = day. T = time. H =
+hour. M = minute. S = second.</p></div>
+<div class="paragraph"><p>Examples:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>PT5M = 5 minutes later.
+3D = 3 days later.
+PT1H = 1 hour later.</pre>
+</div></div>
+<div class="paragraph"><p>The cluster checks lifetimes at an interval defined by the
+cluster-recheck-interval property (default 15 minutes).</p></div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="topics_Reference">Command reference</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>The commands are structured to be compatible with the shell command
@@ -1263,17 +1291,7 @@ cluster, by providing support for package installation, configuration
 of the cluster messaging layer, file system setup and more.</p></div>
 <div class="sect3">
 <h4 id="cmdhelp_cluster_add"><span class="monospaced">add</span></h4>
-<div class="paragraph"><p>This command simplifies the process of adding a new node to a running
-cluster. The new node will be installed and configured with the
-packages and configuration files needed to run the cluster
-resources. If a cluster file system is used, the new node will be set
-up to host the file system.</p></div>
-<div class="paragraph"><p>This command should be executed from a node already in the cluster.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>add &lt;node&gt;</pre>
-</div></div>
+<div class="paragraph"><p>See "crm cluster help add" or "crm cluster add --help"</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_cluster_copy"><span class="monospaced">copy</span></h4>
@@ -1310,6 +1328,36 @@ diff /etc/resolv.conf --checksum</pre>
 </div></div>
 </div>
 <div class="sect3">
+<h4 id="cmdhelp_cluster_disable"><span class="monospaced">disable</span></h4>
+<div class="paragraph"><p>Disable the cluster-related system services on this node.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>disable</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_enable"><span class="monospaced">enable</span></h4>
+<div class="paragraph"><p>Enable the cluster-related system services on this node.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>enable</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_geo_init"><span class="monospaced">geo-init</span></h4>
+<div class="paragraph"><p>See "crm cluster help geo_init" or "crm cluster geo_init --help"</p></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_geo_init_arbitrator"><span class="monospaced">geo-init-arbitrator</span></h4>
+<div class="paragraph"><p>See "crm cluster help geo_init_arbitrator" or "crm cluster geo_init_arbitrator --help"</p></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_geo_join"><span class="monospaced">geo-join</span></h4>
+<div class="paragraph"><p>See "crm cluster help geo_join" or "crm cluster geo_join --help"</p></div>
+</div>
+<div class="sect3">
 <h4 id="cmdhelp_cluster_health"><span class="monospaced">health</span></h4>
 <div class="paragraph"><p>Runs a larger set of tests and queries on all nodes in the cluster to
 verify the general system health and detect potential problems.</p></div>
@@ -1321,37 +1369,53 @@ verify the general system health and detect potential problems.</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_cluster_init"><span class="monospaced">init</span></h4>
-<div class="paragraph"><p>Installs and configures a basic HA cluster on a set of nodes.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>init node1 node2 node3
-init --dry-run node1 node2 node3</pre>
-</div></div>
+<div class="paragraph"><p>See "crm cluster help init" or "crm cluster init --help"</p></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_join"><span class="monospaced">join</span></h4>
+<div class="paragraph"><p>See "crm cluster help join" or "crm cluster join --help"</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_cluster_remove"><span class="monospaced">remove</span></h4>
-<div class="paragraph"><p>This command simplifies the process of removing a node from the
-cluster, moving any resources hosted by that node to other nodes.</p></div>
+<div class="paragraph"><p>See "crm cluster help remove" or "crm cluster remove --help"</p></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_crash_test"><span class="monospaced">crash_test</span></h4>
+<div class="paragraph"><p>See "crm cluster help crash_test" or "crm cluster crash_test --help"</p></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_restart"><span class="monospaced">restart</span></h4>
+<div class="paragraph"><p>Restarts the cluster-related system services on this node.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>remove &lt;node&gt;</pre>
+<pre>restart</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_rename"><span class="monospaced">rename</span></h4>
+<div class="paragraph"><p>Rename the cluster name</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>rename &lt;new_cluster_name&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_cluster_run"><span class="monospaced">run</span></h4>
 <div class="paragraph"><p>This command takes a shell statement as argument, executes that
-statement on all nodes in the cluster, and reports the result.</p></div>
+statement on all nodes in the cluster or a specific node,
+and reports the result.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>run &lt;command&gt;</pre>
+<pre>run &lt;command&gt; [node ...]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>run "cat /proc/uptime"</pre>
+<pre>run "cat /proc/uptime"
+run "ls" node1 node2</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1660,11 +1724,11 @@ section containing the value does not exist, the command will fail.</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_corosync_status"><span class="monospaced">status</span></h4>
-<div class="paragraph"><p>Displays the status of Corosync, including the votequorum state.</p></div>
+<div class="paragraph"><p>Displays the corosync ring status(default), also can display quorum/qdevice/qnetd status.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>status</pre>
+<pre>status [ring|quorum|qdevice|qnetd]</pre>
 </div></div>
 </div>
 </div>
@@ -1885,16 +1949,17 @@ as argument, the resource is banned from the current location.</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_resource_cleanup"><span class="monospaced">cleanup</span></h4>
-<div class="paragraph"><p>Cleanup resource status. Typically done after the resource has
-temporarily failed. If a node is omitted, cleanup on all nodes.
-If there are many nodes, the command may take a while.</p></div>
+<div class="paragraph"><p>If resource has any past failures, clear its history and fail
+count. Typically done after the resource has temporarily
+failed.</p></div>
+<div class="paragraph"><p>If a node is omitted, cleanup on all nodes.</p></div>
 <div class="paragraph"><p><span class="monospaced">(Pacemaker 1.1.14)</span> Pass force to cleanup the resource itself,
 otherwise the cleanup command will apply to the parent resource (if
 any).</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>cleanup &lt;rsc&gt; [&lt;node&gt;] [force]</pre>
+<pre>cleanup [&lt;rsc&gt;] [&lt;node&gt;] [force]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -1931,11 +1996,14 @@ attribute.</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_resource_failcount"><span class="monospaced">failcount</span></h4>
-<div class="paragraph"><p>Show/edit/delete the failcount of a resource.</p></div>
+<div class="paragraph"><p>Show/edit/delete the failcount of a resource.
+When <span class="monospaced">set</span> a non-zero value, <span class="monospaced">operation</span> and <span class="monospaced">interval</span> should be
+provided when multiple operation failcount entries exist.
+<span class="monospaced">interval</span> is a value in seconds.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>failcount &lt;rsc&gt; set &lt;node&gt; &lt;value&gt;
+<pre>failcount &lt;rsc&gt; set &lt;node&gt; &lt;value&gt; [operation] [interval]
 failcount &lt;rsc&gt; delete &lt;node&gt;
 failcount &lt;rsc&gt; show &lt;node&gt;</pre>
 </div></div>
@@ -2059,32 +2127,11 @@ attribute.</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_resource_refresh"><span class="monospaced">refresh</span></h4>
-<div class="paragraph"><p>Refresh CIB from the LRM status.</p></div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">Note</div>
-<div class="paragraph"><p><span class="monospaced">refresh</span> has been deprecated and is now
-an alias for <span class="monospaced">cleanup</span>.</p></div>
-</div></div>
+<div class="paragraph"><p>Delete resource&#8217;s history (including failures) so its current state is rechecked.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>refresh [&lt;node&gt;]</pre>
-</div></div>
-</div>
-<div class="sect3">
-<h4 id="cmdhelp_resource_reprobe"><span class="monospaced">reprobe</span></h4>
-<div class="paragraph"><p>Probe for resources not started by the CRM.</p></div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">Note</div>
-<div class="paragraph"><p><span class="monospaced">reprobe</span> has been deprecated and is now
-an alias for <span class="monospaced">cleanup</span>.</p></div>
-</div></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>reprobe [&lt;node&gt;]</pre>
+<pre>refresh [&lt;rsc&gt;] [&lt;node&gt;] [force]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2200,6 +2247,9 @@ and stop as well as promote/demote for multistate resources.</p></div>
 <div class="paragraph"><p>To trace the probe operation which exists for all resources, either
 set a trace for <span class="monospaced">monitor</span> with interval <span class="monospaced">0</span>, or use <span class="monospaced">probe</span> as the
 operation name.</p></div>
+<div class="paragraph"><p>Note: RA tracing is only supported by OCF resource agents;
+The pacemaker-execd daemon does not log recurring monitor operations
+unless an error occurred.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -2365,7 +2415,7 @@ operations.</p></div>
 <div class="paragraph"><p>Remote nodes may have a configured server address which should
 be used when contacting the node. This command prints the
 server address if configured, else the node name.</p></div>
-<div class="paragraph"><p>If no parameter is given, the adresses or names for all nodes
+<div class="paragraph"><p>If no parameter is given, the addresses or names for all nodes
 are printed.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -2402,16 +2452,6 @@ lifetime :: reboot | forever</pre>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>standby bob reboot</pre>
-</div></div>
-</div>
-<div class="sect3">
-<h4 id="cmdhelp_node_status"><span class="monospaced">status</span></h4>
-<div class="paragraph"><p>Show nodes' status as XML. If the node parameter is omitted then
-all nodes are shown.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>status [&lt;node&gt;]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2953,6 +2993,7 @@ alert attributes before defining the recipients.</p></div>
 <pre>alert &lt;id&gt; &lt;path&gt; \
   [attributes &lt;nvpair&gt; ...] \
   [meta &lt;nvpair&gt; ...] \
+  [select [nodes | fencing | resources | attributes '{' &lt;attribute&gt; ... '}' ] ...] \
   [to [{] &lt;recipient&gt;
     [attributes &lt;nvpair&gt; ...] \
     [meta &lt;nvpair&gt; ...] [}] \
@@ -2966,7 +3007,36 @@ alert attributes before defining the recipients.</p></div>
 
 alert alert-2 /srv/pacemaker/example_alert.sh \
     meta timeout=60s \
-    to { /var/log/cluster-alerts.log }</pre>
+    to { /var/log/cluster-alerts.log }
+
+alert alert-3 /srv/pacemaker/example_alert.sh \
+    select fencing \
+    to { /var/log/fencing-alerts.log }</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_configure_bundle"><span class="monospaced">bundle</span></h4>
+<div class="paragraph"><p>A bundle is a single resource specifying the settings, networking
+requirements, and storage requirements for any number of containers
+generated from the same container image.</p></div>
+<div class="paragraph"><p>Pacemaker bundles support Docker (since version 1.1.17) and rkt (since
+version 1.1.18) container technologies.</p></div>
+<div class="paragraph"><p>A bundle must contain exactly one <span class="monospaced">docker</span> or <span class="monospaced">rkt</span> element.</p></div>
+<div class="paragraph"><p>The bundle definition may contain a reference to a primitive
+resource which defining the resource running inside the
+container.</p></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>primitive httpd-apache ocf:heartbeat:apache
+
+bundle httpd \
+    docker image=pcmk:httpd replicas=3 \
+    network ip-range-start=10.10.10.123 host-netmask=24 \
+    port-mapping port=80 \
+    storage \
+        storage-mapping target-dir=/var/www/html source-dir=/srv/www options=rw \
+    primitive httpd-apache</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3008,7 +3078,10 @@ attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;
 <div class="literalblock">
 <div class="content monospaced">
 <pre>clone cl_fence apc_1 \
-  meta clone-node-max=1 globally-unique=false</pre>
+  meta clone-node-max=1 globally-unique=false
+
+clone disk1 drbd1 \
+  meta promotable=true notify=true globally-unique=false</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3509,6 +3582,19 @@ attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;
 </div></div>
 <div class="sidebarblock">
 <div class="content">
+<div class="title">Note on <span class="monospaced">ms</span> deprecated</div>
+<div class="paragraph"><p>From Pacemaker-2.0, the resource type referred to as "master/slave",
+"stateful", or "multi-state" is no longer a separate resource type,
+but a variation of clone now referred to as a "promotable clone".
+For backward compatibility, above configurations are also accepted.</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>clone disk1 drbd1 \
+  meta promotable=true notify=true globally-unique=false</pre>
+</div></div>
+</div></div>
+<div class="sidebarblock">
+<div class="content">
 <div class="title">Note on <span class="monospaced">id-ref</span> usage</div>
 <div class="paragraph"><p>Instance or meta attributes (&#8216;params` and <span class="monospaced">meta</span>) may contain
 a reference to another set of attributes. In that case, no other
@@ -3591,9 +3677,9 @@ That is still valid but deprecated.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>order &lt;id&gt; [{kind|&lt;score&gt;}:] first then [symmetrical=&lt;bool&gt;]
+<pre>order &lt;id&gt; [kind:] first then [symmetrical=&lt;bool&gt;]
 
-order &lt;id&gt; [{kind|&lt;score&gt;}:] resource_sets [symmetrical=&lt;bool&gt;]
+order &lt;id&gt; [kind:] resource_sets [symmetrical=&lt;bool&gt;]
 
 kind :: Mandatory | Optional | Serialize
 
@@ -3613,7 +3699,6 @@ attributes :: [require-all=(true|false)] [sequential=(true|false)]</pre>
 <div class="content monospaced">
 <pre>order o-1 Mandatory: apache:start ip_1
 order o-2 Serialize: A ( B C )
-order o-3 inf: [ A B ] C
 order o-4 first-resource then-resource</pre>
 </div></div>
 </div>
@@ -3688,7 +3773,9 @@ suffixes:</p></div>
   [meta attr_list]
   [utilization attr_list]
   [operations id_spec]
-    [op op_type [&lt;attribute&gt;=&lt;value&gt;...] ...]
+    [op op_type [&lt;attribute&gt;=&lt;value&gt;...]
+                [[op_params] attr_list]
+                [op_meta attr_list] ...]
 
 attr_list :: [$id=&lt;id&gt;] [&lt;score&gt;:] [rule...]
              &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...]] | $id-ref=&lt;id&gt;
@@ -3722,7 +3809,12 @@ primitive xen0 @vm_scheme1 xmfile=/etc/xen/vm/xen0
 primitive mySpecialRsc Special \
   params 3: rule #uname eq node1 interface=eth1 \
   params 2: rule #uname eq node2 interface=eth2 port=8888 \
-  params 1: interface=eth0 port=9999</pre>
+  params 1: interface=eth0 port=9999
+
+primitive A ocf:pacemaker:Dummy \
+  op start \
+    op_meta 2: rule #ra-version version:gt 1.0 timeout=120s \
+    op_meta 1: timeout=60s</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -4035,22 +4127,27 @@ accepted by <span class="monospaced">crmsh</span>:</p></div>
 <div class="sect3">
 <h4 id="cmdhelp_configure_set"><span class="monospaced">set</span></h4>
 <div class="paragraph"><p>Set the value of a configured attribute. The attribute must
-have a value configured previously, and can be an agent
-parameter, meta attribute or utilization value.</p></div>
+configured previously, and can be an agent parameter, meta attribute,
+utilization value or operation value.</p></div>
 <div class="paragraph"><p>The first argument to the command is a path to an attribute.
 This is a dot-separated sequence beginning with the name of
-the resource, and ending with the name of the attribute to
-set.</p></div>
+the resource or object, and ending with the name of the attribute to
+set. To set operation value, <span class="monospaced">op_type</span> should be specified; when multi
+operations exist like multi monitors, <span class="monospaced">interval</span> should be specified.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>set &lt;path&gt; &lt;value&gt;</pre>
+<pre>set &lt;path&gt; &lt;value&gt;
+
+path:: id.[op_type.][interval.]name</pre>
 </div></div>
 <div class="paragraph"><p>Examples:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>set vip1.ip 192.168.20.5
-set vm-a.force_stop 1</pre>
+set vm-a.force_stop 1
+set vip1.monitor.on-fail ignore
+set drbd.monitor.10s.interval 20s</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -4079,6 +4176,25 @@ following combination can be used: <span class="monospaced">show tag:my-tag my-t
 configuration over a public channel, to avoid exposing potentially
 sensitive information. The <span class="monospaced">&lt;glob&gt;</span> argument is a bash-style pattern
 matching attribute keys.</p></div>
+<div class="paragraph"><p>In <span class="monospaced">/etc/crm/crm.conf</span>, <span class="monospaced">obscure_pattern</span> option is the persisent configuration of CLI.
+Example, for the high security concern,</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>[core]
+obscure_pattern = passw* | ip</pre>
+</div></div>
+<div class="paragraph"><p>Which makes <span class="monospaced">crm configure show</span> is equal to</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>node-1:~ # crm configure show obscure:passw* obscure:ip
+node 1084783297: node1
+primitive fence_device stonith:fence_ilo5 \
+        params password="******"
+primitive ip IPaddr2 \
+        params ip="******"</pre>
+</div></div>
+<div class="paragraph"><p>The default suggestion is <span class="monospaced">passw*</span>
+If you don&#8217;t want to obscure, change the value to blank.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">

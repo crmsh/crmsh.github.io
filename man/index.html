@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="AsciiDoc 8.6.9">
+<meta name="generator" content="AsciiDoc 9.0.0rc2">
 <title>crmsh - crm(8)</title>
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/crm.css" type="text/css">
@@ -56,6 +56,7 @@
 <div class="toclevel2"><a href="#topics_Features_AttributeListReferences">Syntax: Attribute list references</a></div>
 <div class="toclevel2"><a href="#topics_Features_AttributeReferences">Syntax: Attribute references</a></div>
 <div class="toclevel2"><a href="#topics_Syntax_RuleExpressions">Syntax: Rule expressions</a></div>
+<div class="toclevel1"><a href="#topics_Lifetime">Lifetime parameter format</a></div>
 <div class="toclevel1"><a href="#topics_Reference">Command reference</a></div>
 <div class="toclevel3"><a href="#cmdhelp_root_status">status</a></div>
 <div class="toclevel3"><a href="#cmdhelp_root_verify">verify</a></div>
@@ -63,6 +64,8 @@
 <div class="toclevel3"><a href="#cmdhelp_cluster_add">add</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_copy">copy</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_diff">diff</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_disable">disable</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_enable">enable</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_geo_init">geo_init</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_geo_init_arbitrator">geo_init_arbitrator</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_geo_join">geo_join</a></div>
@@ -70,6 +73,9 @@
 <div class="toclevel3"><a href="#cmdhelp_cluster_init">init</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_join">join</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_remove">remove</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_crash_test">crash_test</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_restart">restart</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_rename">rename</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_run">run</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_start">start</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_status">status</a></div>
@@ -126,7 +132,6 @@
 <div class="toclevel3"><a href="#cmdhelp_resource_param">param</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_promote">promote</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_refresh">refresh</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_reprobe">reprobe</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_restart">restart</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_scores">scores</a></div>
 <div class="toclevel3"><a href="#cmdhelp_resource_secret">secret</a></div>
@@ -148,7 +153,6 @@
 <div class="toclevel3"><a href="#cmdhelp_node_server">server</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_show">show</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_standby">standby</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_status">status</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_status-attr">status-attr</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_utilization">utilization</a></div>
 <div class="toclevel2"><a href="#cmdhelp_site">site</a></div>
@@ -173,6 +177,7 @@
 <div class="toclevel2"><a href="#cmdhelp_configure">configure</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_acl_target">acl_target</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_alert">alert</a></div>
+<div class="toclevel3"><a href="#cmdhelp_configure_bundle">bundle</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_cib">cib</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_cibstatus">cibstatus</a></div>
 <div class="toclevel3"><a href="#cmdhelp_configure_clone">clone</a></div>
@@ -491,7 +496,7 @@ crm(live)# node standby node4</pre>
   primitive apcfence stonith:apcsmart \
     params ttydev=/dev/ttyS0 hostlist="node1 node2" \
     op start timeout=60s
-  primitive pingd pingd \
+  primitive pingd ocf:pacemaker:ping \
     params name=pingd dampen=5s multiplier=100 host_list="r1 r2"
   #
   # monitor apache and the UPS
@@ -539,15 +544,14 @@ are a few examples:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>crm(live)resource# &lt;TAB&gt;&lt;TAB&gt;
-bye           failcount     move          restart       unmigrate
-cd            help          param         show          unmove
-cleanup       list          promote       start         up
-demote        manage        quit          status        utilization
-end           meta          refresh       stop
-exit          migrate       reprobe       unmanage
+ban           demote        maintenance   param         scores        trace
+cd            failcount     manage        promote       secret        unmanage
+cleanup       help          meta          quit          start         untrace
+clear         locate        move          refresh       status        up
+constraints   ls            operations    restart       stop          utilization
 
 crm(live)configure# primitive fence-1 &lt;TAB&gt;&lt;TAB&gt;
-heartbeat:  lsb:    ocf:    stonith:
+lsb:      ocf:      service:  stonith:  systemd:
 
 crm(live)configure# primitive fence-1 stonith:&lt;TAB&gt;&lt;TAB&gt;
 apcmaster                external/ippower9258     fence_legacy
@@ -1160,6 +1164,26 @@ duration|date_spec ::
 </div>
 </div>
 <div class="sect1">
+<h2 id="topics_Lifetime">Lifetime parameter format</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Lifetimes can be specified in the ISO 8601 time format or the ISO 8601
+duration format. To distinguish between months and minutes, use the PT
+prefix before specifying minutes. The duration format is one of
+<span class="monospaced">PnYnMnDTnHnMnS</span>, <span class="monospaced">PnW</span>, <span class="monospaced">P&lt;date&gt;T&lt;time&gt;</span>.</p></div>
+<div class="paragraph"><p>P = duration. Y = year. M = month. W = week. D = day. T = time. H =
+hour. M = minute. S = second.</p></div>
+<div class="paragraph"><p>Examples:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>PT5M = 5 minutes later.
+3D = 3 days later.
+PT1H = 1 hour later.</pre>
+</div></div>
+<div class="paragraph"><p>The cluster checks lifetimes at an interval defined by the
+cluster-recheck-interval property (default 15 minutes).</p></div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="topics_Reference">Command reference</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>The commands are structured to be compatible with the shell command
@@ -1267,24 +1291,7 @@ cluster, by providing support for package installation, configuration
 of the cluster messaging layer, file system setup and more.</p></div>
 <div class="sect3">
 <h4 id="cmdhelp_cluster_add"><span class="monospaced">add</span></h4>
-<div class="paragraph"><p>Add a new node to the cluster. The new node will be
-configured as a cluster member.</p></div>
-<div class="paragraph"><p>Options:</p></div>
-<div class="dlist"><dl>
-<dt class="hdlist1">
-<strong>-y, --yes</strong>
-</dt>
-<dd>
-<p>
-    Answer "yes" to all prompts (use with caution)
-</p>
-</dd>
-</dl></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>add [options] [&lt;node&gt; ...]</pre>
-</div></div>
+<div class="paragraph"><p>See "crm cluster help add" or "crm cluster add --help"</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_cluster_copy"><span class="monospaced">copy</span></h4>
@@ -1321,131 +1328,24 @@ diff /etc/resolv.conf --checksum</pre>
 </div></div>
 </div>
 <div class="sect3">
+<h4 id="cmdhelp_cluster_disable"><span class="monospaced">disable</span></h4>
+<div class="paragraph"><p>See "crm cluster help disable" or "crm cluster disable --help"</p></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_enable"><span class="monospaced">enable</span></h4>
+<div class="paragraph"><p>See "crm cluster help enable" or "crm cluster enable --help</p></div>
+</div>
+<div class="sect3">
 <h4 id="cmdhelp_cluster_geo_init"><span class="monospaced">geo-init</span></h4>
-<div class="paragraph"><p>Create a new geo cluster with the current cluster as the
-first member. Pass the complete geo cluster topology as
-arguments to this command, and then use <span class="monospaced">geo-join</span> and
-<span class="monospaced">geo-init-arbitrator</span> to add the remaining members to
-the geo cluster.</p></div>
-<div class="paragraph"><p>Options:</p></div>
-<div class="dlist"><dl>
-<dt class="hdlist1">
-<strong>-q, --quiet</strong>
-</dt>
-<dd>
-<p>
-    Be quiet (don&#8217;t describe what&#8217;s happening, just do it)
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>-y, --yes</strong>
-</dt>
-<dd>
-<p>
-    Answer "yes" to all prompts (use with caution)
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>-s DESC, --clusters=DESC</strong>
-</dt>
-<dd>
-<p>
-    Geo cluster description (see details below)
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>-a IP, --arbitrator=IP</strong>
-</dt>
-<dd>
-<p>
-    IP address of geo cluster arbitrator (optional)
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>-t LIST, --tickets=LIST</strong>
-</dt>
-<dd>
-<p>
-    Tickets to create (space-separated)
-</p>
-</dd>
-</dl></div>
-<div class="paragraph"><p>Cluster Description:</p></div>
-<div class="paragraph"><p>This is a map of cluster names to IP addresses.
-Each IP address will be configured as a virtual IP
-representing that cluster in the geo cluster
-configuration.</p></div>
-<div class="paragraph"><p>Example with two clusters named paris and amsterdam:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>  --clusters "paris=192.168.10.10 amsterdam=192.168.10.11"</pre>
-</div></div>
-<div class="paragraph"><p>Name clusters using the <span class="monospaced">--name</span> parameter to <span class="monospaced">init</span>.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>geo-init [options]</pre>
-</div></div>
+<div class="paragraph"><p>See "crm cluster help geo_init" or "crm cluster geo_init --help"</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_cluster_geo_init_arbitrator"><span class="monospaced">geo-init-arbitrator</span></h4>
-<div class="paragraph"><p>Configure the current node as a geo arbitrator. The command
-requires an existing geo cluster or geo arbitrator from which
-to get the geo cluster configuration.</p></div>
-<div class="paragraph"><p>Options:</p></div>
-<div class="dlist"><dl>
-<dt class="hdlist1">
-<strong>-c IP, --cluster-node=IP</strong>
-</dt>
-<dd>
-<p>
-    IP address of an already-configured geo cluster
-</p>
-</dd>
-</dl></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>geo-init-arbitrator [options]</pre>
-</div></div>
+<div class="paragraph"><p>See "crm cluster help geo_init_arbitrator" or "crm cluster geo_init_arbitrator --help"</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_cluster_geo_join"><span class="monospaced">geo-join</span></h4>
-<div class="paragraph"><p>This command should be run from one of the nodes in a cluster
-which is currently not a member of a geo cluster. The geo
-cluster configuration will be fetched from the provided node,
-and the cluster will be added to the geo cluster.</p></div>
-<div class="paragraph"><p>Note that each cluster in a geo cluster needs to have a unique
-name set. The cluster name can be set using the <span class="monospaced">--name</span> argument
-to <span class="monospaced">init</span>, or by configuring corosync with the cluster name in
-an existing cluster.</p></div>
-<div class="paragraph"><p>Options:</p></div>
-<div class="dlist"><dl>
-<dt class="hdlist1">
-<strong>-s DESC, --clusters=DESC</strong>
-</dt>
-<dd>
-<p>
-    Geo cluster description (see <span class="monospaced">geo-init</span> for details)
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>-c IP, --cluster-node=IP</strong>
-</dt>
-<dd>
-<p>
-    IP address of an already-configured geo cluster node
-    or arbitrator. This argument can also be a virtual IP
-    as long as it resolves to a node in an existing geo
-    cluster.
-</p>
-</dd>
-</dl></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>geo-join --cluster-node &lt;node&gt; --clusters &lt;description&gt;</pre>
-</div></div>
+<div class="paragraph"><p>See "crm cluster help geo_join" or "crm cluster geo_join --help"</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_cluster_health"><span class="monospaced">health</span></h4>
@@ -1459,394 +1359,53 @@ verify the general system health and detect potential problems.</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_cluster_init"><span class="monospaced">init</span></h4>
-<div class="paragraph"><p>Initialize a cluster from scratch. This command configures
-a complete cluster, and can also add additional cluster
-nodes to the initial one-node cluster using the <span class="monospaced">--nodes</span>
-option.</p></div>
-<div class="paragraph"><p>Options:</p></div>
-<div class="dlist"><dl>
-<dt class="hdlist1">
-<strong>-q, --quiet</strong>
-</dt>
-<dd>
-<p>
-    Be quiet (don&#8217;t describe what&#8217;s happening, just do it)
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>-y, --yes</strong>
-</dt>
-<dd>
-<p>
-    Answer "yes" to all prompts (use with caution, this
-    is destructive, especially during the "storage" stage)
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>-t TEMPLATE, --template=TEMPLATE</strong>*
-</dt>
-<dd>
-<p>
-    Optionally configure cluster with template "name"
-    (currently only "ocfs2" is valid here)
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>-n NAME, --name=NAME</strong>
-</dt>
-<dd>
-<p>
-    Set the name of the configured cluster.
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>-N NODES, --nodes=NODES</strong>
-</dt>
-<dd>
-<p>
-    Additional nodes to add to the created cluster. May
-    include the current node, which will always be the
-    initial cluster node.
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>-w WATCHDOG, --watchdog=WATCHDOG</strong>
-</dt>
-<dd>
-<p>
-    Use the given watchdog device.
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>-S, --enable-sbd</strong>
-</dt>
-<dd>
-<p>
-    Enable SBD even if no SBD device is configured (diskless mode).
-</p>
-</dd>
-</dl></div>
-<div class="paragraph"><p>Network configuration:</p></div>
-<div class="paragraph"><p>Options for configuring the network and messaging layer.</p></div>
-<div class="dlist"><dl>
-<dt class="hdlist1">
-<strong>-i IF, --interface=IF</strong>
-</dt>
-<dd>
-<p>
-    Bind to IP address on interface IF
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>-u, --unicast</strong>
-</dt>
-<dd>
-<p>
-    Configure corosync to communicate over unicast (UDP),
-    and not multicast. Default is multicast unless an
-    environment where multicast cannot be used is
-    detected.
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>-A IP, --admin-ip=IP</strong>
-</dt>
-<dd>
-<p>
-    Configure IP address as an administration virtual IP
-</p>
-</dd>
-</dl></div>
-<div class="paragraph"><p>Storage configuration:</p></div>
-<div class="paragraph"><p>Options for configuring shared storage.</p></div>
-<div class="dlist"><dl>
-<dt class="hdlist1">
-<strong>-p DEVICE, --partition-device=DEVICE</strong>
-</dt>
-<dd>
-<p>
-    Partition this shared storage device (only used in
-    "storage" stage)
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>-s DEVICE, --sbd-device=DEVICE</strong>
-</dt>
-<dd>
-<p>
-    Block device to use for SBD fencing
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>-o DEVICE, --ocfs2-device=DEVICE</strong>
-</dt>
-<dd>
-<p>
-    Block device to use for OCFS2 (only used in "vgfs"
-    stage)
-</p>
-</dd>
-</dl></div>
-<div class="paragraph"><p>Stage can be one of:</p></div>
-<div class="dlist"><dl>
-<dt class="hdlist1">
-<strong>ssh</strong>
-</dt>
-<dd>
-<p>
-    Create SSH keys for passwordless SSH between cluster nodes
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>csync2</strong>
-</dt>
-<dd>
-<p>
-    Configure csync2
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>corosync</strong>
-</dt>
-<dd>
-<p>
-    Configure corosync
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>storage</strong>
-</dt>
-<dd>
-<p>
-    Partition shared storage (ocfs2 template only)
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>sbd</strong>
-</dt>
-<dd>
-<p>
-    Configure SBD (requires -s &lt;dev&gt;)
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>cluster</strong>
-</dt>
-<dd>
-<p>
-    Bring the cluster online
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>vgfs</strong>
-</dt>
-<dd>
-<p>
-    Create volume group and filesystem (ocfs2 template only, requires <span class="monospaced">-o &lt;dev&gt;</span>)
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>admin</strong>
-</dt>
-<dd>
-<p>
-    Create administration virtual IP (optional)
-</p>
-</dd>
-</dl></div>
-<div class="admonitionblock">
-<table><tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-<div class="ulist"><ul>
-<li>
-<p>
-If stage is not specified, the script will run through each stage
-  in sequence, with prompts for required information.
-</p>
-</li>
-<li>
-<p>
-If using the ocfs2 template, the storage stage will partition a block
-  device into two pieces, one for SBD, the remainder for OCFS2.  This is
-  good for testing and demonstration, but not ideal for production.
-  To use storage you have already configured, pass -s and -o to specify
-  the block devices for SBD and OCFS2, and the automatic partitioning
-  will be skipped.
-</p>
-</li>
-</ul></div>
-</td>
-</tr></table>
-</div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>init [options] [STAGE]</pre>
-</div></div>
+<div class="paragraph"><p>See "crm cluster help init" or "crm cluster init --help"</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_cluster_join"><span class="monospaced">join</span></h4>
-<div class="paragraph"><p>Join the current node to an existing cluster. The
-current node cannot be a member of a cluster already.
-Pass any node in the existing cluster as the argument
-to the <span class="monospaced">-c</span> option.</p></div>
-<div class="paragraph"><p>Options:</p></div>
-<div class="dlist"><dl>
-<dt class="hdlist1">
-<strong>-q, --quiet</strong>
-</dt>
-<dd>
-<p>
-    Be quiet (don&#8217;t describe what&#8217;s happening, just do it)
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>-y, --yes</strong>
-</dt>
-<dd>
-<p>
-    Answer "yes" to all prompts (use with caution)
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>-w WATCHDOG, --watchdog=WATCHDOG</strong>
-</dt>
-<dd>
-<p>
-    Use the given watchdog device
-</p>
-</dd>
-</dl></div>
-<div class="paragraph"><p>Network configuration:</p></div>
-<div class="paragraph"><p>Options for configuring the network and messaging layer.</p></div>
-<div class="dlist"><dl>
-<dt class="hdlist1">
-<strong>-c HOST, --cluster-node=HOST</strong>
-</dt>
-<dd>
-<p>
-    IP address or hostname of existing cluster node
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>-i IF, --interface=IF</strong>
-</dt>
-<dd>
-<p>
-    Bind to IP address on interface IF
-</p>
-</dd>
-</dl></div>
-<div class="paragraph"><p>Stage can be one of:</p></div>
-<div class="dlist"><dl>
-<dt class="hdlist1">
-<strong>ssh</strong>
-</dt>
-<dd>
-<p>
-    Obtain SSH keys from existing cluster node (requires -c &lt;host&gt;)
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>csync2</strong>
-</dt>
-<dd>
-<p>
-    Configure csync2 (requires -c &lt;host&gt;)
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>ssh_merge</strong>
-</dt>
-<dd>
-<p>
-    Merge root&#8217;s SSH known_hosts across all nodes (csync2 must
-    already be configured).
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>cluster</strong>
-</dt>
-<dd>
-<p>
-    Start the cluster on this node
-</p>
-</dd>
-</dl></div>
-<div class="paragraph"><p>If stage is not specified, each stage will be invoked in sequence.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>join [options] [STAGE]</pre>
-</div></div>
+<div class="paragraph"><p>See "crm cluster help join" or "crm cluster join --help"</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_cluster_remove"><span class="monospaced">remove</span></h4>
-<div class="paragraph"><p>Remove one or more nodes from the cluster.</p></div>
-<div class="paragraph"><p>This command can remove the last node in the cluster,
-thus effectively removing the whole cluster. To remove
-the last node, pass <span class="monospaced">--force</span> argument to <span class="monospaced">crm</span> or set
-the <span class="monospaced">config.core.force</span> option.</p></div>
-<div class="paragraph"><p>Options:</p></div>
-<div class="dlist"><dl>
-<dt class="hdlist1">
-<strong>-q, --quiet</strong>
-</dt>
-<dd>
-<p>
-    Be quiet (don&#8217;t describe what&#8217;s happening, just do it)
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>-y, --yes</strong>
-</dt>
-<dd>
-<p>
-    Answer "yes" to all prompts (use with caution)
-</p>
-</dd>
-<dt class="hdlist1">
-<strong>-c HOST, --cluster-node=HOST</strong>
-</dt>
-<dd>
-<p>
-    IP address or hostname of cluster node which will be
-    removed from the cluster
-</p>
-</dd>
-</dl></div>
+<div class="paragraph"><p>See "crm cluster help remove" or "crm cluster remove --help"</p></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_crash_test"><span class="monospaced">crash_test</span></h4>
+<div class="paragraph"><p>See "crm cluster help crash_test" or "crm cluster crash_test --help"</p></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_restart"><span class="monospaced">restart</span></h4>
+<div class="paragraph"><p>See "crm cluster help restart" or "crm cluster restart --help"</p></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_cluster_rename"><span class="monospaced">rename</span></h4>
+<div class="paragraph"><p>Rename the cluster name</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>remove [options] [&lt;node&gt; ...]</pre>
+<pre>rename &lt;new_cluster_name&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_cluster_run"><span class="monospaced">run</span></h4>
 <div class="paragraph"><p>This command takes a shell statement as argument, executes that
-statement on all nodes in the cluster, and reports the result.</p></div>
+statement on all nodes in the cluster or a specific node,
+and reports the result.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>run &lt;command&gt;</pre>
+<pre>run &lt;command&gt; [node ...]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>run "cat /proc/uptime"</pre>
+<pre>run "cat /proc/uptime"
+run "ls" node1 node2</pre>
 </div></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_cluster_start"><span class="monospaced">start</span></h4>
-<div class="paragraph"><p>Starts the cluster-related system services on this node.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>start</pre>
-</div></div>
+<div class="paragraph"><p>See "crm cluster help start" or "crm cluster start --help"</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_cluster_status"><span class="monospaced">status</span></h4>
@@ -1860,12 +1419,7 @@ node.</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_cluster_stop"><span class="monospaced">stop</span></h4>
-<div class="paragraph"><p>Stops the cluster-related system services on this node.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>stop</pre>
-</div></div>
+<div class="paragraph"><p>See "crm cluster help stop" or "crm cluster stop --help"</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_cluster_wait_for_startup"><span class="monospaced">wait_for_startup</span></h4>
@@ -2145,11 +1699,11 @@ section containing the value does not exist, the command will fail.</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_corosync_status"><span class="monospaced">status</span></h4>
-<div class="paragraph"><p>Displays the status of Corosync, including the votequorum state.</p></div>
+<div class="paragraph"><p>Displays the corosync ring status(default), also can display quorum/qdevice/qnetd status.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>status</pre>
+<pre>status [ring|quorum|qdevice|qnetd]</pre>
 </div></div>
 </div>
 </div>
@@ -2370,16 +1924,17 @@ as argument, the resource is banned from the current location.</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_resource_cleanup"><span class="monospaced">cleanup</span></h4>
-<div class="paragraph"><p>Cleanup resource status. Typically done after the resource has
-temporarily failed. If a node is omitted, cleanup on all nodes.
-If there are many nodes, the command may take a while.</p></div>
+<div class="paragraph"><p>If resource has any past failures, clear its history and fail
+count. Typically done after the resource has temporarily
+failed.</p></div>
+<div class="paragraph"><p>If a node is omitted, cleanup on all nodes.</p></div>
 <div class="paragraph"><p><span class="monospaced">(Pacemaker 1.1.14)</span> Pass force to cleanup the resource itself,
 otherwise the cleanup command will apply to the parent resource (if
 any).</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>cleanup &lt;rsc&gt; [&lt;node&gt;] [force]</pre>
+<pre>cleanup [&lt;rsc&gt;] [&lt;node&gt;] [force]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2406,7 +1961,7 @@ resource.</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_resource_demote"><span class="monospaced">demote</span></h4>
-<div class="paragraph"><p>Demote a master-slave resource using the <span class="monospaced">target-role</span>
+<div class="paragraph"><p>Demote a promotable resource using the <span class="monospaced">target-role</span>
 attribute.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -2416,11 +1971,14 @@ attribute.</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_resource_failcount"><span class="monospaced">failcount</span></h4>
-<div class="paragraph"><p>Show/edit/delete the failcount of a resource.</p></div>
+<div class="paragraph"><p>Show/edit/delete the failcount of a resource.
+When <span class="monospaced">set</span> a non-zero value, <span class="monospaced">operation</span> and <span class="monospaced">interval</span> should be
+provided when multiple operation failcount entries exist.
+<span class="monospaced">interval</span> is a value in seconds.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>failcount &lt;rsc&gt; set &lt;node&gt; &lt;value&gt;
+<pre>failcount &lt;rsc&gt; set &lt;node&gt; &lt;value&gt; [operation] [interval]
 failcount &lt;rsc&gt; delete &lt;node&gt;
 failcount &lt;rsc&gt; show &lt;node&gt;</pre>
 </div></div>
@@ -2442,7 +2000,10 @@ failcount &lt;rsc&gt; show &lt;node&gt;</pre>
 <div class="sect3">
 <h4 id="cmdhelp_resource_maintenance"><span class="monospaced">maintenance</span></h4>
 <div class="paragraph"><p>Enables or disables the per-resource maintenance mode. When this mode
-is enabled, no monitor operations will be triggered for the resource.</p></div>
+is enabled, no monitor operations will be triggered for the resource.
+<span class="monospaced">maintenance</span> attribute conflicts with the <span class="monospaced">is-managed</span>. When setting
+the <span class="monospaced">maintenance</span> attribute, the user is proposed to remove the
+<span class="monospaced">is-managed</span> attribute if it exists.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -2460,7 +2021,10 @@ maintenance rsc2 off</pre>
 <div class="paragraph"><p>Manage a resource using the <span class="monospaced">is-managed</span> attribute. If there
 are multiple meta attributes sets, the attribute is set in all of
 them. If the resource is a clone, all <span class="monospaced">is-managed</span> attributes are
-removed from the children resources.</p></div>
+removed from the children resources.
+<span class="monospaced">is-managed</span> attribute conflicts with the <span class="monospaced">maintenance</span>. When setting
+the <span class="monospaced">is-managed</span> attribute, the user is proposed to remove the
+<span class="monospaced">maintenance</span> attribute if it exists.</p></div>
 <div class="paragraph"><p>For details on group management see <a href="#cmdhelp_options_manage-children"><span class="monospaced">options manage-children</span></a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -2528,7 +2092,7 @@ param &lt;rsc&gt; show &lt;param&gt;</pre>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_resource_promote"><span class="monospaced">promote</span></h4>
-<div class="paragraph"><p>Promote a master-slave resource using the <span class="monospaced">target-role</span>
+<div class="paragraph"><p>Promote a promotable resource using the <span class="monospaced">target-role</span>
 attribute.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -2538,32 +2102,11 @@ attribute.</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_resource_refresh"><span class="monospaced">refresh</span></h4>
-<div class="paragraph"><p>Refresh CIB from the LRM status.</p></div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">Note</div>
-<div class="paragraph"><p><span class="monospaced">refresh</span> has been deprecated and is now
-an alias for <span class="monospaced">cleanup</span>.</p></div>
-</div></div>
+<div class="paragraph"><p>Delete resource&#8217;s history (including failures) so its current state is rechecked.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>refresh [&lt;node&gt;]</pre>
-</div></div>
-</div>
-<div class="sect3">
-<h4 id="cmdhelp_resource_reprobe"><span class="monospaced">reprobe</span></h4>
-<div class="paragraph"><p>Probe for resources not started by the CRM.</p></div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">Note</div>
-<div class="paragraph"><p><span class="monospaced">reprobe</span> has been deprecated and is now
-an alias for <span class="monospaced">cleanup</span>.</p></div>
-</div></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>reprobe [&lt;node&gt;]</pre>
+<pre>refresh [&lt;rsc&gt;] [&lt;node&gt;] [force]</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2679,6 +2222,9 @@ and stop as well as promote/demote for multistate resources.</p></div>
 <div class="paragraph"><p>To trace the probe operation which exists for all resources, either
 set a trace for <span class="monospaced">monitor</span> with interval <span class="monospaced">0</span>, or use <span class="monospaced">probe</span> as the
 operation name.</p></div>
+<div class="paragraph"><p>Note: RA tracing is only supported by OCF resource agents;
+The pacemaker-execd daemon does not log recurring monitor operations
+unless an error occurred.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -2807,7 +2353,9 @@ resources, no fencing will happen.</p></div>
 <h4 id="cmdhelp_node_maintenance"><span class="monospaced">maintenance</span></h4>
 <div class="paragraph"><p>Set the node status to maintenance. This is equivalent to the
 cluster-wide <span class="monospaced">maintenance-mode</span> property but puts just one node
-into the maintenance mode.</p></div>
+into the maintenance mode. If there are maintenaned resources on
+the node, the user will be proposed to remove the maintenance
+property from them.</p></div>
 <div class="paragraph"><p>The node parameter defaults to the node where the command is run.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -2817,13 +2365,7 @@ into the maintenance mode.</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_node_online"><span class="monospaced">online</span></h4>
-<div class="paragraph"><p>Set a node to online status.</p></div>
-<div class="paragraph"><p>The node parameter defaults to the node where the command is run.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>online [&lt;node&gt;]</pre>
-</div></div>
+<div class="paragraph"><p>See "crm node help online" or "crm node online --help"</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_node_ready"><span class="monospaced">ready</span></h4>
@@ -2862,34 +2404,7 @@ nodes are shown.</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_node_standby"><span class="monospaced">standby</span></h4>
-<div class="paragraph"><p>Set a node to standby status. The node parameter defaults to the
-node where the command is run.</p></div>
-<div class="paragraph"><p>Additionally, you may specify a lifetime for the standby---if set to
-<span class="monospaced">reboot</span>, the node will be back online once it reboots. <span class="monospaced">forever</span> will
-keep the node in standby after reboot. The life time defaults to
-<span class="monospaced">forever</span>.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>standby [&lt;node&gt;] [&lt;lifetime&gt;]
-
-lifetime :: reboot | forever</pre>
-</div></div>
-<div class="paragraph"><p>Example:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>standby bob reboot</pre>
-</div></div>
-</div>
-<div class="sect3">
-<h4 id="cmdhelp_node_status"><span class="monospaced">status</span></h4>
-<div class="paragraph"><p>Show nodes' status as XML. If the node parameter is omitted then
-all nodes are shown.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>status [&lt;node&gt;]</pre>
-</div></div>
+<div class="paragraph"><p>See "crm node help standby" or "crm node standby --help"</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_node_status-attr"><span class="monospaced">status-attr</span></h4>
@@ -3286,12 +2801,12 @@ objects.</p></div>
 </li>
 <li>
 <p>
-<span class="monospaced">clone</span>
+<span class="monospaced">clone</span> (promotable clones)
 </p>
 </li>
 <li>
 <p>
-<span class="monospaced">ms</span>/<span class="monospaced">master</span> (master-slave)
+<span class="monospaced">ms</span>/<span class="monospaced">master</span> (master-slave) (deprecated)
 </p>
 </li>
 </ul></div>
@@ -3430,6 +2945,7 @@ alert attributes before defining the recipients.</p></div>
 <pre>alert &lt;id&gt; &lt;path&gt; \
   [attributes &lt;nvpair&gt; ...] \
   [meta &lt;nvpair&gt; ...] \
+  [select [nodes | fencing | resources | attributes '{' &lt;attribute&gt; ... '}' ] ...] \
   [to [{] &lt;recipient&gt;
     [attributes &lt;nvpair&gt; ...] \
     [meta &lt;nvpair&gt; ...] [}] \
@@ -3443,7 +2959,36 @@ alert attributes before defining the recipients.</p></div>
 
 alert alert-2 /srv/pacemaker/example_alert.sh \
     meta timeout=60s \
-    to { /var/log/cluster-alerts.log }</pre>
+    to { /var/log/cluster-alerts.log }
+
+alert alert-3 /srv/pacemaker/example_alert.sh \
+    select fencing \
+    to { /var/log/fencing-alerts.log }</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp_configure_bundle"><span class="monospaced">bundle</span></h4>
+<div class="paragraph"><p>A bundle is a single resource specifying the settings, networking
+requirements, and storage requirements for any number of containers
+generated from the same container image.</p></div>
+<div class="paragraph"><p>Pacemaker bundles support Docker (since version 1.1.17) and rkt (since
+version 1.1.18) container technologies.</p></div>
+<div class="paragraph"><p>A bundle must contain exactly one <span class="monospaced">docker</span> or <span class="monospaced">rkt</span> element.</p></div>
+<div class="paragraph"><p>The bundle definition may contain a reference to a primitive
+resource which defining the resource running inside the
+container.</p></div>
+<div class="paragraph"><p>Example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>primitive httpd-apache ocf:heartbeat:apache
+
+bundle httpd \
+    docker image=pcmk:httpd replicas=3 \
+    network ip-range-start=10.10.10.123 host-netmask=24 \
+    port-mapping port=80 \
+    storage \
+        storage-mapping target-dir=/var/www/html source-dir=/srv/www options=rw \
+    primitive httpd-apache</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3471,6 +3016,8 @@ crm(test-2)configure# commit</pre>
 <h4 id="cmdhelp_configure_clone"><span class="monospaced">clone</span></h4>
 <div class="paragraph"><p>The <span class="monospaced">clone</span> command creates a resource clone. It may contain a
 single primitive resource or one group of resources.</p></div>
+<div class="paragraph"><p><span class="monospaced">Promotable clones</span> are clone resources with the <span class="monospaced">promotable=true</span> meta attribute for the given promotable resources.
+It&#8217;s used to deprecate the master-slave resources.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -3485,7 +3032,10 @@ attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;
 <div class="literalblock">
 <div class="content monospaced">
 <pre>clone cl_fence apc_1 \
-  meta clone-node-max=1 globally-unique=false</pre>
+  meta clone-node-max=1 globally-unique=false
+
+clone disk1 drbd1 \
+  meta promotable=true notify=true globally-unique=false</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -3774,7 +3324,7 @@ graph dot clu1.conf.svg svg</pre>
 <h4 id="cmdhelp_configure_group"><span class="monospaced">group</span></h4>
 <div class="paragraph"><p>The <span class="monospaced">group</span> command creates a group of resources. This can be useful
 when resources depend on other resources and require that those
-resources start in order on the same node. A commmon use of resource
+resources start in order on the same node. A common use of resource
 groups is to ensure that a server and a virtual IP are located
 together, and that the virtual IP is started before the server.</p></div>
 <div class="paragraph"><p>Grouped resources are started in the order they appear in the group,
@@ -3783,7 +3333,7 @@ run anywhere, resources following it in the group will not start.</p></div>
 <div class="paragraph"><p><span class="monospaced">group</span> can be passed the "container" meta attribute, to indicate that
 it is to be used to group VM resources monitored using Nagios. The
 resource referred to by the container attribute must be of type
-<span class="monospaced">ocf:heartbeat:Xen</span>, <span class="monospaced">oxf:heartbeat:VirtualDomain</span> or <span class="monospaced">ocf:heartbeat:lxc</span>.</p></div>
+<span class="monospaced">ocf:heartbeat:Xen</span>, <span class="monospaced">ocf:heartbeat:VirtualDomain</span> or <span class="monospaced">ocf:heartbeat:lxc</span>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -3986,6 +3536,19 @@ attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;
 </div></div>
 <div class="sidebarblock">
 <div class="content">
+<div class="title">Note on <span class="monospaced">ms</span> deprecated</div>
+<div class="paragraph"><p>From Pacemaker-2.0, the resource type referred to as "master/slave",
+"stateful", or "multi-state" is no longer a separate resource type,
+but a variation of clone now referred to as a "promotable clone".
+For backward compatibility, above configurations are also accepted.</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>clone disk1 drbd1 \
+  meta promotable=true notify=true globally-unique=false</pre>
+</div></div>
+</div></div>
+<div class="sidebarblock">
+<div class="content">
 <div class="title">Note on <span class="monospaced">id-ref</span> usage</div>
 <div class="paragraph"><p>Instance or meta attributes (&#8216;params` and <span class="monospaced">meta</span>) may contain
 a reference to another set of attributes. In that case, no other
@@ -4068,9 +3631,9 @@ That is still valid but deprecated.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>order &lt;id&gt; [{kind|&lt;score&gt;}:] first then [symmetrical=&lt;bool&gt;]
+<pre>order &lt;id&gt; [kind:] first then [symmetrical=&lt;bool&gt;]
 
-order &lt;id&gt; [{kind|&lt;score&gt;}:] resource_sets [symmetrical=&lt;bool&gt;]
+order &lt;id&gt; [kind:] resource_sets [symmetrical=&lt;bool&gt;]
 
 kind :: Mandatory | Optional | Serialize
 
@@ -4090,14 +3653,13 @@ attributes :: [require-all=(true|false)] [sequential=(true|false)]</pre>
 <div class="content monospaced">
 <pre>order o-1 Mandatory: apache:start ip_1
 order o-2 Serialize: A ( B C )
-order o-3 inf: [ A B ] C
 order o-4 first-resource then-resource</pre>
 </div></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_configure_primitive"><span class="monospaced">primitive</span></h4>
 <div class="paragraph"><p>The primitive command describes a resource. It may be referenced
-only once in group, clone, or master-slave objects. If it&#8217;s not
+only once in group, or clone objects. If it&#8217;s not
 referenced, then it is placed as a single resource in the CIB.</p></div>
 <div class="paragraph"><p>Operations may be specified anonymously, as a group or by reference:</p></div>
 <div class="ulist"><ul>
@@ -4121,7 +3683,8 @@ If reusing operation sets is desired, use the <span class="monospaced">operation
 <div class="paragraph"><p>Operation attributes which are not recognized are saved as
 instance attributes of that operation. A typical example is
 <span class="monospaced">OCF_CHECK_LEVEL</span>.</p></div>
-<div class="paragraph"><p>For multistate resources, roles are specified as <span class="monospaced">role=&lt;role&gt;</span>.</p></div>
+<div class="paragraph"><p>For multistate resources, roles are specified as <span class="monospaced">role=&lt;role&gt;</span>.
+The <span class="monospaced">Master/Slave</span> resources are deprecated and replaced by <span class="monospaced">Promoted/Unpromoted</span> promotable resources if desired.</p></div>
 <div class="paragraph"><p>A template may be defined for resources which are of the same
 type and which share most of the configuration. See
 <a href="#cmdhelp_configure_rsc_template"><span class="monospaced">rsc_template</span></a> for more information.</p></div>
@@ -4165,7 +3728,9 @@ suffixes:</p></div>
   [meta attr_list]
   [utilization attr_list]
   [operations id_spec]
-    [op op_type [&lt;attribute&gt;=&lt;value&gt;...] ...]
+    [op op_type [&lt;attribute&gt;=&lt;value&gt;...]
+                [[op_params] attr_list]
+                [op_meta attr_list] ...]
 
 attr_list :: [$id=&lt;id&gt;] [&lt;score&gt;:] [rule...]
              &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...]] | $id-ref=&lt;id&gt;
@@ -4191,15 +3756,20 @@ primitive db0 mysql \
 
 primitive r0 ocf:linbit:drbd \
   params drbd_resource=r0 \
-  op monitor role=Master interval=60s \
-  op monitor role=Slave interval=300s
+  op monitor role=Promoted interval=60s \
+  op monitor role=Unpromoted interval=300s
 
 primitive xen0 @vm_scheme1 xmfile=/etc/xen/vm/xen0
 
 primitive mySpecialRsc Special \
   params 3: rule #uname eq node1 interface=eth1 \
   params 2: rule #uname eq node2 interface=eth2 port=8888 \
-  params 1: interface=eth0 port=9999</pre>
+  params 1: interface=eth0 port=9999
+
+primitive A ocf:pacemaker:Dummy \
+  op start \
+    op_meta 2: rule #ra-version version:gt 1.0 timeout=120s \
+    op_meta 1: timeout=60s</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -4207,7 +3777,10 @@ primitive mySpecialRsc Special \
 <div class="paragraph"><p>Set cluster configuration properties. To list the
 available cluster configuration properties, use the
 <a href="#cmdhelp_ra_info"><span class="monospaced">ra info</span></a> command with <span class="monospaced">pengine</span>, <span class="monospaced">crmd</span>,
-<span class="monospaced">cib</span> and <span class="monospaced">stonithd</span> as arguments.</p></div>
+<span class="monospaced">cib</span> and <span class="monospaced">stonithd</span> as arguments.
+When setting the <span class="monospaced">maintenance-mode</span> property, it will
+inform the user if there are nodes or resources that
+have the <span class="monospaced">maintenance</span> property.</p></div>
 <div class="paragraph"><p>For more information on rule expressions, see
 <a href="#topics_Syntax_RuleExpressions">Syntax: Rule expressions</a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -4411,7 +3984,7 @@ loss_policy_action :: stop | demote | fence | freeze</pre>
 <div class="content monospaced">
 <pre>rsc_ticket ticket-A_public-ip ticket-A: public-ip
 rsc_ticket ticket-A_bigdb ticket-A: bigdb loss-policy=fence
-rsc_ticket ticket-B_storage ticket-B: drbd-a:Master drbd-b:Master</pre>
+rsc_ticket ticket-B_storage ticket-B: drbd-a:Promoted drbd-b:Promoted</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -4509,22 +4082,27 @@ accepted by <span class="monospaced">crmsh</span>:</p></div>
 <div class="sect3">
 <h4 id="cmdhelp_configure_set"><span class="monospaced">set</span></h4>
 <div class="paragraph"><p>Set the value of a configured attribute. The attribute must
-have a value configured previously, and can be an agent
-parameter, meta attribute or utilization value.</p></div>
+configured previously, and can be an agent parameter, meta attribute,
+utilization value or operation value.</p></div>
 <div class="paragraph"><p>The first argument to the command is a path to an attribute.
 This is a dot-separated sequence beginning with the name of
-the resource, and ending with the name of the attribute to
-set.</p></div>
+the resource or object, and ending with the name of the attribute to
+set. To set operation value, <span class="monospaced">op_type</span> should be specified; when multi
+operations exist like multi monitors, <span class="monospaced">interval</span> should be specified.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>set &lt;path&gt; &lt;value&gt;</pre>
+<pre>set &lt;path&gt; &lt;value&gt;
+
+path:: id.[op_type.][interval.]name</pre>
 </div></div>
 <div class="paragraph"><p>Examples:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>set vip1.ip 192.168.20.5
-set vm-a.force_stop 1</pre>
+set vm-a.force_stop 1
+set vip1.monitor.on-fail ignore
+set drbd.monitor.10s.interval 20s</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -4553,6 +4131,25 @@ following combination can be used: <span class="monospaced">show tag:my-tag my-t
 configuration over a public channel, to avoid exposing potentially
 sensitive information. The <span class="monospaced">&lt;glob&gt;</span> argument is a bash-style pattern
 matching attribute keys.</p></div>
+<div class="paragraph"><p>In <span class="monospaced">/etc/crm/crm.conf</span>, <span class="monospaced">obscure_pattern</span> option is the persisent configuration of CLI.
+Example, for the high security concern,</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>[core]
+obscure_pattern = passw* | ip</pre>
+</div></div>
+<div class="paragraph"><p>Which makes <span class="monospaced">crm configure show</span> is equal to</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>node-1:~ # crm configure show obscure:passw* obscure:ip
+node 1084783297: node1
+primitive fence_device stonith:fence_ilo5 \
+        params password="******"
+primitive ip IPaddr2 \
+        params ip="******"</pre>
+</div></div>
+<div class="paragraph"><p>The default suggestion is <span class="monospaced">passw*</span>
+If you don&#8217;t want to obscure, change the value to blank.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -5337,7 +4934,7 @@ first wait until it finishes.</p></div>
 <div class="paragraph"><p>This command can be used to modify the time span to examine. All
 history commands look at events within a certain time span.</p></div>
 <div class="paragraph"><p>For the <span class="monospaced">live</span> source, the default time span is the <em>last hour</em>.</p></div>
-<div class="paragraph"><p>There is no time span limit for the <span class="monospaced">hb_report</span> source.</p></div>
+<div class="paragraph"><p>There is no time span limit for the <span class="monospaced">crm report</span> source.</p></div>
 <div class="paragraph"><p>The time period is parsed by the <span class="monospaced">dateutil</span> python module. It
 covers a wide range of date formats. For instance:</p></div>
 <div class="ulist"><ul>
@@ -5490,7 +5087,7 @@ current settings can be saved and later retrieved.</p></div>
 <div class="paragraph"><p>If the current history being examined is coming from a live
 cluster the logs, PE inputs, and other files are saved too,
 because they may disappear from nodes. For the existing reports
-coming from <span class="monospaced">hb_report</span>, only the directory location is saved
+coming from <span class="monospaced">crm report</span>, only the directory location is saved
 (not to waste space).</p></div>
 <div class="paragraph"><p>A history session may also be packed into a tarball which can
 then be sent to support.</p></div>
@@ -5545,7 +5142,7 @@ show pe-input-2080.bz2 status</pre>
 <div class="sect3">
 <h4 id="cmdhelp_history_source"><span class="monospaced">source</span></h4>
 <div class="paragraph"><p>Events to be examined can come from the current cluster or from a
-<span class="monospaced">hb_report</span> report. This command sets the source. <span class="monospaced">source live</span>
+<span class="monospaced">crm report</span> report. This command sets the source. <span class="monospaced">source live</span>
 sets source to the running cluster and system logs. If no source
 is specified, the current source information is printed.</p></div>
 <div class="paragraph"><p>In case a report source is specified as a file reference, the file
@@ -5667,7 +5264,7 @@ archive containing log files, configuration files, system information
 and other relevant data for a given time period. This is a useful tool
 for collecting data to attach to bug reports, or for detecting the
 root cause of errors resulting in resource failover, for example.</p></div>
-<div class="paragraph"><p>See <span class="monospaced">crmsh_hb_report(8)</span> for more details on arguments,
+<div class="paragraph"><p>See <span class="monospaced">crmsh_crm_report(8)</span> for more details on arguments,
 or call <span class="monospaced">crm report -h</span></p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -5710,6 +5307,74 @@ specified topic (command). This command is available everywhere.</p></div>
 <div class="sect2">
 <h3 id="_span_class_monospaced_quit_span_span_class_monospaced_exit_span_span_class_monospaced_bye_span"><span class="monospaced">quit</span> (<span class="monospaced">exit</span>, <span class="monospaced">bye</span>)</h3>
 <div class="paragraph"><p>Leave the program.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_files">FILES</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_etc_crm_profiles_yml">/etc/crm/profiles.yml</h3>
+<div class="sect3">
+<h4 id="_purpose">Purpose</h4>
+<div class="paragraph"><p>YAML file <span class="monospaced">/etc/crm/profiles.yml</span> contains Corosync, SBD and Pacemaker parameters for different platforms.</p></div>
+<div class="paragraph"><p>crmsh bootstrap detects system environment and load the corresponding parameters predefined in this file.</p></div>
+</div>
+<div class="sect3">
+<h4 id="_syntax">Syntax</h4>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>profile_name:
+  key_name: value</pre>
+</div></div>
+<div class="paragraph"><p>The valid profile names are:
+"microsoft-azure", "google-cloud-platform", "amazon-web-services", "s390", "default"</p></div>
+<div class="paragraph"><p><span class="monospaced">key_name</span> is a known Corosync, SBD, or Pacemaker parameters, like
+<span class="monospaced">corosync.totem.token</span> or <span class="monospaced">sbd.watchdog_timeout</span>.</p></div>
+<div class="paragraph"><p>More details about the parameter definitions please refer to the man page of corosync.conf(5), sbd(8).</p></div>
+<div class="paragraph"><p>Example</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>default:
+  corosync.totem.crypto_hash: sha1
+  corosync.totem.crypto_cipher: aes256
+  corosync.totem.token: 5000
+  corosync.totem.join: 60
+  corosync.totem.max_messages: 20
+  corosync.totem.token_retransmits_before_loss_const: 10
+  sbd.watchdog_timeout: 15
+
+microsoft-azure:
+  corosync.totem.token: 30000
+  sbd.watchdog_timeout: 60</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="_how_the_content_of_the_file_is_interpreted">How the content of the file is interpreted</h4>
+<div class="paragraph"><p>The profiles has the following properties:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Profiles are only loaded on bootstrap init node.
+</p>
+</li>
+<li>
+<p>
+The "default" profile is loaded in the beginning.
+</p>
+</li>
+<li>
+<p>
+Specific profiles will override the corresponding values in the "default" profile (if the specific environment is detected).
+</p>
+</li>
+<li>
+<p>
+Users could customize the "default" profile for their needs. For example, those on-premise environments which is not defined yet.
+</p>
+</li>
+</ul></div>
+</div>
 </div>
 </div>
 </div>

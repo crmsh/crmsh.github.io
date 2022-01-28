@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="AsciiDoc 8.6.9">
+<meta name="generator" content="AsciiDoc 9.0.0rc2">
 <title>crmsh - News</title>
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/crm.css" type="text/css">
@@ -40,35 +40,39 @@
 </div>
 <!--TOC-->
 <div id="toc">
-<div class="toclevel1"><a href="#_releasing_crmsh_version_3_0_1">Releasing crmsh version 3.0.1</a></div>
+<div class="toclevel1"><a href="#_releasing_crmsh_version_3_0_0">Releasing crmsh version 3.0.0</a></div>
 </div>
 <div id="container">
 <div id="content">
 <h1>News</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph"><p><a href="/news/2017-07-21-release-3_0_1">2017-07-21 11:00</a></p></div>
+<div class="paragraph"><p><a href="/news/2017-01-31-release-3_0_0">2017-01-31 10:00</a></p></div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_releasing_crmsh_version_3_0_1">Releasing crmsh version 3.0.1</h2>
+<h2 id="_releasing_crmsh_version_3_0_0">Releasing crmsh version 3.0.0</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>Hello everyone!</p></div>
-<div class="paragraph"><p>I&#8217;m happy to announce the release of crmsh version 3.0.1 today. This
-is mainly a bug fix release, so no new exciting features and mainly
-fixes to the new bootstrap functionality added in 3.0.0.</p></div>
-<div class="paragraph"><p>I would also like to take the opportinity to introduce a new core
-developer for crmsh, Xin Liang! For this release he has contributed
-some of the bug fixes discovered, but he has also contributed a
-rewrite of hb_report into Python, as well as worked on improving the
-tab completion support in crmsh. I also want to recognize the hard
-work of Shiwen Zhang who initially started the work of rewriting the
-hb_report script in Python.</p></div>
-<div class="paragraph"><p>For the complete list of changes in this release, see the ChangeLog:</p></div>
+<div class="paragraph"><p>I&#8217;m happy to announce the release of crmsh version 3.0.0 today. The
+main reason for the major version bump is because I have merged the
+sleha-bootstrap project with crmsh, replacing the cluster
+init/add/remove commands with the corresponding commands from
+sleha-bootstrap.</p></div>
+<div class="paragraph"><p>At the moment, these commands are highly specific to SLE and openSUSE,
+unfortunately. I am working on making them as distribution agnostic as
+possible, but would appreciate help from users of other distributions
+in making them work as well on those platforms as they do on
+SLE/openSUSE.</p></div>
+<div class="paragraph"><p>Briefly, the "cluster init" command configures a complete cluster from
+scratch, including optional configuration of fencing via SBD, shared
+storage using OCFS2, setting up the Hawk web interface etc.</p></div>
+<div class="paragraph"><p>There are some other changes in this release as well, see the
+ChangeLog for the complete list of changes:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-<a href="https://github.com/ClusterLabs/crmsh/blob/3.0.1/ChangeLog">https://github.com/ClusterLabs/crmsh/blob/3.0.1/ChangeLog</a>
+<a href="https://github.com/ClusterLabs/crmsh/blob/3.0.0/ChangeLog">https://github.com/ClusterLabs/crmsh/blob/3.0.0/ChangeLog</a>
 </p>
 </li>
 </ul></div>
@@ -76,14 +80,13 @@ hb_report script in Python.</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-<a href="https://github.com/ClusterLabs/crmsh/releases/tag/3.0.1">https://github.com/ClusterLabs/crmsh/releases/tag/3.0.1</a>
+<a href="https://github.com/ClusterLabs/crmsh/releases/tag/3.0.0">https://github.com/ClusterLabs/crmsh/releases/tag/3.0.0</a>
 </p>
 </li>
 </ul></div>
-<div class="paragraph"><p>This version of crmsh (or a version very close to it) is already
-available in openSUSE Tumbleweed, and packages for several popular
-Linux distributions will be available from the Stable repository at
-the OBS:</p></div>
+<div class="paragraph"><p>This version of crmsh will be available in openSUSE Tumbleweed as soon
+as possible, and packages for several popular Linux distributions are
+available from the Stable repository at the OBS:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
@@ -95,12 +98,12 @@ the OBS:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-<a href="https://github.com/ClusterLabs/crmsh/archive/3.0.1.tar.gz">https://github.com/ClusterLabs/crmsh/archive/3.0.1.tar.gz</a>
+<a href="https://github.com/ClusterLabs/crmsh/archive/3.0.0.tar.gz">https://github.com/ClusterLabs/crmsh/archive/3.0.0.tar.gz</a>
 </p>
 </li>
 <li>
 <p>
-<a href="https://github.com/ClusterLabs/crmsh/archive/3.0.1.zip">https://github.com/ClusterLabs/crmsh/archive/3.0.1.zip</a>
+<a href="https://github.com/ClusterLabs/crmsh/archive/3.0.0.zip">https://github.com/ClusterLabs/crmsh/archive/3.0.0.zip</a>
 </p>
 </li>
 </ul></div>
@@ -109,11 +112,6 @@ the OBS:</p></div>
 Kristoffer</p></div>
 <hr>
 <div class="ulist"><ul>
-<li>
-<p>
-<a href="/news/2017-01-31-release-3_0_0">2017-01-31 10:00 Releasing crmsh version 3.0.0</a>
-</p>
-</li>
 <li>
 <p>
 <a href="/news/2016-09-05-release-2_2_2">2016-09-05 19:00 Releasing crmsh version 2.2.2</a>

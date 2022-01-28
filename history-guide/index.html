@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="AsciiDoc 8.6.9">
+<meta name="generator" content="AsciiDoc 9.0.0rc2">
 <title>crmsh - Cluster history</title>
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/crm.css" type="text/css">
@@ -163,47 +163,12 @@ preparing this document we noticed that a probe failed repeatedly
 on a node which wasn&#8217;t even running the resource <a href="#Listing 2">[Listing 2]</a>.</p></div>
 <div class="listingblock">
 <div class="title">Listing 2: crm status output<a id="Listing 2"></a></div>
-<div class="content"><div class="highlight"><pre><span></span># crm status
-Last updated: Tue Dec 16 11:57:04 2014
-Last change: Tue Dec 16 11:53:22 2014
-Stack: corosync
-Current DC: sle12-c (167906357) - partition with quorum
-Version: 1.1.12-ad083a8
-2 Nodes configured
-10 Resources configured
-Online: [ sle12-a sle12-c ]
-[...]
-     nfs-server (ocf::heartbeat:nfsserver):     Started sle12-a
-[...]
-Failed actions:
-    nfs-server_monitor_0 on sle12-c &#39;unknown error&#39; (1): call=298, status=complete,
-    last-rc-change=&#39;Tue Dec 16 11:53:23 2014&#39;, queued=0ms, exec=135ms
-</pre></div></div></div>
+<div class="content"></div></div>
 <div class="paragraph"><p>The history <span class="monospaced">resource</span> command shows log messages relevant to the
 supplied resource <a href="#Listing 3">[Listing 3]</a>.</p></div>
 <div class="listingblock">
 <div class="title">Listing 3: Logs on failed <span class="monospaced">nfs-server</span> probe operation<a id="Listing 3"></a></div>
-<div class="content"><div class="highlight"><pre><span></span># crm history resource nfs-server
-<span class="gt">INFO</span>: fetching new logs, please wait ...
-<span class="gi">Dec 16 11:53:23 sle12-c nfsserver(nfs-server)[14911]: <img src="/img/icons/callouts/1.png" alt="1"> ERROR: NFS server is up, but the locking daemons are down</span>
-<span class="gi">Dec 16 11:53:23 sle12-c crmd[2823]:   notice: te_rsc_command: Initiating action 54: stop nfs-server_stop_0 on sle12-a</span>
-<span class="gi">Dec 16 11:53:23 sle12-c crmd[2823]:   notice: te_rsc_command: Initiating action 3: stop nfs-server_stop_0 on sle12-c (local)</span>
-<span class="gi">Dec 16 11:53:23 sle12-c nfsserver(nfs-server)[14944]: INFO: Stopping NFS server ...</span>
-<span class="gi">Dec 16 11:53:23 sle12-c nfsserver(nfs-server)[14944]: INFO: Stopping sm-notify</span>
-<span class="gi">Dec 16 11:53:23 sle12-c nfsserver(nfs-server)[14944]: INFO: Stopping rpc.statd</span>
-<span class="gi">Dec 16 11:53:23 sle12-c nfsserver(nfs-server)[14944]: INFO: NFS server stopped</span>
-<span class="gi">Dec 16 11:53:23 sle12-c crmd[2823]:   notice: te_rsc_command: Initiating action 55: start nfs-server_start_0 on sle12-a</span>
-Dec 16 11:53:23 sle12-a nfsserver(nfs-server)[23255]: INFO: Stopping NFS server ...
-Dec 16 11:53:23 sle12-a nfsserver(nfs-server)[23255]: INFO: Stopping sm-notify
-Dec 16 11:53:23 sle12-a nfsserver(nfs-server)[23255]: INFO: Stopping rpc.statd
-Dec 16 11:53:23 sle12-a nfsserver(nfs-server)[23255]: INFO: NFS server stopped
-Dec 16 11:53:23 sle12-a nfsserver(nfs-server)[23320]: INFO: Starting NFS server ...
-Dec 16 11:53:23 sle12-a nfsserver(nfs-server)[23320]: INFO: Starting rpc.statd.
-Dec 16 11:53:24 sle12-a nfsserver(nfs-server)[23320]: INFO: executing sm-notify
-Dec 16 11:53:24 sle12-a nfsserver(nfs-server)[23320]: INFO: NFS server started
-Dec 16 11:53:24 sle12-a lrmd[6904]: <img src="/img/icons/callouts/2.png" alt="2">  notice: operation_finished: nfs-server_start_0:23320:stderr [ id: rpcuser: no such user ]
-Dec 16 11:53:24 sle12-a lrmd[6904]: message repeated 3 times: [   notice: operation_finished: nfs-server_start_0:23320:stderr [ id: rpcuser: no such user ]]
-</pre></div></div></div>
+<div class="content"></div></div>
 <div class="colist arabic"><table>
 <tr><td><img src="/img/icons/callouts/1.png" alt="1"></td><td>
 NFS server error message.
@@ -236,14 +201,7 @@ tracing of the resource agent. <a href="#Listing 4">[Listing 4]</a> shows how to
 that.</p></div>
 <div class="listingblock">
 <div class="title">Listing 4: Set <span class="monospaced">nfs-server</span> probe operation resource tracing<a id="Listing 4"></a></div>
-<div class="content"><div class="highlight"><pre><span></span># crm resource trace nfs-server monitor 0
-<span class="gt">INFO</span>: Trace for nfs-server:monitor is written to /var/lib/heartbeat/trace_ra/
-<span class="gt">INFO</span>: Trace set, restart nfs-server to trace non-monitor operations
-# crm resource cleanup nfs-server
-Cleaning up nfs-server on sle12-a
-Cleaning up nfs-server on sle12-c
-Waiting for 2 replies from the CRMd.. OK
-</pre></div></div></div>
+<div class="content"></div></div>
 <div class="paragraph"><p>Trace of the <span class="monospaced">nfsserver</span> RA revealed that the <span class="monospaced">nfs-server</span> init
 script (used internally by the resource agent) <em>always</em> exits
 with success for status. That was actually due to the recent port
@@ -281,23 +239,7 @@ studying pacemaker clusters.</p></div>
 shown in <a href="#Listing 5">[Listing 5]</a>.</p></div>
 <div class="listingblock">
 <div class="title">Listing 5: Basic history information<a id="Listing 5"></a></div>
-<div class="content"><div class="highlight"><pre><span></span># crm history
-<span class="gi">crm(live)history# </span>timeframe &quot;Apr 15 20:25&quot; &quot;Apr 15 20:35&quot;
-<span class="gi">crm(live)history# </span>info
-Source: live
-Created on: Thu Apr 16 11:32:36 CEST 2015
-By: report -Z -Q -f Wed Apr 15 20:25:00 2015 -t 2015-04-15 20:35:00 /var/cache/crm/history/live
-Period: 2015-04-15 20:25:00 - 2015-04-15 20:35:00
-Nodes: sle12-a <span class="gi">sle12-c</span>
-Groups: nfs-srv nfs-disk
-Resources: s-libvirt p_drbd_nfs nfs-vg fs1 virtual-ip nfs-server websrv websrv-ip small-apache
-Transitions: <span class="gi">1906</span> <span class="gi">1907</span>
-<span class="gi">crm(live)history# </span>peinputs v
-Date       Start    End       Filename      Client     User       Origin
-====       =====    ===       ========      ======     ====       ======
-2015-04-15 20:29:59 20:30:01  <span class="gi">pe-input-1906</span> no-client  no-user    no-origin
-2015-04-15 20:30:14 20:30:15  <span class="gi">pe-input-1907</span> no-client  no-user    no-origin
-</pre></div></div></div>
+<div class="content"></div></div>
 <div class="paragraph"><p>The <span class="monospaced">timeframe</span> command limits the observed period and helps
 focus on the events of interest. Here we wanted to look at the
 10 minute period. Two transitions were executed during this time.</p></div>
@@ -319,29 +261,7 @@ to files, the so called PE (Policy Engine) inputs.</p></div>
 The listing is annotated to explain the output in more detail.</p></div>
 <div class="listingblock">
 <div class="title">Listing 6: Viewing transitions<a id="Listing 6"></a></div>
-<div class="content"><div class="highlight"><pre><span></span><span class="gi">crm(live)history# </span>transition <img src="/img/icons/callouts/1.png" alt="1">
-<span class="gt">INFO</span>: running ptest with /var/cache/crm/history/live/sle12-c/pengine/pe-input-1907.bz2
-<span class="gt">INFO</span>: starting dotty to show transition graph <img src="/img/icons/callouts/2.png" alt="2">
-Current cluster status: <img src="/img/icons/callouts/3.png" alt="3">
-Online: [ sle12-a sle12-c ]
- s-libvirt      (stonith:external/libvirt):     Started sle12-c
- ...
- small-apache   (ocf::heartbeat:apache):        Stopped
-Transition Summary:
- * Start   small-apache (sle12-a)
-Executing cluster transition:
- * Resource action: small-apache    start on sle12-a
-Revised cluster status:
-Online: [ sle12-a sle12-c ]
- s-libvirt      (stonith:external/libvirt):     Started sle12-c
- ...
- small-apache   (ocf::heartbeat:apache):        Started sle12-a
-
-Transition sle12-c:pe-input-1907 (20:30:14 - 20:30:15): <img src="/img/icons/callouts/4.png" alt="4">
-        total 1 actions: 1 Complete
-<span class="gi">Apr 15 20:30:14 sle12-c crmd[1136]:   notice: te_rsc_command: Initiating action 60: start small-apache_start_0 on sle12-a</span>
-Apr 15 20:30:14 sle12-a apache(small-apache)[1586]: INFO: AH00558: httpd2: Could not reliably determine the server&#39;s fully qualified domain name, using 10.2.12.51. Set the &#39;ServerName&#39; directive globally to suppress this message
-</pre></div></div></div>
+<div class="content"></div></div>
 <div class="colist arabic"><table>
 <tr><td><img src="/img/icons/callouts/1.png" alt="1"></td><td>
 The transition command without arguments displays the latest
@@ -392,18 +312,7 @@ very involved, but we reckon it&#8217;s as good a start as starts go.</p></div>
 transitions. History <span class="monospaced">diff</span> command is in action in <a href="#Listing 7">[Listing 7]</a>.</p></div>
 <div class="listingblock">
 <div class="title">Listing 7: Viewing transitions<a id="Listing 7"></a></div>
-<div class="content"><div class="highlight"><pre><span></span><span class="gi">crm(live)history# </span>diff -1 0 <img src="/img/icons/callouts/1.png" alt="1">
---- -1
-+++ 0
-@@ -11 +11 @@
--<span class="g g-Keyword">primitive</span> small-apache apache <span class="g g-Keyword">params</span> <span class="gt">configfile</span>=<span class="gr">&quot;/etc/apache2/small.conf&quot;</span> <span class="g g-Keyword">meta</span> <span class="gt">target-role</span>=<span class="gr">Stopped</span>
-+<span class="g g-Keyword">primitive</span> small-apache apache <span class="g g-Keyword">params</span> <span class="gt">configfile</span>=<span class="gr">&quot;/etc/apache2/small.conf&quot;</span> <span class="g g-Keyword">meta</span> <span class="gt">target-role</span>=<span class="gr">Started</span>
-<span class="gi">crm(live)history# </span>diff -1 0 status <img src="/img/icons/callouts/2.png" alt="2">
---- -1
-+++ 0
-@@ -15 +14,0 @@
-- small-apache  (ocf::heartbeat:apache):        Started sle12-a
-</pre></div></div></div>
+<div class="content"></div></div>
 <div class="colist arabic"><table>
 <tr><td><img src="/img/icons/callouts/1.png" alt="1"></td><td>
 Configuration diff between two last transitions. Transitions
@@ -421,20 +330,7 @@ actions of that transition are yet to be executed. So, the status
 section of transition <em>N</em> corresponds to the configuration <em>N-1</em>.</p></div>
 <div class="listingblock">
 <div class="title">Listing 8: Full transition log<a id="Listing 8"></a></div>
-<div class="content"><div class="highlight"><pre><span></span><span class="gi">crm(live)history# </span>transition log
-<span class="gt">INFO</span>: retrieving information from cluster nodes, please wait ...
-<span class="gi">Apr 15 20:30:14 sle12-c crmd[1136]:   notice: do_state_transition: State transition S_IDLE -&gt; S_POLICY_ENGINE [ input=I_PE_CALC cause=C_FSA_INTERNAL origin=abort_transition_graph ]</span>
-<span class="gi">Apr 15 20:30:14 sle12-c stonithd[1132]:   notice: unpack_config: On loss of CCM Quorum: Ignore</span>
-<span class="gi">Apr 15 20:30:14 sle12-c pengine[1135]:   notice: unpack_config: On loss of CCM Quorum: Ignore</span>
-<span class="gi">Apr 15 20:30:14 sle12-c pengine[1135]:   notice: LogActions: Start   small-apache#011(sle12-a)</span>
-<span class="gi">Apr 15 20:30:14 sle12-c crmd[1136]:   notice: do_te_invoke: Processing graph 123 (ref=pe_calc-dc-1429122614-234) derived from /var/lib/pacemaker/pengine/pe-input-1907.bz2</span>
-<span class="gi">Apr 15 20:30:14 sle12-c crmd[1136]:   notice: te_rsc_command: Initiating action 60: start small-apache_start_0 on sle12-a</span>
-<span class="gi">Apr 15 20:30:14 sle12-c pengine[1135]:   notice: process_pe_message: Calculated Transition 123: /var/lib/pacemaker/pengine/pe-input-1907.bz2</span>
-Apr 15 20:30:14 sle12-a stonithd[1160]:   notice: unpack_config: On loss of CCM Quorum: Ignore
-Apr 15 20:30:14 sle12-a apache(small-apache)[1586]: INFO: AH00558: httpd2: Could not reliably determine the server&#39;s fully qualified domain name, using 10.2.12.51. Set the &#39;ServerName&#39; directive globally to suppress this message
-Apr 15 20:30:14 sle12-a crmd[1164]:   notice: process_lrm_event: Operation small-apache_start_0: ok (node=sle12-a, call=69, rc=0, cib-update=48, confirmed=true)
-<span class="gi">Apr 15 20:30:15 sle12-c crmd[1136]:   notice: run_graph: Transition 123 (Complete=1, Pending=0, Fired=0, Skipped=0, Incomplete=0, Source=/var/lib/pacemaker/pengine/pe-input-1907.bz2): Complete</span>
-</pre></div></div></div>
+<div class="content"></div></div>
 </div>
 </div>
 <div class="sect1">
@@ -458,13 +354,7 @@ important log parts.</p></div>
 </div>
 <div class="listingblock">
 <div class="title">Listing 9: Resource related messages<a id="Listing 9"></a></div>
-<div class="content"><div class="highlight"><pre><span></span><span class="gi">crm(live)history# </span>resource small-apache
-<span class="gi">Apr 15 20:29:59 sle12-c crmd[1136]:   notice: te_rsc_command: Initiating action 60: stop small-apache_stop_0 on sle12-a</span>
-Apr 15 20:29:59 sle12-a apache(small-apache)[1366]: INFO: Attempting graceful stop of apache PID 9155
-Apr 15 20:30:01 sle12-a apache(small-apache)[1366]: INFO: apache stopped.
-Apr 15 20:30:14 sle12-a apache(small-apache)[1586]: INFO: AH00558: httpd2: Could not reliably determine the server&#39;s fully qualified domain name, using 10.2.12.51. Set the &#39;ServerName&#39; directive globally to suppress this message
-<span class="gi">Apr 15 20:30:14 sle12-c crmd[1136]:   notice: te_rsc_command: Initiating action 60: start small-apache_start_0 on sle12-a</span>
-</pre></div></div></div>
+<div class="content"></div></div>
 <div class="paragraph"><p>Node related events are node start and stop (cluster-wise),
 node membership changes, and stonith events (aka node fence).
 We&#8217;ll refrain from showing examples of the history <span class="monospaced">node</span>
