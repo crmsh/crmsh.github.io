@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="generator" content="AsciiDoc 8.6.9">
+<meta name="generator" content="AsciiDoc 9.0.0rc2">
 <title>crmsh - News</title>
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/crm.css" type="text/css">
@@ -40,35 +40,40 @@
 </div>
 <!--TOC-->
 <div id="toc">
-<div class="toclevel1"><a href="#_releasing_crmsh_version_3_0_1">Releasing crmsh version 3.0.1</a></div>
+<div class="toclevel1"><a href="#_releasing_crmsh_version_4_3_1">Releasing crmsh version 4.3.1</a></div>
 </div>
 <div id="container">
 <div id="content">
 <h1>News</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph"><p><a href="/news/2017-07-21-release-3_0_1">2017-07-21 11:00</a></p></div>
+<div class="paragraph"><p><a href="/news/2021-06-17-release-4_3_1">2021-06-17 11:00</a></p></div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_releasing_crmsh_version_3_0_1">Releasing crmsh version 3.0.1</h2>
+<h2 id="_releasing_crmsh_version_4_3_1">Releasing crmsh version 4.3.1</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>Hello everyone!</p></div>
-<div class="paragraph"><p>I&#8217;m happy to announce the release of crmsh version 3.0.1 today. This
-is mainly a bug fix release, so no new exciting features and mainly
-fixes to the new bootstrap functionality added in 3.0.0.</p></div>
-<div class="paragraph"><p>I would also like to take the opportinity to introduce a new core
-developer for crmsh, Xin Liang! For this release he has contributed
-some of the bug fixes discovered, but he has also contributed a
-rewrite of hb_report into Python, as well as worked on improving the
-tab completion support in crmsh. I also want to recognize the hard
-work of Shiwen Zhang who initially started the work of rewriting the
-hb_report script in Python.</p></div>
-<div class="paragraph"><p>For the complete list of changes in this release, see the ChangeLog:</p></div>
+<div class="paragraph"><p>I&#8217;m happy to announce the release of crmsh version 4.3.1</p></div>
+<div class="paragraph"><p>Major changes since 4.3.0
+Features:
+  Add "crm cluster crash_test" for cluster failure simulation (#825)
+  Add ocfs2.OCFS2Manager to manage ocfs2 stage process with cluster lvm2 (#798)
+  Support setup SBD via bootstrap "sbd" stage on an existing cluster (#744)
+  Enable configuring qdevice on interactive mode (#765)
+Fixes:
+  Adjust sbd watchdog timeout when using diskless SBD with qdevice (#818)
+  Not allow property setting with an empty value (#817)
+  Keep consistent for "help &lt;sub-command&gt;" and "&lt;sub-command&gt; -h" for those using argparse (#644)
+  Sync corosync.conf before finished joining (#775)
+  Adjust qdevice configure/remove process to avoid race condition due to quorum lost (#741)
+  Walk through hb_report process under hacluster (#742)</p></div>
+<div class="paragraph"><p>There are some other changes in this release as well, see the
+ChangeLog for the complete list of changes:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-<a href="https://github.com/ClusterLabs/crmsh/blob/3.0.1/ChangeLog">https://github.com/ClusterLabs/crmsh/blob/3.0.1/ChangeLog</a>
+<a href="https://github.com/ClusterLabs/crmsh/blob/master/ChangeLog">https://github.com/ClusterLabs/crmsh/blob/master/ChangeLog</a>
 </p>
 </li>
 </ul></div>
@@ -76,37 +81,22 @@ hb_report script in Python.</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-<a href="https://github.com/ClusterLabs/crmsh/releases/tag/3.0.1">https://github.com/ClusterLabs/crmsh/releases/tag/3.0.1</a>
+<a href="https://github.com/ClusterLabs/crmsh/releases/tag/4.3.1">https://github.com/ClusterLabs/crmsh/releases/tag/4.3.1</a>
 </p>
 </li>
 </ul></div>
-<div class="paragraph"><p>This version of crmsh (or a version very close to it) is already
-available in openSUSE Tumbleweed, and packages for several popular
-Linux distributions will be available from the Stable repository at
-the OBS:</p></div>
+<div class="paragraph"><p>Development packages for openSUSE Tumbleweed
+are available from the Open Build System, here:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-<a href="http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/">http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/</a>
-</p>
-</li>
-</ul></div>
-<div class="paragraph"><p>Archives of the tagged release:</p></div>
-<div class="ulist"><ul>
-<li>
-<p>
-<a href="https://github.com/ClusterLabs/crmsh/archive/3.0.1.tar.gz">https://github.com/ClusterLabs/crmsh/archive/3.0.1.tar.gz</a>
-</p>
-</li>
-<li>
-<p>
-<a href="https://github.com/ClusterLabs/crmsh/archive/3.0.1.zip">https://github.com/ClusterLabs/crmsh/archive/3.0.1.zip</a>
+<a href="https://build.opensuse.org/package/show/network:ha-clustering:Factory/crmsh">https://build.opensuse.org/package/show/network:ha-clustering:Factory/crmsh</a>
 </p>
 </li>
 </ul></div>
 <div class="paragraph"><p>As usual, a huge thank you to all contributors and users of crmsh!</p></div>
-<div class="paragraph"><p>Cheers,
-Kristoffer</p></div>
+<div class="paragraph"><p>Regards,
+xin</p></div>
 <hr>
 <div class="ulist"><ul>
 <li>

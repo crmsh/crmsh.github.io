@@ -5,67 +5,66 @@
 <link href="http://crmsh.github.io/atom.xml" rel="self" />
 <link href="http://crmsh.github.io/" />
 <id>tag:crmsh.github.io,2014:/atom</id>
-<updated>2017-07-21T11:00:00CET</updated>
+<updated>2021-06-17T11:00:00CST</updated>
 <entry>
-<title>Releasing crmsh version 3.0.1</title>
-<id>tag:crmsh.github.io,2014:/atom::9ec70f0acb53134ae5f7f9edd0f0379325a26451</id>
-<updated>2017-07-21T11:00:00CET</updated>
-<link>http://crmsh.github.io/news/2017-07-21-release-3_0_1</link>
+<title>Releasing crmsh version 4.3.1</title>
+<id>tag:crmsh.github.io,2014:/atom::69ce001d34e914ff71012262d2a7fbec817326f2</id>
+<updated>2021-06-17T11:00:00CST</updated>
+<link>http://crmsh.github.io/news/2021-06-17-release-4_3_1</link>
 <content type="html">
 &lt;pre&gt;
 
 Hello everyone!
 
-I'm happy to announce the release of crmsh version 3.0.1 today. This
-is mainly a bug fix release, so no new exciting features and mainly
-fixes to the new bootstrap functionality added in 3.0.0.
+I'm happy to announce the release of crmsh version 4.3.1
 
-I would also like to take the opportinity to introduce a new core
-developer for crmsh, Xin Liang! For this release he has contributed
-some of the bug fixes discovered, but he has also contributed a
-rewrite of hb_report into Python, as well as worked on improving the
-tab completion support in crmsh. I also want to recognize the hard
-work of Shiwen Zhang who initially started the work of rewriting the
-hb_report script in Python.
+Major changes since 4.3.0
+Features:
+  Add &quot;crm cluster crash_test&quot; for cluster failure simulation (#825)
+  Add ocfs2.OCFS2Manager to manage ocfs2 stage process with cluster lvm2 (#798)
+  Support setup SBD via bootstrap &quot;sbd&quot; stage on an existing cluster (#744)
+  Enable configuring qdevice on interactive mode (#765)
+Fixes:
+  Adjust sbd watchdog timeout when using diskless SBD with qdevice (#818)
+  Not allow property setting with an empty value (#817)
+  Keep consistent for &quot;help &lt;sub-command&gt;&quot; and &quot;&lt;sub-command&gt; -h&quot; for those using argparse (#644)
+  Sync corosync.conf before finished joining (#775)
+  Adjust qdevice configure/remove process to avoid race condition due to quorum lost (#741)
+  Walk through hb_report process under hacluster (#742)
 
-For the complete list of changes in this release, see the ChangeLog:
+There are some other changes in this release as well, see the
+ChangeLog for the complete list of changes:
 
-* https://github.com/ClusterLabs/crmsh/blob/3.0.1/ChangeLog
+* https://github.com/ClusterLabs/crmsh/blob/master/ChangeLog
 
 The source code can be downloaded from Github:
 
-* https://github.com/ClusterLabs/crmsh/releases/tag/3.0.1
+* https://github.com/ClusterLabs/crmsh/releases/tag/4.3.1
 
-This version of crmsh (or a version very close to it) is already
-available in openSUSE Tumbleweed, and packages for several popular
-Linux distributions will be available from the Stable repository at
-the OBS:
+Development packages for openSUSE Tumbleweed
+are available from the Open Build System, here:
 
-* http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/
-
-Archives of the tagged release:
-
-* https://github.com/ClusterLabs/crmsh/archive/3.0.1.tar.gz
-* https://github.com/ClusterLabs/crmsh/archive/3.0.1.zip
+* https://build.opensuse.org/package/show/network:ha-clustering:Factory/crmsh
 
 As usual, a huge thank you to all contributors and users of crmsh!
 
-Cheers,
-Kristoffer
+
+Regards,
+xin
 
 &lt;/pre&gt;
 
 </content>
 <author>
-<name>Kristoffer Gronlund</name>
-<email>kgronlund@suse.com</email>
+<name>Xin Liang</name>
+<email>XLiang@suse.com</email>
 </author>
 </entry>
 
 <entry>
 <title>Releasing crmsh version 3.0.0</title>
 <id>tag:crmsh.github.io,2014:/atom::f560e20c029af1548af2b3c31d9590d2af43383b</id>
-<updated>2017-01-31T10:00:00CET</updated>
+<updated>2017-01-31T10:00:00CST</updated>
 <link>http://crmsh.github.io/news/2017-01-31-release-3_0_0</link>
 <content type="html">
 &lt;pre&gt;
@@ -125,7 +124,7 @@ Kristoffer
 <entry>
 <title>Releasing crmsh version 2.2.2</title>
 <id>tag:crmsh.github.io,2014:/atom::e9779f9908a4f049dd7c060dffeb173ec7f442b9</id>
-<updated>2016-09-05T19:00:00CET</updated>
+<updated>2016-09-05T19:00:00CST</updated>
 <link>http://crmsh.github.io/news/2016-09-05-release-2_2_2</link>
 <content type="html">
 &lt;pre&gt;
@@ -173,7 +172,7 @@ Kristoffer
 <entry>
 <title>Releasing crmsh version 2.3.1</title>
 <id>tag:crmsh.github.io,2014:/atom::606dc2590e85bbedea5c840659d7cfde40be4947</id>
-<updated>2016-09-02T10:00:00CET</updated>
+<updated>2016-09-02T10:00:00CST</updated>
 <link>http://crmsh.github.io/news/2016-09-02-release-2_3_1</link>
 <content type="html">
 &lt;pre&gt;
@@ -218,7 +217,7 @@ Kristoffer
 <entry>
 <title>Announcing crmsh stable release 2.1.7</title>
 <id>tag:crmsh.github.io,2014:/atom::5a0d62a7641f441baa3f1b7c33a17eeb0b19eb7f</id>
-<updated>2016-09-01T09:00:00CET</updated>
+<updated>2016-09-01T09:00:00CST</updated>
 <link>http://crmsh.github.io/news/2016-09-01-release-2_1_7</link>
 <content type="html">
 &lt;pre&gt;
@@ -276,7 +275,7 @@ Kristoffer
 <entry>
 <title>Releasing crmsh version 2.3.0</title>
 <id>tag:crmsh.github.io,2014:/atom::4bfc1c4a817ea15e418a5f64a46844de1f022a43</id>
-<updated>2016-08-12T10:30:00CET</updated>
+<updated>2016-08-12T10:30:00CST</updated>
 <link>http://crmsh.github.io/news/2016-08-12-release-2_3_0</link>
 <content type="html">
 &lt;pre&gt;
@@ -364,7 +363,7 @@ Kristoffer
 <entry>
 <title>crmsh 2.2.1 and 2.1.6 are released</title>
 <id>tag:crmsh.github.io,2014:/atom::e6d767cdd2ed7183f8dcdb2551b993869daf9881</id>
-<updated>2016-04-28T01:00:00CET</updated>
+<updated>2016-04-28T01:00:00CST</updated>
 <link>http://crmsh.github.io/news/2016-04-28-release-2_2_1</link>
 <content type="html">
 &lt;pre&gt;
@@ -449,7 +448,7 @@ Kristoffer
 <entry>
 <title>crmsh 2.2.0 is released</title>
 <id>tag:crmsh.github.io,2014:/atom::825d8489a7a363d9418a53b0b30d3d59606b2266</id>
-<updated>2016-01-15T15:00:00CET</updated>
+<updated>2016-01-15T15:00:00CST</updated>
 <link>http://crmsh.github.io/news/2016-01-15-release-2_2_0</link>
 <content type="html">
 &lt;pre&gt;
@@ -671,7 +670,7 @@ Kristoffer
 <entry>
 <title>Announcing crmsh stable release 2.1.5</title>
 <id>tag:crmsh.github.io,2014:/atom::ff6f46c101c87f313e17e85bd7fc314a97fb8af3</id>
-<updated>2016-01-12T10:00:00CET</updated>
+<updated>2016-01-12T10:00:00CST</updated>
 <link>http://crmsh.github.io/news/2016-01-12-release-2_1_5</link>
 <content type="html">
 &lt;pre&gt;
@@ -739,7 +738,7 @@ Kristoffer and Dejan
 <entry>
 <title>Getting Started translated to Japanese</title>
 <id>tag:crmsh.github.io,2014:/atom::0dc9284eb5642057136d7f2c754e699c0579fdfe</id>
-<updated>2015-05-25T13:30:00CET</updated>
+<updated>2015-05-25T13:30:00CST</updated>
 <link>http://crmsh.github.io/news/2015-05-25-getting-started-jp</link>
 <content type="html">
 &lt;pre&gt;
@@ -768,7 +767,7 @@ Kristoffer and Dejan
 <entry>
 <title>Announcing crmsh stable release 2.1.4</title>
 <id>tag:crmsh.github.io,2014:/atom::42ff35c4489d046ef8eeff7b0c1d7a75d51b5f25</id>
-<updated>2015-05-13T15:30:00CET</updated>
+<updated>2015-05-13T15:30:00CST</updated>
 <link>http://crmsh.github.io/news/2015-05-13-release-2_1_4</link>
 <content type="html">
 &lt;pre&gt;
@@ -906,7 +905,7 @@ Kristoffer and Dejan
 <entry>
 <title>Announcing crmsh stable release 2.1.3</title>
 <id>tag:crmsh.github.io,2014:/atom::a90f081a0da49e7f2f0823205d52fd2c3a09bead</id>
-<updated>2015-04-10T12:30:00CET</updated>
+<updated>2015-04-10T12:30:00CST</updated>
 <link>http://crmsh.github.io/news/2015-04-10-release-2_1_3</link>
 <content type="html">
 &lt;pre&gt;
@@ -986,7 +985,7 @@ Kristoffer and Dejan
 <entry>
 <title>Announcing crmsh release 2.1.2</title>
 <id>tag:crmsh.github.io,2014:/atom::16524eb8dfa5a3f6d2bce8a79f630b306c02b994</id>
-<updated>2015-01-26T11:05:00CET</updated>
+<updated>2015-01-26T11:05:00CST</updated>
 <link>http://crmsh.github.io/news/2015-01-26-release-2_1_2</link>
 <content type="html">
 &lt;pre&gt;
@@ -1067,7 +1066,7 @@ Kristoffer and Dejan
 <entry>
 <title>Announcing crmsh release 2.1.1</title>
 <id>tag:crmsh.github.io,2014:/atom::b620fb25c3009d60d75775b5d33d9766848b5782</id>
-<updated>2014-10-29T00:20:00CET</updated>
+<updated>2014-10-29T00:20:00CST</updated>
 <link>http://crmsh.github.io/news/2014-10-28-release-2_1_1</link>
 <content type="html">
 &lt;pre&gt;
@@ -1137,7 +1136,7 @@ Kristoffer and Dejan
 <entry>
 <title>Announcing crmsh release 2.1</title>
 <id>tag:crmsh.github.io,2014:/atom::247371a56f6ba7520505bdf67eb7d6a8d9d01a3d</id>
-<updated>2014-06-30T09:00:00CET</updated>
+<updated>2014-06-30T09:00:00CST</updated>
 <link>http://crmsh.github.io/news/2014-06-30-release-2_1</link>
 <content type="html">
 &lt;pre&gt;

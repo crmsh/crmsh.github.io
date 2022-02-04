@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="generator" content="AsciiDoc 9.0.0rc2">
-<title>crmsh - Getting Started translated to Japanese</title>
+<title>crmsh - Releasing crmsh version 4.3.1</title>
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/crm.css" type="text/css">
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -43,22 +43,53 @@
 </div>
 <div id="container">
 <div id="content">
-<h1>Getting Started translated to Japanese</h1>
+<h1>Releasing crmsh version 4.3.1</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph"><p>Many thanks to Motoharu Kubo at 3ware for offering to translate the
-<span class="monospaced">crmsh</span> documentation to Japanese!</p></div>
-<div class="paragraph"><p>The first document to be translated is the <a href="/start-guide/">Getting Started</a> guide,
-now available in Japanese at the following location:</p></div>
+<div class="paragraph"><p>Hello everyone!</p></div>
+<div class="paragraph"><p>I&#8217;m happy to announce the release of crmsh version 4.3.1</p></div>
+<div class="paragraph"><p>Major changes since 4.3.0
+Features:
+  Add "crm cluster crash_test" for cluster failure simulation (#825)
+  Add ocfs2.OCFS2Manager to manage ocfs2 stage process with cluster lvm2 (#798)
+  Support setup SBD via bootstrap "sbd" stage on an existing cluster (#744)
+  Enable configuring qdevice on interactive mode (#765)
+Fixes:
+  Adjust sbd watchdog timeout when using diskless SBD with qdevice (#818)
+  Not allow property setting with an empty value (#817)
+  Keep consistent for "help &lt;sub-command&gt;" and "&lt;sub-command&gt; -h" for those using argparse (#644)
+  Sync corosync.conf before finished joining (#775)
+  Adjust qdevice configure/remove process to avoid race condition due to quorum lost (#741)
+  Walk through hb_report process under hacluster (#742)</p></div>
+<div class="paragraph"><p>There are some other changes in this release as well, see the
+ChangeLog for the complete list of changes:</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-<a href="https://blog.3ware.co.jp/2015/05/crmsh-getting-started/">https://blog.3ware.co.jp/2015/05/crmsh-getting-started/</a>
+<a href="https://github.com/ClusterLabs/crmsh/blob/master/ChangeLog">https://github.com/ClusterLabs/crmsh/blob/master/ChangeLog</a>
 </p>
 </li>
 </ul></div>
-<div class="paragraph"><p>Thank you,
-Kristoffer and Dejan</p></div>
+<div class="paragraph"><p>The source code can be downloaded from Github:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="https://github.com/ClusterLabs/crmsh/releases/tag/4.3.1">https://github.com/ClusterLabs/crmsh/releases/tag/4.3.1</a>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Development packages for openSUSE Tumbleweed
+are available from the Open Build System, here:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="https://build.opensuse.org/package/show/network:ha-clustering:Factory/crmsh">https://build.opensuse.org/package/show/network:ha-clustering:Factory/crmsh</a>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>As usual, a huge thank you to all contributors and users of crmsh!</p></div>
+<div class="paragraph"><p>Regards,
+xin</p></div>
 </div>
 </div>
 </div>
