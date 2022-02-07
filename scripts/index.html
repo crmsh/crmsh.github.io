@@ -606,109 +606,13 @@ learn more, see <a href="http:://yaml.org/">yaml.org</a>.</p></div>
 <div class="paragraph"><p>Here is an example <span class="monospaced">main.yml</span> file which wraps the resource agent
 <span class="monospaced">ocf:heartbeat:IPaddr2</span>.</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span></span><span class="c1"># The version must be exactly 2.2, and must always be</span>
-<span class="c1"># specified in the script. If the version is missing or</span>
-<span class="c1"># is less than 2.2, the script is assumed to be a legacy</span>
-<span class="c1"># script (specified in the format used before crmsh 2.2).</span>
-<span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2.2</span>
-<span class="l l-Scalar l-Scalar-Plain">shortdesc</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Virtual IP</span>
-<span class="l l-Scalar l-Scalar-Plain">category</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Basic</span>
-<span class="l l-Scalar l-Scalar-Plain">include</span><span class="p p-Indicator">:</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">agent</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ocf:heartbeat:IPaddr2</span>
-    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">virtual-ip</span>
-    <span class="l l-Scalar l-Scalar-Plain">parameters</span><span class="p p-Indicator">:</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">id</span>
-        <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">resource</span>
-        <span class="l l-Scalar l-Scalar-Plain">required</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ip</span>
-        <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ip_address</span>
-        <span class="l l-Scalar l-Scalar-Plain">required</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">cidr_netmask</span>
-        <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">integer</span>
-        <span class="l l-Scalar l-Scalar-Plain">required</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">broadcast</span>
-        <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ip_address</span>
-        <span class="l l-Scalar l-Scalar-Plain">required</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-    <span class="l l-Scalar l-Scalar-Plain">ops</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">|</span>
-      <span class="no">op start timeout=&quot;20&quot; op stop timeout=&quot;20&quot;</span>
-      <span class="no">op monitor interval=&quot;10&quot; timeout=&quot;20&quot;</span>
-<span class="l l-Scalar l-Scalar-Plain">actions</span><span class="p p-Indicator">:</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">include</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">virtual-ip</span>
-</pre></div></div></div>
+<div class="content"></div></div>
 <div class="paragraph"><p>For a bigger example, here is the <span class="monospaced">apache</span> agent which includes
 multiple optional steps, the optional installation of packages,
 defines multiple cluster resources and potentially calls bash commands
 on each of the cluster nodes.</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span></span><span class="c1"># Copyright (C) 2009 Dejan Muhamedagic</span>
-<span class="c1"># Copyright (C) 2015 Kristoffer Gronlund</span>
-<span class="c1">#</span>
-<span class="c1"># License: GNU General Public License (GPL)</span>
-<span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2.2</span>
-<span class="l l-Scalar l-Scalar-Plain">category</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Server</span>
-<span class="l l-Scalar l-Scalar-Plain">shortdesc</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Apache Webserver</span>
-<span class="l l-Scalar l-Scalar-Plain">longdesc</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">|</span>
-  <span class="no">Configure a resource group containing a virtual IP address and</span>
-  <span class="no">an instance of the Apache web server.</span>
-
-  <span class="no">You can optionally configure a Filesystem resource which will be</span>
-  <span class="no">mounted before the web server is started.</span>
-
-  <span class="no">You can also optionally configure a database resource which will</span>
-  <span class="no">be started before the web server but after mounting the optional</span>
-  <span class="no">filesystem.</span>
-<span class="l l-Scalar l-Scalar-Plain">include</span><span class="p p-Indicator">:</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">agent</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ocf:heartbeat:apache</span>
-    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">apache</span>
-    <span class="l l-Scalar l-Scalar-Plain">longdesc</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">|</span>
-      <span class="no">The Apache configuration file specified here must be available via the</span>
-      <span class="no">same path on all cluster nodes, and Apache must be configured with</span>
-      <span class="no">mod_status enabled.  If in doubt, try running Apache manually via</span>
-      <span class="no">its init script first, and ensure http://localhost:80/server-status is</span>
-      <span class="no">accessible.</span>
-    <span class="l l-Scalar l-Scalar-Plain">ops</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">|</span>
-      <span class="no">op start timeout=&quot;40&quot;</span>
-      <span class="no">op stop timeout=&quot;60&quot;</span>
-      <span class="no">op monitor interval=&quot;10&quot; timeout=&quot;20&quot;</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">virtual-ip</span>
-    <span class="l l-Scalar l-Scalar-Plain">shortdesc</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">The IP address configured here will start before the Apache instance.</span>
-    <span class="l l-Scalar l-Scalar-Plain">parameters</span><span class="p p-Indicator">:</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">id</span>
-        <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="s">&quot;{{id}}-vip&quot;</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">filesystem</span>
-    <span class="l l-Scalar l-Scalar-Plain">shortdesc</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Optional filesystem mounted before the web server is started.</span>
-    <span class="l l-Scalar l-Scalar-Plain">required</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">script</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">database</span>
-    <span class="l l-Scalar l-Scalar-Plain">shortdesc</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Optional database started before the web server is started.</span>
-    <span class="l l-Scalar l-Scalar-Plain">required</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="l l-Scalar l-Scalar-Plain">parameters</span><span class="p p-Indicator">:</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">install</span>
-    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">boolean</span>
-    <span class="l l-Scalar l-Scalar-Plain">shortdesc</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Install and configure apache</span>
-    <span class="l l-Scalar l-Scalar-Plain">value</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="l l-Scalar l-Scalar-Plain">actions</span><span class="p p-Indicator">:</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">install</span><span class="p p-Indicator">:</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">apache2</span>
-    <span class="l l-Scalar l-Scalar-Plain">shortdesc</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Install the apache package</span>
-    <span class="l l-Scalar l-Scalar-Plain">when</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">install</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">service</span><span class="p p-Indicator">:</span>
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">apache</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">disable</span>
-    <span class="l l-Scalar l-Scalar-Plain">shortdesc</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Let cluster manage apache</span>
-    <span class="l l-Scalar l-Scalar-Plain">when</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">install</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">call</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">a2enmod status; true</span>
-    <span class="l l-Scalar l-Scalar-Plain">shortdesc</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Enable status module</span>
-    <span class="l l-Scalar l-Scalar-Plain">when</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">install</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">include</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">filesystem</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">include</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">database</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">include</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">virtual-ip</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">include</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">apache</span>
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">cib</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">|</span>
-      <span class="no">group g-{{id}}</span>
-        <span class="no">{{filesystem:id}}</span>
-        <span class="no">{{database:id}}</span>
-        <span class="no">{{virtual-ip:id}}</span>
-        <span class="no">{{id}}</span>
-</pre></div></div></div>
+<div class="content"></div></div>
 <div class="paragraph"><p>The language for referring to parameter values in <span class="monospaced">cib</span> actions is
 described below.</p></div>
 </div>
@@ -737,28 +641,10 @@ what they can do.</p></div>
 <div class="paragraph"><p>With this knowledge, we can implement <span class="monospaced">fetch.py</span> and <span class="monospaced">report.py</span>.</p></div>
 <div class="paragraph"><p><span class="monospaced">fetch.py</span>:</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python3</span>
-<span class="kn">import</span> <span class="nn">crm_script</span> <span class="kn">as</span> <span class="nn">crm</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">uptime</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/proc/uptime&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">crm</span><span class="o">.</span><span class="n">exit_ok</span><span class="p">(</span><span class="n">uptime</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="n">crm</span><span class="o">.</span><span class="n">exit_fail</span><span class="p">(</span><span class="s2">&quot;Couldn&#39;t open /proc/uptime: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">e</span><span class="p">))</span>
-</pre></div></div></div>
+<div class="content"></div></div>
 <div class="paragraph"><p><span class="monospaced">report.py</span>:</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python3</span>
-<span class="kn">import</span> <span class="nn">crm_script</span> <span class="kn">as</span> <span class="nn">crm</span>
-<span class="n">show_all</span> <span class="o">=</span> <span class="n">crm</span><span class="o">.</span><span class="n">is_true</span><span class="p">(</span><span class="n">crm</span><span class="o">.</span><span class="n">param</span><span class="p">(</span><span class="s1">&#39;show_all&#39;</span><span class="p">))</span>
-<span class="n">uptimes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">crm</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
-<span class="n">max_uptime</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">0</span>
-<span class="k">for</span> <span class="n">host</span><span class="p">,</span> <span class="n">uptime</span> <span class="ow">in</span> <span class="n">uptimes</span><span class="p">:</span>
-    <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">uptime</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">max_uptime</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
-        <span class="n">max_uptime</span> <span class="o">=</span> <span class="n">host</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">uptime</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">show_all</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Uptimes: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">uptimes</span><span class="p">)))</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Longest uptime is </span><span class="si">%s</span><span class="s2"> seconds on host </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">max_uptime</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">max_uptime</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-</pre></div></div></div>
+<div class="content"></div></div>
 <div class="paragraph"><p>See below for more details on the helper library <span class="monospaced">crm_script</span>.</p></div>
 <div class="paragraph"><p>Save the scripts as executable files in the same directory as the
 <span class="monospaced">main.yml</span> file.</p></div>
@@ -777,13 +663,7 @@ following command:</p></div>
 </div></div>
 <div class="paragraph"><p>Example output:</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span></span><span class="c1"># crm script run check-uptime</span>
-INFO: Check uptime of nodes
-INFO: Nodes: ha-three, ha-one
-OK: Fetch uptimes
-OK: Report uptime
-Longest uptime is <span class="m">161054</span>.04 seconds on host ha-one
-</pre></div></div></div>
+<div class="content"></div></div>
 <div class="paragraph"><p>To see if the <span class="monospaced">show_all</span> parameter works as intended, run the
 following:</p></div>
 <div class="literalblock">
@@ -792,14 +672,7 @@ following:</p></div>
 </div></div>
 <div class="paragraph"><p>Example output:</p></div>
 <div class="listingblock">
-<div class="content"><div class="highlight"><pre><span></span><span class="c1"># crm script run check-uptime show_all=yes</span>
-INFO: Check uptime of nodes
-INFO: Nodes: ha-three, ha-one
-OK: Fetch uptimes
-OK: Report uptime
-Uptimes: ha-one: <span class="m">161069</span>.83, ha-three: <span class="m">159950</span>.38
-Longest uptime is <span class="m">161069</span>.83 seconds on host ha-one
-</pre></div></div></div>
+<div class="content"></div></div>
 </div>
 <div class="sect2">
 <h3 id="_remote_permissions">Remote permissions</h3>
