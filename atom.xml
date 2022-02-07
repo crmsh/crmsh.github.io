@@ -19,18 +19,30 @@ Hello everyone!
 I'm happy to announce the release of crmsh version 4.3.1
 
 Major changes since 4.3.0
+
 Features:
-  Add &quot;crm cluster crash_test&quot; for cluster failure simulation (#825)
-  Add ocfs2.OCFS2Manager to manage ocfs2 stage process with cluster lvm2 (#798)
-  Support setup SBD via bootstrap &quot;sbd&quot; stage on an existing cluster (#744)
-  Enable configuring qdevice on interactive mode (#765)
+  
+* Add &quot;crm cluster crash_test&quot; for cluster failure simulation (#825)
+
+* Add ocfs2.OCFS2Manager to manage ocfs2 stage process with cluster lvm2 (#798)
+  
+* Support setup SBD via bootstrap &quot;sbd&quot; stage on an existing cluster (#744)
+
+* Enable configuring qdevice on interactive mode (#765)
+
 Fixes:
-  Adjust sbd watchdog timeout when using diskless SBD with qdevice (#818)
-  Not allow property setting with an empty value (#817)
-  Keep consistent for &quot;help &lt;sub-command&gt;&quot; and &quot;&lt;sub-command&gt; -h&quot; for those using argparse (#644)
-  Sync corosync.conf before finished joining (#775)
-  Adjust qdevice configure/remove process to avoid race condition due to quorum lost (#741)
-  Walk through hb_report process under hacluster (#742)
+
+* Adjust sbd watchdog timeout when using diskless SBD with qdevice (#818)
+
+* Not allow property setting with an empty value (#817)
+
+* Keep consistent for &quot;help &lt;sub-command&gt;&quot; and &quot;&lt;sub-command&gt; -h&quot; for those using argparse (#644)
+
+* Sync corosync.conf before finished joining (#775)
+
+* Adjust qdevice configure/remove process to avoid race condition due to quorum lost (#741)
+
+* Walk through hb_report process under hacluster (#742)
 
 There are some other changes in this release as well, see the
 ChangeLog for the complete list of changes:
