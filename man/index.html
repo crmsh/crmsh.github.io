@@ -83,8 +83,6 @@
 <div class="toclevel3"><a href="#cmdhelp_script_show">show</a></div>
 <div class="toclevel3"><a href="#cmdhelp_script_verify">verify</a></div>
 <div class="toclevel2"><a href="#cmdhelp_corosync">corosync</a></div>
-<div class="toclevel3"><a href="#cmdhelp_corosync_add-node">add-node</a></div>
-<div class="toclevel3"><a href="#cmdhelp_corosync_del-node">del-node</a></div>
 <div class="toclevel3"><a href="#cmdhelp_corosync_diff">diff</a></div>
 <div class="toclevel3"><a href="#cmdhelp_corosync_edit">edit</a></div>
 <div class="toclevel3"><a href="#cmdhelp_corosync_get">get</a></div>
@@ -144,11 +142,9 @@
 <div class="toclevel3"><a href="#cmdhelp_node_fence">fence</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_maintenance">maintenance</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_online">online</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_ready">ready</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_server">server</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_show">show</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_standby">standby</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_status-attr">status-attr</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_utilization">utilization</a></div>
 <div class="toclevel2"><a href="#cmdhelp_site">site</a></div>
 <div class="toclevel3"><a href="#cmdhelp_site_ticket">ticket</a></div>
@@ -1562,11 +1558,6 @@ verify the general system health and detect potential problems.</p></div>
 </li>
 <li>
 <p>
-<span class="monospaced">--no-overwrite-sshkey</span>: Avoid "/root/.ssh/id_rsa" overwrite if "-y" option is used (False by default; Deprecated)
-</p>
-</li>
-<li>
-<p>
 <span class="monospaced">--use-ssh-agent</span>: Use an existing key from ssh-agent instead of creating new key pairs
 </p>
 </li>
@@ -1576,27 +1567,17 @@ verify the general system health and detect potential problems.</p></div>
 <div class="ulist"><ul>
 <li>
 <p>
-<span class="monospaced">-i IF, --interface IF</span>: Bind to IP address on interface IF. Use -i second time for second interface
+<span class="monospaced">-i IF, --interface IF</span>: Bind to IP address on interface IF. Allowed value is nic name or IP address. If a nic name is provided, the first IP of that nic will be used. Use multiple -i for more links. Note: Only one link is allowed for the non knet transport type
 </p>
 </li>
 <li>
 <p>
-<span class="monospaced">-u, --unicast</span>: Configure corosync to communicate over unicast(udpu). This is the default transport type
-</p>
-</li>
-<li>
-<p>
-<span class="monospaced">-U, --multicast</span>: Configure corosync to communicate over multicast. Default is unicast
+<span class="monospaced">-t TRANSPORT, --transport TRANSPORT</span>: The transport mechanism. Allowed value is knet(kronosnet)/udpu(unicast)/udp(multicast). Default is knet
 </p>
 </li>
 <li>
 <p>
 <span class="monospaced">-A IP, --admin-ip IP</span>: Configure IP address as an administration virtual IP
-</p>
-</li>
-<li>
-<p>
-<span class="monospaced">-M, --multi-heartbeats</span>: Configure corosync with second heartbeat line
 </p>
 </li>
 <li>
@@ -1678,8 +1659,6 @@ verify the general system health and detect potential problems.</p></div>
     sbd         Configure SBD (requires -s &lt;dev&gt;)
     cluster     Bring the cluster online
     ocfs2       Configure OCFS2 (requires -o &lt;dev&gt;) NOTE: this is a Technical Preview
-    vgfs        Create volume group and filesystem (ocfs2 template only,
-                    requires -o &lt;dev&gt;) NOTE: this stage is an alias of ocfs2 stage
     admin       Create administration virtual IP (optional)
     qdevice     Configure qdevice and qnetd
 
@@ -1756,11 +1735,6 @@ Examples:
 </li>
 <li>
 <p>
-<span class="monospaced">-w WATCHDOG, --watchdog WATCHDOG</span>: Use the given watchdog device
-</p>
-</li>
-<li>
-<p>
 <span class="monospaced">--use-ssh-agent</span>: Use an existing key from ssh-agent instead of creating new key pairs
 </p>
 </li>
@@ -1775,7 +1749,7 @@ Examples:
 </li>
 <li>
 <p>
-<span class="monospaced">-i IF, --interface IF</span>: Bind to IP address on interface IF. Use -i second time for second interface
+<span class="monospaced">-i IF, --interface IF</span>: Bind to IP address on interface IF. Allowed value is nic name or IP address. If a nic name is provided, the first IP of that nic will be used. Use multiple -i for more links. Note: Only one link is allowed for the non knet transport type
 </p>
 </li>
 </ul></div>
@@ -2132,29 +2106,6 @@ if provided the same list of parameter values.</p></div>
 This level provides commands for editing and managing the corosync
 configuration.</p></div>
 <div class="sect3">
-<h4 id="cmdhelp_corosync_add-node"><span class="monospaced">add-node</span></h4>
-<div class="paragraph"><p>Adds a node to the corosync configuration. This is used with the <span class="monospaced">udpu</span>
-type configuration in corosync.</p></div>
-<div class="paragraph"><p>A nodeid for the added node is generated automatically.</p></div>
-<div class="paragraph"><p>Note that this command assumes that only a single ring is used, and
-sets only the address for ring0.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>add-node &lt;addr&gt; [name]</pre>
-</div></div>
-</div>
-<div class="sect3">
-<h4 id="cmdhelp_corosync_del-node"><span class="monospaced">del-node</span></h4>
-<div class="paragraph"><p>Removes a node from the corosync configuration. The argument given is
-the <span class="monospaced">ring0_addr</span> address set in the configuration file.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>del-node &lt;addr&gt;</pre>
-</div></div>
-</div>
-<div class="sect3">
 <h4 id="cmdhelp_corosync_diff"><span class="monospaced">diff</span></h4>
 <div class="paragraph"><p>Diffs the corosync configurations on different nodes. If no nodes are
 given as arguments, the corosync configurations on all nodes in the
@@ -2410,9 +2361,8 @@ of available providers.</p></div>
 <h4 id="cmdhelp_ra_info"><span class="monospaced">info</span> (<span class="monospaced">meta</span>)</h4>
 <div class="paragraph"><p>Show the meta-data of a resource agent type. This is where users
 can find information on how to use a resource agent. It is also
-possible to get information from some programs: <span class="monospaced">pengine</span>,
-<span class="monospaced">crmd</span>, <span class="monospaced">cib</span>, and <span class="monospaced">stonithd</span>. Just specify the program name
-instead of an RA.</p></div>
+possible to use the <span class="monospaced">pacemaker-fenced</span> type to get the corresponding
+meta-data information.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -2425,7 +2375,7 @@ info &lt;type&gt; &lt;class&gt; [&lt;provider&gt;] (obsolete)</pre>
 <pre>info apache
 info ocf:pacemaker:Dummy
 info stonith:ipmilan
-info pengine</pre>
+info pacemaker-fenced</pre>
 </div></div>
 </div>
 <div class="sect3">
@@ -2934,10 +2884,28 @@ property from them.</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_node_online"><span class="monospaced">online</span></h4>
-<div class="paragraph"><p>See "crm node help online" or "crm node online --help"</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>online [--all | &lt;node&gt;... ]</pre>
+</div></div>
+<div class="paragraph"><p>Specify node(s) on which to online node. If no nodes are specified, online node on the local node. If --all is specified, online node on all nodes.</p></div>
+<div class="paragraph"><p>Options:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<span class="monospaced">-h, --help</span>: Show this help message
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">--all</span>: To online node on all nodes
+</p>
+</li>
+</ul></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_node_ready"><span class="monospaced">ready</span></h4>
+<h4 id="_span_class_monospaced_ready_span"><span class="monospaced">ready</span></h4>
 <div class="paragraph"><p>Set the node&#8217;s maintenance status to <span class="monospaced">off</span>. The node should be
 now again fully operational and capable of running resource
 operations.</p></div>
@@ -2973,10 +2941,29 @@ nodes are shown.</p></div>
 </div>
 <div class="sect3">
 <h4 id="cmdhelp_node_standby"><span class="monospaced">standby</span></h4>
-<div class="paragraph"><p>See "crm node help standby" or "crm node standby --help"</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>standby [--all | &lt;node&gt;... ] [lifetime]</pre>
+</div></div>
+<div class="paragraph"><p>Specify node(s) on which to standby node. If no nodes are specified, standby node on the local node. If --all is specified, standby node on all nodes.</p></div>
+<div class="paragraph"><p>Additionally, you may specify a lifetime for the standby---if set to "reboot", the node will be back online once it reboots. "forever" will keep the node in standby after reboot. The life time defaults to "forever".</p></div>
+<div class="paragraph"><p>Options:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<span class="monospaced">-h, --help</span>: Show this help message
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">--all</span>: To standby node on all nodes
+</p>
+</li>
+</ul></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_node_status-attr"><span class="monospaced">status-attr</span></h4>
+<h4 id="_span_class_monospaced_status_attr_span"><span class="monospaced">status-attr</span></h4>
 <div class="paragraph"><p>Edit node attributes which are in the CIB status section, i.e.,
 attributes which hold properties of a more volatile nature. One
 typical example is attribute generated by the <span class="monospaced">pingd</span> utility.</p></div>
@@ -4350,8 +4337,7 @@ primitive A ocf:pacemaker:Dummy \
 <h4 id="cmdhelp_configure_property"><span class="monospaced">property</span></h4>
 <div class="paragraph"><p>Set cluster configuration properties. To list the
 available cluster configuration properties, use the
-<a href="#cmdhelp_ra_info"><span class="monospaced">ra info</span></a> command with <span class="monospaced">pengine</span>, <span class="monospaced">crmd</span>,
-<span class="monospaced">cib</span> and <span class="monospaced">stonithd</span> as arguments.
+<a href="#cmdhelp_ra_info"><span class="monospaced">ra info</span></a> command with <span class="monospaced">cluster</span> as arguments.
 When setting the <span class="monospaced">maintenance-mode</span> property, it will
 inform the user if there are nodes or resources that
 have the <span class="monospaced">maintenance</span> property.</p></div>
