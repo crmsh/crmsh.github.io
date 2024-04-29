@@ -68,14 +68,18 @@
 <div class="toclevel3"><a href="#cmdhelp_cluster_geo_init">geo_init</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_geo_init_arbitrator">geo_init_arbitrator</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_geo_join">geo_join</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_health">health</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_init">init</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_join">join</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_remove">remove</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_crash_test">crash_test</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_restart">restart</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_rename">rename</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_run">run</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_start">start</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_status">status</a></div>
 <div class="toclevel3"><a href="#cmdhelp_cluster_stop">stop</a></div>
+<div class="toclevel3"><a href="#cmdhelp_cluster_wait_for_startup">wait_for_startup</a></div>
 <div class="toclevel2"><a href="#cmdhelp_script">script</a></div>
 <div class="toclevel3"><a href="#cmdhelp_script_json">json</a></div>
 <div class="toclevel3"><a href="#cmdhelp_script_list">list</a></div>
@@ -144,9 +148,11 @@
 <div class="toclevel3"><a href="#cmdhelp_node_fence">fence</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_maintenance">maintenance</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_online">online</a></div>
+<div class="toclevel3"><a href="#cmdhelp_node_ready">ready</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_server">server</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_show">show</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_standby">standby</a></div>
+<div class="toclevel3"><a href="#cmdhelp_node_status-attr">status-attr</a></div>
 <div class="toclevel3"><a href="#cmdhelp_node_utilization">utilization</a></div>
 <div class="toclevel2"><a href="#cmdhelp_site">site</a></div>
 <div class="toclevel3"><a href="#cmdhelp_site_ticket">ticket</a></div>
@@ -1499,7 +1505,7 @@ diff /etc/resolv.conf --checksum</pre>
 </ul></div>
 </div>
 <div class="sect3">
-<h4 id="_span_class_monospaced_health_span"><span class="monospaced">health</span></h4>
+<h4 id="cmdhelp_cluster_health"><span class="monospaced">health</span></h4>
 <div class="paragraph"><p>Runs a larger set of tests and queries on all nodes in the cluster to
 verify the general system health and detect potential problems.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -1905,7 +1911,7 @@ For each --kill-* testcase, report directory: /var/lib/crmsh/crash_test</pre>
 </ul></div>
 </div>
 <div class="sect3">
-<h4 id="_span_class_monospaced_rename_span"><span class="monospaced">rename</span></h4>
+<h4 id="cmdhelp_cluster_rename"><span class="monospaced">rename</span></h4>
 <div class="paragraph"><p>Rename the cluster name</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -1953,7 +1959,7 @@ run "ls" node1 node2</pre>
 </ul></div>
 </div>
 <div class="sect3">
-<h4 id="_span_class_monospaced_status_span"><span class="monospaced">status</span></h4>
+<h4 id="cmdhelp_cluster_status"><span class="monospaced">status</span></h4>
 <div class="paragraph"><p>Reports the status for the cluster messaging layer on the local
 node.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -1985,7 +1991,7 @@ node.</p></div>
 </ul></div>
 </div>
 <div class="sect3">
-<h4 id="_span_class_monospaced_wait_for_startup_span"><span class="monospaced">wait_for_startup</span></h4>
+<h4 id="cmdhelp_cluster_wait_for_startup"><span class="monospaced">wait_for_startup</span></h4>
 <div class="paragraph"><p>Mostly useful in scripts or automated workflows, this command will
 attempt to connect to the local cluster node repeatedly. The command
 will keep trying until the cluster node responds, or the <span class="monospaced">timeout</span>
@@ -2953,7 +2959,7 @@ property from them.</p></div>
 </ul></div>
 </div>
 <div class="sect3">
-<h4 id="_span_class_monospaced_ready_span"><span class="monospaced">ready</span></h4>
+<h4 id="cmdhelp_node_ready"><span class="monospaced">ready</span></h4>
 <div class="paragraph"><p>Set the node&#8217;s maintenance status to <span class="monospaced">off</span>. The node should be
 now again fully operational and capable of running resource
 operations.</p></div>
@@ -3011,7 +3017,7 @@ nodes are shown.</p></div>
 </ul></div>
 </div>
 <div class="sect3">
-<h4 id="_span_class_monospaced_status_attr_span"><span class="monospaced">status-attr</span></h4>
+<h4 id="cmdhelp_node_status-attr"><span class="monospaced">status-attr</span></h4>
 <div class="paragraph"><p>Edit node attributes which are in the CIB status section, i.e.,
 attributes which hold properties of a more volatile nature. One
 typical example is attribute generated by the <span class="monospaced">pingd</span> utility.</p></div>
