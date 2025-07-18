@@ -40,232 +40,241 @@
 </div>
 <!--TOC-->
 <div id="toc">
-<div class="toclevel1"><a href="#topics_Description">Program description</a></div>
-<div class="toclevel1"><a href="#topics_CommandLine">Command line options</a></div>
-<div class="toclevel1"><a href="#topics_Introduction">Introduction</a></div>
-<div class="toclevel2"><a href="#topics_Introduction_Interface">User interface</a></div>
-<div class="toclevel2"><a href="#topics_Introduction_Completion">Tab completion</a></div>
-<div class="toclevel2"><a href="#topics_Introduction_Shorthand">Shorthand syntax</a></div>
-<div class="toclevel1"><a href="#topics_Features">Features</a></div>
-<div class="toclevel2"><a href="#topics_Features_Shadows">Shadow CIB usage</a></div>
-<div class="toclevel2"><a href="#topics_Features_Checks">Configuration semantic checks</a></div>
-<div class="toclevel2"><a href="#topics_Features_Templates">Configuration templates</a></div>
-<div class="toclevel2"><a href="#topics_Features_Testing">Resource testing</a></div>
-<div class="toclevel2"><a href="#topics_Features_Security">Access Control Lists (ACL)</a></div>
-<div class="toclevel2"><a href="#topics_Features_Resourcesets">Syntax: Resource sets</a></div>
-<div class="toclevel2"><a href="#topics_Features_AttributeListReferences">Syntax: Attribute list references</a></div>
-<div class="toclevel2"><a href="#topics_Features_AttributeReferences">Syntax: Attribute references</a></div>
-<div class="toclevel2"><a href="#topics_Syntax_RuleExpressions">Syntax: Rule expressions</a></div>
-<div class="toclevel1"><a href="#topics_Lifetime">Lifetime parameter format</a></div>
-<div class="toclevel1"><a href="#topics_Reference">Command reference</a></div>
-<div class="toclevel3"><a href="#cmdhelp_root_status">status</a></div>
-<div class="toclevel3"><a href="#cmdhelp_root_verify">verify</a></div>
-<div class="toclevel2"><a href="#cmdhelp_cluster">cluster</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cluster_copy">copy</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cluster_diff">diff</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cluster_disable">disable</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cluster_enable">enable</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cluster_geo_init">geo_init</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cluster_geo_init_arbitrator">geo_init_arbitrator</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cluster_geo_join">geo_join</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cluster_health">health</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cluster_init">init</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cluster_join">join</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cluster_remove">remove</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cluster_crash_test">crash_test</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cluster_restart">restart</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cluster_rename">rename</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cluster_run">run</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cluster_start">start</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cluster_status">status</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cluster_stop">stop</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cluster_wait_for_startup">wait_for_startup</a></div>
-<div class="toclevel2"><a href="#cmdhelp_script">script</a></div>
-<div class="toclevel3"><a href="#cmdhelp_script_json">json</a></div>
-<div class="toclevel3"><a href="#cmdhelp_script_list">list</a></div>
-<div class="toclevel3"><a href="#cmdhelp_script_run">run</a></div>
-<div class="toclevel3"><a href="#cmdhelp_script_show">show</a></div>
-<div class="toclevel3"><a href="#cmdhelp_script_verify">verify</a></div>
-<div class="toclevel2"><a href="#cmdhelp_corosync">corosync</a></div>
-<div class="toclevel3"><a href="#cmdhelp_corosync_diff">diff</a></div>
-<div class="toclevel3"><a href="#cmdhelp_corosync_edit">edit</a></div>
-<div class="toclevel3"><a href="#cmdhelp_corosync_get">get</a></div>
-<div class="toclevel3"><a href="#cmdhelp_corosync_log">log</a></div>
-<div class="toclevel3"><a href="#cmdhelp_corosync_pull">pull</a></div>
-<div class="toclevel3"><a href="#cmdhelp_corosync_push">push</a></div>
-<div class="toclevel3"><a href="#cmdhelp_corosync_reload">reload</a></div>
-<div class="toclevel3"><a href="#cmdhelp_corosync_set">set</a></div>
-<div class="toclevel3"><a href="#cmdhelp_corosync_show">show</a></div>
-<div class="toclevel3"><a href="#cmdhelp_corosync_status">status</a></div>
-<div class="toclevel2"><a href="#cmdhelp_cib">cib</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cib_cibstatus">cibstatus</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cib_commit">commit</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cib_delete">delete</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cib_diff">diff</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cib_import">import</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cib_list">list</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cib_new">new</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cib_reset">reset</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cib_use">use</a></div>
-<div class="toclevel2"><a href="#cmdhelp_ra">ra</a></div>
-<div class="toclevel3"><a href="#cmdhelp_ra_classes">classes</a></div>
-<div class="toclevel3"><a href="#cmdhelp_ra_info">info</a></div>
-<div class="toclevel3"><a href="#cmdhelp_ra_list">list</a></div>
-<div class="toclevel3"><a href="#cmdhelp_ra_providers">providers</a></div>
-<div class="toclevel3"><a href="#cmdhelp_ra_validate">validate</a></div>
-<div class="toclevel2"><a href="#cmdhelp_resource">resource</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_ban">ban</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_cleanup">cleanup</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_clear">clear</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_constraints">constraints</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_demote">demote</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_failcount">failcount</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_locate">locate</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_maintenance">maintenance</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_manage">manage</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_meta">meta</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_move">move</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_operations">operations</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_param">param</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_promote">promote</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_refresh">refresh</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_restart">restart</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_scores">scores</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_secret">secret</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_start">start</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_status">status</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_stop">stop</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_trace">trace</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_unmanage">unmanage</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_untrace">untrace</a></div>
-<div class="toclevel3"><a href="#cmdhelp_resource_utilization">utilization</a></div>
-<div class="toclevel2"><a href="#cmdhelp_node">node</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_attribute">attribute</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_clearstate">clearstate</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_delete">delete</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_fence">fence</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_maintenance">maintenance</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_online">online</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_ready">ready</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_server">server</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_show">show</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_standby">standby</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_status-attr">status-attr</a></div>
-<div class="toclevel3"><a href="#cmdhelp_node_utilization">utilization</a></div>
-<div class="toclevel2"><a href="#cmdhelp_site">site</a></div>
-<div class="toclevel3"><a href="#cmdhelp_site_ticket">ticket</a></div>
-<div class="toclevel2"><a href="#cmdhelp_options">options</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_add-quotes">add-quotes</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_check-frequency">check-frequency</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_check-mode">check-mode</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_colorscheme">colorscheme</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_editor">editor</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_manage-children">manage-children</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_output">output</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_pager">pager</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_reset">reset</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_save">save</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_set">set</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_show">show</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_skill-level">skill-level</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_sort-elements">sort-elements</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_user">user</a></div>
-<div class="toclevel3"><a href="#cmdhelp_options_wait">wait</a></div>
-<div class="toclevel2"><a href="#cmdhelp_configure">configure</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_acl_target">acl_target</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_alert">alert</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_bundle">bundle</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_cib">cib</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_cibstatus">cibstatus</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_clone">clone</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_colocation">colocation</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_commit">commit</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_default-timeouts">default-timeouts</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_delete">delete</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_edit">edit</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_erase">erase</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_fencing_topology">fencing_topology</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_filter">filter</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_get_property">get_property</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_graph">graph</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_group">group</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_load">load</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_location">location</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_modgroup">modgroup</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_monitor">monitor</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_ms">ms</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_node">node</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_op_defaults">op_defaults</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_order">order</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_primitive">primitive</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_property">property</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_ptest">ptest</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_refresh">refresh</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_rename">rename</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_role">role</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_rsc_defaults">rsc_defaults</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_rsc_template">rsc_template</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_rsc_ticket">rsc_ticket</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_rsctest">rsctest</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_save">save</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_schema">schema</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_set">set</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_show">show</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_tag">tag</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_template">template</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_upgrade">upgrade</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_user">user</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_validate_all">validate_all</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_verify">verify</a></div>
-<div class="toclevel3"><a href="#cmdhelp_configure_xml">xml</a></div>
-<div class="toclevel2"><a href="#cmdhelp_template">template</a></div>
-<div class="toclevel3"><a href="#cmdhelp_template_apply">apply</a></div>
-<div class="toclevel3"><a href="#cmdhelp_template_delete">delete</a></div>
-<div class="toclevel3"><a href="#cmdhelp_template_edit">edit</a></div>
-<div class="toclevel3"><a href="#cmdhelp_template_list">list</a></div>
-<div class="toclevel3"><a href="#cmdhelp_template_load">load</a></div>
-<div class="toclevel3"><a href="#cmdhelp_template_new">new</a></div>
-<div class="toclevel3"><a href="#cmdhelp_template_show">show</a></div>
-<div class="toclevel2"><a href="#cmdhelp_cibstatus">cibstatus</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cibstatus_load">load</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cibstatus_node">node</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cibstatus_op">op</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cibstatus_origin">origin</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cibstatus_quorum">quorum</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cibstatus_run">run</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cibstatus_save">save</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cibstatus_show">show</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cibstatus_simulate">simulate</a></div>
-<div class="toclevel3"><a href="#cmdhelp_cibstatus_ticket">ticket</a></div>
-<div class="toclevel2"><a href="#cmdhelp_assist">assist</a></div>
-<div class="toclevel3"><a href="#cmdhelp_assist_template">template</a></div>
-<div class="toclevel3"><a href="#cmdhelp_assist_weak-bond">weak-bond</a></div>
-<div class="toclevel2"><a href="#cmdhelp_maintenance">maintenance</a></div>
-<div class="toclevel3"><a href="#cmdhelp_maintenance_action">action</a></div>
-<div class="toclevel3"><a href="#cmdhelp_maintenance_off">off</a></div>
-<div class="toclevel3"><a href="#cmdhelp_maintenance_on">on</a></div>
-<div class="toclevel2"><a href="#cmdhelp_history">history</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_detail">detail</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_diff">diff</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_events">events</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_exclude">exclude</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_graph">graph</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_info">info</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_latest">latest</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_limit">limit</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_log">log</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_node">node</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_peinputs">peinputs</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_refresh">refresh</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_resource">resource</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_session">session</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_setnodes">setnodes</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_show">show</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_source">source</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_transition">transition</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_transitions">transitions</a></div>
-<div class="toclevel3"><a href="#cmdhelp_history_wdiff">wdiff</a></div>
-<div class="toclevel3"><a href="#cmdhelp_root_report">report</a></div>
+<div class="toclevel1"><a href="#topics.Description">Program description</a></div>
+<div class="toclevel1"><a href="#topics.CommandLine">Command line options</a></div>
+<div class="toclevel1"><a href="#topics.Introduction">Introduction</a></div>
+<div class="toclevel2"><a href="#topics.Introduction.Interface">User interface</a></div>
+<div class="toclevel2"><a href="#topics.Introduction.Completion">Tab completion</a></div>
+<div class="toclevel2"><a href="#topics.Introduction.Shorthand">Shorthand syntax</a></div>
+<div class="toclevel1"><a href="#topics.Features">Features</a></div>
+<div class="toclevel2"><a href="#topics.Features.Shadows">Shadow CIB usage</a></div>
+<div class="toclevel2"><a href="#topics.Features.Checks">Configuration semantic checks</a></div>
+<div class="toclevel2"><a href="#topics.Features.Templates">Configuration templates</a></div>
+<div class="toclevel2"><a href="#topics.Features.Testing">Resource testing</a></div>
+<div class="toclevel2"><a href="#topics.Features.Security">Access Control Lists (ACL)</a></div>
+<div class="toclevel2"><a href="#topics.Features.Resourcesets">Syntax: Resource sets</a></div>
+<div class="toclevel2"><a href="#topics.Features.AttributeListReferences">Syntax: Attribute list references</a></div>
+<div class="toclevel2"><a href="#topics.Features.AttributeReferences">Syntax: Attribute references</a></div>
+<div class="toclevel2"><a href="#topics.Syntax.RuleExpressions">Syntax: Rule expressions</a></div>
+<div class="toclevel1"><a href="#topics.Lifetime">Lifetime parameter format</a></div>
+<div class="toclevel1"><a href="#topics.Reference">Command reference</a></div>
+<div class="toclevel3"><a href="#cmdhelp.root.status">status</a></div>
+<div class="toclevel3"><a href="#cmdhelp.root.verify">verify</a></div>
+<div class="toclevel2"><a href="#cmdhelp.cluster">cluster</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cluster.copy">copy</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cluster.diff">diff</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cluster.disable">disable</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cluster.enable">enable</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cluster.geo_init">geo_init</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cluster.geo_init_arbitrator">geo_init_arbitrator</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cluster.geo_join">geo_join</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cluster.health">health</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cluster.init">init</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cluster.join">join</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cluster.remove">remove</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cluster.crash_test">crash_test</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cluster.restart">restart</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cluster.rename">rename</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cluster.run">run</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cluster.start">start</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cluster.status">status</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cluster.stop">stop</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cluster.wait_for_startup">wait_for_startup</a></div>
+<div class="toclevel2"><a href="#cmdhelp.script">script</a></div>
+<div class="toclevel3"><a href="#cmdhelp.script.json">json</a></div>
+<div class="toclevel3"><a href="#cmdhelp.script.list">list</a></div>
+<div class="toclevel3"><a href="#cmdhelp.script.run">run</a></div>
+<div class="toclevel3"><a href="#cmdhelp.script.show">show</a></div>
+<div class="toclevel3"><a href="#cmdhelp.script.verify">verify</a></div>
+<div class="toclevel2"><a href="#cmdhelp.corosync">corosync</a></div>
+<div class="toclevel3"><a href="#cmdhelp.corosync.diff">diff</a></div>
+<div class="toclevel3"><a href="#cmdhelp.corosync.edit">edit</a></div>
+<div class="toclevel3"><a href="#cmdhelp.corosync.get">get</a></div>
+<div class="toclevel3"><a href="#cmdhelp.corosync.log">log</a></div>
+<div class="toclevel3"><a href="#cmdhelp.corosync.pull">pull</a></div>
+<div class="toclevel3"><a href="#cmdhelp.corosync.push">push</a></div>
+<div class="toclevel3"><a href="#cmdhelp.corosync.reload">reload</a></div>
+<div class="toclevel3"><a href="#cmdhelp.corosync.set">set</a></div>
+<div class="toclevel3"><a href="#cmdhelp.corosync.show">show</a></div>
+<div class="toclevel3"><a href="#cmdhelp.corosync.status">status</a></div>
+<div class="toclevel3"><a href="#cmdhelp.corosync.link">link</a></div>
+<div class="toclevel3"><a href="#cmdhelp.corosync.link.show">link_show</a></div>
+<div class="toclevel3"><a href="#cmdhelp.corosync.link.add">link_add</a></div>
+<div class="toclevel3"><a href="#cmdhelp.corosync.link.update">link_update</a></div>
+<div class="toclevel3"><a href="#cmdhelp.corosync.link.remove">link_remove</a></div>
+<div class="toclevel2"><a href="#cmdhelp.cib">cib</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cib.cibstatus">cibstatus</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cib.commit">commit</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cib.delete">delete</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cib.diff">diff</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cib.import">import</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cib.list">list</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cib.new">new</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cib.reset">reset</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cib.use">use</a></div>
+<div class="toclevel2"><a href="#cmdhelp.ra">ra</a></div>
+<div class="toclevel3"><a href="#cmdhelp.ra.classes">classes</a></div>
+<div class="toclevel3"><a href="#cmdhelp.ra.info">info</a></div>
+<div class="toclevel3"><a href="#cmdhelp.ra.list">list</a></div>
+<div class="toclevel3"><a href="#cmdhelp.ra.providers">providers</a></div>
+<div class="toclevel3"><a href="#cmdhelp.ra.validate">validate</a></div>
+<div class="toclevel2"><a href="#cmdhelp.resource">resource</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.ban">ban</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.cleanup">cleanup</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.clear">clear</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.constraints">constraints</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.demote">demote</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.failcount">failcount</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.locate">locate</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.maintenance">maintenance</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.manage">manage</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.meta">meta</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.move">move</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.operations">operations</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.param">param</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.promote">promote</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.refresh">refresh</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.restart">restart</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.scores">scores</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.secret">secret</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.start">start</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.status">status</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.stop">stop</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.trace">trace</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.unmanage">unmanage</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.untrace">untrace</a></div>
+<div class="toclevel3"><a href="#cmdhelp.resource.utilization">utilization</a></div>
+<div class="toclevel2"><a href="#cmdhelp.sbd">sbd</a></div>
+<div class="toclevel3"><a href="#cmdhelp.sbd.configure">configure</a></div>
+<div class="toclevel3"><a href="#cmdhelp.sbd.device">device</a></div>
+<div class="toclevel3"><a href="#cmdhelp.sbd.status">status</a></div>
+<div class="toclevel3"><a href="#cmdhelp.sbd.purge">purge</a></div>
+<div class="toclevel2"><a href="#cmdhelp.node">node</a></div>
+<div class="toclevel3"><a href="#cmdhelp.node.attribute">attribute</a></div>
+<div class="toclevel3"><a href="#cmdhelp.node.clearstate">clearstate</a></div>
+<div class="toclevel3"><a href="#cmdhelp.node.delete">delete</a></div>
+<div class="toclevel3"><a href="#cmdhelp.node.fence">fence</a></div>
+<div class="toclevel3"><a href="#cmdhelp.node.maintenance">maintenance</a></div>
+<div class="toclevel3"><a href="#cmdhelp.node.online">online</a></div>
+<div class="toclevel3"><a href="#cmdhelp.node.ready">ready</a></div>
+<div class="toclevel3"><a href="#cmdhelp.node.server">server</a></div>
+<div class="toclevel3"><a href="#cmdhelp.node.show">show</a></div>
+<div class="toclevel3"><a href="#cmdhelp.node.standby">standby</a></div>
+<div class="toclevel3"><a href="#cmdhelp.node.status-attr">status-attr</a></div>
+<div class="toclevel3"><a href="#cmdhelp.node.utilization">utilization</a></div>
+<div class="toclevel2"><a href="#cmdhelp.site">site</a></div>
+<div class="toclevel3"><a href="#cmdhelp.site.ticket">ticket</a></div>
+<div class="toclevel2"><a href="#cmdhelp.options">options</a></div>
+<div class="toclevel3"><a href="#cmdhelp.options.add-quotes">add-quotes</a></div>
+<div class="toclevel3"><a href="#cmdhelp.options.check-frequency">check-frequency</a></div>
+<div class="toclevel3"><a href="#cmdhelp.options.check-mode">check-mode</a></div>
+<div class="toclevel3"><a href="#cmdhelp.options.colorscheme">colorscheme</a></div>
+<div class="toclevel3"><a href="#cmdhelp.options.editor">editor</a></div>
+<div class="toclevel3"><a href="#cmdhelp.options.manage-children">manage-children</a></div>
+<div class="toclevel3"><a href="#cmdhelp.options.output">output</a></div>
+<div class="toclevel3"><a href="#cmdhelp.options.pager">pager</a></div>
+<div class="toclevel3"><a href="#cmdhelp.options.reset">reset</a></div>
+<div class="toclevel3"><a href="#cmdhelp.options.save">save</a></div>
+<div class="toclevel3"><a href="#cmdhelp.options.set">set</a></div>
+<div class="toclevel3"><a href="#cmdhelp.options.show">show</a></div>
+<div class="toclevel3"><a href="#cmdhelp.options.skill-level">skill-level</a></div>
+<div class="toclevel3"><a href="#cmdhelp.options.sort-elements">sort-elements</a></div>
+<div class="toclevel3"><a href="#cmdhelp.options.user">user</a></div>
+<div class="toclevel3"><a href="#cmdhelp.options.wait">wait</a></div>
+<div class="toclevel2"><a href="#cmdhelp.configure">configure</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.acl_target">acl_target</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.alert">alert</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.bundle">bundle</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.cib">cib</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.cibstatus">cibstatus</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.clone">clone</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.colocation">colocation</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.commit">commit</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.default-timeouts">default-timeouts</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.delete">delete</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.edit">edit</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.erase">erase</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.fencing_topology">fencing_topology</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.filter">filter</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.get_property">get_property</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.graph">graph</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.group">group</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.load">load</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.location">location</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.modgroup">modgroup</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.monitor">monitor</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.node">node</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.op_defaults">op_defaults</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.order">order</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.primitive">primitive</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.property">property</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.ptest">ptest</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.refresh">refresh</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.rename">rename</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.role">role</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.rsc_defaults">rsc_defaults</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.rsc_template">rsc_template</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.rsc_ticket">rsc_ticket</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.rsctest">rsctest</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.save">save</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.schema">schema</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.set">set</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.show">show</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.tag">tag</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.template">template</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.upgrade">upgrade</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.user">user</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.validate_all">validate_all</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.verify">verify</a></div>
+<div class="toclevel3"><a href="#cmdhelp.configure.xml">xml</a></div>
+<div class="toclevel2"><a href="#cmdhelp.template">template</a></div>
+<div class="toclevel3"><a href="#cmdhelp.template.apply">apply</a></div>
+<div class="toclevel3"><a href="#cmdhelp.template.delete">delete</a></div>
+<div class="toclevel3"><a href="#cmdhelp.template.edit">edit</a></div>
+<div class="toclevel3"><a href="#cmdhelp.template.list">list</a></div>
+<div class="toclevel3"><a href="#cmdhelp.template.load">load</a></div>
+<div class="toclevel3"><a href="#cmdhelp.template.new">new</a></div>
+<div class="toclevel3"><a href="#cmdhelp.template.show">show</a></div>
+<div class="toclevel2"><a href="#cmdhelp.cibstatus">cibstatus</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cibstatus.load">load</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cibstatus.node">node</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cibstatus.op">op</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cibstatus.origin">origin</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cibstatus.quorum">quorum</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cibstatus.run">run</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cibstatus.save">save</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cibstatus.show">show</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cibstatus.simulate">simulate</a></div>
+<div class="toclevel3"><a href="#cmdhelp.cibstatus.ticket">ticket</a></div>
+<div class="toclevel2"><a href="#cmdhelp.assist">assist</a></div>
+<div class="toclevel3"><a href="#cmdhelp.assist.template">template</a></div>
+<div class="toclevel3"><a href="#cmdhelp.assist.weak-bond">weak-bond</a></div>
+<div class="toclevel2"><a href="#cmdhelp.maintenance">maintenance</a></div>
+<div class="toclevel3"><a href="#cmdhelp.maintenance.action">action</a></div>
+<div class="toclevel3"><a href="#cmdhelp.maintenance.off">off</a></div>
+<div class="toclevel3"><a href="#cmdhelp.maintenance.on">on</a></div>
+<div class="toclevel2"><a href="#cmdhelp.history">history</a></div>
+<div class="toclevel3"><a href="#cmdhelp.history.detail">detail</a></div>
+<div class="toclevel3"><a href="#cmdhelp.history.diff">diff</a></div>
+<div class="toclevel3"><a href="#cmdhelp.history.events">events</a></div>
+<div class="toclevel3"><a href="#cmdhelp.history.exclude">exclude</a></div>
+<div class="toclevel3"><a href="#cmdhelp.history.graph">graph</a></div>
+<div class="toclevel3"><a href="#cmdhelp.history.info">info</a></div>
+<div class="toclevel3"><a href="#cmdhelp.history.latest">latest</a></div>
+<div class="toclevel3"><a href="#cmdhelp.history.limit">limit</a></div>
+<div class="toclevel3"><a href="#cmdhelp.history.log">log</a></div>
+<div class="toclevel3"><a href="#cmdhelp.history.node">node</a></div>
+<div class="toclevel3"><a href="#cmdhelp.history.peinputs">peinputs</a></div>
+<div class="toclevel3"><a href="#cmdhelp.history.refresh">refresh</a></div>
+<div class="toclevel3"><a href="#cmdhelp.history.resource">resource</a></div>
+<div class="toclevel3"><a href="#cmdhelp.history.session">session</a></div>
+<div class="toclevel3"><a href="#cmdhelp.history.setnodes">setnodes</a></div>
+<div class="toclevel3"><a href="#cmdhelp.history.show">show</a></div>
+<div class="toclevel3"><a href="#cmdhelp.history.source">source</a></div>
+<div class="toclevel3"><a href="#cmdhelp.history.transition">transition</a></div>
+<div class="toclevel3"><a href="#cmdhelp.history.transitions">transitions</a></div>
+<div class="toclevel3"><a href="#cmdhelp.history.wdiff">wdiff</a></div>
+<div class="toclevel3"><a href="#cmdhelp.root.report">report</a></div>
 </div>
 <div id="container">
 <div id="content">
@@ -283,7 +292,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="topics_Description">DESCRIPTION</h2>
+<h2 id="topics.Description">DESCRIPTION</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>The <span class="monospaced">crm</span> shell is a command-line based cluster configuration and
 management tool. Its goal is to assist as much as possible with the
@@ -312,7 +321,7 @@ is commonly used when displaying configurations.</p></div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="topics_CommandLine">OPTIONS</h2>
+<h2 id="topics.CommandLine">OPTIONS</h2>
 <div class="sectionbody">
 <div class="dlist"><dl>
 <dt class="hdlist1">
@@ -430,12 +439,12 @@ is commonly used when displaying configurations.</p></div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="topics_Introduction">Introduction</h2>
+<h2 id="topics.Introduction">Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>This section of the user guide covers general topics about the user
 interface and describes some of the features of <span class="monospaced">crmsh</span> in detail.</p></div>
 <div class="sect2">
-<h3 id="topics_Introduction_Interface">User interface</h3>
+<h3 id="topics.Introduction.Interface">User interface</h3>
 <div class="paragraph"><p>The main purpose of <span class="monospaced">crmsh</span> is to provide a simple yet powerful
 interface to the cluster stack. There are two main modes of operation
 with the user interface of <span class="monospaced">crmsh</span>:</p></div>
@@ -510,8 +519,8 @@ crm(live)# node standby node4</pre>
   clone conn pingd \
     meta globally-unique=false clone-max=2 clone-node-max=1
   location node_pref internal_www \
-    rule 50: #uname eq node1 \
-    rule pingd: defined pingd
+    rule 50: #uname eq node1 and \
+    defined pingd
   #
   # cluster properties
   #
@@ -526,12 +535,12 @@ the shell, simply typing <span class="monospaced">help</span> will provide an ov
 available levels and commands.</p></div>
 <div class="paragraph"><p>The <span class="monospaced">(live)</span> string in the <span class="monospaced">crm</span> prompt signifies that the current CIB
 in use is the cluster live configuration. It is also possible to
-work with so-called <a href="#topics_Features_Shadows">shadow CIBs</a>. These are separate, inactive
+work with so-called <a href="#topics.Features.Shadows">shadow CIBs</a>. These are separate, inactive
 configurations stored in files, that can be applied and thereby
 replace the live configuration at any time.</p></div>
 </div>
 <div class="sect2">
-<h3 id="topics_Introduction_Completion">Tab completion</h3>
+<h3 id="topics.Introduction.Completion">Tab completion</h3>
 <div class="paragraph"><p>The <span class="monospaced">crm</span> makes extensive use of tab completion. The completion
 is both static (i.e. for <span class="monospaced">crm</span> commands) and dynamic. The latter
 takes into account the current status of the cluster or
@@ -548,26 +557,29 @@ clear         locate        move          refresh       status        up
 constraints   ls            operations    restart       stop          utilization
 
 crm(live)configure# primitive fence-1 &lt;TAB&gt;&lt;TAB&gt;
-lsb:      ocf:      service:  stonith:  systemd:
+ocf:      stonith:  systemd:
 
 crm(live)configure# primitive fence-1 stonith:&lt;TAB&gt;&lt;TAB&gt;
-apcmaster                external/ippower9258     fence_legacy
-apcmastersnmp            external/kdumpcheck      ibmhmc
-apcsmart                 external/libvirt         ipmilan
+stonith:apcmaster               stonith:fence_compute           stonith:fence_ipmilanplus
+stonith:apcmastersnmp           stonith:fence_docker            stonith:fence_ironic
+stonith:apcsmart                stonith:fence_drac5             stonith:fence_kdump
+...
 
-crm(live)configure# primitive fence-1 stonith:ipmilan params &lt;TAB&gt;&lt;TAB&gt;
-auth=      hostname=  ipaddr=    login=     password=  port=      priv=
+crm(live)configure# primitive fence-1 stonith:fence_ipmilan params &lt;TAB&gt;&lt;TAB&gt;
+action=                ip=                    passwd=                pcmk_host_list=
+auth=                  ipaddr=                passwd_script=         pcmk_host_map=
+...
 
-crm(live)configure# primitive fence-1 stonith:ipmilan params auth=&lt;TAB&gt;&lt;TAB&gt;
-auth* (string)
-    The authorization type of the IPMI session ("none", "straight", "md2", or "md5")</pre>
+crm(live)configure# primitive fence-1 stonith:fence_ipmilan params auth=&lt;TAB&gt;&lt;TAB&gt;
+auth (select): IPMI Lan Auth type.
+    Allowed values: md5, password, none</pre>
 </div></div>
 <div class="paragraph"><p><span class="monospaced">crmsh</span> also comes with bash completion usable directly from the
 system shell. This should be installed automatically with the command
 itself.</p></div>
 </div>
 <div class="sect2">
-<h3 id="topics_Introduction_Shorthand">Shorthand syntax</h3>
+<h3 id="topics.Introduction.Shorthand">Shorthand syntax</h3>
 <div class="paragraph"><p>When using the <span class="monospaced">crm</span> shell to manage clusters, you will end up typing
 a lot of commands many times over. Clear command names like
 <span class="monospaced">configure</span> help in understanding and learning to use the cluster
@@ -584,7 +596,7 @@ experimentation and typos should help in discovering more of them.</p></div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="topics_Features">Features</h2>
+<h2 id="topics.Features">Features</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>The feature set of crmsh covers a wide range of functionality, and
 understanding how and when to use the various features of the shell
@@ -593,7 +605,7 @@ features and use cases of <span class="monospaced">crmsh</span> in more depth. T
 provide a deeper understanding of these features, but also to serve as
 a guide to using them.</p></div>
 <div class="sect2">
-<h3 id="topics_Features_Shadows">Shadow CIB usage</h3>
+<h3 id="topics.Features.Shadows">Shadow CIB usage</h3>
 <div class="paragraph"><p>A Shadow CIB is a normal cluster configuration stored in a file.
 They may be manipulated in much the same way as the <em>live</em> CIB, with
 the key difference that changes to a shadow CIB have no effect on the
@@ -617,7 +629,7 @@ crm(test-2)configure# commit</pre>
 </div></div>
 </div>
 <div class="sect2">
-<h3 id="topics_Features_Checks">Configuration semantic checks</h3>
+<h3 id="topics.Features.Checks">Configuration semantic checks</h3>
 <div class="paragraph"><p>Resource definitions may be checked against the meta-data
 provided with the resource agents. These checks are currently
 carried out:</p></div>
@@ -649,21 +661,21 @@ the timeouts are usable in your environment. Note also that the
 values given are just <em>advisory minimum</em>---your resources may
 require longer timeouts.</p></div>
 <div class="paragraph"><p>User may tune the frequency of checks and the treatment of errors
-by the <a href="#cmdhelp_options_check-frequency"><span class="monospaced">check-frequency</span></a> and
-<a href="#cmdhelp_options_check-mode"><span class="monospaced">check-mode</span></a> preferences.</p></div>
+by the <a href="#cmdhelp.options.check-frequency"><span class="monospaced">check-frequency</span></a> and
+<a href="#cmdhelp.options.check-mode"><span class="monospaced">check-mode</span></a> preferences.</p></div>
 <div class="paragraph"><p>Note that if the <span class="monospaced">check-frequency</span> is set to <span class="monospaced">always</span> and the
 <span class="monospaced">check-mode</span> to <span class="monospaced">strict</span>, errors are not tolerated and such
 configuration cannot be saved.</p></div>
 </div>
 <div class="sect2">
-<h3 id="topics_Features_Templates">Configuration templates</h3>
+<h3 id="topics.Features.Templates">Configuration templates</h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">Deprecation note</div>
 <div class="paragraph"><p>Configuration templates have been deprecated in favor of the more
 capable <span class="monospaced">cluster scripts</span>. To learn how to use cluster scripts, see
 the dedicated documentation on the <span class="monospaced">crmsh</span> website at
-<a href="http://crmsh.github.io/">http://crmsh.github.io/</a>, or in the <a href="#cmdhelp_script">Script section</a>.</p></div>
+<a href="http://crmsh.github.io/">http://crmsh.github.io/</a>, or in the <a href="#cmdhelp.script">Script section</a>.</p></div>
 </div></div>
 <div class="paragraph"><p>Configuration templates are ready made configurations created by
 cluster experts. They are designed in such a way so that users
@@ -832,7 +844,7 @@ following steps:</p></div>
 </ul></div>
 </div>
 <div class="sect2">
-<h3 id="topics_Features_Testing">Resource testing</h3>
+<h3 id="topics.Features.Testing">Resource testing</h3>
 <div class="paragraph"><p>The amount of detail in a cluster makes all configurations prone
 to errors. By far the largest number of issues in a cluster is
 due to bad resource configuration. The shell can help quickly
@@ -894,7 +906,7 @@ asymmetric cluster. It is up to the user to specify a list of
 eligible nodes if a resource is not meant to run on every node.</p></div>
 </div>
 <div class="sect2">
-<h3 id="topics_Features_Security">Access Control Lists (ACL)</h3>
+<h3 id="topics.Features.Security">Access Control Lists (ACL)</h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">Note on ACLs in Pacemaker 1.1.12</div>
@@ -976,7 +988,7 @@ xpaths simple and the builtin shortcuts should be used whenever
 possible.</p></div>
 </div>
 <div class="sect2">
-<h3 id="topics_Features_Resourcesets">Syntax: Resource sets</h3>
+<h3 id="topics.Features.Resourcesets">Syntax: Resource sets</h3>
 <div class="paragraph"><p>Using resource sets can be a bit confusing unless one knows the
 details of the implementation in Pacemaker as well as how to interpret
 the syntax provided by <span class="monospaced">crmsh</span>.</p></div>
@@ -1033,7 +1045,7 @@ true, explicitly set <span class="monospaced">sequential</span> in a parenthesis
 <span class="monospaced">A B ( C D sequential=true )</span>.</p></div>
 </div>
 <div class="sect2">
-<h3 id="topics_Features_AttributeListReferences">Syntax: Attribute list references</h3>
+<h3 id="topics.Features.AttributeListReferences">Syntax: Attribute list references</h3>
 <div class="paragraph"><p>Attribute lists are used to set attributes and parameters for
 resources, constraints and property definitions. For example, to set
 the virtual IP used by an <span class="monospaced">IPAddr2</span> resource the attribute <span class="monospaced">ip</span> can be
@@ -1057,7 +1069,7 @@ the <span class="monospaced">on-state</span> name using an id-ref:</p></div>
 <div class="paragraph"><p>The resource <span class="monospaced">dummy-2</span> will now also have the parameter <span class="monospaced">state</span> set to the value 1.</p></div>
 </div>
 <div class="sect2">
-<h3 id="topics_Features_AttributeReferences">Syntax: Attribute references</h3>
+<h3 id="topics.Features.AttributeReferences">Syntax: Attribute references</h3>
 <div class="paragraph"><p>In some cases, referencing complete attribute lists is too
 coarse-grained, for example if two different parameters with different
 names should have the same value set. Instead of having to copy the
@@ -1084,22 +1096,9 @@ can be used to give the attribute a different identifier:</p></div>
 <pre>primitive dummy-1 params $dummy-state-on:state=1
 primitive dummy-2 params @dummy-state-on</pre>
 </div></div>
-<div class="paragraph"><p>There is also the possibility that two resources both use the same
-attribute value but with different names. For example, a web server
-may have a parameter <span class="monospaced">server_ip</span> for setting the IP address where it
-listens for incoming requests, and a virtual IP resource may have a
-parameter called <span class="monospaced">ip</span> which sets the IP address it creates. To
-configure these two resources with an IP without repeating the value,
-the reference can be given a name using the syntax <span class="monospaced">@&lt;id&gt;:&lt;name&gt;</span>.</p></div>
-<div class="paragraph"><p>Example:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>primitive virtual-ip IPaddr2 params $vip:ip=192.168.1.100
-primitive webserver apache params @vip:server_ip</pre>
-</div></div>
 </div>
 <div class="sect2">
-<h3 id="topics_Syntax_RuleExpressions">Syntax: Rule expressions</h3>
+<h3 id="topics.Syntax.RuleExpressions">Syntax: Rule expressions</h3>
 <div class="paragraph"><p>Many of the configuration commands in <span class="monospaced">crmsh</span> now support the use of
 <em>rule expressions</em>, which can influence what attributes apply to a
 resource or under which conditions a constraint is applied, depending
@@ -1124,6 +1123,8 @@ name-value pair <span class="monospaced">interface=eth1</span>.</p></div>
 <div class="paragraph"><p>Rule expressions can contain multiple expressions connected using the
 boolean operator <span class="monospaced">or</span> and <span class="monospaced">and</span>. The full syntax for rule expressions
 is listed below.</p></div>
+<div class="paragraph"><p>Note: pacemaker has deprecated support for multiple top-level rules
+within a location constraint since version 2.1.8.</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>rules ::
@@ -1154,14 +1155,13 @@ duration|date_spec ::
          | months=&lt;value&gt;
          | weeks=&lt;value&gt;
          | years=&lt;value&gt;
-         | weekyears=&lt;value&gt;
-         | moon=&lt;value&gt;</pre>
+         | weekyears=&lt;value&gt;</pre>
 </div></div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="topics_Lifetime">Lifetime parameter format</h2>
+<h2 id="topics.Lifetime">Lifetime parameter format</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>Lifetimes can be specified in the ISO 8601 time format or the ISO 8601
 duration format. To distinguish between months and minutes, use the PT
@@ -1181,7 +1181,7 @@ cluster-recheck-interval property (default 15 minutes).</p></div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="topics_Reference">Command reference</h2>
+<h2 id="topics.Reference">Command reference</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>The commands are structured to be compatible with the shell command
 line. Sometimes, the underlying Pacemaker grammar uses characters that
@@ -1226,7 +1226,7 @@ The rest are literals (strings, <span class="monospaced">:</span>, <span class="
 </li>
 </ul></div>
 <div class="sect2">
-<h3 id="cmdhelp_root_status"><span class="monospaced">status</span></h3>
+<h3 id="cmdhelp.root.status"><span class="monospaced">status</span></h3>
 <div class="paragraph"><p>Show cluster status. The status is displayed by <span class="monospaced">crm_mon</span>. Supply
 additional arguments for more information or different format.
 See <span class="monospaced">crm_mon(8)</span> for more details.</p></div>
@@ -1260,7 +1260,7 @@ option :: full
 </div></div>
 </div>
 <div class="sect2">
-<h3 id="cmdhelp_root_verify"><span class="monospaced">verify</span></h3>
+<h3 id="cmdhelp.root.verify"><span class="monospaced">verify</span></h3>
 <div class="paragraph"><p>Performs basic checks for the cluster configuration and
 current status, reporting potential issues.</p></div>
 <div class="paragraph"><p>See <span class="monospaced">crm_verify(8)</span> and <span class="monospaced">crm_simulate(8)</span> for more details.</p></div>
@@ -1277,7 +1277,7 @@ verify scores</pre>
 </div></div>
 </div>
 <div class="sect2">
-<h3 id="cmdhelp_cluster"><span class="monospaced">cluster</span> - Cluster setup and management</h3>
+<h3 id="cmdhelp.cluster"><span class="monospaced">cluster</span> - Cluster setup and management</h3>
 <div class="paragraph"><p>Whole-cluster configuration management with High Availability
 awareness.</p></div>
 <div class="paragraph"><p>The commands on the cluster level allows configuration and
@@ -1287,7 +1287,7 @@ supplies tools to do whole-cluster systems management.</p></div>
 cluster, by providing support for package installation, configuration
 of the cluster messaging layer, file system setup and more.</p></div>
 <div class="sect3">
-<h4 id="cmdhelp_cluster_copy"><span class="monospaced">copy</span></h4>
+<h4 id="cmdhelp.cluster.copy"><span class="monospaced">copy</span></h4>
 <div class="paragraph"><p>Copy file to other cluster nodes.</p></div>
 <div class="paragraph"><p>Copies the given file to all other nodes unless given a
 list of nodes to copy to as argument.</p></div>
@@ -1303,7 +1303,7 @@ list of nodes to copy to as argument.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cluster_diff"><span class="monospaced">diff</span></h4>
+<h4 id="cmdhelp.cluster.diff"><span class="monospaced">diff</span></h4>
 <div class="paragraph"><p>Displays the difference, if any, between a given file
 on different nodes. If the second argument is <span class="monospaced">--checksum</span>,
 a checksum of the file will be calculated and displayed for
@@ -1321,7 +1321,7 @@ diff /etc/resolv.conf --checksum</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cluster_disable"><span class="monospaced">disable</span></h4>
+<h4 id="cmdhelp.cluster.disable"><span class="monospaced">disable</span></h4>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -1343,7 +1343,7 @@ diff /etc/resolv.conf --checksum</pre>
 </ul></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cluster_enable"><span class="monospaced">enable</span></h4>
+<h4 id="cmdhelp.cluster.enable"><span class="monospaced">enable</span></h4>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -1365,7 +1365,7 @@ diff /etc/resolv.conf --checksum</pre>
 </ul></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cluster_geo_init"><span class="monospaced">geo-init</span></h4>
+<h4 id="cmdhelp.cluster.geo_init"><span class="monospaced">geo-init</span></h4>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -1423,7 +1423,7 @@ diff /etc/resolv.conf --checksum</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cluster_geo_init_arbitrator"><span class="monospaced">geo-init-arbitrator</span></h4>
+<h4 id="cmdhelp.cluster.geo_init_arbitrator"><span class="monospaced">geo-init-arbitrator</span></h4>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -1454,13 +1454,13 @@ diff /etc/resolv.conf --checksum</pre>
 </li>
 <li>
 <p>
-<span class="monospaced">--use-ssh-agent</span>: Use an existing key from ssh-agent instead of creating new key pairs
+<span class="monospaced">--use-ssh-agent, --no-use-ssh-agent</span>: Try to use an existing key from ssh-agent (default)
 </p>
 </li>
 </ul></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cluster_geo_join"><span class="monospaced">geo-join</span></h4>
+<h4 id="cmdhelp.cluster.geo_join"><span class="monospaced">geo-join</span></h4>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -1497,23 +1497,62 @@ diff /etc/resolv.conf --checksum</pre>
 </li>
 <li>
 <p>
-<span class="monospaced">--use-ssh-agent</span>: Use an existing key from ssh-agent instead of creating new key pairs
+<span class="monospaced">--use-ssh-agent, --no-use-ssh-agent</span>: Try to use an existing key from ssh-agent (default)
 </p>
 </li>
 </ul></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cluster_health"><span class="monospaced">health</span></h4>
+<h4 id="cmdhelp.cluster.health"><span class="monospaced">health</span></h4>
+<div class="paragraph"><p>Usage 1: General Health Check</p></div>
 <div class="paragraph"><p>Runs a larger set of tests and queries on all nodes in the cluster to
 verify the general system health and detect potential problems.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
 <pre>health</pre>
 </div></div>
+<div class="paragraph"><p>Usage 2: Topic-Specified Health Check</p></div>
+<div class="paragraph"><p>Verifies the health of a specified topic.</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>health hawk2|sles16 [--local] [--fix]</pre>
+</div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<span class="monospaced">hawk2</span>: check or fix key-based ssh authentication for user hacluster, which
+  is needed by hawk2.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+<span class="monospaced">--fix</span>: attempts to automatically resolve any detected issues, eg.
+       hacluster passwordless
+</p>
+</li>
+</ul></div>
+</li>
+<li>
+<p>
+<span class="monospaced">sles16</span>: check whether the cluster is good to migrate to SLES 16.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+<span class="monospaced">--local</span>: run checks in local mode
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">--fix</span>: attempts to automatically resolve any detected issues.
+</p>
+</li>
+</ul></div>
+</li>
+</ul></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cluster_init"><span class="monospaced">init</span></h4>
+<h4 id="cmdhelp.cluster.init"><span class="monospaced">init</span></h4>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -1564,7 +1603,7 @@ verify the general system health and detect potential problems.</p></div>
 </li>
 <li>
 <p>
-<span class="monospaced">--use-ssh-agent</span>: Use an existing key from ssh-agent instead of creating new key pairs
+<span class="monospaced">--use-ssh-agent, --no-use-ssh-agent</span>: Try to use an existing key from ssh-agent (default)
 </p>
 </li>
 </ul></div>
@@ -1618,7 +1657,7 @@ verify the general system health and detect potential problems.</p></div>
 </li>
 <li>
 <p>
-<span class="monospaced">--qdevice-tls TLS</span>: Whether using TLS on QDevice/QNetd (on/off/required, default:on)
+<span class="monospaced">--qdevice-tls TLS</span>: Whether using TLS on QDevice (on/off/required, default:on)
 </p>
 </li>
 <li>
@@ -1647,12 +1686,17 @@ verify the general system health and detect potential problems.</p></div>
 </li>
 <li>
 <p>
-<span class="monospaced">-C, --cluster-lvm2</span>: Use Cluster LVM2 (only valid together with -o option) NOTE: this is a Technical Preview
+<span class="monospaced">-g DEVICE, --gfs2-device DEVICE</span>: Block device to use for GFS2; When using Cluster LVM2 to manage the shared storage, user can specify one or multiple raw disks, use ";" as separator or -g multiple times for multi path (must specify -C option) NOTE: this is a Technical Preview
 </p>
 </li>
 <li>
 <p>
-<span class="monospaced">-m MOUNT, --mount-point MOUNT</span>: Mount point for OCFS2 device (default is /srv/clusterfs, only valid together with -o option) NOTE: this is a Technical Preview
+<span class="monospaced">-C, --cluster-lvm2</span>: Use Cluster LVM2 (only valid together with -o or -g option) NOTE: this is a Technical Preview
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">-m MOUNT, --mount-point MOUNT</span>: Mount point for OCFS2 or GFS2 device (default is /srv/clusterfs, only valid together with -o or -g option) NOTE: this is a Technical Preview
 </p>
 </li>
 </ul></div>
@@ -1660,11 +1704,13 @@ verify the general system health and detect potential problems.</p></div>
 <div class="content monospaced">
 <pre>Stage can be one of:
     ssh         Create SSH keys for passwordless SSH between cluster nodes
+    firewalld   Add high-availability service to firewalld
     csync2      Configure csync2
     corosync    Configure corosync
     sbd         Configure SBD (requires -s &lt;dev&gt;)
     cluster     Bring the cluster online
     ocfs2       Configure OCFS2 (requires -o &lt;dev&gt;) NOTE: this is a Technical Preview
+    gfs2        Configure GFS2 (requires -g &lt;dev&gt;) NOTE: this is a Technical Preview
     admin       Create administration virtual IP (optional)
     qdevice     Configure qdevice and qnetd
 
@@ -1695,8 +1741,14 @@ Examples:
   # Setup the cluster on the current node, with SBD+OCFS2
   crm cluster init -s &lt;share disk1&gt; -o &lt;share disk2&gt; -y
 
+  # Setup the cluster on the current node, with SBD+GFS2
+  crm cluster init -s &lt;share disk1&gt; -g &lt;share disk2&gt; -y
+
   # Setup the cluster on the current node, with SBD+OCFS2+Cluster LVM
   crm cluster init -s &lt;share disk1&gt; -o &lt;share disk2&gt; -o &lt;share disk3&gt; -C -y
+
+  # Setup the cluster on the current node, with SBD+GFS2+Cluster LVM
+  crm cluster init -s &lt;share disk1&gt; -g &lt;share disk2&gt; -g &lt;share disk3&gt; -C -y
 
   # Add SBD on a running cluster
   crm cluster init sbd -s &lt;share disk&gt; -y
@@ -1711,11 +1763,14 @@ Examples:
   crm cluster init qdevice --qnetd-hostname &lt;qnetd addr&gt; -y
 
   # Add OCFS2+Cluster LVM on a running cluster
-  crm cluster init ocfs2 -o &lt;share disk1&gt; -o &lt;share disk2&gt; -C -y</pre>
+  crm cluster init ocfs2 -o &lt;share disk1&gt; -o &lt;share disk2&gt; -C -y
+
+  # Add GFS2+Cluster LVM on a running cluster
+  crm cluster init gfs2 -g &lt;share disk1&gt; -g &lt;share disk2&gt; -C -y</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cluster_join"><span class="monospaced">join</span></h4>
+<h4 id="cmdhelp.cluster.join"><span class="monospaced">join</span></h4>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -1741,7 +1796,7 @@ Examples:
 </li>
 <li>
 <p>
-<span class="monospaced">--use-ssh-agent</span>: Use an existing key from ssh-agent instead of creating new key pairs
+<span class="monospaced">--use-ssh-agent, --no-use-ssh-agent</span>: Try to use an existing key from ssh-agent (default)
 </p>
 </li>
 </ul></div>
@@ -1761,7 +1816,7 @@ Examples:
 </ul></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cluster_remove"><span class="monospaced">remove</span></h4>
+<h4 id="cmdhelp.cluster.remove"><span class="monospaced">remove</span></h4>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -1804,7 +1859,7 @@ Examples:
 </ul></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cluster_crash_test"><span class="monospaced">crash_test</span></h4>
+<h4 id="cmdhelp.cluster.crash_test"><span class="monospaced">crash_test</span></h4>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -1865,7 +1920,7 @@ For each --kill-* testcase, report directory: /var/lib/crmsh/crash_test</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cluster_restart"><span class="monospaced">restart</span></h4>
+<h4 id="cmdhelp.cluster.restart"><span class="monospaced">restart</span></h4>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -1887,7 +1942,7 @@ For each --kill-* testcase, report directory: /var/lib/crmsh/crash_test</pre>
 </ul></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cluster_rename"><span class="monospaced">rename</span></h4>
+<h4 id="cmdhelp.cluster.rename"><span class="monospaced">rename</span></h4>
 <div class="paragraph"><p>Rename the cluster name</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -1896,7 +1951,7 @@ For each --kill-* testcase, report directory: /var/lib/crmsh/crash_test</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cluster_run"><span class="monospaced">run</span></h4>
+<h4 id="cmdhelp.cluster.run"><span class="monospaced">run</span></h4>
 <div class="paragraph"><p>This command takes a shell statement as argument, executes that
 statement on all nodes in the cluster or a specific node,
 and reports the result.</p></div>
@@ -1913,7 +1968,7 @@ run "ls" node1 node2</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cluster_start"><span class="monospaced">start</span></h4>
+<h4 id="cmdhelp.cluster.start"><span class="monospaced">start</span></h4>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -1935,7 +1990,7 @@ run "ls" node1 node2</pre>
 </ul></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cluster_status"><span class="monospaced">status</span></h4>
+<h4 id="cmdhelp.cluster.status"><span class="monospaced">status</span></h4>
 <div class="paragraph"><p>Reports the status for the cluster messaging layer on the local
 node.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -1945,7 +2000,7 @@ node.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cluster_stop"><span class="monospaced">stop</span></h4>
+<h4 id="cmdhelp.cluster.stop"><span class="monospaced">stop</span></h4>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -1967,7 +2022,7 @@ node.</p></div>
 </ul></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cluster_wait_for_startup"><span class="monospaced">wait_for_startup</span></h4>
+<h4 id="cmdhelp.cluster.wait_for_startup"><span class="monospaced">wait_for_startup</span></h4>
 <div class="paragraph"><p>Mostly useful in scripts or automated workflows, this command will
 attempt to connect to the local cluster node repeatedly. The command
 will keep trying until the cluster node responds, or the <span class="monospaced">timeout</span>
@@ -1981,7 +2036,7 @@ an argument.</p></div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="cmdhelp_script"><span class="monospaced">script</span> - Cluster script management</h3>
+<h3 id="cmdhelp.script"><span class="monospaced">script</span> - Cluster script management</h3>
 <div class="paragraph"><p>A big part of the configuration and management of a cluster is
 collecting information about all cluster nodes and deploying changes
 to those nodes. Often, just performing the same procedure on all nodes
@@ -1997,7 +2052,7 @@ provides a thin wrapper on top of SSH. This allows the scripts to
 function through the usual SSH channels used for system maintenance,
 requiring no additional software to be installed or maintained.</p></div>
 <div class="sect3">
-<h4 id="cmdhelp_script_json"><span class="monospaced">json</span></h4>
+<h4 id="cmdhelp.script.json"><span class="monospaced">json</span></h4>
 <div class="paragraph"><p>This command provides a JSON API for the cluster scripts, intended for
 use in user interface tools that want to interact with the cluster via
 scripts.</p></div>
@@ -2031,7 +2086,7 @@ command line becomes the JSON object
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_script_list"><span class="monospaced">list</span></h4>
+<h4 id="cmdhelp.script.list"><span class="monospaced">list</span></h4>
 <div class="paragraph"><p>Lists the available scripts, sorted by category. Scripts that have the
 special <span class="monospaced">Script</span> category are hidden by default, since they are mainly
 used by other scripts or commands. To also show these, pass <span class="monospaced">all</span> as
@@ -2051,7 +2106,7 @@ list all names</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_script_run"><span class="monospaced">run</span></h4>
+<h4 id="cmdhelp.script.run"><span class="monospaced">run</span></h4>
 <div class="paragraph"><p>Given a list of parameter values, this command will execute the
 actions specified by the cluster script. The format for the parameter
 values is the same as for the <span class="monospaced">verify</span> command.</p></div>
@@ -2073,7 +2128,7 @@ run sbd id=sbd-1 node=node1 sbd_device=/dev/disk/by-uuid/F00D-CAFE</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_script_show"><span class="monospaced">show</span></h4>
+<h4 id="cmdhelp.script.show"><span class="monospaced">show</span></h4>
 <div class="paragraph"><p>Prints a description and short summary of the script, with
 descriptions of the accepted parameters.</p></div>
 <div class="paragraph"><p>Advanced parameters are hidden by default. To show the complete list
@@ -2090,7 +2145,7 @@ of parameters accepted by the script, pass <span class="monospaced">all</span> a
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_script_verify"><span class="monospaced">verify</span></h4>
+<h4 id="cmdhelp.script.verify"><span class="monospaced">verify</span></h4>
 <div class="paragraph"><p>Checks the given parameter values, and returns a list
 of actions that will be executed when running the script
 if provided the same list of parameter values.</p></div>
@@ -2107,12 +2162,12 @@ if provided the same list of parameter values.</p></div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="cmdhelp_corosync"><span class="monospaced">corosync</span> - Corosync management</h3>
+<h3 id="cmdhelp.corosync"><span class="monospaced">corosync</span> - Corosync management</h3>
 <div class="paragraph"><p>Corosync is the underlying messaging layer for most HA clusters.
 This level provides commands for editing and managing the corosync
 configuration.</p></div>
 <div class="sect3">
-<h4 id="cmdhelp_corosync_diff"><span class="monospaced">diff</span></h4>
+<h4 id="cmdhelp.corosync.diff"><span class="monospaced">diff</span></h4>
 <div class="paragraph"><p>Diffs the corosync configurations on different nodes. If no nodes are
 given as arguments, the corosync configurations on all nodes in the
 cluster are compared.</p></div>
@@ -2125,7 +2180,7 @@ for each file instead of calculating a diff.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_corosync_edit"><span class="monospaced">edit</span></h4>
+<h4 id="cmdhelp.corosync.edit"><span class="monospaced">edit</span></h4>
 <div class="paragraph"><p>Opens the Corosync configuration file in an editor.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -2134,7 +2189,7 @@ for each file instead of calculating a diff.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_corosync_get"><span class="monospaced">get</span></h4>
+<h4 id="cmdhelp.corosync.get"><span class="monospaced">get</span></h4>
 <div class="paragraph"><p>Returns the value configured in <span class="monospaced">corosync.conf</span>, which is not
 necessarily the value used in the running configuration. See <span class="monospaced">reload</span>
 for telling corosync about configuration changes.</p></div>
@@ -2149,7 +2204,7 @@ configured <span class="monospaced">ring0_addr</span> values, use this command:<
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_corosync_log"><span class="monospaced">log</span></h4>
+<h4 id="cmdhelp.corosync.log"><span class="monospaced">log</span></h4>
 <div class="paragraph"><p>Opens the log file specified in the corosync configuration file. If no
 log file is configured, this command returns an error.</p></div>
 <div class="paragraph"><p>The pager used can be configured either using the PAGER
@@ -2161,7 +2216,7 @@ environment variable or in <span class="monospaced">crm.conf</span>.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_corosync_pull"><span class="monospaced">pull</span></h4>
+<h4 id="cmdhelp.corosync.pull"><span class="monospaced">pull</span></h4>
 <div class="paragraph"><p>Gets the corosync configuration from another node and copies
 it to this node.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -2171,7 +2226,7 @@ it to this node.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_corosync_push"><span class="monospaced">push</span></h4>
+<h4 id="cmdhelp.corosync.push"><span class="monospaced">push</span></h4>
 <div class="paragraph"><p>Pushes the corosync configuration file on this node to
 the list of nodes provided. If no target nodes are given,
 the configuration is pushed to all other nodes in the cluster.</p></div>
@@ -2189,7 +2244,7 @@ configuration files rather than relying on this command.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_corosync_reload"><span class="monospaced">reload</span></h4>
+<h4 id="cmdhelp.corosync.reload"><span class="monospaced">reload</span></h4>
 <div class="paragraph"><p>Tells all instances of corosync in this cluster to reload
 <span class="monospaced">corosync.conf</span>.</p></div>
 <div class="paragraph"><p>After pushing a new configuration to all cluster nodes, call this
@@ -2201,18 +2256,22 @@ command to make corosync use the new configuration.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_corosync_set"><span class="monospaced">set</span></h4>
+<h4 id="cmdhelp.corosync.set"><span class="monospaced">set</span></h4>
 <div class="paragraph"><p>Sets the value identified by the given path. If the value does not
 exist in the configuration file, it will be added. However, if the
 section containing the value does not exist, the command will fail.</p></div>
+<div class="paragraph"><p>If there are multiple entries with the same path, you can specify index
+<span class="monospaced">set &lt;path&gt; &lt;value&gt; &lt;index&gt;</span> to set a specific entry.
+The default index is <span class="monospaced">0</span>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>set quorum.expected_votes 2</pre>
+<pre>set quorum.expected_votes 2
+set nodelist.node.nodeid 3 1</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_corosync_show"><span class="monospaced">show</span></h4>
+<h4 id="cmdhelp.corosync.show"><span class="monospaced">show</span></h4>
 <div class="paragraph"><p>Displays the corosync configuration on the current node.</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -2220,29 +2279,164 @@ section containing the value does not exist, the command will fail.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_corosync_status"><span class="monospaced">status</span></h4>
-<div class="paragraph"><p>Displays the corosync ring status(default), also can display quorum/qdevice/qnetd status.</p></div>
+<h4 id="cmdhelp.corosync.status"><span class="monospaced">status</span></h4>
+<div class="paragraph"><p>Default is <span class="monospaced">ring</span>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>status [ring|quorum|qdevice|qnetd]</pre>
+<pre>status [ring|quorum|qdevice|qnetd|cpg]</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp.corosync.link"><span class="monospaced">link</span></h4>
+<div class="paragraph"><p>Knet is a multi-link and multi-protocol transport used by corosync.</p></div>
+<div class="paragraph"><p>Upon successfully changing the configuration file locally, it will be synced to all cluster nodes.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>link add &lt;nodename&gt;=&lt;new_address&gt; ... [options &lt;option&gt;=[value] ...]
+link remove &lt;linknumber&gt;
+link show
+link update &lt;linknumber&gt; [&lt;nodename&gt;=&lt;new_address&gt; ... ] [options &lt;option&gt;=[value] ...]</pre>
+</div></div>
+<div class="sect4">
+<h5 id="cmdhelp.corosync.link.show"><span class="monospaced">show</span></h5>
+<div class="paragraph"><p>List knet links defined in the configuration file.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>show</pre>
+</div></div>
+</div>
+<div class="sect4">
+<h5 id="cmdhelp.corosync.link.add"><span class="monospaced">add</span></h5>
+<div class="paragraph"><p>Add a knet link to the configuration file.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>add &lt;nodename&gt;=&lt;ip_address&gt; ... [options &lt;name&gt;=value ...]</pre>
+</div></div>
+<div class="paragraph"><p>All nodes in the cluster must to be specified in <span class="monospaced">&lt;nodename&gt;=&lt;ip_address&gt;</span>.
+<span class="monospaced">options</span> are optional. Unspecified options will be omitted from the
+configuration file.</p></div>
+<div class="paragraph"><p>Available options:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<span class="monospaced">mcastport</span>
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">knet_link_priority</span>
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">knet_ping_interval</span>
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">knet_ping_timeout</span>
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">knet_ping_precision</span>
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">knet_pong_count</span>
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">knet_transport</span>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>See <span class="monospaced">corosync.conf(5)</span> for details about these options.</p></div>
+</div>
+<div class="sect4">
+<h5 id="cmdhelp.corosync.link.update"><span class="monospaced">update</span></h5>
+<div class="paragraph"><p>Modify an existing knet link in the configuration file, changing node adresses
+and/or link options.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>update &lt;linknumber&gt; [&lt;nodename&gt;=&lt;ip_address&gt; ...] [options &lt;name&gt;=[value] ...]</pre>
+</div></div>
+<div class="paragraph"><p>Unspecified nodes will keep their IP addresses unchanged.</p></div>
+<div class="paragraph"><p>Unspecified options will be kept untouched.</p></div>
+<div class="paragraph"><p>Specify <span class="monospaced">&lt;name&gt;=</span> to remove the option from the configuration file.</p></div>
+<div class="paragraph"><p>Available options:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<span class="monospaced">mcastport</span>
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">knet_link_priority</span>
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">knet_ping_interval</span>
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">knet_ping_timeout</span>
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">knet_ping_precision</span>
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">knet_pong_count</span>
+</p>
+</li>
+<li>
+<p>
+<span class="monospaced">knet_transport</span>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>See <span class="monospaced">corosync.conf(5)</span> for details about these options.</p></div>
+</div>
+<div class="sect4">
+<h5 id="cmdhelp.corosync.link.remove"><span class="monospaced">remove</span></h5>
+<div class="paragraph"><p>Remove an existing knet link from the configuration file.</p></div>
+<div class="paragraph"><p>The last remaining link in the cluster cannot be removed.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>remove &lt;linknumber&gt;</pre>
 </div></div>
 </div>
 </div>
+</div>
 <div class="sect2">
-<h3 id="cmdhelp_cib"><span class="monospaced">cib</span> - CIB shadow management</h3>
+<h3 id="cmdhelp.cib"><span class="monospaced">cib</span> - CIB shadow management</h3>
 <div class="paragraph"><p>This level is for management of shadow CIBs. It is available both
 at the top level and the <span class="monospaced">configure</span> level.</p></div>
 <div class="paragraph"><p>All the commands are implemented using <span class="monospaced">cib_shadow(8)</span> and the
 <span class="monospaced">CIB_shadow</span> environment variable. The user prompt always
 includes the name of the currently active shadow or the live CIB.</p></div>
 <div class="sect3">
-<h4 id="cmdhelp_cib_cibstatus"><span class="monospaced">cibstatus</span></h4>
+<h4 id="cmdhelp.cib.cibstatus"><span class="monospaced">cibstatus</span></h4>
 <div class="paragraph"><p>Enter edit and manage the CIB status section level. See the
-<a href="#cmdhelp_cibstatus">CIB status management section</a>.</p></div>
+<a href="#cmdhelp.cibstatus">CIB status management section</a>.</p></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cib_commit"><span class="monospaced">commit</span></h4>
+<h4 id="cmdhelp.cib.commit"><span class="monospaced">commit</span></h4>
 <div class="paragraph"><p>Apply a shadow CIB to the cluster. If the shadow name is omitted
 then the current shadow CIB is applied.</p></div>
 <div class="paragraph"><p>Temporary shadow CIBs are removed automatically on commit.</p></div>
@@ -2253,7 +2447,7 @@ then the current shadow CIB is applied.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cib_delete"><span class="monospaced">delete</span></h4>
+<h4 id="cmdhelp.cib.delete"><span class="monospaced">delete</span></h4>
 <div class="paragraph"><p>Delete an existing shadow CIB.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -2262,7 +2456,7 @@ then the current shadow CIB is applied.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cib_diff"><span class="monospaced">diff</span></h4>
+<h4 id="cmdhelp.cib.diff"><span class="monospaced">diff</span></h4>
 <div class="paragraph"><p>Print differences between the current cluster configuration and
 the active shadow CIB.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -2272,7 +2466,7 @@ the active shadow CIB.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cib_import"><span class="monospaced">import</span></h4>
+<h4 id="cmdhelp.cib.import"><span class="monospaced">import</span></h4>
 <div class="paragraph"><p>At times it may be useful to create a shadow file from the
 existing CIB. The CIB may be specified as file or as a PE input
 file number. The shell will look up files in the local directory
@@ -2297,7 +2491,7 @@ import 2289 issue2</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cib_list"><span class="monospaced">list</span></h4>
+<h4 id="cmdhelp.cib.list"><span class="monospaced">list</span></h4>
 <div class="paragraph"><p>List existing shadow CIBs.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -2306,7 +2500,7 @@ import 2289 issue2</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cib_new"><span class="monospaced">new</span></h4>
+<h4 id="cmdhelp.cib.new"><span class="monospaced">new</span></h4>
 <div class="paragraph"><p>Create a new shadow CIB. The live cluster configuration and
 status is copied to the shadow CIB.</p></div>
 <div class="paragraph"><p>If the name of the shadow is omitted, we create a temporary CIB
@@ -2316,7 +2510,7 @@ lived and will be removed either on <span class="monospaced">commit</span> or on
 Note that if the temporary shadow is not committed all changes in
 the temporary shadow are lost.</p></div>
 <div class="paragraph"><p>Specify <span class="monospaced">withstatus</span> if you want to edit the status section of
-the shadow CIB (see the <a href="#cmdhelp_cibstatus">cibstatus section</a>).
+the shadow CIB (see the <a href="#cmdhelp.cibstatus">cibstatus section</a>).
 Add <span class="monospaced">force</span> to force overwriting the existing shadow CIB.</p></div>
 <div class="paragraph"><p>To start with an empty configuration that is not copied from the live
 CIB, specify the <span class="monospaced">empty</span> keyword. (This also allows a shadow CIB to be
@@ -2328,7 +2522,7 @@ created in case no cluster is running.)</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cib_reset"><span class="monospaced">reset</span></h4>
+<h4 id="cmdhelp.cib.reset"><span class="monospaced">reset</span></h4>
 <div class="paragraph"><p>Copy the current cluster configuration into the shadow CIB.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -2337,9 +2531,9 @@ created in case no cluster is running.)</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cib_use"><span class="monospaced">use</span></h4>
+<h4 id="cmdhelp.cib.use"><span class="monospaced">use</span></h4>
 <div class="paragraph"><p>Choose a CIB source. If you want to edit the status from the
-shadow CIB specify <span class="monospaced">withstatus</span> (see <a href="#cmdhelp_cibstatus"><span class="monospaced">cibstatus</span></a>).
+shadow CIB specify <span class="monospaced">withstatus</span> (see <a href="#cmdhelp.cibstatus"><span class="monospaced">cibstatus</span></a>).
 Leave out the CIB name to switch to the running CIB.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -2349,12 +2543,12 @@ Leave out the CIB name to switch to the running CIB.</p></div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="cmdhelp_ra"><span class="monospaced">ra</span> - Resource Agents (RA) lists and documentation</h3>
+<h3 id="cmdhelp.ra"><span class="monospaced">ra</span> - Resource Agents (RA) lists and documentation</h3>
 <div class="paragraph"><p>This level contains commands which show various information about
 the installed resource agents. It is available both at the top
 level and at the <span class="monospaced">configure</span> level.</p></div>
 <div class="sect3">
-<h4 id="cmdhelp_ra_classes"><span class="monospaced">classes</span></h4>
+<h4 id="cmdhelp.ra.classes"><span class="monospaced">classes</span></h4>
 <div class="paragraph"><p>Print all resource agents' classes and, where appropriate, a list
 of available providers.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -2364,7 +2558,7 @@ of available providers.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_ra_info"><span class="monospaced">info</span> (<span class="monospaced">meta</span>)</h4>
+<h4 id="cmdhelp.ra.info"><span class="monospaced">info</span> (<span class="monospaced">meta</span>)</h4>
 <div class="paragraph"><p>Show the meta-data of a resource agent type. This is where users
 can find information on how to use a resource agent. It is also
 possible to use the <span class="monospaced">pacemaker-fenced</span> type to get the corresponding
@@ -2385,7 +2579,7 @@ info pacemaker-fenced</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_ra_list"><span class="monospaced">list</span></h4>
+<h4 id="cmdhelp.ra.list"><span class="monospaced">list</span></h4>
 <div class="paragraph"><p>List available resource agents for the given class. If the class
 is <span class="monospaced">ocf</span>, supply a provider to get agents which are available
 only from that provider.</p></div>
@@ -2401,7 +2595,7 @@ only from that provider.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_ra_providers"><span class="monospaced">providers</span></h4>
+<h4 id="cmdhelp.ra.providers"><span class="monospaced">providers</span></h4>
 <div class="paragraph"><p>List providers for a resource agent type. The class parameter
 defaults to <span class="monospaced">ocf</span>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -2416,7 +2610,7 @@ defaults to <span class="monospaced">ocf</span>.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_ra_validate"><span class="monospaced">validate</span></h4>
+<h4 id="cmdhelp.ra.validate"><span class="monospaced">validate</span></h4>
 <div class="paragraph"><p>If the resource agent supports the <span class="monospaced">validate-all</span> action, this calls
 the action with the given parameters, printing any warnings or errors
 reported by the agent.</p></div>
@@ -2428,12 +2622,12 @@ reported by the agent.</p></div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="cmdhelp_resource"><span class="monospaced">resource</span> - Resource management</h3>
+<h3 id="cmdhelp.resource"><span class="monospaced">resource</span> - Resource management</h3>
 <div class="paragraph"><p>At this level resources may be managed.</p></div>
 <div class="paragraph"><p>All (or almost all) commands are implemented with the CRM tools
 such as <span class="monospaced">crm_resource(8)</span>.</p></div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_ban"><span class="monospaced">ban</span></h4>
+<h4 id="cmdhelp.resource.ban"><span class="monospaced">ban</span></h4>
 <div class="paragraph"><p>Ban a resource from running on a certain node. If no node is given
 as argument, the resource is banned from the current location.</p></div>
 <div class="paragraph"><p>See <span class="monospaced">move</span> for details on other arguments.</p></div>
@@ -2444,7 +2638,7 @@ as argument, the resource is banned from the current location.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_cleanup"><span class="monospaced">cleanup</span></h4>
+<h4 id="cmdhelp.resource.cleanup"><span class="monospaced">cleanup</span></h4>
 <div class="paragraph"><p>If resource has any past failures, clear its history and fail
 count. Typically done after the resource has temporarily
 failed.</p></div>
@@ -2459,7 +2653,7 @@ any).</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_clear"><span class="monospaced">clear</span> (<span class="monospaced">unmove</span>, <span class="monospaced">unmigrate</span>, <span class="monospaced">unban</span>)</h4>
+<h4 id="cmdhelp.resource.clear"><span class="monospaced">clear</span> (<span class="monospaced">unmove</span>, <span class="monospaced">unmigrate</span>, <span class="monospaced">unban</span>)</h4>
 <div class="paragraph"><p>Remove any relocation constraint created by
 the <span class="monospaced">move</span>, <span class="monospaced">migrate</span> or <span class="monospaced">ban</span> command.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -2471,7 +2665,7 @@ unban &lt;rsc&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_constraints"><span class="monospaced">constraints</span></h4>
+<h4 id="cmdhelp.resource.constraints"><span class="monospaced">constraints</span></h4>
 <div class="paragraph"><p>Display the location and colocation constraints affecting the
 resource.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -2481,7 +2675,7 @@ resource.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_demote"><span class="monospaced">demote</span></h4>
+<h4 id="cmdhelp.resource.demote"><span class="monospaced">demote</span></h4>
 <div class="paragraph"><p>Demote a promotable resource using the <span class="monospaced">target-role</span>
 attribute.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -2491,7 +2685,7 @@ attribute.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_failcount"><span class="monospaced">failcount</span></h4>
+<h4 id="cmdhelp.resource.failcount"><span class="monospaced">failcount</span></h4>
 <div class="paragraph"><p>Show/edit/delete the failcount of a resource.
 When <span class="monospaced">set</span> a non-zero value, <span class="monospaced">operation</span> and <span class="monospaced">interval</span> should be
 provided when multiple operation failcount entries exist.
@@ -2506,11 +2700,13 @@ failcount &lt;rsc&gt; show &lt;node&gt;</pre>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>failcount fs_0 delete node2</pre>
+<pre>failcount fs_0 set node1 0 monitor 10
+failcount fs_0 delete node1
+failcount fs_0 show node1</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_locate"><span class="monospaced">locate</span></h4>
+<h4 id="cmdhelp.resource.locate"><span class="monospaced">locate</span></h4>
 <div class="paragraph"><p>Show the current location of one or more resources.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -2519,7 +2715,7 @@ failcount &lt;rsc&gt; show &lt;node&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_maintenance"><span class="monospaced">maintenance</span></h4>
+<h4 id="cmdhelp.resource.maintenance"><span class="monospaced">maintenance</span></h4>
 <div class="paragraph"><p>Enables or disables the per-resource maintenance mode. When this mode
 is enabled, no monitor operations will be triggered for the resource.
 <span class="monospaced">maintenance</span> attribute conflicts with the <span class="monospaced">is-managed</span>. When setting
@@ -2538,7 +2734,7 @@ maintenance rsc2 off</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_manage"><span class="monospaced">manage</span></h4>
+<h4 id="cmdhelp.resource.manage"><span class="monospaced">manage</span></h4>
 <div class="paragraph"><p>Manage a resource using the <span class="monospaced">is-managed</span> attribute. If there
 are multiple meta attributes sets, the attribute is set in all of
 them. If the resource is a clone, all <span class="monospaced">is-managed</span> attributes are
@@ -2546,7 +2742,7 @@ removed from the children resources.
 <span class="monospaced">is-managed</span> attribute conflicts with the <span class="monospaced">maintenance</span>. When setting
 the <span class="monospaced">is-managed</span> attribute, the user is proposed to remove the
 <span class="monospaced">maintenance</span> attribute if it exists.</p></div>
-<div class="paragraph"><p>For details on group management see <a href="#cmdhelp_options_manage-children"><span class="monospaced">options manage-children</span></a>.</p></div>
+<div class="paragraph"><p>For details on group management see <a href="#cmdhelp.options.manage-children"><span class="monospaced">options manage-children</span></a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -2554,7 +2750,7 @@ the <span class="monospaced">is-managed</span> attribute, the user is proposed t
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_meta"><span class="monospaced">meta</span></h4>
+<h4 id="cmdhelp.resource.meta"><span class="monospaced">meta</span></h4>
 <div class="paragraph"><p>Show/edit/delete a meta attribute of a resource. Currently, all
 meta attributes of a resource may be managed with other commands
 such as <span class="monospaced">resource stop</span>.</p></div>
@@ -2572,7 +2768,7 @@ meta &lt;rsc&gt; show &lt;attr&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_move"><span class="monospaced">move</span> (<span class="monospaced">migrate</span>)</h4>
+<h4 id="cmdhelp.resource.move"><span class="monospaced">move</span> (<span class="monospaced">migrate</span>)</h4>
 <div class="paragraph"><p>Move a resource away from its current location.</p></div>
 <div class="paragraph"><p>If the destination node is left out, the resource is migrated by
 creating a constraint which prevents it from running on the current
@@ -2587,7 +2783,7 @@ location constraint will no longer be active.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_operations"><span class="monospaced">operations</span></h4>
+<h4 id="cmdhelp.resource.operations"><span class="monospaced">operations</span></h4>
 <div class="paragraph"><p>Show active operations, optionally filtered by resource and node.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -2596,7 +2792,7 @@ location constraint will no longer be active.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_param"><span class="monospaced">param</span></h4>
+<h4 id="cmdhelp.resource.param"><span class="monospaced">param</span></h4>
 <div class="paragraph"><p>Show/edit/delete a parameter of a resource.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -2612,7 +2808,7 @@ param &lt;rsc&gt; show &lt;param&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_promote"><span class="monospaced">promote</span></h4>
+<h4 id="cmdhelp.resource.promote"><span class="monospaced">promote</span></h4>
 <div class="paragraph"><p>Promote a promotable resource using the <span class="monospaced">target-role</span>
 attribute.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -2622,7 +2818,7 @@ attribute.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_refresh"><span class="monospaced">refresh</span></h4>
+<h4 id="cmdhelp.resource.refresh"><span class="monospaced">refresh</span></h4>
 <div class="paragraph"><p>Delete resource&#8217;s history (including failures) so its current state is rechecked.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -2631,7 +2827,7 @@ attribute.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_restart"><span class="monospaced">restart</span></h4>
+<h4 id="cmdhelp.resource.restart"><span class="monospaced">restart</span></h4>
 <div class="paragraph"><p>Restart one or more resources. This is essentially a shortcut for
 resource stop followed by a start. The shell is first going to wait
 for the stop to finish, that is for all resources to really stop, and
@@ -2639,7 +2835,7 @@ only then to order the start action. Due to this command
 entailing a whole set of operations, informational messages are
 printed to let the user see some progress.</p></div>
 <div class="paragraph"><p>For details on group management see
-<a href="#cmdhelp_options_manage-children"><span class="monospaced">options manage-children</span></a>.</p></div>
+<a href="#cmdhelp.options.manage-children"><span class="monospaced">options manage-children</span></a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -2656,7 +2852,7 @@ INFO: ordering g_webserver to start
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_scores"><span class="monospaced">scores</span></h4>
+<h4 id="cmdhelp.resource.scores"><span class="monospaced">scores</span></h4>
 <div class="paragraph"><p>Display the allocation scores for all resources.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -2665,7 +2861,7 @@ INFO: ordering g_webserver to start
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_secret"><span class="monospaced">secret</span></h4>
+<h4 id="cmdhelp.resource.secret"><span class="monospaced">secret</span></h4>
 <div class="paragraph"><p>Sensitive parameters can be kept in local files rather than CIB
 in order to prevent accidental data exposure. Use the <span class="monospaced">secret</span>
 command to manage such parameters. <span class="monospaced">stash</span> and <span class="monospaced">unstash</span> move the
@@ -2693,13 +2889,13 @@ secret fence_1 set password secret_value</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_start"><span class="monospaced">start</span></h4>
+<h4 id="cmdhelp.resource.start"><span class="monospaced">start</span></h4>
 <div class="paragraph"><p>Start one or more resources by setting the <span class="monospaced">target-role</span> attribute. If
 there are multiple meta attributes sets, the attribute is set in all
 of them. If the resource is a clone, all <span class="monospaced">target-role</span> attributes are
 removed from the children resources.</p></div>
 <div class="paragraph"><p>For details on group management see
-<a href="#cmdhelp_options_manage-children"><span class="monospaced">options manage-children</span></a>.</p></div>
+<a href="#cmdhelp.options.manage-children"><span class="monospaced">options manage-children</span></a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -2707,7 +2903,7 @@ removed from the children resources.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_status"><span class="monospaced">status</span> (<span class="monospaced">show</span>, <span class="monospaced">list</span>)</h4>
+<h4 id="cmdhelp.resource.status"><span class="monospaced">status</span> (<span class="monospaced">show</span>, <span class="monospaced">list</span>)</h4>
 <div class="paragraph"><p>Print resource status. More than one resource can be shown at once. If
 the resource parameter is left out, the status of all resources is
 printed.</p></div>
@@ -2718,13 +2914,13 @@ printed.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_stop"><span class="monospaced">stop</span></h4>
+<h4 id="cmdhelp.resource.stop"><span class="monospaced">stop</span></h4>
 <div class="paragraph"><p>Stop one or more resources using the <span class="monospaced">target-role</span> attribute. If there
 are multiple meta attributes sets, the attribute is set in all of
 them. If the resource is a clone, all <span class="monospaced">target-role</span> attributes are
 removed from the children resources.</p></div>
 <div class="paragraph"><p>For details on group management see
-<a href="#cmdhelp_options_manage-children"><span class="monospaced">options manage-children</span></a>.</p></div>
+<a href="#cmdhelp.options.manage-children"><span class="monospaced">options manage-children</span></a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -2732,9 +2928,11 @@ removed from the children resources.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_trace"><span class="monospaced">trace</span></h4>
+<h4 id="cmdhelp.resource.trace"><span class="monospaced">trace</span></h4>
 <div class="paragraph"><p>Start tracing RA for the given operation. When <span class="monospaced">[&lt;log-dir&gt;]</span>
-is not specified the trace files are stored in <span class="monospaced">$HA_VARLIB/trace_ra</span>.
+is not specified, the trace files are stored in <span class="monospaced">&lt;heartbeat_dir&gt;/trace_ra</span>.
+If <span class="monospaced">&lt;heartbeat_dir&gt;</span> option in <span class="monospaced">/etc/crm/crm.conf</span> is not defined,
+it defaults to <span class="monospaced">/var/lib/heartbeat</span>.
 If the operation to be traced is monitor, note that the number
 of trace files can grow very quickly.</p></div>
 <div class="paragraph"><p>If no operation name is given, crmsh will attempt to trace all
@@ -2761,12 +2959,12 @@ trace fs monitor 0 /var/log/foo/bar</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_unmanage"><span class="monospaced">unmanage</span></h4>
+<h4 id="cmdhelp.resource.unmanage"><span class="monospaced">unmanage</span></h4>
 <div class="paragraph"><p>Unmanage a resource using the <span class="monospaced">is-managed</span> attribute. If there
 are multiple meta attributes sets, the attribute is set in all of
 them. If the resource is a clone, all <span class="monospaced">is-managed</span> attributes are
 removed from the children resources.</p></div>
-<div class="paragraph"><p>For details on group management see <a href="#cmdhelp_options_manage-children"><span class="monospaced">options manage-children</span></a>.</p></div>
+<div class="paragraph"><p>For details on group management see <a href="#cmdhelp.options.manage-children"><span class="monospaced">options manage-children</span></a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -2774,7 +2972,7 @@ removed from the children resources.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_untrace"><span class="monospaced">untrace</span></h4>
+<h4 id="cmdhelp.resource.untrace"><span class="monospaced">untrace</span></h4>
 <div class="paragraph"><p>Stop tracing RA for the given operation. If no operation name is
 given, crmsh will attempt to stop tracing all operations in resource.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -2790,12 +2988,12 @@ untrace webserver</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_resource_utilization"><span class="monospaced">utilization</span></h4>
+<h4 id="cmdhelp.resource.utilization"><span class="monospaced">utilization</span></h4>
 <div class="paragraph"><p>Show/edit/delete a utilization attribute of a resource. These
 attributes describe hardware requirements. By setting the
 <span class="monospaced">placement-strategy</span> cluster property appropriately, it is
 possible then to distribute resources based on resource
-requirements and node size. See also <a href="#cmdhelp_node_utilization">node utilization attributes</a>.</p></div>
+requirements and node size. See also <a href="#cmdhelp.node.utilization">node utilization attributes</a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -2811,10 +3009,88 @@ utilization &lt;rsc&gt; show &lt;attr&gt;</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="cmdhelp_node"><span class="monospaced">node</span> - Node management</h3>
+<h3 id="cmdhelp.sbd"><span class="monospaced">sbd</span> - SBD management</h3>
+<div class="paragraph"><p>This level displays the real-time SBD status and the static SBD configuration.
+Additionally, it manages the configuration file for both disk-based and diskless SBD scenarios,
+as well as the on-disk metadata for the disk-based scenario.
+Currently, SBD management requires a running cluster.</p></div>
+<div class="paragraph"><p>When run with <span class="monospaced">crm -F</span> or <span class="monospaced">--force</span> option, the <span class="monospaced">sbd</span> subcommand will leverage maintenance mode
+for any changes that require restarting sbd.service.
+WARNING: Understand risks that running RA has no cluster protection while the cluster is
+in maintenance mode and restarting</p></div>
+<div class="sect3">
+<h4 id="cmdhelp.sbd.configure"><span class="monospaced">configure</span></h4>
+<div class="paragraph"><p>Configure the SBD daemon for both disk-based and disk-less mode.</p></div>
+<div class="paragraph"><p>Main functionailities include:
+- Show configured disk metadata
+- Show contents of /etc/sysconfig/sbd
+- Show SBD related cluster properties
+- Update the SBD related configuration parameters
+- NOTE: sbd crashdump is used for debugging. Understand the risks and run <span class="monospaced">crm sbd purge crashdump</span> afterward</p></div>
+<div class="paragraph"><p>For more details on SBD and related parameters, please see man sbd(8).</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre># For disk-based SBD
+crm sbd configure show [disk_metadata|sysconfig|property]
+crm sbd configure [watchdog-timeout=&lt;integer&gt;] [allocate-timeout=&lt;integer&gt;] [loop-timeout=&lt;integer&gt;] [msgwait-timeout=&lt;integer&gt;] [crashdump-watchdog-timeout=&lt;integer&gt;] [watchdog-device=&lt;device&gt;]
+
+# For disk-less SBD
+crm sbd configure show [sysconfig|property]
+crm sbd configure [watchdog-timeout=&lt;integer&gt;] [crashdump-watchdog-timeout=&lt;integer&gt;] [watchdog-device=&lt;device&gt;]</pre>
+</div></div>
+<div class="paragraph"><p>example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>configure show
+configure show disk_metadata
+configure show sysconfig
+configure show property
+configure watchdog-timeout=30</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp.sbd.device"><span class="monospaced">device</span></h4>
+<div class="paragraph"><p>Add or remove SBD device(s) from the existing SBD configuration.</p></div>
+<div class="paragraph"><p>example:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>device add /dev/sdb5
+device add /dev/sdb5 /dev/sdb6
+device add "/dev/sda5;/dev/sda6"
+device remove /dev/sdb5</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp.sbd.status"><span class="monospaced">status</span></h4>
+<div class="paragraph"><p>Show the runtime status of the SBD daemon and
+the other information of those SBD related components,
+ie. watchdog, fence agent.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>status</pre>
+</div></div>
+</div>
+<div class="sect3">
+<h4 id="cmdhelp.sbd.purge"><span class="monospaced">purge</span></h4>
+<div class="paragraph"><p>Disable the systemd sbd.service on all cluster nodes,
+move the sbd sysconfig to .bak and adjust SBD related cluster properties.
+If <span class="monospaced">crashdump</span> is specified, the crashdump related configurations will be
+removed.</p></div>
+<div class="paragraph"><p>Usage:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>purge
+purge crashdump</pre>
+</div></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cmdhelp.node"><span class="monospaced">node</span> - Node management</h3>
 <div class="paragraph"><p>Node management and status commands.</p></div>
 <div class="sect3">
-<h4 id="cmdhelp_node_attribute"><span class="monospaced">attribute</span></h4>
+<h4 id="cmdhelp.node.attribute"><span class="monospaced">attribute</span></h4>
 <div class="paragraph"><p>Edit node attributes. This kind of attribute should refer to
 relatively static properties, such as memory size.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -2831,7 +3107,7 @@ attribute &lt;node&gt; show &lt;attr&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_node_clearstate"><span class="monospaced">clearstate</span></h4>
+<h4 id="cmdhelp.node.clearstate"><span class="monospaced">clearstate</span></h4>
 <div class="paragraph"><p>Resets and clears the state of the specified node. This node is
 afterwards assumed clean and offline. This command can be used to
 manually confirm that a node has been fenced (e.g., powered off).</p></div>
@@ -2845,7 +3121,7 @@ the fence had succeeded, possibly starting resources multiple times.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_node_delete"><span class="monospaced">delete</span></h4>
+<h4 id="cmdhelp.node.delete"><span class="monospaced">delete</span></h4>
 <div class="paragraph"><p>Remove a node from cluster.</p></div>
 <div class="paragraph"><p>If the node is still listed as active and a member of our
 partition we refuse to remove it. With the global force option
@@ -2864,7 +3140,7 @@ which will adjust the related cluster configurations and clean up the leftover
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_node_fence"><span class="monospaced">fence</span></h4>
+<h4 id="cmdhelp.node.fence"><span class="monospaced">fence</span></h4>
 <div class="paragraph"><p>Make CRM fence a node. This functionality depends on stonith
 resources capable of fencing the specified node. No such stonith
 resources, no fencing will happen.</p></div>
@@ -2875,7 +3151,7 @@ resources, no fencing will happen.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_node_maintenance"><span class="monospaced">maintenance</span></h4>
+<h4 id="cmdhelp.node.maintenance"><span class="monospaced">maintenance</span></h4>
 <div class="paragraph"><p>Set the node status to maintenance. This is equivalent to the
 cluster-wide <span class="monospaced">maintenance-mode</span> property but puts just one node
 into the maintenance mode. If there are maintained resources on
@@ -2889,7 +3165,7 @@ property from them.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_node_online"><span class="monospaced">online</span></h4>
+<h4 id="cmdhelp.node.online"><span class="monospaced">online</span></h4>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -2911,7 +3187,7 @@ property from them.</p></div>
 </ul></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_node_ready"><span class="monospaced">ready</span></h4>
+<h4 id="cmdhelp.node.ready"><span class="monospaced">ready</span></h4>
 <div class="paragraph"><p>Set the node&#8217;s maintenance status to <span class="monospaced">off</span>. The node should be
 now again fully operational and capable of running resource
 operations.</p></div>
@@ -2923,7 +3199,7 @@ operations.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_node_server"><span class="monospaced">server</span></h4>
+<h4 id="cmdhelp.node.server"><span class="monospaced">server</span></h4>
 <div class="paragraph"><p>Remote nodes may have a configured server address which should
 be used when contacting the node. This command prints the
 server address if configured, else the node name.</p></div>
@@ -2936,7 +3212,7 @@ are printed.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_node_show"><span class="monospaced">show</span></h4>
+<h4 id="cmdhelp.node.show"><span class="monospaced">show</span></h4>
 <div class="paragraph"><p>Show a node definition. If the node parameter is omitted, then all
 nodes are shown.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -2946,7 +3222,7 @@ nodes are shown.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_node_standby"><span class="monospaced">standby</span></h4>
+<h4 id="cmdhelp.node.standby"><span class="monospaced">standby</span></h4>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -2969,7 +3245,7 @@ nodes are shown.</p></div>
 </ul></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_node_status-attr"><span class="monospaced">status-attr</span></h4>
+<h4 id="cmdhelp.node.status-attr"><span class="monospaced">status-attr</span></h4>
 <div class="paragraph"><p>Edit node attributes which are in the CIB status section, i.e.,
 attributes which hold properties of a more volatile nature. One
 typical example is attribute generated by the <span class="monospaced">pingd</span> utility.</p></div>
@@ -2987,13 +3263,13 @@ status-attr &lt;node&gt; show &lt;attr&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_node_utilization"><span class="monospaced">utilization</span></h4>
+<h4 id="cmdhelp.node.utilization"><span class="monospaced">utilization</span></h4>
 <div class="paragraph"><p>Edit node utilization attributes. These attributes describe
 hardware characteristics as integer numbers such as memory size
 or the number of CPUs. By setting the <span class="monospaced">placement-strategy</span>
 cluster property appropriately, it is possible then to distribute
 resources based on resource requirements and node size. See also
-<a href="#cmdhelp_resource_utilization">resource utilization attributes</a>.</p></div>
+<a href="#cmdhelp.resource.utilization">resource utilization attributes</a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -3010,15 +3286,15 @@ utilization node_1 show cpu</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="cmdhelp_site"><span class="monospaced">site</span> - GEO clustering site support</h3>
+<h3 id="cmdhelp.site"><span class="monospaced">site</span> - GEO clustering site support</h3>
 <div class="paragraph"><p>A cluster may consist of two or more subclusters in different and
 distant locations. This set of commands supports such setups.</p></div>
 <div class="sect3">
-<h4 id="cmdhelp_site_ticket"><span class="monospaced">ticket</span></h4>
+<h4 id="cmdhelp.site.ticket"><span class="monospaced">ticket</span></h4>
 <div class="paragraph"><p>Tickets are cluster-wide attributes. They can be managed at the
 site where this command is executed.</p></div>
 <div class="paragraph"><p>It is then possible to constrain resources depending on the
-ticket availability (see the <a href="#cmdhelp_configure_rsc_ticket"><span class="monospaced">rsc_ticket</span></a> command
+ticket availability (see the <a href="#cmdhelp.configure.rsc_ticket"><span class="monospaced">rsc_ticket</span></a> command
 for more details).</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -3033,10 +3309,10 @@ for more details).</p></div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="cmdhelp_options"><span class="monospaced">options</span> - User preferences</h3>
+<h3 id="cmdhelp.options"><span class="monospaced">options</span> - User preferences</h3>
 <div class="paragraph"><p>The user may set various options for the crm shell itself.</p></div>
 <div class="sect3">
-<h4 id="cmdhelp_options_add-quotes"><span class="monospaced">add-quotes</span></h4>
+<h4 id="cmdhelp.options.add-quotes"><span class="monospaced">add-quotes</span></h4>
 <div class="paragraph"><p>The shell (as in <span class="monospaced">/bin/sh</span>) parser strips quotes from the command
 line. This may sometimes make it really difficult to type values
 which contain white space. One typical example is the configure
@@ -3061,7 +3337,7 @@ the following:</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_options_check-frequency"><span class="monospaced">check-frequency</span></h4>
+<h4 id="cmdhelp.options.check-frequency"><span class="monospaced">check-frequency</span></h4>
 <div class="paragraph"><p>Semantic check of the CIB or elements modified or created may be
 done on every configuration change (<span class="monospaced">always</span>), when verifying
 (<span class="monospaced">on-verify</span>) or <span class="monospaced">never</span>. It is by default set to <span class="monospaced">always</span>.
@@ -3069,18 +3345,18 @@ Experts may want to change the setting to <span class="monospaced">on-verify</sp
 <div class="paragraph"><p>The checks require that resource agents are present. If they are
 not installed at the configuration time set this preference to
 <span class="monospaced">never</span>.</p></div>
-<div class="paragraph"><p>See <a href="#topics_Features_Checks">Configuration semantic checks</a> for more details.</p></div>
+<div class="paragraph"><p>See <a href="#topics.Features.Checks">Configuration semantic checks</a> for more details.</p></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_options_check-mode"><span class="monospaced">check-mode</span></h4>
+<h4 id="cmdhelp.options.check-mode"><span class="monospaced">check-mode</span></h4>
 <div class="paragraph"><p>Semantic check of the CIB or elements modified or created may be
 done in the <span class="monospaced">strict</span> mode or in the <span class="monospaced">relaxed</span> mode. In the former
 certain problems are treated as configuration errors. In the
 <span class="monospaced">relaxed</span> mode all are treated as warnings. The default is <span class="monospaced">strict</span>.</p></div>
-<div class="paragraph"><p>See <a href="#topics_Features_Checks">Configuration semantic checks</a> for more details.</p></div>
+<div class="paragraph"><p>See <a href="#topics.Features.Checks">Configuration semantic checks</a> for more details.</p></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_options_colorscheme"><span class="monospaced">colorscheme</span></h4>
+<h4 id="cmdhelp.options.colorscheme"><span class="monospaced">colorscheme</span></h4>
 <div class="paragraph"><p>With <span class="monospaced">output</span> set to <span class="monospaced">color</span>, a comma separated list of colors
 from this option are used to emphasize:</p></div>
 <div class="ulist"><ul>
@@ -3131,7 +3407,7 @@ setups.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_options_editor"><span class="monospaced">editor</span></h4>
+<h4 id="cmdhelp.options.editor"><span class="monospaced">editor</span></h4>
 <div class="paragraph"><p>The <span class="monospaced">edit</span> command invokes an editor. Use this to specify your
 preferred editor program. If not set, it will default to either
 the value of the <span class="monospaced">EDITOR</span> environment variable or to one of the
@@ -3148,7 +3424,7 @@ standard UNIX editors (<span class="monospaced">vi</span>,<span class="monospace
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_options_manage-children"><span class="monospaced">manage-children</span></h4>
+<h4 id="cmdhelp.options.manage-children"><span class="monospaced">manage-children</span></h4>
 <div class="paragraph"><p>Some resource management commands, such as <span class="monospaced">resource stop</span>, when
 the target resource is a group, may not always produce desired
 result. Each element, group and the primitive members, can have a
@@ -3189,7 +3465,7 @@ all children attributes are left intact. Finally, if set to
 <span class="monospaced">ask</span>, the user will be asked for each member what is to be done.</p></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_options_output"><span class="monospaced">output</span></h4>
+<h4 id="cmdhelp.options.output"><span class="monospaced">output</span></h4>
 <div class="paragraph"><p><span class="monospaced">crm</span> can adorn configurations in two ways: in color (similar to
 for instance the <span class="monospaced">ls --color</span> command) and by showing keywords in
 upper case. Possible values are <span class="monospaced">plain</span>, <span class="monospaced">color-always</span>, <span class="monospaced">color</span>,
@@ -3201,25 +3477,25 @@ codes even in case the terminal is not a tty (just like <span class="monospaced"
 --color=always</span>).</p></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_options_pager"><span class="monospaced">pager</span></h4>
+<h4 id="cmdhelp.options.pager"><span class="monospaced">pager</span></h4>
 <div class="paragraph"><p>The <span class="monospaced">view</span> command displays text through a pager. Use this to
 specify your preferred pager program. If not set, it will default
 to either the value of the <span class="monospaced">PAGER</span> environment variable or to one
 of the standard UNIX system pagers (<span class="monospaced">less</span>,<span class="monospaced">more</span>,<span class="monospaced">pg</span>).</p></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_options_reset"><span class="monospaced">reset</span></h4>
+<h4 id="cmdhelp.options.reset"><span class="monospaced">reset</span></h4>
 <div class="paragraph"><p>This command resets all user options to the defaults. If used as
 a single-shot command, the rc file (<span class="monospaced">$HOME/.config/crm/rc</span>) is
 reset to the defaults too.</p></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_options_save"><span class="monospaced">save</span></h4>
+<h4 id="cmdhelp.options.save"><span class="monospaced">save</span></h4>
 <div class="paragraph"><p>Save current settings to the rc file (<span class="monospaced">$HOME/.config/crm/rc</span>). On
 further <span class="monospaced">crm</span> runs, the rc file is automatically read and parsed.</p></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_options_set"><span class="monospaced">set</span></h4>
+<h4 id="cmdhelp.options.set"><span class="monospaced">set</span></h4>
 <div class="paragraph"><p>Sets the value of an option. Takes the fully qualified
 name of the option as argument, as displayed by <span class="monospaced">show all</span>.</p></div>
 <div class="paragraph"><p>The modified option value is stored in the user-local
@@ -3237,7 +3513,7 @@ set editor nano</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_options_show"><span class="monospaced">show</span></h4>
+<h4 id="cmdhelp.options.show"><span class="monospaced">show</span></h4>
 <div class="paragraph"><p>Display all current settings.</p></div>
 <div class="paragraph"><p>Given an option name as argument, <span class="monospaced">show</span> will display only the value
 of that argument.</p></div>
@@ -3256,7 +3532,7 @@ show all</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_options_skill-level"><span class="monospaced">skill-level</span></h4>
+<h4 id="cmdhelp.options.skill-level"><span class="monospaced">skill-level</span></h4>
 <div class="paragraph"><p>Based on the skill-level setting, the user is allowed to use only
 a subset of commands. There are three levels: operator,
 administrator, and expert. The operator level allows only
@@ -3276,12 +3552,12 @@ level :: operator | administrator | expert</pre>
 <div class="title">Note on security</div>
 <div class="paragraph"><p>The <span class="monospaced">skill-level</span> option is advisory only. There is nothing
 stopping any users change their skill level (see
-<a href="#topics_Features_Security">Access Control Lists (ACL)</a> on how to enforce
+<a href="#topics.Features.Security">Access Control Lists (ACL)</a> on how to enforce
 access control).</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_options_sort-elements"><span class="monospaced">sort-elements</span></h4>
+<h4 id="cmdhelp.options.sort-elements"><span class="monospaced">sort-elements</span></h4>
 <div class="paragraph"><p><span class="monospaced">crm</span> by default sorts CIB elements. If you want them appear in
 the order they were created, set this option to <span class="monospaced">no</span>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -3296,7 +3572,7 @@ the order they were created, set this option to <span class="monospaced">no</spa
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_options_user"><span class="monospaced">user</span></h4>
+<h4 id="cmdhelp.options.user"><span class="monospaced">user</span></h4>
 <div class="paragraph"><p>Sufficient privileges are necessary in order to manage a
 cluster: programs such as <span class="monospaced">crm_verify</span> or <span class="monospaced">crm_resource</span> and,
 ultimately, <span class="monospaced">cibadmin</span> have to be run either as <span class="monospaced">root</span> or as the
@@ -3317,7 +3593,7 @@ the appropriate user (such as <span class="monospaced">hacluster</span>), and se
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_options_wait"><span class="monospaced">wait</span></h4>
+<h4 id="cmdhelp.options.wait"><span class="monospaced">wait</span></h4>
 <div class="paragraph"><p>In normal operation, <span class="monospaced">crm</span> runs a command and gets back
 immediately to process other commands or get input from the user.
 With this option set to <span class="monospaced">yes</span> it will wait for the started
@@ -3336,7 +3612,7 @@ indicate progress.</p></div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="cmdhelp_configure"><span class="monospaced">configure</span> - CIB configuration</h3>
+<h3 id="cmdhelp.configure"><span class="monospaced">configure</span> - CIB configuration</h3>
 <div class="paragraph"><p>This level enables all CIB object definition commands.</p></div>
 <div class="paragraph"><p>The configuration may be logically divided into four parts:
 nodes, resources, constraints, and (cluster) properties and
@@ -3364,11 +3640,6 @@ objects.</p></div>
 <li>
 <p>
 <span class="monospaced">clone</span> (promotable clones)
-</p>
-</li>
-<li>
-<p>
-<span class="monospaced">ms</span>/<span class="monospaced">master</span> (master-slave) (deprecated)
 </p>
 </li>
 </ul></div>
@@ -3461,7 +3732,7 @@ configuration session or using the <span class="monospaced">commit</span> comman
 to the element which follows. If the element moves, its comments
 will follow.</p></div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_acl_target"><span class="monospaced">acl_target</span></h4>
+<h4 id="cmdhelp.configure.acl_target"><span class="monospaced">acl_target</span></h4>
 <div class="paragraph"><p>Defines an ACL target.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -3475,7 +3746,7 @@ will follow.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_alert"><span class="monospaced">alert</span></h4>
+<h4 id="cmdhelp.configure.alert"><span class="monospaced">alert</span></h4>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">Version note</div>
@@ -3528,13 +3799,12 @@ alert alert-3 /srv/pacemaker/example_alert.sh \
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_bundle"><span class="monospaced">bundle</span></h4>
+<h4 id="cmdhelp.configure.bundle"><span class="monospaced">bundle</span></h4>
 <div class="paragraph"><p>A bundle is a single resource specifying the settings, networking
 requirements, and storage requirements for any number of containers
 generated from the same container image.</p></div>
-<div class="paragraph"><p>Pacemaker bundles support Docker (since version 1.1.17) and rkt (since
-version 1.1.18) container technologies.</p></div>
-<div class="paragraph"><p>A bundle must contain exactly one <span class="monospaced">docker</span> or <span class="monospaced">rkt</span> element.</p></div>
+<div class="paragraph"><p>Pacemaker bundles support Docker and Podman container technologies.</p></div>
+<div class="paragraph"><p>A bundle must contain exactly one <span class="monospaced">docker</span> or <span class="monospaced">podman</span> element.</p></div>
 <div class="paragraph"><p>The bundle definition may contain a reference to a primitive
 resource which defining the resource running inside the
 container.</p></div>
@@ -3553,7 +3823,7 @@ bundle httpd \
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_cib"><span class="monospaced">cib</span></h4>
+<h4 id="cmdhelp.configure.cib"><span class="monospaced">cib</span></h4>
 <div class="paragraph"><p>This level is for management of shadow CIBs. It is available at
 the <span class="monospaced">configure</span> level to enable saving intermediate changes to a
 shadow CIB instead of to the live cluster. This short excerpt
@@ -3566,15 +3836,15 @@ crm(test-2)configure# commit</pre>
 </div></div>
 <div class="paragraph"><p>Note how the current CIB in the prompt changed from <span class="monospaced">live</span> to
 <span class="monospaced">test-2</span> after issuing the <span class="monospaced">cib new</span> command. See also the
-<a href="#cmdhelp_cib">CIB shadow management</a> for more information.</p></div>
+<a href="#cmdhelp.cib">CIB shadow management</a> for more information.</p></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_cibstatus"><span class="monospaced">cibstatus</span></h4>
+<h4 id="cmdhelp.configure.cibstatus"><span class="monospaced">cibstatus</span></h4>
 <div class="paragraph"><p>Enter edit and manage the CIB status section level. See the
-<a href="#cmdhelp_cibstatus">CIB status management section</a>.</p></div>
+<a href="#cmdhelp.cibstatus">CIB status management section</a>.</p></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_clone"><span class="monospaced">clone</span></h4>
+<h4 id="cmdhelp.configure.clone"><span class="monospaced">clone</span></h4>
 <div class="paragraph"><p>The <span class="monospaced">clone</span> command creates a resource clone. It may contain a
 single primitive resource or one group of resources.</p></div>
 <div class="paragraph"><p><span class="monospaced">Promotable clones</span> are clone resources with the <span class="monospaced">promotable=true</span> meta-attribute for the given promotable resources.
@@ -3600,7 +3870,7 @@ clone disk1 drbd1 \
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_colocation"><span class="monospaced">colocation</span> (<span class="monospaced">collocation</span>)</h4>
+<h4 id="cmdhelp.configure.colocation"><span class="monospaced">colocation</span> (<span class="monospaced">collocation</span>)</h4>
 <div class="paragraph"><p>This constraint expresses the placement relation between two
 or more resources. If there are more than two resources, then the
 constraint is called a resource set.</p></div>
@@ -3622,7 +3892,7 @@ setting a node attribute <span class="monospaced">color</span> on all nodes and 
 <span class="monospaced">node-attribute</span> value to <span class="monospaced">color</span> as well, the colocated resources
 will be placed on any node that has the same color.</p></div>
 <div class="paragraph"><p>For more details on how to configure resource sets, see
-<a href="#topics_Features_Resourcesets"><span class="monospaced">Syntax: Resource sets</span></a>.</p></div>
+<a href="#topics.Features.Resourcesets"><span class="monospaced">Syntax: Resource sets</span></a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -3647,7 +3917,7 @@ colocation c1 inf: A ( B C )</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_commit"><span class="monospaced">commit</span></h4>
+<h4 id="cmdhelp.configure.commit"><span class="monospaced">commit</span></h4>
 <div class="paragraph"><p>Commit the current configuration to the CIB in use. As noted
 elsewhere, commands in a configure session don&#8217;t have immediate
 effect on the CIB. All changes are applied at one point in time,
@@ -3667,7 +3937,7 @@ concurrently modifies the CIB.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_default-timeouts"><span class="monospaced">default-timeouts</span></h4>
+<h4 id="cmdhelp.configure.default-timeouts"><span class="monospaced">default-timeouts</span></h4>
 <div class="paragraph"><p>This command takes the timeouts from the actions section of the
 resource agent meta-data and sets them for the operations of the
 primitive.</p></div>
@@ -3688,7 +3958,7 @@ should be carefully considered with the whole configuration in mind.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_delete"><span class="monospaced">delete</span></h4>
+<h4 id="cmdhelp.configure.delete"><span class="monospaced">delete</span></h4>
 <div class="paragraph"><p>Delete one or more objects. If an object to be deleted belongs to
 a container object, such as a group, and it is the only resource
 in that container, then the container is deleted as well. Any
@@ -3702,7 +3972,7 @@ related constraints are removed as well.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_edit"><span class="monospaced">edit</span></h4>
+<h4 id="cmdhelp.configure.edit"><span class="monospaced">edit</span></h4>
 <div class="paragraph"><p>This command invokes the editor with the object description. As
 with the <span class="monospaced">show</span> command, the user may choose to edit all objects
 or a set of objects.</p></div>
@@ -3719,18 +3989,12 @@ edit [xml] changed</pre>
 <div class="title">Note on renaming element ids</div>
 <div class="paragraph"><p>The edit command sometimes cannot properly handle modifying
 element ids. In particular for elements which belong to group or
-ms resources. Group and ms resources themselves also cannot be
+promotable resources. Group and promotable resources themselves also cannot be
 renamed. Please use the <span class="monospaced">rename</span> command instead.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_erase"><span class="monospaced">erase</span></h4>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">Deprecation note</div>
-<div class="paragraph"><p><span class="monospaced">crm configure erase</span> is deprecated.
-The replacement could be <span class="monospaced">crm cluster remove [node]</span></p></div>
-</div></div>
+<h4 id="cmdhelp.configure.erase"><span class="monospaced">erase</span></h4>
 <div class="paragraph"><p>The <span class="monospaced">erase</span> clears all configuration. Apart from nodes. To remove
 nodes, you have to specify an additional keyword <span class="monospaced">nodes</span>.</p></div>
 <div class="paragraph"><p>Note that removing nodes from the live cluster may have some
@@ -3742,7 +4006,7 @@ strange/interesting/unwelcome effects.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_fencing_topology"><span class="monospaced">fencing_topology</span></h4>
+<h4 id="cmdhelp.configure.fencing_topology"><span class="monospaced">fencing_topology</span></h4>
 <div class="paragraph"><p>If multiple fencing (stonith) devices are available capable of
 fencing a node, their order may be specified by <span class="monospaced">fencing_topology</span>.
 The order is specified per node.</p></div>
@@ -3794,7 +4058,7 @@ fencing_topology \
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_filter"><span class="monospaced">filter</span></h4>
+<h4 id="cmdhelp.configure.filter"><span class="monospaced">filter</span></h4>
 <div class="paragraph"><p>This command filters the given CIB elements through an external
 program. The program should accept input on <span class="monospaced">stdin</span> and send
 output to <span class="monospaced">stdout</span> (the standard UNIX filter conventions). As
@@ -3833,7 +4097,7 @@ above.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_get_property"><span class="monospaced">get-property</span></h4>
+<h4 id="cmdhelp.configure.get_property"><span class="monospaced">get-property</span></h4>
 <div class="paragraph"><p>Show the value of the given property. If the value is not set, the
 command will print the default value for the property, if known.</p></div>
 <div class="paragraph"><p>If no property name is passed to the command, the list of known
@@ -3857,7 +4121,7 @@ get-property -t maintenance-mode</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_graph"><span class="monospaced">graph</span></h4>
+<h4 id="cmdhelp.configure.graph"><span class="monospaced">graph</span></h4>
 <div class="paragraph"><p>Create a graphviz graphical layout from the current cluster
 configuration.</p></div>
 <div class="paragraph"><p>Currently, only <span class="monospaced">dot</span> (directed graph) is supported. It is
@@ -3888,7 +4152,7 @@ graph dot clu1.conf.svg svg</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_group"><span class="monospaced">group</span></h4>
+<h4 id="cmdhelp.configure.group"><span class="monospaced">group</span></h4>
 <div class="paragraph"><p>The <span class="monospaced">group</span> command creates a group of resources. This can be useful
 when resources depend on other resources and require that those
 resources start in order on the same node. A common use of resource
@@ -3897,10 +4161,6 @@ together, and that the virtual IP is started before the server.</p></div>
 <div class="paragraph"><p>Grouped resources are started in the order they appear in the group,
 and stopped in the reverse order. If a resource in the group cannot
 run anywhere, resources following it in the group will not start.</p></div>
-<div class="paragraph"><p><span class="monospaced">group</span> can be passed the "container" meta attribute, to indicate that
-it is to be used to group VM resources monitored using Nagios. The
-resource referred to by the container attribute must be of type
-<span class="monospaced">ocf:heartbeat:Xen</span>, <span class="monospaced">ocf:heartbeat:VirtualDomain</span> or <span class="monospaced">ocf:heartbeat:lxc</span>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -3915,13 +4175,11 @@ attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;
 <div class="literalblock">
 <div class="content monospaced">
 <pre>group internal_www disk0 fs0 internal_ip apache \
-  meta target_role=stopped
-
-group vm-and-services vm vm-sshd meta container="vm"</pre>
+  meta target_role=stopped</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_load"><span class="monospaced">load</span></h4>
+<h4 id="cmdhelp.configure.load"><span class="monospaced">load</span></h4>
 <div class="paragraph"><p>Load a part of configuration (or all of it) from a local file or
 a network URL. The <span class="monospaced">replace</span> method replaces the current
 configuration with the one from the source. The <span class="monospaced">update</span> method
@@ -3947,10 +4205,10 @@ load xml push smallcib.xml</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_location"><span class="monospaced">location</span></h4>
+<h4 id="cmdhelp.configure.location"><span class="monospaced">location</span></h4>
 <div class="paragraph"><p><span class="monospaced">location</span> defines the preference of nodes for the given
-resource. The location constraints consist of one or more rules
-which specify a score to be awarded if the rule matches.</p></div>
+resource. The location constraints are defined by a single rule
+which specifies a score to be awarded if the rule matches.</p></div>
 <div class="paragraph"><p>The resource referenced by the location constraint can be one of the
 following:</p></div>
 <div class="ulist"><ul>
@@ -3978,15 +4236,17 @@ Resource pattern: <span class="monospaced">location loc1 /web.*/ 100: node1</spa
 <div class="paragraph"><p>The <span class="monospaced">resource-discovery</span> attribute allows probes to be selectively
 enabled or disabled per resource and node.</p></div>
 <div class="paragraph"><p>The syntax for resource sets is described in detail for
-<a href="#cmdhelp_configure_colocation"><span class="monospaced">colocation</span></a>.</p></div>
+<a href="#cmdhelp.configure.colocation"><span class="monospaced">colocation</span></a>.</p></div>
 <div class="paragraph"><p>For more details on how to configure resource sets, see
-<a href="#topics_Features_Resourcesets"><span class="monospaced">Syntax: Resource sets</span></a>.</p></div>
+<a href="#topics.Features.Resourcesets"><span class="monospaced">Syntax: Resource sets</span></a>.</p></div>
 <div class="paragraph"><p>For more information on rule expressions, see
-<a href="#topics_Syntax_RuleExpressions">Syntax: Rule expressions</a>.</p></div>
+<a href="#topics.Syntax.RuleExpressions">Syntax: Rule expressions</a>.</p></div>
+<div class="paragraph"><p>Note: pacemaker has deprecated support for multiple top-level rules
+within a location constraint since version 2.1.8.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>location &lt;id&gt; &lt;rsc&gt; [&lt;attributes&gt;] {&lt;node_pref&gt;|&lt;rules&gt;}
+<pre>location &lt;id&gt; &lt;rsc&gt; [&lt;attributes&gt;] {&lt;node_pref&gt;|&lt;rule&gt;}
 
 rsc :: /&lt;rsc-pattern&gt;/
         | { resource_sets }
@@ -3996,9 +4256,8 @@ attributes :: role=&lt;role&gt; | resource-discovery=always|never|exclusive
 
 node_pref :: &lt;score&gt;: &lt;node&gt;
 
-rules ::
+rule ::
   rule [id_spec] [$role=&lt;role&gt;] &lt;score&gt;: &lt;expression&gt;
-  [rule [id_spec] [$role=&lt;role&gt;] &lt;score&gt;: &lt;expression&gt; ...]
 
 id_spec :: $id=&lt;id&gt; | $id-ref=&lt;id&gt;
 score :: &lt;number&gt; | &lt;attribute&gt; | [-]inf
@@ -4024,8 +4283,7 @@ duration|date_spec ::
          | months=&lt;value&gt;
          | weeks=&lt;value&gt;
          | years=&lt;value&gt;
-         | weekyears=&lt;value&gt;
-         | moon=&lt;value&gt;</pre>
+         | weekyears=&lt;value&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Examples:</p></div>
 <div class="literalblock">
@@ -4033,8 +4291,8 @@ duration|date_spec ::
 <pre>location conn_1 internal_www 100: node1
 
 location conn_1 internal_www \
-  rule 50: #uname eq node1 \
-  rule pingd: defined pingd
+  rule 50: #uname eq node1 and \
+  defined pingd
 
 location conn_2 dummy_float \
   rule -inf: not_defined pingd or pingd number:lte 0
@@ -4044,7 +4302,7 @@ location no-probe rsc1 resource-discovery=never -inf: node1</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_modgroup"><span class="monospaced">modgroup</span></h4>
+<h4 id="cmdhelp.configure.modgroup"><span class="monospaced">modgroup</span></h4>
 <div class="paragraph"><p>Add or remove primitives in a group. The <span class="monospaced">add</span> subcommand appends
 the new group member by default. Should it go elsewhere, there
 are <span class="monospaced">after</span> and <span class="monospaced">before</span> clauses.</p></div>
@@ -4061,7 +4319,7 @@ modgroup &lt;id&gt; remove &lt;id&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_monitor"><span class="monospaced">monitor</span></h4>
+<h4 id="cmdhelp.configure.monitor"><span class="monospaced">monitor</span></h4>
 <div class="paragraph"><p>Monitor is by far the most common operation. It is possible to
 add it without editing the whole resource. Also, long primitive
 definitions may be a bit uncluttered. In order to make this
@@ -4082,61 +4340,7 @@ the <span class="monospaced">primitive</span> command.</p></div>
 be shown as part of the primitive definition.</p></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_ms"><span class="monospaced">ms</span> (<span class="monospaced">master</span>)</h4>
-<div class="paragraph"><p>The <span class="monospaced">ms</span> command creates a master/slave resource type. It may contain a
-single primitive resource or one group of resources.</p></div>
-<div class="paragraph"><p>Usage:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>ms &lt;name&gt; &lt;rsc&gt;
-  [description=&lt;description&gt;]
-  [meta attr_list]
-  [params attr_list]
-
-attr_list :: [$id=&lt;id&gt;] &lt;attr&gt;=&lt;val&gt; [&lt;attr&gt;=&lt;val&gt;...] | $id-ref=&lt;id&gt;</pre>
-</div></div>
-<div class="paragraph"><p>Example:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>ms disk1 drbd1 \
-  meta notify=true globally-unique=false</pre>
-</div></div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">Note on <span class="monospaced">ms</span> deprecated</div>
-<div class="paragraph"><p>From Pacemaker-2.0, the resource type referred to as "master/slave",
-"stateful", or "multi-state" is no longer a separate resource type,
-but a variation of clone now referred to as a "promotable clone".
-For backward compatibility, above configurations are also accepted.</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>clone disk1 drbd1 \
-  meta promotable=true notify=true globally-unique=false</pre>
-</div></div>
-</div></div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">Note on <span class="monospaced">id-ref</span> usage</div>
-<div class="paragraph"><p>Instance or meta attributes (&#8216;params` and <span class="monospaced">meta</span>) may contain
-a reference to another set of attributes. In that case, no other
-attributes are allowed. Since attribute sets&#8217; ids, though they do
-exist, are not shown in the <span class="monospaced">crm</span>, it is also possible to
-reference an object instead of an attribute set. <span class="monospaced">crm</span> will
-automatically replace such a reference with the right id:</p></div>
-<div class="literalblock">
-<div class="content monospaced">
-<pre>crm(live)configure# primitive a2 www-2 meta $id-ref=a1
-crm(live)configure# show a2
-primitive a2 apache \
-    meta $id-ref=a1-meta_attributes
-    [...]</pre>
-</div></div>
-<div class="paragraph"><p>It is advisable to give meaningful names to attribute sets which
-are going to be referenced.</p></div>
-</div></div>
-</div>
-<div class="sect3">
-<h4 id="cmdhelp_configure_node"><span class="monospaced">node</span></h4>
+<h4 id="cmdhelp.configure.node"><span class="monospaced">node</span></h4>
 <div class="paragraph"><p>The node command describes a cluster node. Nodes in the CIB are
 commonly created automatically by the CRM. Hence, you should not
 need to deal with nodes unless you also want to define node
@@ -4152,7 +4356,7 @@ attributes at the <span class="monospaced">node</span> level.</p></div>
   [utilization [$id=&lt;id&gt;] [&lt;score&gt;:] [rule...]
     &lt;param&gt;=&lt;value&gt; [&lt;param&gt;=&lt;value&gt;...]] | $id-ref=&lt;ref&gt;
 
-type :: normal | member | ping | remote</pre>
+type :: member | remote</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
@@ -4162,10 +4366,10 @@ node big_node attributes memory=64</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_op_defaults"><span class="monospaced">op_defaults</span></h4>
+<h4 id="cmdhelp.configure.op_defaults"><span class="monospaced">op_defaults</span></h4>
 <div class="paragraph"><p>Set defaults for the operations meta attributes.</p></div>
 <div class="paragraph"><p>For more information on rule expressions, see
-<a href="#topics_Syntax_RuleExpressions">Syntax: Rule expressions</a>.</p></div>
+<a href="#topics.Syntax.RuleExpressions">Syntax: Rule expressions</a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -4178,7 +4382,7 @@ node big_node attributes memory=64</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_order"><span class="monospaced">order</span></h4>
+<h4 id="cmdhelp.configure.order"><span class="monospaced">order</span></h4>
 <div class="paragraph"><p>This constraint expresses the order of actions on two resources
 or more resources. If there are more than two resources, then the
 constraint is called a resource set.</p></div>
@@ -4194,7 +4398,7 @@ one of these settings instead of score. Previous versions mapped
 scores <span class="monospaced">0</span> and <span class="monospaced">inf</span> to keywords <span class="monospaced">advisory</span> and <span class="monospaced">mandatory</span>.
 That is still valid but deprecated.</p></div>
 <div class="paragraph"><p>For more details on how to configure resource sets, see
-<a href="#topics_Features_Resourcesets"><span class="monospaced">Syntax: Resource sets</span></a>.</p></div>
+<a href="#topics.Features.Resourcesets"><span class="monospaced">Syntax: Resource sets</span></a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -4224,7 +4428,7 @@ order o-4 first-resource then-resource</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_primitive"><span class="monospaced">primitive</span></h4>
+<h4 id="cmdhelp.configure.primitive"><span class="monospaced">primitive</span></h4>
 <div class="paragraph"><p>The primitive command describes a resource. It may be referenced
 only once in group, or clone objects. If it&#8217;s not
 referenced, then it is placed as a single resource in the CIB.</p></div>
@@ -4254,7 +4458,7 @@ instance attributes of that operation. A typical example is
 The <span class="monospaced">Master/Slave</span> resources are deprecated and replaced by <span class="monospaced">Promoted/Unpromoted</span> promotable resources if desired.</p></div>
 <div class="paragraph"><p>A template may be defined for resources which are of the same
 type and which share most of the configuration. See
-<a href="#cmdhelp_configure_rsc_template"><span class="monospaced">rsc_template</span></a> for more information.</p></div>
+<a href="#cmdhelp.configure.rsc_template"><span class="monospaced">rsc_template</span></a> for more information.</p></div>
 <div class="paragraph"><p>Attributes containing time values, such as the <span class="monospaced">interval</span> attribute on
 operations, are configured either as a plain number, which is
 interpreted as a time in seconds, or using one of the following
@@ -4338,17 +4542,39 @@ primitive A ocf:pacemaker:Dummy \
     op_meta 2: rule #ra-version version:gt 1.0 timeout=120s \
     op_meta 1: timeout=60s</pre>
 </div></div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Note on <span class="monospaced">id-ref</span> usage</div>
+<div class="paragraph"><p>Instance or meta attributes (&#8216;params` and <span class="monospaced">meta</span>) may contain
+a reference to another set of attributes. In that case, no other
+attributes are allowed. Since attribute sets&#8217; ids, though they do
+exist, are not shown in the <span class="monospaced">crm</span>, it is also possible to
+reference an object instead of an attribute set. <span class="monospaced">crm</span> will
+automatically replace such a reference with the right id:</p></div>
+<div class="literalblock">
+<div class="content monospaced">
+<pre>crm(live)configure# primitive a2 www-2 meta $id-ref=a1
+crm(live)configure# show a2
+primitive a2 apache \
+    meta $id-ref=a1-meta_attributes
+    [...]</pre>
+</div></div>
+<div class="paragraph"><p>It is advisable to give meaningful names to attribute sets which
+are going to be referenced.</p></div>
+</div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_property"><span class="monospaced">property</span></h4>
-<div class="paragraph"><p>Set cluster configuration properties. To list the
-available cluster configuration properties, use the
-<a href="#cmdhelp_ra_info"><span class="monospaced">ra info</span></a> command with <span class="monospaced">cluster</span> as arguments.
+<h4 id="cmdhelp.configure.property"><span class="monospaced">property</span></h4>
+<div class="paragraph"><p>Set cluster configuration properties.
 When setting the <span class="monospaced">maintenance-mode</span> property, it will
 inform the user if there are nodes or resources that
 have the <span class="monospaced">maintenance</span> property.</p></div>
+<div class="paragraph"><p>If no property name is passed to the command, the list of known
+cluster properties is printed.</p></div>
+<div class="paragraph"><p>To print one property&#8217;s help, use the <span class="monospaced">--help</span> option; Or use &lt;Tab&gt;
+to complete the help text for the property on interactive mode.</p></div>
 <div class="paragraph"><p>For more information on rule expressions, see
-<a href="#topics_Syntax_RuleExpressions">Syntax: Rule expressions</a>.</p></div>
+<a href="#topics.Syntax.RuleExpressions">Syntax: Rule expressions</a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -4357,12 +4583,13 @@ have the <span class="monospaced">maintenance</span> property.</p></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>property stonith-enabled=true
+<pre>property stonith-enabled --help
+property stonith-enabled=true
 property rule date spec years=2014 stonith-enabled=false</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_ptest"><span class="monospaced">ptest</span> (<span class="monospaced">simulate</span>)</h4>
+<h4 id="cmdhelp.configure.ptest"><span class="monospaced">ptest</span> (<span class="monospaced">simulate</span>)</h4>
 <div class="paragraph"><p>Show PE (Policy Engine) motions using <span class="monospaced">ptest(8)</span> or
 <span class="monospaced">crm_simulate(8)</span>.</p></div>
 <div class="paragraph"><p>A CIB is constructed using the current user edited configuration
@@ -4370,7 +4597,7 @@ and the status from the running CIB. The resulting CIB is run
 through <span class="monospaced">ptest</span> (or <span class="monospaced">crm_simulate</span>) to show changes which would
 happen if the configuration is committed.</p></div>
 <div class="paragraph"><p>The status section may be loaded from another source and modified
-using the <a href="#cmdhelp_cibstatus"><span class="monospaced">cibstatus</span></a> level commands. In that case, the
+using the <a href="#cmdhelp.cibstatus"><span class="monospaced">cibstatus</span></a> level commands. In that case, the
 <span class="monospaced">ptest</span> command will issue a message informing the user that the
 Policy Engine graph is not calculated based on the current status
 section and therefore won&#8217;t show what would happen to the
@@ -4398,7 +4625,7 @@ simulate actions</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_refresh"><span class="monospaced">refresh</span></h4>
+<h4 id="cmdhelp.configure.refresh"><span class="monospaced">refresh</span></h4>
 <div class="paragraph"><p>Refresh the internal structures from the CIB. All changes made
 during this session are lost.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -4408,7 +4635,7 @@ during this session are lost.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_rename"><span class="monospaced">rename</span></h4>
+<h4 id="cmdhelp.configure.rename"><span class="monospaced">rename</span></h4>
 <div class="paragraph"><p>Rename an object. It is recommended to use this command to rename
 a resource, because it will take care of updating all related
 constraints and a parent resource. Changing ids with the edit
@@ -4421,7 +4648,7 @@ command won&#8217;t have the same effect.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_role"><span class="monospaced">role</span></h4>
+<h4 id="cmdhelp.configure.role"><span class="monospaced">role</span></h4>
 <div class="paragraph"><p>An ACL role is a set of rules which describe access rights to
 CIB. Rules consist of an access right <span class="monospaced">read</span>, <span class="monospaced">write</span>, or <span class="monospaced">deny</span>
 and a specification denoting part of the configuration to which
@@ -4441,7 +4668,7 @@ references the whole status section of the CIB. Read access to
 status is necessary for various monitoring tools such as
 <span class="monospaced">crm_mon(8)</span> (aka <span class="monospaced">crm status</span>).</p></div>
 <div class="paragraph"><p>For more information on rule expressions, see
-<a href="#topics_Syntax_RuleExpressions">Syntax: Rule expressions</a>.</p></div>
+<a href="#topics.Syntax.RuleExpressions">Syntax: Rule expressions</a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -4476,10 +4703,10 @@ shortcut :: meta:&lt;rsc&gt;[:&lt;attr&gt;]
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_rsc_defaults"><span class="monospaced">rsc_defaults</span></h4>
+<h4 id="cmdhelp.configure.rsc_defaults"><span class="monospaced">rsc_defaults</span></h4>
 <div class="paragraph"><p>Set defaults for the resource meta attributes.</p></div>
 <div class="paragraph"><p>For more information on rule expressions, see
-<a href="#topics_Syntax_RuleExpressions">Syntax: Rule expressions</a>.</p></div>
+<a href="#topics.Syntax.RuleExpressions">Syntax: Rule expressions</a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -4492,7 +4719,7 @@ shortcut :: meta:&lt;rsc&gt;[:&lt;attr&gt;]
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_rsc_template"><span class="monospaced">rsc_template</span></h4>
+<h4 id="cmdhelp.configure.rsc_template"><span class="monospaced">rsc_template</span></h4>
 <div class="paragraph"><p>The <span class="monospaced">rsc_template</span> command creates a resource template. It may be
 referenced in primitives. It is used to reduce large
 configurations with many similar resources.</p></div>
@@ -4527,7 +4754,7 @@ primitive xen1 @public_vm \
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_rsc_ticket"><span class="monospaced">rsc_ticket</span></h4>
+<h4 id="cmdhelp.configure.rsc_ticket"><span class="monospaced">rsc_ticket</span></h4>
 <div class="paragraph"><p>This constraint expresses dependency of resources on cluster-wide
 attributes, also known as tickets. Tickets are mainly used in
 geo-clusters, which consist of multiple sites. A ticket may be
@@ -4536,7 +4763,7 @@ granted to a site, thus allowing resources to run there.</p></div>
 resource (or resources) if the ticket is revoked. The default is
 either <span class="monospaced">stop</span> or <span class="monospaced">demote</span> depending on whether a resource is
 multi-state.</p></div>
-<div class="paragraph"><p>See also the <a href="#cmdhelp_site_ticket"><span class="monospaced">site</span></a> set of commands.</p></div>
+<div class="paragraph"><p>See also the <a href="#cmdhelp.site.ticket"><span class="monospaced">site</span></a> set of commands.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -4554,13 +4781,13 @@ rsc_ticket ticket-B_storage ticket-B: drbd-a:Promoted drbd-b:Promoted</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_rsctest"><span class="monospaced">rsctest</span></h4>
+<h4 id="cmdhelp.configure.rsctest"><span class="monospaced">rsctest</span></h4>
 <div class="paragraph"><p>Test resources with current resource configuration. If no nodes
 are specified, tests are run on all known nodes.</p></div>
 <div class="paragraph"><p>The order of resources is significant: it is assumed that later
 resources depend on earlier ones.</p></div>
 <div class="paragraph"><p>If a resource is multi-state, it is assumed that the role on
-which later resources depend is master.</p></div>
+which later resources depend is Promoted.</p></div>
 <div class="paragraph"><p>Tests are run sequentially to prevent running the same resource
 on two or more nodes. Tests are carried out only if none of the
 specified nodes currently run any of the specified resources.
@@ -4582,11 +4809,11 @@ rsctest websvc nodeB</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_save"><span class="monospaced">save</span></h4>
+<h4 id="cmdhelp.configure.save"><span class="monospaced">save</span></h4>
 <div class="paragraph"><p>Save the current configuration to a file. Optionally, as XML. Use
 <span class="monospaced">-</span> instead of file name to write the output to <span class="monospaced">stdout</span>.</p></div>
 <div class="paragraph"><p>The <span class="monospaced">save</span> command accepts the same selection arguments as the <span class="monospaced">show</span>
-command. See the <a href="#cmdhelp_configure_show">help section</a> for <span class="monospaced">show</span>
+command. See the <a href="#cmdhelp.configure.show">help section</a> for <span class="monospaced">show</span>
 for more details.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -4602,51 +4829,32 @@ save web-server server-config.txt</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_schema"><span class="monospaced">schema</span></h4>
+<h4 id="cmdhelp.configure.schema"><span class="monospaced">schema</span></h4>
 <div class="paragraph"><p>CIB&#8217;s content is validated by a RNG schema. Pacemaker supports
-several, depending on version. At least the following schemas are
-accepted by <span class="monospaced">crmsh</span>:</p></div>
-<div class="ulist"><ul>
-<li>
-<p>
-<span class="monospaced">pacemaker-1.0</span>
-</p>
-</li>
-<li>
-<p>
-<span class="monospaced">pacemaker-1.1</span>
-</p>
-</li>
-<li>
-<p>
-<span class="monospaced">pacemaker-1.2</span>
-</p>
-</li>
-<li>
-<p>
-<span class="monospaced">pacemaker-1.3</span>
-</p>
-</li>
-<li>
-<p>
-<span class="monospaced">pacemaker-2.0</span>
-</p>
-</li>
-</ul></div>
-<div class="paragraph"><p>Use this command to display or switch to another RNG schema.</p></div>
+several, depending on version. You can see all supported schemas by
+typing <span class="monospaced">&lt;TAB&gt;&lt;TAB&gt;</span> after <span class="monospaced">crm configure schema</span>.</p></div>
+<div class="paragraph"><p>Note that it is highly recommended to use the latest schema version.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>schema [&lt;schema&gt;]</pre>
+<pre>schema [&lt;pacemaker-schema_version&gt;]</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>schema pacemaker-1.1</pre>
+<pre># To get the schema version of the current CIB, or the latest version if no cluster configured yet
+schema
+
+# To set the new schema version
+schema pacemaker-4.0
+
+# Then need to run `commit` to make the change effective
+# if it's on interactive mode
+commit</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_set"><span class="monospaced">set</span></h4>
+<h4 id="cmdhelp.configure.set"><span class="monospaced">set</span></h4>
 <div class="paragraph"><p>Set the value of a configured attribute. The attribute must
 configured previously, and can be an agent parameter, meta attribute,
 utilization value or operation value.</p></div>
@@ -4672,7 +4880,7 @@ set drbd.monitor.10s.interval 20s</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_show"><span class="monospaced">show</span></h4>
+<h4 id="cmdhelp.configure.show"><span class="monospaced">show</span></h4>
 <div class="paragraph"><p>The <span class="monospaced">show</span> command displays CIB objects. Without any argument, it
 displays all objects in the CIB, but the set of objects displayed by
 <span class="monospaced">show</span> can be limited to only objects with the given IDs or by using
@@ -4728,7 +4936,7 @@ If you don&#8217;t want to obscure, change the value to blank.</p></div>
            | obscure:&lt;glob&gt;
            ...]
 
-type :: node | primitive | group | clone | ms | rsc_template
+type :: node | primitive | group | clone | rsc_template
       | location | colocation | order
       | rsc_ticket
       | property | rsc_defaults | op_defaults
@@ -4756,7 +4964,7 @@ show type:primitive obscure:passwd</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_tag"><span class="monospaced">tag</span></h4>
+<h4 id="cmdhelp.configure.tag"><span class="monospaced">tag</span></h4>
 <div class="paragraph"><p>Define a resource tag. A tag is an id referring to one or more
 resources, without implying any constraints between the tagged
 resources. This can be useful for grouping conceptually related
@@ -4775,10 +4983,10 @@ tag ips server-vip admin-vip</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_template"><span class="monospaced">template</span></h4>
+<h4 id="cmdhelp.configure.template"><span class="monospaced">template</span></h4>
 <div class="paragraph"><p>The specified template is loaded into the editor. It&#8217;s up to the
 user to make a good CRM configuration out of it. See also the
-<a href="#cmdhelp_template">template section</a>.</p></div>
+<a href="#cmdhelp.template">template section</a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -4791,18 +4999,17 @@ user to make a good CRM configuration out of it. See also the
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_upgrade"><span class="monospaced">upgrade</span></h4>
+<h4 id="cmdhelp.configure.upgrade"><span class="monospaced">upgrade</span></h4>
 <div class="paragraph"><p>Attempts to upgrade the CIB to validate with the current
 version. Commonly, this is required if the error
 <span class="monospaced">CIB not supported</span> occurs. It typically means that the
 active CIB version is coming from an older release.</p></div>
-<div class="paragraph"><p>As a safety precaution, the force argument is required if the
-<span class="monospaced">validation-with</span> attribute is set to anything other than
-<span class="monospaced">0.6</span>. Thus in most cases, it is required.</p></div>
+<div class="paragraph"><p>As a safety precaution, the <em>force</em> argument is required.
+Or, you can use crm <span class="monospaced">-F</span> option to do the force upgrade.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
-<pre>upgrade [force]</pre>
+<pre>upgrade &lt;force&gt;</pre>
 </div></div>
 <div class="paragraph"><p>Example:</p></div>
 <div class="literalblock">
@@ -4811,14 +5018,14 @@ active CIB version is coming from an older release.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_user"><span class="monospaced">user</span></h4>
+<h4 id="cmdhelp.configure.user"><span class="monospaced">user</span></h4>
 <div class="paragraph"><p>Users which normally cannot view or manage cluster configuration
 can be allowed access to parts of the CIB. The access is defined
 by a set of <span class="monospaced">read</span>, <span class="monospaced">write</span>, and <span class="monospaced">deny</span> rules as in role
 definitions or by referencing roles. The latter is considered
 best practice.</p></div>
 <div class="paragraph"><p>For more information on rule expressions, see
-<a href="#topics_Syntax_RuleExpressions">Syntax: Rule expressions</a>.</p></div>
+<a href="#topics.Syntax.RuleExpressions">Syntax: Rule expressions</a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -4836,7 +5043,7 @@ rules :: rule [rule ...]</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_validate_all"><span class="monospaced">validate-all</span></h4>
+<h4 id="cmdhelp.configure.validate_all"><span class="monospaced">validate-all</span></h4>
 <div class="paragraph"><p>Call the <span class="monospaced">validate-all</span> action for the resource, if possible.</p></div>
 <div class="paragraph"><p>Limitations:</p></div>
 <div class="ulist"><ul>
@@ -4863,7 +5070,7 @@ The primitive resource must not use nvpair references.
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_verify"><span class="monospaced">verify</span></h4>
+<h4 id="cmdhelp.configure.verify"><span class="monospaced">verify</span></h4>
 <div class="paragraph"><p>Verify the contents of the CIB which would be committed.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -4872,7 +5079,7 @@ The primitive resource must not use nvpair references.
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_configure_xml"><span class="monospaced">xml</span></h4>
+<h4 id="cmdhelp.configure.xml"><span class="monospaced">xml</span></h4>
 <div class="paragraph"><p>Even though we promissed no xml, it may happen, but hopefully
 very very seldom, that an element from the CIB cannot be rendered
 in the configuration language. In that case, the element will be
@@ -4889,14 +5096,14 @@ use <span class="monospaced">xml</span> for configuration.</p></div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="cmdhelp_template"><span class="monospaced">template</span> - Import configuration from templates</h3>
+<h3 id="cmdhelp.template"><span class="monospaced">template</span> - Import configuration from templates</h3>
 <div class="paragraph"><p>User may be assisted in the cluster configuration by templates
 prepared in advance. Templates consist of a typical ready
 configuration which may be edited to suit particular user needs.</p></div>
 <div class="paragraph"><p>This command enters a template level where additional commands
 for configuration/template management are available.</p></div>
 <div class="sect3">
-<h4 id="cmdhelp_template_apply"><span class="monospaced">apply</span></h4>
+<h4 id="cmdhelp.template.apply"><span class="monospaced">apply</span></h4>
 <div class="paragraph"><p>Copy the current or given configuration to the current CIB. By
 default, the CIB is replaced, unless the method is set to
 "update".</p></div>
@@ -4909,7 +5116,7 @@ method :: replace | update</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_template_delete"><span class="monospaced">delete</span></h4>
+<h4 id="cmdhelp.template.delete"><span class="monospaced">delete</span></h4>
 <div class="paragraph"><p>Remove a configuration. The loaded (active) configuration may be
 removed by force.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -4919,7 +5126,7 @@ removed by force.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_template_edit"><span class="monospaced">edit</span></h4>
+<h4 id="cmdhelp.template.edit"><span class="monospaced">edit</span></h4>
 <div class="paragraph"><p>Edit current or given configuration using your favourite editor.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -4928,7 +5135,7 @@ removed by force.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_template_list"><span class="monospaced">list</span></h4>
+<h4 id="cmdhelp.template.list"><span class="monospaced">list</span></h4>
 <div class="paragraph"><p>When called with no argument, lists existing templates and
 configurations.</p></div>
 <div class="paragraph"><p>Given the argument <span class="monospaced">templates</span>, lists the available templates.</p></div>
@@ -4940,7 +5147,7 @@ configurations.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_template_load"><span class="monospaced">load</span></h4>
+<h4 id="cmdhelp.template.load"><span class="monospaced">load</span></h4>
 <div class="paragraph"><p>Load an existing configuration. Further <span class="monospaced">edit</span>, <span class="monospaced">show</span>, and
 <span class="monospaced">apply</span> commands will refer to this configuration.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -4950,7 +5157,7 @@ configurations.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_template_new"><span class="monospaced">new</span></h4>
+<h4 id="cmdhelp.template.new"><span class="monospaced">new</span></h4>
 <div class="paragraph"><p>Create a new configuration from one or more templates. Note that
 configurations and templates are kept in different places, so it
 is possible to have a configuration name equal a template name.</p></div>
@@ -4976,7 +5183,7 @@ new apache</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_template_show"><span class="monospaced">show</span></h4>
+<h4 id="cmdhelp.template.show"><span class="monospaced">show</span></h4>
 <div class="paragraph"><p>Process the current or given configuration and display the result.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -4986,7 +5193,7 @@ new apache</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="cmdhelp_cibstatus"><span class="monospaced">cibstatus</span> - CIB status management and editing</h3>
+<h3 id="cmdhelp.cibstatus"><span class="monospaced">cibstatus</span> - CIB status management and editing</h3>
 <div class="paragraph"><p>The <span class="monospaced">status</span> section of the CIB keeps the current status of nodes
 and resources. It is modified <em>only</em> on events, i.e. when some
 resource operation is run or node status changes. For obvious
@@ -5002,14 +5209,14 @@ affect the Policy Engine. The set of &#8216;cibstatus` level commands
 allow the user to load status sections from various sources and
 then insert or modify resource operations or change nodes&#8217; state.</p></div>
 <div class="paragraph"><p>The effect of those changes may then be observed by running the
-<a href="#cmdhelp_configure_ptest"><span class="monospaced">ptest</span></a> command at the <span class="monospaced">configure</span> level
+<a href="#cmdhelp.configure.ptest"><span class="monospaced">ptest</span></a> command at the <span class="monospaced">configure</span> level
 or <span class="monospaced">simulate</span> and <span class="monospaced">run</span> commands at this level. The <span class="monospaced">ptest</span>
 runs with the user edited CIB whereas the latter two commands
 run with the CIB which was loaded along with the status section.</p></div>
 <div class="paragraph"><p>The <span class="monospaced">simulate</span> and <span class="monospaced">run</span> commands as well as all status
 modification commands are implemented using <span class="monospaced">crm_simulate(8)</span>.</p></div>
 <div class="sect3">
-<h4 id="cmdhelp_cibstatus_load"><span class="monospaced">load</span></h4>
+<h4 id="cmdhelp.cibstatus.load"><span class="monospaced">load</span></h4>
 <div class="paragraph"><p>Load a status section from a file, a shadow CIB, or the running
 cluster. By default, the current (<span class="monospaced">live</span>) status section is
 modified. Note that if the <span class="monospaced">live</span> status section is modified it
@@ -5035,7 +5242,7 @@ load shadow:test1</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cibstatus_node"><span class="monospaced">node</span></h4>
+<h4 id="cmdhelp.cibstatus.node"><span class="monospaced">node</span></h4>
 <div class="paragraph"><p>Change the node status. It is possible to throw a node out of
 the cluster, make it a member, or set its state to unclean.</p></div>
 <div class="dlist"><dl>
@@ -5082,7 +5289,7 @@ has unexpectedly disappeared.
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cibstatus_op"><span class="monospaced">op</span></h4>
+<h4 id="cmdhelp.cibstatus.op"><span class="monospaced">op</span></h4>
 <div class="paragraph"><p>Edit the outcome of a resource operation. This way you can
 tell CRM that it ran an operation and that the resource agent
 returned certain exit code. It is also possible to change the
@@ -5115,7 +5322,7 @@ op stop d1 xen-b 0 timeout</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cibstatus_origin"><span class="monospaced">origin</span></h4>
+<h4 id="cmdhelp.cibstatus.origin"><span class="monospaced">origin</span></h4>
 <div class="paragraph"><p>Show the origin of the status section currently in use. This
 essentially shows the latest <span class="monospaced">load</span> argument.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -5125,7 +5332,7 @@ essentially shows the latest <span class="monospaced">load</span> argument.</p><
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cibstatus_quorum"><span class="monospaced">quorum</span></h4>
+<h4 id="cmdhelp.cibstatus.quorum"><span class="monospaced">quorum</span></h4>
 <div class="paragraph"><p>Set the quorum value.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
@@ -5139,7 +5346,7 @@ essentially shows the latest <span class="monospaced">load</span> argument.</p><
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cibstatus_run"><span class="monospaced">run</span></h4>
+<h4 id="cmdhelp.cibstatus.run"><span class="monospaced">run</span></h4>
 <div class="paragraph"><p>Run the policy engine with the edited status section.</p></div>
 <div class="paragraph"><p>Add a string of <span class="monospaced">v</span> characters to increase verbosity. Specify
 <span class="monospaced">scores</span> to see allocation scores also. <span class="monospaced">utilization</span> turns on
@@ -5158,7 +5365,7 @@ to display the changes graphically.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cibstatus_save"><span class="monospaced">save</span></h4>
+<h4 id="cmdhelp.cibstatus.save"><span class="monospaced">save</span></h4>
 <div class="paragraph"><p>The current internal status section with whatever modifications
 were performed can be saved to a file or shadow CIB.</p></div>
 <div class="paragraph"><p>If the file exists and contains a complete CIB, only the status
@@ -5179,7 +5386,7 @@ as they are run.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cibstatus_show"><span class="monospaced">show</span></h4>
+<h4 id="cmdhelp.cibstatus.show"><span class="monospaced">show</span></h4>
 <div class="paragraph"><p>Show the current status section in the XML format. Brace yourself
 for some unreadable output. Add <span class="monospaced">changed</span> option to get a human
 readable output of all changes.</p></div>
@@ -5190,7 +5397,7 @@ readable output of all changes.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cibstatus_simulate"><span class="monospaced">simulate</span></h4>
+<h4 id="cmdhelp.cibstatus.simulate"><span class="monospaced">simulate</span></h4>
 <div class="paragraph"><p>Run the policy engine with the edited status section and simulate
 the transition.</p></div>
 <div class="paragraph"><p>Add a string of <span class="monospaced">v</span> characters to increase verbosity. Specify
@@ -5210,7 +5417,7 @@ to display the changes graphically.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_cibstatus_ticket"><span class="monospaced">ticket</span></h4>
+<h4 id="cmdhelp.cibstatus.ticket"><span class="monospaced">ticket</span></h4>
 <div class="paragraph"><p>Modify the ticket status. Tickets can be granted and revoked.
 Granted tickets could be activated or put in standby.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -5226,7 +5433,7 @@ Granted tickets could be activated or put in standby.</p></div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="cmdhelp_assist"><span class="monospaced">assist</span> - Configuration assistant</h3>
+<h3 id="cmdhelp.assist"><span class="monospaced">assist</span> - Configuration assistant</h3>
 <div class="paragraph"><p>The <span class="monospaced">assist</span> sublevel is a collection of helper
 commands that create or modify resources and
 constraints, to simplify the creation of certain
@@ -5234,7 +5441,7 @@ configurations.</p></div>
 <div class="paragraph"><p>For more information on individual commands, see
 the help text for those commands.</p></div>
 <div class="sect3">
-<h4 id="cmdhelp_assist_template"><span class="monospaced">template</span></h4>
+<h4 id="cmdhelp.assist.template"><span class="monospaced">template</span></h4>
 <div class="paragraph"><p>This command takes a list of primitives as argument, and creates a new
 <span class="monospaced">rsc_template</span> for these primitives. It can only do this if the
 primitives do not already share a template and are of the same type.</p></div>
@@ -5245,7 +5452,7 @@ primitives do not already share a template and are of the same type.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_assist_weak-bond"><span class="monospaced">weak-bond</span></h4>
+<h4 id="cmdhelp.assist.weak-bond"><span class="monospaced">weak-bond</span></h4>
 <div class="paragraph"><p>A colocation between a group of resources says that the resources
 should be located together, but it also means that those resources are
 dependent on each other. If one of the resources fails, the others
@@ -5264,7 +5471,7 @@ for such a colocation.</p></div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="cmdhelp_maintenance"><span class="monospaced">maintenance</span> - Maintenance mode commands</h3>
+<h3 id="cmdhelp.maintenance"><span class="monospaced">maintenance</span> - Maintenance mode commands</h3>
 <div class="paragraph"><p>Maintenance mode commands are commands that manipulate resources
 directly without going through the cluster infrastructure. Therefore,
 it is essential to ensure that the cluster does not attempt to monitor
@@ -5272,7 +5479,7 @@ or manipulate the resources while these commands are being executed.</p></div>
 <div class="paragraph"><p>To ensure this, these commands require that maintenance mode is set
 either for the particular resource, or for the whole cluster.</p></div>
 <div class="sect3">
-<h4 id="cmdhelp_maintenance_action"><span class="monospaced">action</span></h4>
+<h4 id="cmdhelp.maintenance.action"><span class="monospaced">action</span></h4>
 <div class="paragraph"><p>Invokes the given action for the resource. This is
 done directly via the resource agent, so the command must
 be issued while the cluster or the resource is in
@@ -5297,7 +5504,7 @@ action webserver monitor ssh</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_maintenance_off"><span class="monospaced">off</span></h4>
+<h4 id="cmdhelp.maintenance.off"><span class="monospaced">off</span></h4>
 <div class="paragraph"><p>Disables maintenances mode, either for the whole cluster
 or for the given resource.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -5313,7 +5520,7 @@ off &lt;rsc&gt;</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_maintenance_on"><span class="monospaced">on</span></h4>
+<h4 id="cmdhelp.maintenance.on"><span class="monospaced">on</span></h4>
 <div class="paragraph"><p>Enables maintenances mode, either for the whole cluster
 or for the given resource.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -5330,7 +5537,7 @@ on &lt;rsc&gt;</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="cmdhelp_history"><span class="monospaced">history</span> - Cluster history</h3>
+<h3 id="cmdhelp.history"><span class="monospaced">history</span> - Cluster history</h3>
 <div class="paragraph"><p>Examining Pacemaker&#8217;s history is a particularly involved task. The
 number of subsystems to be considered, the complexity of the
 configuration, and the set of various information sources, most of
@@ -5371,7 +5578,7 @@ Report saved in .../strange_restart.tar.bz2
 crm(live)history#</pre>
 </div></div>
 <div class="sect3">
-<h4 id="cmdhelp_history_detail"><span class="monospaced">detail</span></h4>
+<h4 id="cmdhelp.history.detail"><span class="monospaced">detail</span></h4>
 <div class="paragraph"><p>How much detail to show from the logs. Valid detail levels are either
 <span class="monospaced">0</span> or <span class="monospaced">1</span>, where <span class="monospaced">1</span> is the highest detail level. The default detail
 level is <span class="monospaced">0</span>.</p></div>
@@ -5389,7 +5596,7 @@ detail_level :: small integer (defaults to 0)</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_history_diff"><span class="monospaced">diff</span></h4>
+<h4 id="cmdhelp.history.diff"><span class="monospaced">diff</span></h4>
 <div class="paragraph"><p>A transition represents a change in cluster configuration or
 state. Use <span class="monospaced">diff</span> to see what has changed between two
 transitions.</p></div>
@@ -5414,7 +5621,7 @@ diff pe-input-2080.bz2 live status</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_history_events"><span class="monospaced">events</span></h4>
+<h4 id="cmdhelp.history.events"><span class="monospaced">events</span></h4>
 <div class="paragraph"><p>By analysing the log output and looking for particular
 patterns, the <span class="monospaced">events</span> command helps sifting through
 the logs to find when particular events like resources
@@ -5433,7 +5640,7 @@ from all nodes.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_history_exclude"><span class="monospaced">exclude</span></h4>
+<h4 id="cmdhelp.history.exclude"><span class="monospaced">exclude</span></h4>
 <div class="paragraph"><p>If a log is infested with irrelevant messages, those messages may
 be excluded by specifying a regular expression. The regular
 expressions used are Python extended. This command is additive.
@@ -5452,10 +5659,10 @@ Excludes are saved along with the history sessions.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_history_graph"><span class="monospaced">graph</span></h4>
+<h4 id="cmdhelp.history.graph"><span class="monospaced">graph</span></h4>
 <div class="paragraph"><p>Create a graphviz graphical layout from the PE file (the
 transition). Every transition contains the cluster configuration
-which was active at the time. See also <a href="#cmdhelp_configure_graph">generate a directed graph from configuration</a>.</p></div>
+which was active at the time. See also <a href="#cmdhelp.configure.graph">generate a directed graph from configuration</a>.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
 <div class="literalblock">
 <div class="content monospaced">
@@ -5473,7 +5680,7 @@ graph 322 dot clu1.conf.svg svg</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_history_info"><span class="monospaced">info</span></h4>
+<h4 id="cmdhelp.history.info"><span class="monospaced">info</span></h4>
 <div class="paragraph"><p>The <span class="monospaced">info</span> command provides a summary of the information source, which
 can be either a live cluster snapshot or a previously generated
 report.</p></div>
@@ -5489,7 +5696,7 @@ report.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_history_latest"><span class="monospaced">latest</span></h4>
+<h4 id="cmdhelp.history.latest"><span class="monospaced">latest</span></h4>
 <div class="paragraph"><p>The <span class="monospaced">latest</span> command shows a bit of recent history, more
 precisely whatever happened since the last cluster change (the
 latest transition). If the transition is running, the shell will
@@ -5506,7 +5713,7 @@ first wait until it finishes.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_history_limit"><span class="monospaced">limit</span> (<span class="monospaced">timeframe</span>)</h4>
+<h4 id="cmdhelp.history.limit"><span class="monospaced">limit</span> (<span class="monospaced">timeframe</span>)</h4>
 <div class="paragraph"><p>This command can be used to modify the time span to examine. All
 history commands look at events within a certain time span.</p></div>
 <div class="paragraph"><p>For the <span class="monospaced">live</span> source, the default time span is the <em>last hour</em>.</p></div>
@@ -5562,7 +5769,7 @@ limit "Sun 5 20:46" "Sun 5 22:00"</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_history_log"><span class="monospaced">log</span></h4>
+<h4 id="cmdhelp.history.log"><span class="monospaced">log</span></h4>
 <div class="paragraph"><p>Show messages logged on one or more nodes. Leaving out a node
 name produces combined logs of all nodes. Messages are sorted by
 time and, if the terminal emulations supports it, displayed in
@@ -5585,7 +5792,7 @@ may actually happen fairly often.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_history_node"><span class="monospaced">node</span></h4>
+<h4 id="cmdhelp.history.node"><span class="monospaced">node</span></h4>
 <div class="paragraph"><p>Show important events that happened on a node. Important events
 are node lost and join, standby and online, and fence. Use either
 node names or extended regular expressions.</p></div>
@@ -5601,7 +5808,7 @@ node names or extended regular expressions.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_history_peinputs"><span class="monospaced">peinputs</span></h4>
+<h4 id="cmdhelp.history.peinputs"><span class="monospaced">peinputs</span></h4>
 <div class="paragraph"><p>Every event in the cluster results in generating one or more
 Policy Engine (PE) files. These files describe future motions of
 resources. The files are listed as full paths in the current
@@ -5622,7 +5829,7 @@ peinputs v</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_history_refresh"><span class="monospaced">refresh</span></h4>
+<h4 id="cmdhelp.history.refresh"><span class="monospaced">refresh</span></h4>
 <div class="paragraph"><p>This command makes sense only for the <span class="monospaced">live</span> source and makes
 <span class="monospaced">crm</span> collect the latest logs and other relevant information from
 the logs. If you want to make a completely new report, specify
@@ -5634,11 +5841,11 @@ the logs. If you want to make a completely new report, specify
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_history_resource"><span class="monospaced">resource</span></h4>
+<h4 id="cmdhelp.history.resource"><span class="monospaced">resource</span></h4>
 <div class="paragraph"><p>Show actions and any failures that happened on all specified
 resources on all nodes. Normally, one gives resource names as
 arguments, but it is also possible to use extended regular
-expressions. Note that neither groups nor clones or master/slave
+expressions. Note that neither groups nor clones or promotable clone
 names are ever logged. The resource command is going to expand
 all of these appropriately, so that clone instances or resources
 which are part of a group are shown.</p></div>
@@ -5656,7 +5863,7 @@ resource ping_clone</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_history_session"><span class="monospaced">session</span></h4>
+<h4 id="cmdhelp.history.session"><span class="monospaced">session</span></h4>
 <div class="paragraph"><p>Sometimes you may want to get back to examining a particular
 history period or bug report. In order to make that easier, the
 current settings can be saved and later retrieved.</p></div>
@@ -5682,7 +5889,7 @@ session list</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_history_setnodes"><span class="monospaced">setnodes</span></h4>
+<h4 id="cmdhelp.history.setnodes"><span class="monospaced">setnodes</span></h4>
 <div class="paragraph"><p>In case the host this program runs on is not part of the cluster,
 it is necessary to set the list of nodes.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -5697,7 +5904,7 @@ it is necessary to set the list of nodes.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_history_show"><span class="monospaced">show</span></h4>
+<h4 id="cmdhelp.history.show"><span class="monospaced">show</span></h4>
 <div class="paragraph"><p>Every transition is saved as a PE file. Use this command to
 render that PE file either as configuration or status. The
 configuration output is the same as <span class="monospaced">crm configure show</span>.</p></div>
@@ -5716,7 +5923,7 @@ show pe-input-2080.bz2 status</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_history_source"><span class="monospaced">source</span></h4>
+<h4 id="cmdhelp.history.source"><span class="monospaced">source</span></h4>
 <div class="paragraph"><p>Events to be examined can come from the current cluster or from a
 <span class="monospaced">crm report</span> report. This command sets the source. <span class="monospaced">source live</span>
 sets source to the running cluster and system logs. If no source
@@ -5739,7 +5946,7 @@ source</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_history_transition"><span class="monospaced">transition</span></h4>
+<h4 id="cmdhelp.history.transition"><span class="monospaced">transition</span></h4>
 <div class="paragraph"><p>This command will print actions planned by the PE and run
 graphviz (<span class="monospaced">dotty</span>) to display a graphical representation of the
 transition. Of course, for the latter an X11 session is required.
@@ -5793,7 +6000,7 @@ transition save 0 enigma-22</pre>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_history_transitions"><span class="monospaced">transitions</span></h4>
+<h4 id="cmdhelp.history.transitions"><span class="monospaced">transitions</span></h4>
 <div class="paragraph"><p>A transition represents a change in cluster configuration or
 state. This command lists the transitions in the current timeframe.</p></div>
 <div class="paragraph"><p>Usage:</p></div>
@@ -5808,7 +6015,7 @@ state. This command lists the transitions in the current timeframe.</p></div>
 </div></div>
 </div>
 <div class="sect3">
-<h4 id="cmdhelp_history_wdiff"><span class="monospaced">wdiff</span></h4>
+<h4 id="cmdhelp.history.wdiff"><span class="monospaced">wdiff</span></h4>
 <div class="paragraph"><p>A transition represents a change in cluster configuration or
 state. Use <span class="monospaced">wdiff</span> to see what has changed between two
 transitions as word differences on a line-by-line basis.</p></div>
@@ -5834,7 +6041,7 @@ wdiff pe-input-2080.bz2 live status</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="cmdhelp_root_report"><span class="monospaced">report</span></h3>
+<h3 id="cmdhelp.root.report"><span class="monospaced">report</span></h3>
 <div class="paragraph"><p>See "crm help report" or "crm report --help"</p></div>
 </div>
 <div class="sect2">
